@@ -1,0 +1,311 @@
+
+// ----------------------------------------------------------------------
+// Font
+// ----------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    font-family: $default-font;
+    font-size: 100%;
+    background-color: #fff;
+    @include font-size(13);
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a {
+    color: #2f9fe9;
+}
+
+// ----------------------------------------------------------------------
+// heading
+// ----------------------------------------------------------------------
+.head-h2 {
+    @include font-size(32);
+    font-weight: 600;
+    color: $primary;
+    line-height: 4rem;
+    @include max-screen($screen-md) {
+        @include font-size(25);
+    }
+    @include max-screen($screen-xs) {
+        @include font-size(20);
+    }
+}
+
+.head-h3 {
+    @include font-size(18);
+    font-weight: 600;
+    color: $primary;
+    text-transform: uppercase;
+    @include max-screen($screen-md) {
+        @include font-size(15);
+    }
+}
+
+.head-sm {
+    @include font-size(20);
+    font-weight: 500;
+    color: $primary;
+    margin-bottom: 6rem;
+}
+
+// ----------------------------------------------------------------------
+// Button
+// ----------------------------------------------------------------------
+button:disabled,
+button[disabled],
+.btn:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.btnPrimary {
+    padding: 1rem;
+    height: 55px;
+    background-color: $primary;
+    line-height: 40px;
+    @include font-size(20);
+    font-weight: 600;
+    border-color: $primary;
+    min-width: 430px;
+    max-width: 100%;
+    font-family: $default-font;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    position: relative;
+    @include max-screen($screen-xs) {
+        min-width: 100%;
+    }
+    .keyHot {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        line-height: 15px;
+        @include font-size(10);
+        font-weight: 600;
+        @include max-screen($screen-xs) {
+            display: none;
+        }
+        i {
+            @include font-size(15);
+        }
+    }
+}
+
+.invalid-feedback {
+    @include font-size(15);
+    padding: 1rem;
+    font-weight: 600;
+}
+
+// ----------------------------------------------------------------------
+// box Action Footer
+// ----------------------------------------------------------------------
+.boxActionFooter {
+    @include flexbox();
+    @include align-items(flex-end);
+    margin-top: 8rem;
+    &__left {
+        width: calc(100% - 100px);
+    }
+    &__right {
+        width: 100px;
+        @include flexbox();
+        @include justify-content(flex-end);
+    }
+    .boxAction {
+        @include flexbox();
+        position: relative;
+        top: 1rem;
+        &__left {
+            span[class^="icon-"] {
+                border-right: 1px solid $primary;
+            }
+        }
+        span[class^="icon-"] {
+            @include font-size(20);
+            padding: 0.5rem 0.7rem;
+            margin-top: 2rem;
+            cursor: pointer;
+            &:hover {
+              color: #348efd;
+            }
+        }
+    }
+}
+
+.progressbar {
+    position: relative;
+    &__title {
+        display: inline-block;
+        @include font-size(12);
+        font-weight: 600;
+        color: $primary;
+        margin-bottom: 2rem;
+    }
+    .progress {
+        background-color: #ececec !important;
+        height: 7px;
+    }
+    .progress-bar {
+        background-color: $primary !important;
+    }
+}
+
+// ----------------------------------------------------------------------
+// Modal Validate
+// ----------------------------------------------------------------------
+.modalValidate {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+    z-index: 999;
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+    @include flex-direction(column);
+    &__close {
+        @include font-size(16);
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #474747;
+        cursor: pointer;
+    }
+    &__icon {
+        @include font-size(80);
+        color: #348efd;
+    }
+    &__desc {
+        @include font-size(20);
+        font-weight: 500;
+        margin-top: 4rem;
+        text-align: center;
+    }
+}
+
+.imgPhone {
+    position: relative;
+    input {
+        padding-left: 7rem !important;
+    }
+    &:before {
+        content: "";
+        width: 32px;
+        height: 25px;
+        background-image: url("../../images/phone.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        left: 3rem;
+        top: 50%;
+        z-index: 10;
+        transform: translateY(-50%);
+    }
+}
+
+// ----------------------------------------------------------------------
+// checked
+// ----------------------------------------------------------------------
+.checkedSuccess {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 300px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #12122d;
+    svg {
+      width: 100px;
+      display: block;
+      margin: 40px auto 0;
+    }
+    .path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 0;
+      &.circle {
+        -webkit-animation: dash .9s ease-in-out;
+        animation: dash .9s ease-in-out;
+      }
+      &.line {
+        stroke-dashoffset: 1000;
+        -webkit-animation: dash .9s .9s ease-in-out forwards;
+        animation: dash .9s .9s ease-in-out forwards;
+      }
+      &.check {
+        stroke-dashoffset: -100;
+        -webkit-animation: dash-check .9s .9s ease-in-out forwards;
+        animation: dash-check .9s .9s ease-in-out forwards;
+      }
+    }
+}
+  
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+// ----------------------------------------------------------------------
+// Loading
+// ----------------------------------------------------------------------
+.loadingSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #12122d;
+}

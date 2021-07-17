@@ -1,0 +1,85 @@
+.welcomeLifeInsurance.homeLoan {
+  .logo {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.header-wrap.home-loan {
+  .logo {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 100%;
+
+
+    .logo__img {
+      max-width: pxToRem(130);
+
+      &.logo-2 img {
+        height: pxToRem(45) !important;
+      }
+    }
+  }
+}
+
+.bankProviders {
+  .input * {
+    cursor: pointer !important;
+  }
+
+  .list-occupation li {
+    line-height: 2.4;
+  }
+}
+
+.fromHomeLoan {
+  @media screen and (max-width: 640px) {
+    .header-wrap.home-loan {
+      padding-left: pxToRem(10);
+
+      .logo {
+        .logo__img {
+          max-width: pxToRem(80);
+
+          &.logo-2 {
+            margin-left: pxToRem(5) !important;
+
+            img {
+              height: pxToRem(30) !important;
+            }
+          }
+        }
+      }
+    }
+
+    .bankProviders {
+      .input__label {
+        font-size: pxToRem(11) !important;
+      }
+    }
+  }
+}
+
+.MainSolarNow {
+  &.refinanceBankInput {
+    .content-box>.row .col-12 {
+      @media screen and (max-width: 480px) {
+        padding-left: 5px;
+        padding-right: 0;
+
+        .input__box .input__label {
+          font-size: 0.64rem;
+          top: 0.7rem;
+
+          &.active {
+            top: 0.3rem;
+          }
+        }
+      }
+    }
+  }
+}

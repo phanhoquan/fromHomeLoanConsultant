@@ -1,0 +1,78 @@
+.range-custom {
+    position: relative;
+
+    .value {
+        position: relative;
+        margin-bottom: 0.7rem;
+        width: 100%;
+        // height: 4rem;
+        // background-image: url('data:image/svg+xml, %3Csvg%20%0A%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%0A%20%20width%3D%22159px%22%20height%3D%2268px%22%3E%0A%20%3Cpath%20fill-rule%3D%22evenodd%22%20%20stroke-width%3D%222px%22%20stroke%3D%22rgb(81%2C%20185%2C%20254)%22%20fill%3D%22rgb(218%2C%20240%2C%20255)%22%0A%20%20d%3D%22M148.375%2C53.375%20L84.154%2C53.375%20L79.059%2C62.201%20L73.963%2C53.375%20L10.625%2C53.375%20C7.864%2C53.375%205.625%2C51.136%205.625%2C48.375%20L5.625%2C10.500%20C5.625%2C7.739%207.864%2C5.500%2010.625%2C5.500%20L148.375%2C5.500%20C151.136%2C5.500%20153.375%2C7.739%20153.375%2C10.500%20L153.375%2C48.375%20C153.375%2C51.136%20151.136%2C53.375%20148.375%2C53.375%20Z%22%2F%3E%0A%20%3C%2Fsvg%3E%20%20');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #212121;
+        font-family: "Roboto Slab";
+
+        @media screen and (max-width: 640px) {
+            font-size: 2rem;
+        }
+    }
+
+    input {
+        appearance: none;
+        width: 100%;
+        height: 1.5rem;
+        outline: none;
+        opacity: 1;
+        border-radius: 15px;
+        transition: opacity 0.2s;
+        border: 4px solid #f4f4f4;
+        background-color: #b4e1ff;
+        background-image: linear-gradient(to right, #daf0ff calc(10% + 0.6rem), 0, transparent),
+            radial-gradient(circle at center left, #51b9fe calc(10% + 0.6rem), 0, transparent);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-image: url(../images/debt/iconRating2.gif);
+            box-shadow: 0 0 0 0 rgb(52 172 224);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        &::-moz-range-thumb {
+            appearance: none;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-image: url(../images/debt/iconRating2.gif);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .tooltip .tooltip-inner {
+        max-width: 320px !important;
+    }
+}

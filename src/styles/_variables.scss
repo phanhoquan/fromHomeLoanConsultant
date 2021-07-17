@@ -1,0 +1,200 @@
+$font-size-base: 16;
+$border-width-base: 2;
+$viewPort: 360;
+
+// font weight
+
+$thin: 100;
+$extraLight: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semiBold: 600;
+$bold: 700;
+$extraBold: 800;
+$black: 900;
+$fontRobotoSlab: "Roboto Slab";
+$fontLato: 'Lato';
+/**
+ * Variable for colors
+*/
+
+// corlor
+// ----------------------------------------------------------------------
+$cl-primary: #12122d;
+$cl-white: #fff;
+$cl-text: #1f1f31;
+
+// ----------------------------------------------------------------------
+// Media Screen
+// ----------------------------------------------------------------------
+$width-site: 1280px;
+$screen-tb: 1024px;
+$screen-md: 991px;
+$screen-sm: 767px;
+$screen-xs: 576px;
+
+
+$white: #fff;
+$white-opacity-2: rgba(255, 255, 255, 0.2);
+$white-opacity-3: rgba(255, 255, 255, 0.3);
+$white-opacity-4: rgba(255, 255, 255, 0.4);
+$white-opacity-5: rgba(255, 255, 255, 0.5);
+$white-opacity-6: rgba(255, 255, 255, 0.6);
+$white-opacity-7: rgba(255, 255, 255, 0.7);
+$white-opacity-8: rgba(255, 255, 255, 0.8);
+$white-opacity-9: rgba(255, 255, 255, 0.9);
+
+$black-active: #001d30;
+$black-opacity-2: rgba(0, 0, 0, 0.2);
+$black-opacity-3: rgba(0, 0, 0, 0.3);
+$black-opacity-4: rgba(0, 0, 0, 0.4);
+$black-opacity-5: rgba(0, 0, 0, 0.5);
+$black-opacity-6: rgba(0, 0, 0, 0.6);
+$black-opacity-7: rgba(0, 0, 0, 0.7);
+$black-opacity-075: rgba(0, 0, 0, 0.075);
+$black-opacity-05: rgba(0, 0, 0, 0.05);
+$black-opacity-07: rgba(0, 0, 0, 0.07);
+$black-opacity-09: rgba(0, 0, 0, 0.09);
+$black-opacity-10: rgba(0, 0, 0, 0.46);
+
+$btn-bg-opacity: rgba(10, 208, 154, 0.4);
+$btn-bg: #2e9fe9;
+$orange: #fc6915;
+$btn-bg-opacity: rgba(10, 208, 154, 0.4);
+$btn-disable: #e2e2e2;
+$color-header: #424d5e;
+$color-title: #4d4d4d;
+$color-text: #878787;
+$color-more: #848484;
+$color-welcome: #999999;
+$color-number-point: #ff656a;
+$color-text-point: #444444;
+$color-sub-video: #7c7c7c;
+$color-single: #bfbfbf;
+$color-video: #adadad;
+$color-forgot: #8f8aa2;
+$color-input: #1d1d1d;
+$color-placeholder: rgba(#1d1d1d, 0.3);
+$color-non-member: #919191;
+$color-border: #e1e1e1;
+$btn-off: #c5c7d2;
+$color-border-active: #707070;
+$hummer: #ccc;
+$athens-gray-2: #fafbfc;
+$bg-footer: #fcfcfc;
+$border-footer: #f5f5f5;
+$color-title-point: #3f3f3f;
+$color-point: rgba(68, 68, 68, 0.4);
+$color-date: #b9b9b9;
+$color-none-point: #46484f;
+$popup-title: #33384c;
+$popup-txt: #9b9eaa;
+$popup-border: #e9e9e9;
+$popup-btn1: #a9a9a9;
+$popup-btn2: #686868;
+$popup-btn3: #e76464;
+$color-find-title: #36353c;
+$bg-myPage: #d8d8d8;
+$color-logout: #dddddd;
+$color-list: #1e1e1e;
+$color-day-myPage: rgba(#303948, 0.8);
+$color-email: #a3abb8;
+$color-nickname: #303948;
+$color-category: #4c4c4c;
+$color-korea: #2f2d3b;
+$color-dot-active: #525252;
+$color-tabs-active: #565656;
+$color-tabs: rgba(77, 77, 77, 0.3);
+$color-line-tabs: rgba(112, 112, 112, 0.1);
+$color-fav-total: #666666;
+$color-fav-title: #373737;
+$color-fav-artist: #ababab;
+$color-notice-active: rgba(237, 237, 237, 0.7);
+$color-notice-status: rgba(94, 99, 106, 0.7);
+$color-notice-title: #383838;
+$color-notice-date: rgba(56, 56, 56, 0.5);
+$color-notice-ct: rgba(56, 56, 56, 0.7);
+$color-notice-border: #ededed;
+$color-block-title: #828590;
+$color-event-scheduled: #0ac2d0;
+$color-event-progress: #0ad09a;
+$color-event-closed: #c4c4c4;
+$color-event-date: rgba(47, 45, 59, 0.5);
+$color-light2: #f9f9f9;
+$color-withdraw: #bd4f4f;
+$bg-subscription: #f5f5f9;
+$bg-subscription-08: rgba(#f5f5f9, 0.8);
+$color-table-head: rgba(94, 99, 106, 0.7);
+$color-table-item: #5e636a;
+$color-light3: #fbfbfb;
+$color-light4: #9396a1;
+$color-light5: #c9c9cb;
+$color-light6: #616161;
+$color-light7: #afafaf;
+$color-light8: #e6e6e6;
+$color-language: #5e636a;
+$color-notice: #383838b3;
+$color-light-9: #5e636a80;
+$color-type-select: rgba(17, 17, 17, 0.5);
+$color-enquiry-action: #b0b0b0;
+$color-enquiry-border: rgba(176, 176, 176, 0.5);
+$color-enquiry-date: rgba(94, 99, 106, 0.5);
+$color-enquiry-length: rgba(29, 29, 29, 0.3);
+$bg-permanent: #f8e888;
+$color-select: rgba(#111111, 0.5);
+$blue: #2e9fe9;
+$dusty-gray: #9b9b9b;
+$black-light-2: #212121;
+$bg-sidebar: #2f353a;
+$gray-light: #d7d8df;
+$black-transparent: #0000003d;
+$black-light: #222222;
+$alto-ess: #eeeeee;
+
+$box-shadow-card: rgba(21, 27, 35, 0.46);
+$text-card: #3b3b3b;
+$color-border-card: #e3e3e3;
+$color-number-card: #232323;
+$progress-default: rgba($color: #d1d1d1,
+  $alpha: 0.42,
+);
+$color-progress1: #f6fbff;
+$color-progress2: #f5a500;
+$color-progress3: #fe5e6a;
+$color-progress4: #6d5ebd;
+$color-progress5: #619d39;
+$color-progress6: #b43bb4;
+$bg-button: #1d2b36;
+$bg-button-primary: #3694e8;
+$color-black: #111111;
+$color-black-light: #17242d;
+$color-label-power: #97c95e;
+$color-label-temperature: #ab47bc;
+$color-label-insolation: #3b74e7;
+$color-light10: #e3e3e3;
+$bg-light10: #f3f5f8;
+$color-label-event: #ff3020;
+$color-input-search: #5b5b5b;
+$color-hover: #dddddd;
+$color-gray: #777777;
+$color-gray1: #eef1ff;
+$bg-color-year: #ffb00d;
+$black-light: #222222;
+$color-light-e7: #e7e7e7;
+$color-light-f8: #f8f8f8;
+$color-light-b8: #b8b8b8;
+$color-light-db: #dbdbdb;
+$color-light-68: #686d7a;
+$color-light-dd: #dddedf;
+$gray: #eeeeee;
+$gray-shadow: #777777;
+$input-disable: #efefef;
+$color-light-66: #f6f6f6;
+$color-light-69: #696a70;
+$btn-shadow: #696a70;
+$color-light13: #d4d4d4;
+$bg-event: #ff7d7d;
+$light-gray: #f3f3f3;
+$blue1: #135998;
+$blue2: #1961a2;

@@ -1,0 +1,87 @@
+.google-places-autocomplete {
+    .google-places-autocomplete__input {
+        width: 100%;
+        border-width: 1.02px;
+        border-color: rgb(154, 162, 168);
+        border-style: solid;
+        border-radius: 5px !important;
+        background-color: #fff;
+        height: 60px;
+        padding-left: 60px;
+        padding-right: 60px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        color: #555353;
+        box-shadow: unset !important;
+
+        &::placeholder {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba($color: #555353, $alpha: 0.5);
+        }
+
+        &:focus {
+            border-color: rgb(154, 162, 168);
+        }
+
+        &.invalid {
+            border-color: rgba(255, 0, 0, 0.5);
+            background-color: rgba(255, 0, 0, 0.2);
+        }
+    }
+
+    &:before {
+        content: '';
+        width: 30px;
+        height: 100%;
+        position: absolute;
+        left: 15px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto;
+    }
+}
+
+
+.google-places-autocomplete {
+    width: 100%;
+    position: relative
+}
+
+.google-places-autocomplete__input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: none;
+    margin-bottom: 2px;
+    box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .09)
+}
+
+.google-places-autocomplete__input:active,
+.google-places-autocomplete__input:focus,
+.google-places-autocomplete__input:hover {
+    outline: 0;
+    border: none
+}
+
+.google-places-autocomplete__suggestions-container {
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    color: #000;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .09);
+
+}
+
+.google-places-autocomplete__suggestion {
+    font-size: 1rem;
+    text-align: left;
+    padding: 10px
+}
+
+.google-places-autocomplete__suggestion--active {
+    background: #e0e3e7
+}

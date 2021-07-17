@@ -1,0 +1,77 @@
+.zaselect__control {
+    min-height: 47px !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-bottom: 2px solid #12122d !important;
+    border-right: none !important;
+    border-top: none !important;
+    background: none !important;
+    text-align: center;
+    .zaselect__value-container {
+        height: 3.5rem;
+        padding-left: 3rem !important;
+        padding-right: 3rem !important;
+        padding-top: unset !important;
+        padding-bottom: unset !important;
+        font-size: 2.2rem;
+        font-weight: 400;
+        color: #555353;
+        font-family: 'Montserrat', sans-serif;
+        .zaselect__single-value {
+            color: #12122d !important;
+            font-weight: 600 !important;
+            font-family: 'Montserrat', sans-serif;
+            margin-left: unset !important;
+            margin-right: unset !important;
+            // max-width: calc(100% - 4rem);
+        }
+        .zaselect__placeholder {
+            color: rgba(18, 18, 45, 0.5);
+            margin-left: unset !important;
+            margin-right: unset !important;
+        }
+    }
+
+    .zaselect__indicators {
+        display: none;
+        .zaselect__indicator-separator,
+        svg {
+            display: none;
+        }
+    }
+
+    &.zaselect__control--is-focused {
+        border-color: #12122d !important;
+        box-shadow: unset;
+        border-radius: 3px;
+        &.zaselect__control--menu-is-open {
+            .zaselect__single-value {
+                color: #12122d !important;
+            }
+        }
+    }
+}
+.invalid {
+    .zaselect__control {
+        border-color: rgba(255, 0, 0, 0.5) !important;
+        background-color: rgba(2, 0, 0, 0.2);
+    }
+}
+
+.zaselect__menu {
+    z-index: 999 !important;
+    border-radius: 3px !important;
+    margin-top: 2px !important;
+    .zaselect__option {
+        padding: 11px 12px !important;
+        border-bottom: 1px solid transparent !important;
+        font-size: 1.6rem !important;
+        color: #12122d !important;
+        &:last-child {
+            border-bottom: unset;
+        }
+        &.zaselect__option--is-selected {
+            color: #fff !important;
+        }
+    }
+}
