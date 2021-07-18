@@ -25,9 +25,33 @@
     }
   }
 
+  &.radius {
+    .checkbox {
+      &.checkbox--checked .checkbox__label::before {
+        background-color: #fff;
+        border-color: #b0b0b0;
+      }
+
+      .checkbox__label {
+        &::before {
+          border-radius: 50%;
+        }
+
+        &::after {
+          left: 5.5px;
+          top: 11px;
+          background-color: #2e9fe9;
+          width: 15px;
+          height: 15px;
+          border: 0;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
   .checkbox .checkbox__label span {
     font-weight: 700;
-    text-transform: uppercase;
   }
 
   @media screen and (max-width: 640px) {

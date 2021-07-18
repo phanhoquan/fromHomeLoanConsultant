@@ -5,7 +5,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import imgLogo from "../../../images/life/logo.svg";
 import { useHistory } from "react-router-dom";
 import imgReset from "../../../images/life/reset.svg";
-import InPartnership from "../../../images/life/In-partnership-with.png";
 import Modal from "../../Modal/Modal";
 
 const Header = () => {
@@ -43,19 +42,7 @@ const Header = () => {
           <a className="logo__img" href="#/">
             <LazyLoadImage src={imgLogo} alt="logo" width="100%" height="66" />
           </a>
-          <a className="logo__img logo-2 ml-4" href="#/">
-            <LazyLoadImage
-              src={InPartnership}
-              alt="logo"
-              width="130"
-              height="45"
-            />
-          </a>
         </div>
-        <div className="header-humanoid">
-          <span className="avatar med"></span>
-        </div>
-
         <div className="btn-reset" onClick={() => setIsShowModal(true)}>
           <LazyLoadImage src={imgReset} alt="Reset" width="130" height="45" />
         </div>

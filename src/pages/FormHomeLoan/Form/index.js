@@ -8,17 +8,19 @@ import { beginPage } from "../../../utils/beginPage";
 import qs from "qs";
 import WOW from "wowjs";
 
-import Begin from "./Begin";
-import First from "./First";
-import Second from "./Second";
-import Third from "./Third";
-import Four from "./Four";
-import Five from "./Five";
-import Six from "./Six";
-import Seven from "./Seven";
-import Eight from "./Eight";
-import Nine from "./Nine";
-import Ten from "./Refinance/Ten";
+import Step01 from "./Step01";
+import Step02 from "./Step02";
+import Step03 from "./Step03";
+import Step04 from "./Step04";
+import Step05 from "./Step05";
+import Step06 from "./Step06";
+import Step07 from "./Step07";
+import Step08 from "./Step08";
+import Step09 from "./Step09";
+import Step10 from "./Step10";
+import Step11 from "./Step11";
+import Step12 from "./Step12";
+import Step13 from "./Step13";
 import Success from "./Success";
 
 const Form = () => {
@@ -74,19 +76,21 @@ const Form = () => {
   return (
     <section className="form">
       <Switch>
-        <Route path="/refinance-fact-find/step-begin" component={Begin} />
-        <Route path="/refinance-fact-find/step-one" component={First} />
-        <Route path="/refinance-fact-find/step-two" component={Second} />
-        <Route path="/refinance-fact-find/step-three" component={Third} />
-        <Route path="/refinance-fact-find/step-four" component={Four} />
-        <Route path="/refinance-fact-find/step-five" component={Five} />
-        <Route path="/refinance-fact-find/step-six" component={Six} />
-        <Route path="/refinance-fact-find/step-seven" component={Seven} />
-        <Route path="/refinance-fact-find/step-eight" component={Eight} />
-        <Route path="/refinance-fact-find/step-nine" component={Nine} />
-        <Route path="/refinance-fact-find/step-ten" component={Ten} />
+        <Route path="/refinance-fact-find/step-01" component={Step01} />
+        <Route path="/refinance-fact-find/step-02" component={Step02} />
+        <Route path="/refinance-fact-find/step-03" component={Step03} />
+        <Route path="/refinance-fact-find/step-04" component={Step04} />
+        <Route path="/refinance-fact-find/step-05" component={Step05} />
+        <Route path="/refinance-fact-find/step-06" component={Step06} />
+        <Route path="/refinance-fact-find/step-07" component={Step07} />
+        <Route path="/refinance-fact-find/step-08" component={Step08} />
+        <Route path="/refinance-fact-find/step-09" component={Step09} />
+        <Route path="/refinance-fact-find/step-10" component={Step10} />
+        <Route path="/refinance-fact-find/step-11" component={Step11} />
+        <Route path="/refinance-fact-find/step-12" component={Step12} />
+        <Route path="/refinance-fact-find/step-13" component={Step13} />
         <Route path="/refinance-fact-find/step-success" component={Success} />
-        <Route path="/refinance-fact-find" component={Begin} />
+        <Route path="/refinance-fact-find" component={Step13} />
       </Switch>
     </section>
   );
