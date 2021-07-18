@@ -84,7 +84,7 @@ const Step13 = () => {
       JSON.stringify(otherChillApplicantAge)
     );
     history.push({
-      pathname: `/refinance-fact-find/step-11`,
+      pathname: `/refinance-fact-find/step-14`,
     });
   };
 
@@ -119,10 +119,10 @@ const Step13 = () => {
     }
   };
 
-  const renderListotherChillApplicantAge = () => {
-    const listotherChillApplicantAge = [];
+  const renderlistOtherChillApplicantAge = () => {
+    const listOtherChillApplicantAge = [];
     for (let i = 1; i <= parseInt(childrenNumber, 10); i += 1) {
-      listotherChillApplicantAge.push(
+      listOtherChillApplicantAge.push(
         <ChillApplicantAge
           key={i}
           numberKey={i}
@@ -136,7 +136,7 @@ const Step13 = () => {
         />
       );
     }
-    return listotherChillApplicantAge;
+    return listOtherChillApplicantAge;
   };
 
   return (
@@ -155,7 +155,7 @@ const Step13 = () => {
                   13. What are the age of these other dependants?
                 </h2>
               </Col>
-              {renderListotherChillApplicantAge()}
+              {renderlistOtherChillApplicantAge()}
               <Col xs={12} className="fadeInDown wow  mt-4">
                 <div className="group-btn-footer col d-flex justify-content-center">
                   <Button
