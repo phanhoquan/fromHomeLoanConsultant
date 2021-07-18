@@ -128,11 +128,11 @@ const Nine = () => {
       (checkboxRefinancePurchase === types.refinance && priceOwing)
     ) {
       history.push({
-        pathname: `/home-loan/step-success`,
+        pathname: `/refinance-fact-find/step-success`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-eight`,
+        pathname: `/refinance-fact-find/step-eight`,
       });
     }
   };

@@ -84,7 +84,7 @@ const Begin = () => {
   const nextStep = () => {
     window.localStorage.setItem("postcodeOptions", postcodeOptionsValue);
     history.push({
-      pathname: `/home-loan/step-one`,
+      pathname: `/refinance-fact-find/step-one`,
     });
   };
 

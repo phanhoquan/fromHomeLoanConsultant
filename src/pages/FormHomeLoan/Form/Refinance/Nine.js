@@ -64,11 +64,11 @@ const Nine = () => {
       priceOwing
     ) {
       history.push({
-        pathname: `/home-loan/step-ten`,
+        pathname: `/refinance-fact-find/step-ten`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-eight`,
+        pathname: `/refinance-fact-find/step-eight`,
       });
     }
   };

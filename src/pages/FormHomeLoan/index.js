@@ -2,10 +2,9 @@
 
 import React from "react";
 import Header from "./Header";
-import Footer from "./Footer";
 import { Helmet } from "react-helmet";
 
-const HomeLoan = ({ isShowHeader, isShowFooter, children, className = "" }) => {
+const HomeLoan = ({ isShowHeader, children, className = "" }) => {
   var root = document.getElementsByTagName("html")[0];
   if (document.body) {
     root.setAttribute("class", "fonts100");
@@ -13,14 +12,13 @@ const HomeLoan = ({ isShowHeader, isShowFooter, children, className = "" }) => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>Compare Home Loan</title>
+        <title>Home Loan Consultant</title>
       </Helmet>
-      <div className="wrapper life-insurance MainRefinanceNow fromHomeLoan">
+      <div className="wrapper life-insurance fromHomeLoan">
         {isShowHeader && <Header />}
         <main className={`life-insurance__MainCt ${className}`}>
           {children}
         </main>
-        {isShowFooter && <Footer />}
       </div>
     </React.Fragment>
   );

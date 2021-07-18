@@ -76,11 +76,11 @@ const RefinancePriceOwing = () => {
       postcodeOptions
     ) {
       history.push({
-        pathname: `/home-loan/step-six`,
+        pathname: `/refinance-fact-find/step-six`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-four`,
+        pathname: `/refinance-fact-find/step-four`,
       });
     }
   };

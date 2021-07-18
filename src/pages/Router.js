@@ -8,7 +8,7 @@ const HomeLoan = lazy(() => import("./FormHomeLoan/Form"));
 
 const Router = () => {
   const { listen } = useHistory();
-  
+
   useEffect(() => {
     const unlisten = listen((location) => {
       if (!window.gtag) return;
@@ -21,7 +21,7 @@ const Router = () => {
 
   return (
     <Switch>
-      <Route path="/home-loan">
+      <Route path="/refinance-fact-find">
         <HomeLoan />
       </Route>
       <Route exact path="/">

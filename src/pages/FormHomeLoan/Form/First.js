@@ -58,11 +58,11 @@ const First = () => {
     window.localStorage.setItem("lastName", lastName);
     if (postcodeOptions) {
       history.push({
-        pathname: `/home-loan/step-two`,
+        pathname: `/refinance-fact-find/step-two`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-begin`,
+        pathname: `/refinance-fact-find/step-begin`,
       });
     }
   };

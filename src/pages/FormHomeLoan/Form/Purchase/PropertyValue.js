@@ -62,11 +62,11 @@ const Second = () => {
       postcodeOptions
     ) {
       history.push({
-        pathname: `/home-loan/step-five`,
+        pathname: `/refinance-fact-find/step-five`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-three`,
+        pathname: `/refinance-fact-find/step-three`,
       });
     }
   };

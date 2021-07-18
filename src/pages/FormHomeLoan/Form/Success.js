@@ -87,7 +87,7 @@ export default function Success() {
       f_87_value_of_property: propertyValue, //3
       f_721_mortgage_lender: refinanceBank || "", //4
       cid: 8039,
-      f_83_offer_url: "https://enquiry.makescents.com.au/home-loan",
+      f_83_offer_url: "https://enquiry.makescents.com.au/refinance-fact-find",
     });
   };
 
@@ -122,7 +122,7 @@ export default function Success() {
         sendDataToDatabowl(dataState, success, success);
       } else {
         history.push({
-          pathname: `/home-loan/step-eight`,
+          pathname: `/refinance-fact-find/step-eight`,
         });
       }
     }

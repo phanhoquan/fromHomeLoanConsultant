@@ -41,11 +41,11 @@ const Second = () => {
   const nextStep = () => {
     if (!lastName || !firstName || !postcodeOptions) {
       history.push({
-        pathname: `/home-loan/step-one`,
+        pathname: `/refinance-fact-find/step-one`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-three`,
+        pathname: `/refinance-fact-find/step-three`,
       });
     }
   };

@@ -47,11 +47,11 @@ const PageSeven = () => {
       priceOwing
     ) {
       history.push({
-        pathname: `/home-loan/step-eight`,
+        pathname: `/refinance-fact-find/step-eight`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-six`,
+        pathname: `/refinance-fact-find/step-six`,
       });
     }
   };

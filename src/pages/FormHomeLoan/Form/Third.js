@@ -37,11 +37,11 @@ const Third = () => {
   const nextStep = () => {
     if (firstName && lastName && email && postcodeOptions) {
       history.push({
-        pathname: `/home-loan/step-four`,
+        pathname: `/refinance-fact-find/step-four`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-two`,
+        pathname: `/refinance-fact-find/step-two`,
       });
     }
   };

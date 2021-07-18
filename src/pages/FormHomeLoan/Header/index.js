@@ -31,7 +31,7 @@ const Header = () => {
   const handleReset = () => {
     localStorage.clear();
     history.push({
-      pathname: `/home-loan`,
+      pathname: `/refinance-fact-find`,
     });
     setIsShowModal(false);
   };

@@ -63,11 +63,11 @@ const RefinanceBank = () => {
       propertyValue
     ) {
       history.push({
-        pathname: `/home-loan/step-seven`,
+        pathname: `/refinance-fact-find/step-seven`,
       });
     } else {
       history.push({
-        pathname: `/home-loan/step-five`,
+        pathname: `/refinance-fact-find/step-five`,
       });
     }
   };
