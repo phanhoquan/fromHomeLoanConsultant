@@ -36,16 +36,16 @@ const Step03 = () => {
   );
   const [validMessage, setValidMessage] = useState("This field is required");
   const [validMessage2, setValidMessage2] = useState("This field is required");
-  const decimalCount = (num) => {
-    // Convert to String
-    const numStr = String(num);
-    // String Contains Decimal
-    if (numStr.includes(".")) {
-      return numStr.split(".")[1].length;
-    }
-    // String Does Not Contain Decimal
-    return 0;
-  };
+  // const decimalCount = (num) => {
+  //   // Convert to String
+  //   const numStr = String(num);
+  //   // String Contains Decimal
+  //   if (numStr.includes(".")) {
+  //     return numStr.split(".")[1].length;
+  //   }
+  //   // String Does Not Contain Decimal
+  //   return 0;
+  // };
 
   const checkValueInterestRateStatus = (amount) => {
     const originAmount = Number(amount.replace(/[^0-9\\.-]+/g, ""));
@@ -54,11 +54,11 @@ const Step03 = () => {
       setValueInterestRateValid(valid.INVALID);
       return false;
     }
-    if (originAmount && decimalCount(originAmount) === 0) {
-      setValidMessage("Please enter valid decimal number");
-      setValueInterestRateValid(valid.INVALID);
-      return false;
-    }
+    // if (originAmount) {
+    //   setValidMessage("Please enter valid decimal number");
+    //   setValueInterestRateValid(valid.INVALID);
+    //   return false;
+    // }
 
     if (originAmount > 100) {
       setValidMessage("Value should be less that 100%");
@@ -76,11 +76,11 @@ const Step03 = () => {
       setValueInterestRateValid2(valid.INVALID);
       return false;
     }
-    if (originAmount && decimalCount(originAmount) === 0) {
-      setValidMessage2("Please enter valid decimal number");
-      setValueInterestRateValid2(valid.INVALID);
-      return false;
-    }
+    // if (originAmount) {
+    //   setValidMessage2("Please enter valid decimal number");
+    //   setValueInterestRateValid2(valid.INVALID);
+    //   return false;
+    // }
 
     if (originAmount > 100) {
       setValidMessage2("Value should be less that 100%");
@@ -184,6 +184,10 @@ const Step03 = () => {
     // eslint-disable-next-line
   }, [valueInterestRate2]);
 
+  const onClickBack = () => {
+    history.go(-1);
+  };
+
   return (
     <LifeInsurance isShowHeader>
       <section className="formContent-step-first pb-5">
@@ -265,7 +269,7 @@ const Step03 = () => {
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
-                    onClick={onClickNext}
+                    onClick={onClickBack}
                   >
                     BACK
                   </Button>

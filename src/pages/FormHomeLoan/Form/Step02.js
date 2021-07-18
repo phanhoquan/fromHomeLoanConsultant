@@ -44,8 +44,6 @@ const Step02 = () => {
   };
 
   const nextStep = () => {
-    window.localStorage.setItem("currentLoanStatus", currentLoanStatus);
-
     history.push({
       pathname: `/refinance-fact-find/step-03`,
     });
@@ -64,7 +62,9 @@ const Step02 = () => {
       }
     }
   };
-
+  const onClickBack = () => {
+    history.go(-1);
+  };
   return (
     <LifeInsurance isShowHeader>
       <section className="formContent-step-first pb-5">
@@ -120,7 +120,7 @@ const Step02 = () => {
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
-                    onClick={onClickNext}
+                    onClick={onClickBack}
                   >
                     BACK
                   </Button>

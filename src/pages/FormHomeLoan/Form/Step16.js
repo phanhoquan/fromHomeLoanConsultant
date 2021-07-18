@@ -116,6 +116,10 @@ const Step16 = () => {
       ? "d-block"
       : "d-none";
 
+  const onClickBack = () => {
+    history.go(-1);
+  };
+
   return (
     <LifeInsurance isShowHeader>
       <section className="formContent-step-second form-six formContent-life-insurance mb-0">
@@ -147,7 +151,6 @@ const Step16 = () => {
                       value={occupation}
                       id="iconOccupation"
                       customClassLabel={occupation ? "active" : ""}
-                      // iconOccupation
                       customClassWrap="email"
                       innerRef={occupationRef}
                     />
@@ -178,7 +181,7 @@ const Step16 = () => {
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
-                    onClick={onClickNext}
+                    onClick={onClickBack}
                   >
                     BACK
                   </Button>

@@ -70,6 +70,10 @@ const Step12 = () => {
     }
   };
 
+  const onClickBack = () => {
+    history.go(-1);
+  };
+
   return (
     <LifeInsurance isShowHeader>
       <section
@@ -144,7 +148,7 @@ const Step12 = () => {
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
-                    onClick={onClickNext}
+                    onClick={onClickBack}
                   >
                     BACK
                   </Button>
