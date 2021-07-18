@@ -17,10 +17,15 @@ const listNumberPartnerReturn = [
   "Not returning to work",
 ];
 
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 const Step24 = () => {
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
-
+  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [numberPartnerReturn, setNumberPartnerReturn] = useState(
@@ -44,10 +49,17 @@ const Step24 = () => {
 
   const nextStep = (value) => {
     window.localStorage.setItem("numberPartnerReturn", value);
-    history.push({
-      pathname: `/refinance-fact-find/step-26`,
-    });
+    if (jointApplicationStatus === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
+      });
+    }
   };
+
   const onClickSelect = (value) => {
     setNumberPartnerReturn(value);
     setNumberPartnerReturnValid(valid.NON_VALID);

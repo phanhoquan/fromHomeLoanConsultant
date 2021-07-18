@@ -39,16 +39,30 @@ const Step27 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
 
-  const nextStep = () => {
-    window.localStorage.setItem("personalLoansStatus", personalLoansStatus);
-    history.push({
-      pathname: `/refinance-fact-find/step-28a`,
-    });
+  const nextStep = (option) => {
+    window.localStorage.setItem("personalLoansStatus", option);
+    if (option === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-28a`,
+      });
+    } else if (option === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-28b`,
+      });
+    } else if (option === types[3]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-28c`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-29`,
+      });
+    }
   };
 
   const onClickNext = () => {
@@ -59,7 +73,7 @@ const Step27 = () => {
     if (checkStatusValid(personalLoansStatus)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(personalLoansStatus);
         }, 500);
       }
     }

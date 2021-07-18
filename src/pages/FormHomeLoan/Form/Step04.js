@@ -36,38 +36,41 @@ const Step04 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
 
-  const nextStep = () => {
-    window.localStorage.setItem(
-      "jointApplicationStatus",
-      jointApplicationStatus
-    );
-
-    history.push({
-      pathname: `/refinance-fact-find/step-05`,
-    });
+  const nextStep = (option) => {
+    window.localStorage.setItem("jointApplicationStatus", option);
+    if (option === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-07`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-05`,
+      });
+    }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     checkStatusValid(jointApplicationStatus);
     setTimeout(() => setShowLoading(false), 500);
-
     if (checkStatusValid(jointApplicationStatus)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(jointApplicationStatus);
         }, 500);
       }
     }
   };
+
   const onClickBack = () => {
     history.go(-1);
   };
+
   return (
     <LifeInsurance isShowHeader>
       <section className="formContent-step-first pb-5">

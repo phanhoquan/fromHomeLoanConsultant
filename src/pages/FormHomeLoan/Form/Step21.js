@@ -7,10 +7,15 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputNumber from "../../../Components/InputNumber";
 
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 const Step21 = () => {
   const priceTax2019Ref = useRef(null);
   const priceTax2020Ref = useRef(null);
-
+  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [priceTax2019, setPriceTax2019] = useState(
@@ -54,9 +59,15 @@ const Step21 = () => {
       "priceTax2020",
       priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
     );
-    history.push({
-      pathname: `/refinance-fact-find/step-22`,
-    });
+    if (jointApplicationStatus === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-22`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-24`,
+      });
+    }
   };
 
   const onKeyUpHandle = (value, name) => {

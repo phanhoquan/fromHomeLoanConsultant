@@ -40,19 +40,26 @@ const Step23 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
 
-  const nextStep = () => {
-    window.localStorage.setItem(
-      "employmentPartnersWorkingStatus",
-      employmentWorkingStatus
-    );
-    history.push({
-      pathname: `/refinance-fact-find/step-24`,
-    });
+  const nextStep = (option) => {
+    window.localStorage.setItem("employmentPartnersWorkingStatus", option);
+    if (option === types[5]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
+      });
+    } else if (option === types[6]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-24`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    }
   };
 
   const onClickNext = () => {
@@ -63,7 +70,7 @@ const Step23 = () => {
     if (checkStatusValid(employmentWorkingStatus)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(employmentWorkingStatus);
         }, 500);
       }
     }
@@ -129,7 +136,7 @@ const Step23 = () => {
                   <Col xs={12} sm={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[6])}
-                      checkBox={employmentWorkingStatus === types[65]}
+                      checkBox={employmentWorkingStatus === types[6]}
                       name={types[6]}
                     />
                   </Col>

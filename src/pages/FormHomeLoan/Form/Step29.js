@@ -35,16 +35,22 @@ const Step29 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
 
-  const nextStep = () => {
-    window.localStorage.setItem("creditCard", creditCard);
-    history.push({
-      pathname: `/refinance-fact-find/step-30`,
-    });
+  const nextStep = (option) => {
+    window.localStorage.setItem("creditCard", option);
+    if (option === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-30`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-31`,
+      });
+    }
   };
 
   const onClickNext = () => {
@@ -55,7 +61,7 @@ const Step29 = () => {
     if (checkStatusValid(creditCard)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(creditCard);
         }, 500);
       }
     }

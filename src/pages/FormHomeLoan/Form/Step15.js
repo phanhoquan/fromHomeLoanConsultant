@@ -39,19 +39,26 @@ const Step15 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
 
-  const nextStep = () => {
-    window.localStorage.setItem(
-      "employmentWorkingStatus",
-      employmentWorkingStatus
-    );
-    history.push({
-      pathname: `/refinance-fact-find/step-16`,
-    });
+  const nextStep = (option) => {
+    window.localStorage.setItem("employmentWorkingStatus", option);
+    if (option === types[4]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-18`,
+      });
+    } else if (option === types[5]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-20`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-16`,
+      });
+    }
   };
 
   const onClickNext = () => {
@@ -62,7 +69,7 @@ const Step15 = () => {
     if (checkStatusValid(employmentWorkingStatus)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(employmentWorkingStatus);
         }, 500);
       }
     }
