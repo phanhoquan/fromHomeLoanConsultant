@@ -14,7 +14,7 @@ const Step13 = () => {
       ? JSON.parse(localStorage.getItem("otherChillApplicantAge"))
       : {}
   );
-  const childrenNumber = localStorage.getItem("childrenNumber") || 4;
+  const otherChildrenNumber = localStorage.getItem("otherChildrenNumber") || 4;
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [otherChillApplicantAgeValid, setOtherChillApplicantAgeValid] =
@@ -93,7 +93,7 @@ const Step13 = () => {
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading && finAgeValid?.length === parseInt(childrenNumber, 10)) {
+    if (!showLoading && finAgeValid?.length === parseInt(otherChildrenNumber, 10)) {
       setTimeout(function () {
         nextStep();
       }, 500);
@@ -121,7 +121,7 @@ const Step13 = () => {
 
   const renderlistOtherChillApplicantAge = () => {
     const listOtherChillApplicantAge = [];
-    for (let i = 1; i <= parseInt(childrenNumber, 10); i += 1) {
+    for (let i = 1; i <= parseInt(otherChildrenNumber, 10); i += 1) {
       listOtherChillApplicantAge.push(
         <ChillApplicantAge
           key={i}

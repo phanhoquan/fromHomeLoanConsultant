@@ -47,7 +47,7 @@ const Step27 = () => {
   const nextStep = () => {
     window.localStorage.setItem("personalLoansStatus", personalLoansStatus);
     history.push({
-      pathname: `/refinance-fact-find/step-16`,
+      pathname: `/refinance-fact-find/step-28a`,
     });
   };
 

@@ -28,7 +28,7 @@ const Step26 = () => {
   const checkPartnersSalaryStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 400000;
+      parseInt(value.replace(/,/gi, ""), 10) <= 1000000;
     setPartnersSalaryValid(Number(test));
     return test;
   };
@@ -101,7 +101,7 @@ const Step26 = () => {
                 </Row>
                 {partnersSalaryValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Value should be in between $0 - $400,000</p>
+                    <p>Value should be in between $0 - $1,000,000</p>
                   </div>
                 )}
               </Col>

@@ -8,34 +8,29 @@ import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
 
 export const types = {
-  1: "Full Time",
-  2: "Part Time",
-  3: "Casual",
-  4: "Self Employed",
-  5: "Unemployed",
-  6: "Maternal Leave",
+  1: "YES",
+  2: "NO",
 };
 
-const Step23 = () => {
+const Step29 = () => {
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
-  const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
-    localStorage.getItem("employmentPartnersWorkingStatus") || ""
+  const [creditCard, setCreditCard] = useState(
+    localStorage.getItem("creditCard") || ""
   );
 
-  const [employmentWorkingStatusValid, setEmploymentWorkingStatusValid] =
-    useState(valid.NON_VALID);
+  const [creditCardValid, setCreditCardValid] = useState(valid.NON_VALID);
 
   const checkStatusValid = (option) => {
     let test = Object.values(types).includes(option);
-    setEmploymentWorkingStatusValid(Number(test));
+    setCreditCardValid(Number(test));
     return test;
   };
 
   const onCheck = (option) => {
-    setEmploymentWorkingStatus(option);
-    window.localStorage.setItem("employmentPartnersWorkingStatus", option);
+    setCreditCard(option);
+    window.localStorage.setItem("creditCard", option);
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
@@ -46,21 +41,18 @@ const Step23 = () => {
   };
 
   const nextStep = () => {
-    window.localStorage.setItem(
-      "employmentPartnersWorkingStatus",
-      employmentWorkingStatus
-    );
+    window.localStorage.setItem("creditCard", creditCard);
     history.push({
-      pathname: `/refinance-fact-find/step-24`,
+      pathname: `/refinance-fact-find/step-30`,
     });
   };
 
   const onClickNext = () => {
     setShowLoading(true);
-    checkStatusValid(employmentWorkingStatus);
+    checkStatusValid(creditCard);
     setTimeout(() => setShowLoading(false), 500);
 
-    if (checkStatusValid(employmentWorkingStatus)) {
+    if (checkStatusValid(creditCard)) {
       if (!showLoading) {
         setTimeout(function () {
           nextStep();
@@ -81,56 +73,28 @@ const Step23 = () => {
           >
             <Row>
               <Col xs={12} className="text-center mt-3">
-                <h2 className="mb-4">
-                  23. What is your partners employment status?
-                </h2>
+                <h2 className="mb-4">29. Do you have a credit card?</h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4">
                   <Col xs={12} sm={6} className="wForm-input">
                     <CheckboxButton
-                      checkBox={employmentWorkingStatus === types[1]}
+                      checkBox={creditCard === types[1]}
                       onClick={() => onCheck(types[1])}
                       name={types[1]}
+                      classContainer="radius"
                     />
                   </Col>
                   <Col xs={12} sm={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[2])}
-                      checkBox={employmentWorkingStatus === types[2]}
+                      checkBox={creditCard === types[2]}
                       name={types[2]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      checkBox={employmentWorkingStatus === types[3]}
-                      onClick={() => onCheck(types[3])}
-                      name={types[3]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[4])}
-                      checkBox={employmentWorkingStatus === types[4]}
-                      name={types[4]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[5])}
-                      checkBox={employmentWorkingStatus === types[5]}
-                      name={types[5]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[6])}
-                      checkBox={employmentWorkingStatus === types[65]}
-                      name={types[6]}
+                      classContainer="radius"
                     />
                   </Col>
                 </Row>
-                {employmentWorkingStatusValid === valid.INVALID && (
+                {creditCardValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Please select an option</p>
                   </div>
@@ -164,4 +128,4 @@ const Step23 = () => {
   );
 };
 
-export default Step23;
+export default Step29;

@@ -1533,3 +1533,120 @@ div.tooltip2 {
 .max-280 {
   max-width: 280px !important;
 }
+
+
+.wrapper {
+  textarea.input-change {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+    box-shadow: none !important;
+  }
+
+  input.google-places-autocomplete__input {
+    border: pxToRem(1) solid $color-enquiry-action;
+    height: pxToRem(60);
+    display: block;
+    border-radius: pxToRem(7);
+    font-size: pxToRem(18);
+    padding: pxToRem(15);
+    padding-bottom: pxToRem(8);
+    color: $black-active;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: $bold;
+    -webkit-transition: width 0.15s, height 0.15s, background-size 0.15s;
+    -moz-transition: width 0.15s, height 0.15s, background-size 0.15s;
+    -o-transition: width 0.15s, height 0.15s, background-size 0.15s;
+    transition: width 0.15s, height 0.15s, background-size 0.15s;
+    outline: none;
+    background-color: transparent;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    &.value {
+      padding-top: pxToRem(20);
+    }
+
+    &:focus {
+      border: pxToRem(2) solid $blue;
+    }
+  }
+
+  .google-places-autocomplete__suggestions-container {
+    background-color: #f7f7f7;
+    border: 1px solid #dfdfdf;
+    border-radius: pxToRem(6);
+    top: 100%;
+    margin-top: pxToRem(10);
+
+    >div {
+      font-family: $fontLato;
+      font-size: pxToRem(17);
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.4;
+      letter-spacing: normal;
+      text-align: left;
+      color: #212121;
+      border-bottom: 1px solid #dfdfdf;
+      padding: pxToRem(10) pxToRem(30) pxToRem(10) pxToRem(60);
+      cursor: pointer;
+      -webkit-transition: all 0.15s ease-out;
+      -moz-transition: all 0.15s ease-out;
+      -o-transition: all 0.15s ease-out;
+      transition: all 0.15s ease-out;
+      height: pxToRem(60);
+      display: flex;
+      align-items: center;
+
+      &:hover,
+      &.active {
+        background-color: #dbdbdb;
+      }
+
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
+
+  @media screen and (max-width: 640px) {
+    .welcomeLifeInsurance {
+      .logo {
+        margin-bottom: pxToRem(50);
+      }
+
+      p {
+        font-family: $fontLato;
+        font-weight: bold;
+        font-size: pxToRem(16);
+      }
+
+      ul.list-dot {
+        li {
+          font-size: pxToRem(14);
+          line-height: 1.4;
+          padding: 0;
+        }
+      }
+    }
+
+    .google-places-autocomplete__suggestions-container {
+      >div {
+        font-size: pxToRem(15);
+        padding: pxToRem(10) pxToRem(30) pxToRem(10) pxToRem(43);
+      }
+    }
+  }
+}

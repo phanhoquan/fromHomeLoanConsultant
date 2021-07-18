@@ -40,7 +40,7 @@ const InputGoogleAddress = ({
         }}
         renderInput={(params) => (
           <InputCustomMultiLine
-            label="Please enter your address"
+            label="Please enter your full residential address"
             {...params}
             value={params?.value}
             type="email"
