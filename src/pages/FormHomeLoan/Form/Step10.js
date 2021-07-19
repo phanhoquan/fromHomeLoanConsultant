@@ -10,8 +10,8 @@ import ChillApplicantAge from "./Components/ChillApplicantAge";
 
 const Step10 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const [chillApplicantAge, setChillApplicantAge] = useState(
     localStorage.getItem("chillApplicantAge")
       ? JSON.parse(localStorage.getItem("chillApplicantAge"))
@@ -154,7 +154,7 @@ const Step10 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={10}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div

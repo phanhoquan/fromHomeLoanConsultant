@@ -14,8 +14,8 @@ export const types = {
 
 const Step04 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
@@ -44,8 +44,31 @@ const Step04 = () => {
     }
   };
 
+  const finDataStep = listDataSubmit.find((item) => item.id === 4);
+
   const nextStep = (option) => {
     window.localStorage.setItem("jointApplicationStatus", option);
+    const step4 = {
+      id: 4,
+      question: "Are you the sole applicant or is this \n a joint application?",
+      answer: option,
+      skip: "",
+    };
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 3 ? step4 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step4])
+      );
+    }
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-07`,
@@ -74,8 +97,40 @@ const Step04 = () => {
     history.go(-1);
   };
 
+  const handleSkip = () => {
+    const skipStep4 = {
+      id: 4,
+      question: "Are you the sole applicant or is this \n a joint application?",
+      answer: jointApplicationStatus,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 4 ? skipStep4 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep4])
+      );
+    }
+    if (jointApplicationStatus === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-07`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-05`,
+      });
+    }
+  };
+
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={4}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -132,7 +187,13 @@ const Step04 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

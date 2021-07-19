@@ -12,8 +12,8 @@ const listHomeLoan = ["Spouse", "Defacto", "Sibling", "Parent", "Offspring"];
 
 const Step06 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const relationshipYourRef = useRef(null);
   const wrapperInfoRef = useRef();
   const firstNameOther = localStorage.getItem("firstNameOther");
@@ -38,9 +38,31 @@ const Step06 = () => {
     setIsShowModal(false);
     return test;
   };
+  const step6 = {
+    id: 6,
+    question: `What is your relationship with ${firstNameOther}`,
+    answer: relationshipYour,
+    skip: "",
+  };
+  const finDataStep = listDataSubmit.find((item) => item.id === 6);
 
   const nextStep = (value) => {
     window.localStorage.setItem("relationshipYour", value);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 6 ? step6 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step6])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-07`,
     });
@@ -76,8 +98,35 @@ const Step06 = () => {
   const onClickBack = () => {
     history.go(-1);
   };
+
+  const handleSkip = () => {
+    history.push({
+      pathname: `/refinance-fact-find/step-07`,
+    });
+    const skipStep6 = {
+      id: 6,
+      question: `What is your relationship with ${firstNameOther}`,
+      answer: relationshipYour,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 6 ? skipStep6 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep6])
+      );
+    }
+  };
+
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={6}>
       <section
         className={`formContent-step-second formContent-life-insurance ${
           isShowModal ? "mb-10" : "mb-2"
@@ -163,7 +212,13 @@ const Step06 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

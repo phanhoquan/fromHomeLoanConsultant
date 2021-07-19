@@ -12,8 +12,8 @@ const listChildrenNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
 const Step09 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const childrenNumberRef = useRef(null);
   const wrapperInfoRef = useRef();
 
@@ -76,9 +76,35 @@ const Step09 = () => {
   const onClickBack = () => {
     history.go(-1);
   };
+  const handleSkip = () => {
+    const skipStep9 = {
+      id: 9,
+      question: "How many kids or dependants do you have?",
+      answer: childrenNumber,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 9 ? skipStep9 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep9])
+      );
+    }
+
+    history.push({
+      pathname: `/refinance-fact-find/step-10`,
+    });
+  };
 
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={9}>
       <section
         className={`formContent-step-second formContent-life-insurance ${
           isShowModal ? "mb-10" : "mb-2"
@@ -162,7 +188,13 @@ const Step09 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

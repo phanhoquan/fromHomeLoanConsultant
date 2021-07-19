@@ -9,8 +9,8 @@ import LifeInsurance from "../index";
 
 const First = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const firstNameRef = useRef(null);
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
@@ -41,9 +41,32 @@ const First = () => {
     return test;
   };
 
+  const step5 = {
+    id: 5,
+    question: "What is the other name of the applicant?",
+    answer: `${firstName} ${lastName}`,
+    skip: "",
+  };
+  const finDataStep = listDataSubmit.find((item) => item.id === 5);
+
   const nextStep = () => {
     window.localStorage.setItem("firstNameOther", firstName);
     window.localStorage.setItem("lastNameOther", lastName);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 5 ? step5 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step5])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-06`,
     });
@@ -84,8 +107,35 @@ const First = () => {
   const onClickBack = () => {
     history.go(-1);
   };
+
+  const handleSkip = () => {
+    const skipStep5 = {
+      id: 5,
+      question: "What is the other name of the applicant?",
+      answer: `${firstName} ${lastName}`,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 5 ? skipStep5 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep5])
+      );
+    }
+    history.push({
+      pathname: `/refinance-fact-find/step-06`,
+    });
+  };
+
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={5}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -169,7 +219,13 @@ const First = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

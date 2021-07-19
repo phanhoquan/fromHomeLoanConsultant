@@ -75,7 +75,7 @@ const Step20 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={20}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div

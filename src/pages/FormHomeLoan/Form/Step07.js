@@ -15,8 +15,8 @@ export const types = {
 
 const Step02 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const typesApplication =
     localStorage.getItem("jointApplicationStatus") || "Sole Applicant";
   const [soleApplicantAge, setSoleApplicantAge] = useState(
@@ -120,8 +120,31 @@ const Step02 = () => {
         break;
     }
   };
+  const step7 = {
+    id: 7,
+    question: `What is the age of the applicant?`,
+    answer: soleApplicantAge,
+    answer2: jointApplicantAge,
+    skip: "",
+  };
+  const finDataStep = listDataSubmit.find((item) => item.id === 7);
 
   const nextStep = () => {
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 7 ? step7 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step7])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-08`,
     });
@@ -166,8 +189,35 @@ const Step02 = () => {
     history.go(-1);
   };
 
+  const handleSkip = () => {
+    history.push({
+      pathname: `/refinance-fact-find/step-08`,
+    });
+    const skipStep7 = {
+      id: 7,
+      question: "What is the age of the applicant?",
+      answer: soleApplicantAge,
+      answer2: jointApplicantAge,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 7 ? skipStep7 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep7])
+      );
+    }
+  };
+
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={7}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -253,7 +303,13 @@ const Step02 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

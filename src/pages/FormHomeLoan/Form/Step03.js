@@ -218,7 +218,7 @@ const Step03 = () => {
     history.push({
       pathname: `/refinance-fact-find/step-04`,
     });
-    const skipStep2 = {
+    const skipStep3 = {
       id: 3,
       question:
         "What is the current interest rate you are \n paying on your loan?",
@@ -227,7 +227,7 @@ const Step03 = () => {
       skip: "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 3 ? skipStep2 : item
+      item.id === 3 ? skipStep3 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -237,13 +237,13 @@ const Step03 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep2])
+        JSON.stringify([...listDataSubmit, skipStep3])
       );
     }
   };
 
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={3}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
