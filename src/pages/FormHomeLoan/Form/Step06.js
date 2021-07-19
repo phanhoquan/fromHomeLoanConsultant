@@ -38,16 +38,17 @@ const Step06 = () => {
     setIsShowModal(false);
     return test;
   };
-  const step6 = {
-    id: 6,
-    question: `What is your relationship with ${firstNameOther}`,
-    answer: relationshipYour,
-    skip: "",
-  };
+  
   const finDataStep = listDataSubmit.find((item) => item.id === 6);
 
   const nextStep = (value) => {
     window.localStorage.setItem("relationshipYour", value);
+    const step6 = {
+      id: 6,
+      question: `What is your relationship with ${firstNameOther}`,
+      answer: value,
+      skip: "",
+    };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 6 ? step6 : item

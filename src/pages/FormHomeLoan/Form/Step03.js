@@ -133,12 +133,21 @@ const Step03 = () => {
         break;
     }
   };
+  let textRate = "";
+  if (currentLoanStatus === types[1]) {
+    textRate = valueInterestRate;
+  }
+  if (currentLoanStatus === types[2]) {
+    textRate = valueInterestRate2;
+  }
+  if (currentLoanStatus === types[3]) {
+    textRate = `${valueInterestRate}/${valueInterestRate2}`;
+  }
   const step3 = {
     id: 3,
     question:
       "What is the current interest rate you are \n paying on your loan?",
-    answer: valueInterestRate,
-    answer2: valueInterestRate2,
+    answer: textRate,
     skip: "",
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 3);
@@ -218,12 +227,12 @@ const Step03 = () => {
     history.push({
       pathname: `/refinance-fact-find/step-04`,
     });
+
     const skipStep3 = {
       id: 3,
       question:
         "What is the current interest rate you are \n paying on your loan?",
-      answer: valueInterestRate,
-      answer2: valueInterestRate2,
+      answer: textRate,
       skip: "Skipped",
     };
 

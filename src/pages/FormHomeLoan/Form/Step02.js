@@ -47,7 +47,8 @@ const Step02 = () => {
     }
   };
 
-  const finDataStep = listDataSubmit.find((item) => item.id === 3);
+  const finDataStep = listDataSubmit.find((item) => item.id === 2);
+
   const nextStep = (option) => {
     const step2 = {
       id: 2,

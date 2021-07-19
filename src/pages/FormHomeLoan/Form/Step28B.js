@@ -32,7 +32,7 @@ const Step28B = () => {
   }, []);
 
   const checkCarLoanStatus = (value) => {
-    let test = /^([A-Za-z]{2,})$/.test(value);
+    let test = value.length > 1;
     setCarLoanValid(Number(test));
     return test;
   };
@@ -54,6 +54,7 @@ const Step28B = () => {
       ? parseInt(carLoanAmount, 10).toLocaleString("en")
       : "",
     skip: "",
+    menu: "28b",
   };
   const nextStep = () => {
     window.localStorage.setItem("carLoan", carLoan);
@@ -127,6 +128,7 @@ const Step28B = () => {
         ? parseInt(carLoanAmount, 10).toLocaleString("en")
         : "",
       skip: "Skipped",
+      menu: "28b",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

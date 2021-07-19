@@ -36,7 +36,7 @@ const Step28C = () => {
   }, []);
 
   const checkHECSDebtStatus = (value) => {
-    let test = /^([A-Za-z]{2,})$/.test(value);
+    let test = value.length > 1;
     setHECSDebtValid(Number(test));
     return test;
   };
@@ -58,6 +58,7 @@ const Step28C = () => {
       ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
       : "",
     skip: "",
+    menu: "28c",
   };
 
   const nextStep = () => {
@@ -132,6 +133,7 @@ const Step28C = () => {
         ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
         : "",
       skip: "Skipped",
+      menu: "28c",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

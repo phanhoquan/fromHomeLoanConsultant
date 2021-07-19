@@ -12,6 +12,10 @@ const Dashboard = () => {
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
+  const handleLogOut = () => {
+    localStorage.clear();
+    history.push("/login");
+  };
   return (
     <React.Fragment>
       <Helmet>
@@ -26,7 +30,7 @@ const Dashboard = () => {
           }}
         >
           <div className="logo">
-            <a className="logo__img" href="#/">
+            <a className="logo__img" href="/">
               <LazyLoadImage
                 src={imgLogo}
                 alt="logo"
@@ -70,6 +74,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="btn-logout" role="button" onClick={handleLogOut}>
+              Logout
             </div>
           </div>
         </main>

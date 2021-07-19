@@ -39,7 +39,7 @@ const Header = () => {
     <>
       <header className="header header-wrap home-loan" id="header">
         <div className="logo">
-          <a className="logo__img" href="#/">
+          <a className="logo__img" href="/">
             <LazyLoadImage src={imgLogo} alt="logo" width="100%" height="66" />
           </a>
         </div>

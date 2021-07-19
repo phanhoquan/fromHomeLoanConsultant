@@ -36,7 +36,7 @@ const Step28A = () => {
   }, []);
 
   const checkPersonalLoanStatus = (value) => {
-    let test = /^([A-Za-z]{2,})$/.test(value);
+    let test = value.length > 1;
     setPersonalLoanValid(Number(test));
     return test;
   };
@@ -55,9 +55,10 @@ const Step28A = () => {
     answer: personalLoan,
     question2: "What is the limit on the personal loan amount?",
     answer2: personalLoanAmount
-      ? parseInt(personalLoanAmount, 10).toLocaleString("en")
+      ? parseInt(personalLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
       : "",
     skip: "",
+    menu: "28a",
   };
 
   const nextStep = () => {
@@ -129,9 +130,12 @@ const Step28A = () => {
       answer: personalLoan,
       question2: "What is the limit on the personal loan amount?",
       answer2: personalLoanAmount
-        ? parseInt(personalLoanAmount, 10).toLocaleString("en")
+        ? parseInt(personalLoanAmount.replace(/,/g, ""), 10).toLocaleString(
+            "en"
+          )
         : "",
       skip: "Skipped",
+      menu: "28a",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

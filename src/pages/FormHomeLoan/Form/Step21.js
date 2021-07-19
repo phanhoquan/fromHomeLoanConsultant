@@ -56,10 +56,12 @@ const Step21 = () => {
   const step21 = {
     id: 21,
     question: "What was your 2019 taxable income?",
-    answer: priceTax2019 ? parseInt(priceTax2019, 10).toLocaleString("en") : "",
+    answer: priceTax2019
+      ? parseInt(priceTax2019.replace(/,/gi, ""), 10).toLocaleString("en")
+      : "",
     question2: "What was your 2020 taxable income?",
     answer2: priceTax2020
-      ? parseInt(priceTax2020, 10).toLocaleString("en")
+      ? parseInt(priceTax2020.replace(/,/gi, ""), 10).toLocaleString("en")
       : "",
     skip: "",
   };
@@ -139,11 +141,11 @@ const Step21 = () => {
       id: 21,
       question: "What was your 2019 taxable income?",
       answer: priceTax2019
-        ? parseInt(priceTax2019, 10).toLocaleString("en")
+        ? parseInt(priceTax2019.replace(/,/gi, ""), 10).toLocaleString("en")
         : "",
       question2: "What was your 2020 taxable income?",
       answer2: priceTax2020
-        ? parseInt(priceTax2020, 10).toLocaleString("en")
+        ? parseInt(priceTax2020.replace(/,/gi, ""), 10).toLocaleString("en")
         : "",
       skip: "Skipped",
     };

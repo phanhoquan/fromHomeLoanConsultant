@@ -325,10 +325,11 @@ footer.position-relative {
 
     .question {
       font-weight: 700;
+      // white-space: pre-wrap;
     }
 
     .step {
-      min-width: 50px;
+      min-width: 60px;
       font-weight: 700;
       color: #42adff;
     }
@@ -341,4 +342,13 @@ textarea {
     background-color: #f6fbff;
     color: #212121;
   }
+}
+
+.btn-logout {
+  color: #ccc;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 40px;
 }

@@ -56,7 +56,7 @@ const Step04 = () => {
     };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 3 ? step4 : item
+      item.id === 4 ? step4 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(

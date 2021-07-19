@@ -38,7 +38,7 @@ const Step30 = () => {
   }, []);
 
   const checkValueCreditCardStatus = (value) => {
-    let test = /^([A-Za-z]{2,})$/.test(value);
+    let test = value.length > 1;
     setValueCreditCardValid(Number(test));
     return test;
   };
@@ -57,7 +57,9 @@ const Step30 = () => {
     answer: valueCreditCard,
     question2: "What is the limit on the credit card?",
     answer2: valueCreditCardAmount
-      ? parseInt(valueCreditCardAmount, 10).toLocaleString("en")
+      ? parseInt(valueCreditCardAmount.replace(/,/gi, ""), 10).toLocaleString(
+          "en"
+        )
       : "",
     skip: "",
   };
@@ -131,7 +133,9 @@ const Step30 = () => {
       answer: valueCreditCard,
       question2: "What is the limit on the credit card?",
       answer2: valueCreditCardAmount
-        ? parseInt(valueCreditCardAmount, 10).toLocaleString("en")
+        ? parseInt(valueCreditCardAmount.replace(/,/gi, ""), 10).toLocaleString(
+            "en"
+          )
         : "",
       skip: "Skipped",
     };

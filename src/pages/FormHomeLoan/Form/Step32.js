@@ -51,7 +51,7 @@ const Step32 = () => {
       id: 32,
       question: "So with that property, are you \n currently renting it out?",
       answer: option,
-      skip: "Skipped",
+      skip: "",
     };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
@@ -161,7 +161,7 @@ const Step32 = () => {
                 )}
               </Col>
               <Col xs={12} className="fadeInDown wow  mt-4">
-                <div className="group-btn-footer col d-flex justify-content-center">
+                <div className="group-btn-footer w-500 col d-flex justify-content-center">
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
