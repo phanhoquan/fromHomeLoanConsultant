@@ -80,7 +80,7 @@ const Step33 = () => {
       id: 33,
       question: "Please enter any additional notes",
       answer: noteVale,
-      skip: "Skipped",
+      skip: !noteVale && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

@@ -103,7 +103,7 @@ const Step26 = () => {
       answer: partnersSalary
         ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
         : "",
-      skip: "Skipped",
+      skip: !partnersSalary && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

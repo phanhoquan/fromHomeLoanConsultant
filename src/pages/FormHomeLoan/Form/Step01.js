@@ -135,7 +135,7 @@ const First = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={1}>
+    <LifeInsurance isShowHeader activeStep={1} className="page-main">
       <section className="formContent-step-first pb-5">
         <Container>
           <div

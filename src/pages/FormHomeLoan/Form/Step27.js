@@ -115,7 +115,7 @@ const Step27 = () => {
       question:
         "Are you currently paying off any personal loans, \n car loans or HECS debt?",
       answer: personalLoansStatus,
-      skip: "Skipped",
+      skip: !personalLoansStatus && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

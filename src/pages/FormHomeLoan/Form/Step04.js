@@ -102,7 +102,7 @@ const Step04 = () => {
       id: 4,
       question: "Are you the sole applicant or is this \n a joint application?",
       answer: jointApplicationStatus,
-      skip: "Skipped",
+      skip: !jointApplicationStatus && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 4 ? skipStep4 : item

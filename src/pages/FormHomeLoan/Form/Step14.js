@@ -102,7 +102,7 @@ const Step14 = () => {
       question:
         "You mentioned that you are working \n ‘Full Time’ Is that correct?",
       answer: workingStatus,
-      skip: "Skipped",
+      skip: !workingStatus && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 14 ? skipStep14 : item

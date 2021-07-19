@@ -233,7 +233,7 @@ const Step03 = () => {
       question:
         "What is the current interest rate you are \n paying on your loan?",
       answer: textRate,
-      skip: "Skipped",
+      skip: !textRate&&"Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

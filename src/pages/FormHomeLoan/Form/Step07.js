@@ -163,17 +163,21 @@ const Step02 = () => {
     setTimeout(() => setShowLoading(false), 500);
     checkSoleApplicantAgeStatus(soleApplicantAge);
     checkJointApplicantAgeStatus2(jointApplicantAge);
-
-    if (checkSoleApplicantAgeStatus(soleApplicantAge)) {
-      if (!showLoading) {
-        setTimeout(function () {
-          nextStep();
-        }, 500);
+    if (typesApplication === types[1]) {
+      if (checkSoleApplicantAgeStatus(soleApplicantAge)) {
+        if (!showLoading) {
+          setTimeout(function () {
+            nextStep();
+          }, 500);
+        }
       }
     }
 
     if (typesApplication === types[2]) {
-      if (checkJointApplicantAgeStatus2(jointApplicantAge)) {
+      if (
+        checkJointApplicantAgeStatus2(jointApplicantAge) &&
+        checkSoleApplicantAgeStatus(soleApplicantAge)
+      ) {
         if (!showLoading) {
           setTimeout(function () {
             nextStep();
@@ -205,7 +209,7 @@ const Step02 = () => {
       id: 7,
       question: "What is the age of the applicant?",
       answer: textAge,
-      skip: "Skipped",
+      skip: !textAge && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 7 ? skipStep7 : item

@@ -108,7 +108,7 @@ const Step06 = () => {
       id: 6,
       question: `What is your relationship with ${firstNameOther}?`,
       answer: relationshipYour,
-      skip: "Skipped",
+      skip: !relationshipYour && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 6 ? skipStep6 : item

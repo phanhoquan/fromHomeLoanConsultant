@@ -101,7 +101,7 @@ const Step02 = () => {
       id: 2,
       question: "Is the loan you currently have Fixed, \n Variable or Split?",
       answer: currentLoanStatus,
-      skip: "Skipped",
+      skip: !currentLoanStatus && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 2 ? skipStep2 : item

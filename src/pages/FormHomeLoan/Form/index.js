@@ -50,6 +50,7 @@ const Form = () => {
   useEffect(() => {
     beginPage(history, "/refinance-fact-find");
   }, [history]);
+
   //Redirect all page not begin
   useEffect(() => {
     if (history.action === "POP") {
@@ -68,6 +69,10 @@ const Form = () => {
         });
       }, 0);
     }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // Scroll to archor

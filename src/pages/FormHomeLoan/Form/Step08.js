@@ -103,7 +103,7 @@ const Step08 = () => {
       id: 8,
       question: "Do you have any kids or dependants?",
       answer: kidsOrDependant,
-      skip: "Skipped",
+      skip: !kidsOrDependant && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 8 ? skipStep8 : item

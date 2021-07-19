@@ -948,7 +948,11 @@ html.fonts100 {
     }
 
     .life-insurance__MainCt {
-      padding-top: pxToRem(100);
+      padding-top: pxToRem(140);
+
+      &.page-main {
+        padding-top: pxToRem(100);
+      }
     }
 
     .welcomeLifeInsurance {

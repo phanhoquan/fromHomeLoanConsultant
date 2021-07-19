@@ -220,7 +220,7 @@ footer.position-relative {
 }
 
 .nav-right {
-  margin-left: 250px;
+  margin-left: 300px;
 }
 
 .nav-left {
@@ -269,9 +269,63 @@ footer.position-relative {
   }
 }
 
+.iconMenu {
+  display: none !important;
+  cursor: pointer;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 40px;
+  background-color: #fff;
+  z-index: 9;
+  padding-top: 30px;
+  padding-left: 15px;
+
+  .sub-iconMenu {
+    max-width: 50px;
+  }
+
+}
+
+.iconMenuClose {
+  position: absolute;
+  max-width: 40px;
+  right: 0;
+  top: 0;
+  display: none !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-left {
+    width: 300px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .iconMenu,
+  .iconMenuClose {
+    display: block !important;
+  }
+
+  .nav-left {
+    transition: all 0.4s;
+    left: -100%;
+    width: 320px;
+
+    &.open {
+      left: 0;
+    }
+  }
+}
+
 @media screen and (max-width: 640px) {
   .nav-left {
-    display: none;
+    max-height: 100%;
+    height: 100%;
+    top: 60px;
   }
 
   .nav-right {

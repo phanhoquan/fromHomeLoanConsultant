@@ -134,7 +134,7 @@ const Step28A = () => {
             "en"
           )
         : "",
-      skip: "Skipped",
+      skip: (!personalLoanAmount || !personalLoan) && "Skipped",
       menu: "28a",
     };
 

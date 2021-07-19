@@ -124,7 +124,7 @@ const Step17 = () => {
       id: 17,
       question: "How long have you been working at this job for?",
       answer: numberYearWorking,
-      skip: "Skipped",
+      skip: !numberYearWorking && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 17 ? skipStep17 : item

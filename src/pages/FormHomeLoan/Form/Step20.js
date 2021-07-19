@@ -100,7 +100,7 @@ const Step20 = () => {
       id: 20,
       question: "Have the tax returns for 2019/2020 \n been completed?",
       answer: taxReturns,
-      skip: "Skipped",
+      skip: !taxReturns && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

@@ -127,7 +127,7 @@ const Step28B = () => {
       answer2: carLoanAmount
         ? parseInt(carLoanAmount, 10).toLocaleString("en")
         : "",
-      skip: "Skipped",
+      skip: (!carLoanAmount || !carLoan) && "Skipped",
       menu: "28b",
     };
 

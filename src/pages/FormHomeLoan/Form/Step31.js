@@ -152,7 +152,7 @@ const Step31 = () => {
       question:
         "What is the full residential address \n of your current property?",
       answer: fullAddress,
-      skip: "Skipped",
+      skip: !fullAddress && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

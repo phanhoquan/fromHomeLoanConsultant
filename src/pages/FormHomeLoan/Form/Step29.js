@@ -100,7 +100,7 @@ const Step29 = () => {
       id: 29,
       question: "Do you have a credit card?",
       answer: creditCard,
-      skip: "Skipped",
+      skip: !creditCard && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

@@ -108,7 +108,7 @@ const Step18 = () => {
       id: 18,
       question: "What type of business is this?",
       answer: typeOfBusiness,
-      skip: "Skipped",
+      skip: !typeOfBusiness && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 18 ? skipStep18 : item

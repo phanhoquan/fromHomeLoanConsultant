@@ -150,7 +150,7 @@ const Step22 = () => {
       id: 22,
       question: "What is your partners occupation?",
       answer: partnersOccupation,
-      skip: "Skipped",
+      skip: !partnersOccupation && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

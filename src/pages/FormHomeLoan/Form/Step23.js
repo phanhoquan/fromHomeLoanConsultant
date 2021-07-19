@@ -110,7 +110,7 @@ const Step23 = () => {
       id: 23,
       question: "What is your partners employment status?",
       answer: employmentWorkingStatus,
-      skip: "Skipped",
+      skip: !employmentWorkingStatus && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

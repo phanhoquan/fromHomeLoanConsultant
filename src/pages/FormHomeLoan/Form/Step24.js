@@ -122,7 +122,7 @@ const Step24 = () => {
       id: 24,
       question: "When is your partner expected \n to return to work?",
       answer: numberPartnerReturn,
-      skip: "Skipped",
+      skip: !numberPartnerReturn && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

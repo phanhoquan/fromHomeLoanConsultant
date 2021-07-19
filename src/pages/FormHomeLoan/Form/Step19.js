@@ -114,7 +114,7 @@ const Step19 = () => {
       question:
         "How many years has the ABN for this \n business been registered for?",
       answer: businessBeenRegistered,
-      skip: "Skipped",
+      skip: !businessBeenRegistered && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

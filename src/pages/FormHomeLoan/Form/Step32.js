@@ -96,7 +96,7 @@ const Step32 = () => {
       id: 32,
       question: "So with that property, are you \n currently renting it out?",
       answer: currentlyRenting,
-      skip: "Skipped",
+      skip: !currentlyRenting && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

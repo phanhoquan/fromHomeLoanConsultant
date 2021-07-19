@@ -1,12 +1,16 @@
 /** @format */
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
+import imgMenu from "../../images/menu.png";
+import useOnClickOutside from "../../hooks/useClickOutSide";
+import imgMenuClose from "../../images/closemenu.png";
 
 const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
   var root = document.getElementsByTagName("html")[0];
+  const wrapperInfoRef = useRef();
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
@@ -14,6 +18,16 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
+
+  listDataSubmit &&
+    listDataSubmit.sort(function (a, b) {
+      return a.id - b.id;
+    });
+
+  const [isShowMenu, setIsShowMenu] = useState(false);
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowMenu(false);
+  });
 
   const renderListQuestion =
     listDataSubmit &&
@@ -26,7 +40,7 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
             key={item.id}
             className={`${activeStep === item.id ? "active " : ""} ${
               item.answer ? " answerActive" : ""
-            }${item.skip && !item.question ? " answerSkip" : ""}
+            }${item.skip ? " answerSkip" : ""}
       `}
             onClick={() => history.push(`/refinance-fact-find/step-${idItem}`)}
             role="button"
@@ -64,6 +78,10 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
       );
     });
 
+  const handleShowMenu = () => {
+    setIsShowMenu(!isShowMenu);
+  };
+
   return (
     <React.Fragment>
       <Helmet>
@@ -71,11 +89,39 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
       </Helmet>
       <div className="wrapper life-insurance fromHomeLoan">
         {isShowHeader && <Header />}
+        {localStorage.getItem("firstName") ||
+        localStorage.getItem("skip1") ||
+        listDataSubmit?.length > 0 ? (
+          <div className="iconMenu">
+            <div
+              className="sub-iconMenu"
+              role="button"
+              onClick={() => handleShowMenu()}
+            >
+              <img src={imgMenu} alt="MENU" />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+
         <main className={`life-insurance__MainCt ${className}`}>
           {localStorage.getItem("firstName") ||
           localStorage.getItem("skip1") ||
           listDataSubmit?.length > 0 ? (
-            <div className="nav-left">
+            <div
+              className={`nav-left ${isShowMenu ? "open" : ""}`}
+              ref={wrapperInfoRef}
+            >
+              <div className="iconMenuClose">
+                <div
+                  className="sub-iconMenu"
+                  role="button"
+                  onClick={() => setIsShowMenu(false)}
+                >
+                  <img src={imgMenuClose} alt="CLOSE MENU" />
+                </div>
+              </div>
               <div className="nav-detail">
                 <p>User Detail:</p>
                 User name: {localStorage.getItem("firstName")}{" "}

@@ -103,7 +103,7 @@ const Step11 = () => {
     id: 11,
     question: "Do you have any other dependants?",
     answer: otherDependents,
-    skip: "Skipped",
+    skip: !otherDependents && "Skipped",
   };
 
   const handleSkip = () => {
