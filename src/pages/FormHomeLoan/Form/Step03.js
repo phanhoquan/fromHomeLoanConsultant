@@ -226,6 +226,7 @@ const Step03 = () => {
       answer2: valueInterestRate2,
       skip: "Skipped",
     };
+
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 3 ? skipStep3 : item
     );
@@ -269,7 +270,7 @@ const Step03 = () => {
                         label="Fixed interest rate"
                         value={valueInterestRate}
                         type="text"
-                        id="email-input"
+                        id="email-input1"
                         customClassLabel={valueInterestRate ? "active" : ""}
                         iconRate
                         maxLength="5"

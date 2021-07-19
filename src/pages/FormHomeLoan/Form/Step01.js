@@ -28,7 +28,7 @@ const First = () => {
   );
   const [firstNameValid, setFirstNameValid] = useState(valid.NON_VALID);
   const [lastNameValid, setLastNameValid] = useState(valid.NON_VALID);
-
+  window.localStorage.setItem("questionStep1", "Are you currently employed?");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [emailValid, setEmailValid] = useState(valid.NON_VALID);
   const [employmentStatus, setEmploymentStatus] = useState(
@@ -38,12 +38,6 @@ const First = () => {
   const [employmentStatusValid, setEmploymentStatusValid] = useState(
     valid.NON_VALID
   );
-  const [dataDetail, setDataDetail] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    question: "Are you currently employed?",
-  });
 
   const checkEmailStatus = (value) => {
     let test = value && checkEmail(value || "");
@@ -55,7 +49,6 @@ const First = () => {
     setTimeout(() => {
       firstNameRef?.current?.focus();
     }, 400);
-    window.localStorage.setItem("step1", "Are you currently employed?");
   }, []);
 
   const checkFirstNameStatus = (value) => {
@@ -85,13 +78,6 @@ const First = () => {
     window.localStorage.setItem("lastName", lastName);
     window.localStorage.setItem("email", email);
     window.localStorage.setItem("employmentStatus", employmentStatus);
-    setDataDetail({
-      firstName,
-      lastName,
-      email,
-      question: "Are you currently employed?",
-      answer: employmentStatus,
-    });
     history.push({
       pathname: `/refinance-fact-find/step-02`,
     });
@@ -143,21 +129,13 @@ const First = () => {
 
   const handleSkip = () => {
     window.localStorage.setItem("skip1", "Skipped");
-    setDataDetail({
-      firstName: "",
-      lastName: "",
-      email: "",
-      question: "Are you currently employed?",
-      answer: "",
-      skip: "Skipped",
-    });
     history.push({
       pathname: `/refinance-fact-find/step-02`,
     });
   };
 
   return (
-    <LifeInsurance isShowHeader dataDetail={dataDetail} activeStep={1}>
+    <LifeInsurance isShowHeader activeStep={1}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
