@@ -1521,6 +1521,23 @@ div.tooltip2 {
       border-color: #e5e5e5;
     }
   }
+
+  @media screen and (max-width: 640px) {
+    .btnPrimary.life {
+      width: 140px;
+      min-width: 120px;
+    }
+
+    &.w-500 {
+      .btnPrimary.life {
+        width: 160px;
+        min-width: 160px;
+        font-size: 15px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
 }
 
 .SKIP {

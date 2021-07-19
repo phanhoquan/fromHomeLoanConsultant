@@ -200,7 +200,6 @@ const Step16 = () => {
                       value={occupation}
                       id="iconOccupation"
                       customClassLabel={occupation ? "active" : ""}
-                      customClassWrap="email"
                       innerRef={occupationRef}
                     />
 

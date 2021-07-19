@@ -38,14 +38,14 @@ const Step06 = () => {
     setIsShowModal(false);
     return test;
   };
-  
+
   const finDataStep = listDataSubmit.find((item) => item.id === 6);
 
   const nextStep = (value) => {
     window.localStorage.setItem("relationshipYour", value);
     const step6 = {
       id: 6,
-      question: `What is your relationship with ${firstNameOther}`,
+      question: `What is your relationship with ${firstNameOther}?`,
       answer: value,
       skip: "",
     };
@@ -106,7 +106,7 @@ const Step06 = () => {
     });
     const skipStep6 = {
       id: 6,
-      question: `What is your relationship with ${firstNameOther}`,
+      question: `What is your relationship with ${firstNameOther}?`,
       answer: relationshipYour,
       skip: "Skipped",
     };
@@ -143,7 +143,7 @@ const Step06 = () => {
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  6. What is your relationship with {firstNameOther}
+                  6. What is your relationship with {firstNameOther}?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -165,7 +165,7 @@ const Step06 = () => {
                       id="price-input"
                       customClassLabel={relationshipYour ? "active" : ""}
                       iconArrow
-                      customClassWrap="email five"
+                      customClassWrap=" five"
                       innerRef={relationshipYourRef}
                       readOnly
                     />

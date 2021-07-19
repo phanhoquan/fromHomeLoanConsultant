@@ -122,7 +122,7 @@ const Step33 = () => {
                     <textarea
                       className="form-control noteVale"
                       value={noteVale || ""}
-                      innerRef={noteValueRef}
+                      ref={noteValueRef}
                       onKeyPress={onKeyDown}
                       onChange={(e) => setNoteVale(e.target.value)}
                       placeholder="Please enter your additional notes here..."
