@@ -24,8 +24,8 @@ export const types = {
 
 const Step24 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
@@ -49,9 +49,30 @@ const Step24 = () => {
     setIsShowModal(false);
     return test;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 24);
   const nextStep = (value) => {
+    const step24 = {
+      id: 24,
+      question: "When is your partner expected \n to return to work?",
+      answer: value,
+      skip: "",
+    };
     window.localStorage.setItem("numberPartnerReturn", value);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 24 ? step24 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step24])
+      );
+    }
     if (jointApplicationStatus === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-26`,
@@ -94,6 +115,39 @@ const Step24 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep24 = {
+      id: 24,
+      question: "When is your partner expected \n to return to work?",
+      answer: numberPartnerReturn,
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 24 ? skipStep24 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep24])
+      );
+    }
+    if (jointApplicationStatus === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
+      });
+    }
   };
 
   return (
@@ -184,7 +238,13 @@ const Step24 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

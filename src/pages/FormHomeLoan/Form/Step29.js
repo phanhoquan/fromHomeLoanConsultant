@@ -42,9 +42,30 @@ const Step29 = () => {
       }, 500);
     }
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 29);
   const nextStep = (option) => {
     window.localStorage.setItem("creditCard", option);
+    const step29 = {
+      id: 29,
+      question: "Do you have a credit card?",
+      answer: option,
+      skip: "",
+    };
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 29 ? step29 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step29])
+      );
+    }
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-30`,
@@ -72,6 +93,39 @@ const Step29 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep29 = {
+      id: 29,
+      question: "Do you have a credit card?",
+      answer: creditCard,
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 29 ? skipStep29 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep29])
+      );
+    }
+    if (creditCard === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-30`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-31`,
+      });
+    }
   };
 
   return (
@@ -131,7 +185,13 @@ const Step29 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

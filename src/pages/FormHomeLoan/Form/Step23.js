@@ -18,8 +18,8 @@ export const types = {
 
 const Step23 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
@@ -46,9 +46,32 @@ const Step23 = () => {
       }, 500);
     }
   };
+  const finDataStep = listDataSubmit.find((item) => item.id === 23);
 
   const nextStep = (option) => {
+    const step23 = {
+      id: 23,
+      question: "What is your partners employment status?",
+      answer: option,
+      skip: "",
+    };
+
     window.localStorage.setItem("employmentPartnersWorkingStatus", option);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 23 ? step23 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step23])
+      );
+    }
     if (option === types[5]) {
       history.push({
         pathname: `/refinance-fact-find/step-27`,
@@ -80,6 +103,43 @@ const Step23 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep23 = {
+      id: 23,
+      question: "What is your partners employment status?",
+      answer: employmentWorkingStatus,
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 23 ? skipStep23 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep23])
+      );
+    }
+    if (employmentWorkingStatus === types[5]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
+      });
+    } else if (employmentWorkingStatus === types[6]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-24`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    }
   };
 
   return (
@@ -167,7 +227,13 @@ const Step23 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

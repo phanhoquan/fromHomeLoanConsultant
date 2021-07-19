@@ -44,13 +44,38 @@ const Step28B = () => {
     setCarLoanAmountValid(Number(test));
     return test;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 28);
+  const step28 = {
+    id: 28,
+    question: "Which institution is the car loan with?",
+    answer: carLoan,
+    question2: "What is the limit on the car loan amount?",
+    answer2: carLoanAmount
+      ? parseInt(carLoanAmount, 10).toLocaleString("en")
+      : "",
+    skip: "",
+  };
   const nextStep = () => {
     window.localStorage.setItem("carLoan", carLoan);
     window.localStorage.setItem(
       "carLoanAmount",
       carLoanAmount && parseInt(carLoanAmount.replace(/,/g, ""), 10)
     );
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 28 ? step28 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step28])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-29`,
     });
@@ -90,6 +115,37 @@ const Step28B = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep28 = {
+      id: 28,
+      question: "Which institution is the car loan with?",
+      answer: carLoan,
+      question2: "What is the limit on the car loan amount?",
+      answer2: carLoanAmount
+        ? parseInt(carLoanAmount, 10).toLocaleString("en")
+        : "",
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 28 ? skipStep28 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep28])
+      );
+    }
+    history.push({
+      pathname: `/refinance-fact-find/step-29`,
+    });
   };
 
   return (
@@ -185,7 +241,13 @@ const Step28B = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

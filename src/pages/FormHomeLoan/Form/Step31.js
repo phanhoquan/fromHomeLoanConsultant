@@ -65,13 +65,35 @@ const Step31 = () => {
     setFullAddressValid(valid.INVALID);
     return valid.INVALID;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 31);
+  const step31 = {
+    id: 31,
+    question:
+      "What is the full residential address \n of your current property?",
+    answer: fullAddress,
+    skip: "",
+  };
   const nextStep = () => {
     localStorage.setItem("fullAddress", fullAddress);
     localStorage.setItem("street", zipCodeState?.street);
     localStorage.setItem("city", zipCodeState?.city);
     localStorage.setItem("state", zipCodeState?.state);
     localStorage.setItem("postcode", zipCodeState?.postcode);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 31 ? step31 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step31])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-32`,
     });
@@ -122,6 +144,34 @@ const Step31 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep31 = {
+      id: 31,
+      question:
+        "What is the full residential address \n of your current property?",
+      answer: fullAddress,
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 31 ? skipStep31 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep31])
+      );
+    }
+    history.push({
+      pathname: `/refinance-fact-find/step-32`,
+    });
   };
 
   return (
@@ -181,7 +231,13 @@ const Step31 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

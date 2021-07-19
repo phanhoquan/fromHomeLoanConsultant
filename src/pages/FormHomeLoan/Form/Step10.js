@@ -81,7 +81,7 @@ const Step10 = () => {
   const finAgeValid = chillApplicantAge && Object.values(chillApplicantAge);
   const step10 = {
     id: 10,
-    question: "What are the age of these kids\dependants",
+    question: `What are the age of these kids/dependants`,
     answer: finAgeValid && finAgeValid.join("/"),
     skip: "",
   };
@@ -177,7 +177,7 @@ const Step10 = () => {
 
   const skipStep10 = {
     id: 10,
-    question: "What are the age of these kids\dependants",
+    question: "What are the age of these kids/dependants",
     answer: finAgeValid && finAgeValid.join("/"),
     skip: "Skipped",
   };

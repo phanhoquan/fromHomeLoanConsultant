@@ -34,12 +34,36 @@ const Step26 = () => {
     setPartnersSalaryValid(Number(test));
     return test;
   };
+  const finDataStep = listDataSubmit.find((item) => item.id === 26);
+  const step26 = {
+    id: 26,
+    question: "What is your partners salary?",
+    answer: partnersSalary
+      ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
+      : "",
+    skip: "",
+  };
 
   const nextStep = () => {
     window.localStorage.setItem(
       "partnersSalary",
       partnersSalary && parseInt(partnersSalary.replace(/,/g, ""), 10)
     );
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 26 ? step26 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step26])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-27`,
     });
@@ -72,6 +96,36 @@ const Step26 = () => {
     history.go(-1);
   };
 
+  const handleSkip = () => {
+    const skipStep26 = {
+      id: 26,
+      question: "What is your partners salary?",
+      answer: partnersSalary
+        ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
+        : "",
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 26 ? skipStep26 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep26])
+      );
+    }
+
+    history.push({
+      pathname: `/refinance-fact-find/step-27`,
+    });
+  };
+
   return (
     <LifeInsurance isShowHeader activeStep={26}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
@@ -79,7 +133,7 @@ const Step26 = () => {
           <div className="wForm wow fadeInUp">
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-3">26.What is your partners salary?</h2>
+                <h2 className="mb-3">26. What is your partners salary?</h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4 pt-2">
@@ -131,7 +185,13 @@ const Step26 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

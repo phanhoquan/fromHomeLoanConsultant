@@ -50,7 +50,17 @@ const Step30 = () => {
     setValueCreditCardAmountValid(Number(test));
     return test;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 30);
+  const step30 = {
+    id: 30,
+    question: "Which institution is the credit card with?",
+    answer: valueCreditCard,
+    question2: "What is the limit on the credit card?",
+    answer2: valueCreditCardAmount
+      ? parseInt(valueCreditCardAmount, 10).toLocaleString("en")
+      : "",
+    skip: "",
+  };
   const nextStep = () => {
     window.localStorage.setItem("valueCreditCard", valueCreditCard);
     window.localStorage.setItem(
@@ -58,6 +68,21 @@ const Step30 = () => {
       valueCreditCardAmount &&
         parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
     );
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 30 ? step30 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step30])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-31`,
     });
@@ -97,6 +122,37 @@ const Step30 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep30 = {
+      id: 30,
+      question: "Which institution is the credit card with?",
+      answer: valueCreditCard,
+      question2: "What is the limit on the credit card?",
+      answer2: valueCreditCardAmount
+        ? parseInt(valueCreditCardAmount, 10).toLocaleString("en")
+        : "",
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 30 ? skipStep30 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep30])
+      );
+    }
+    history.push({
+      pathname: `/refinance-fact-find/step-31`,
+    });
   };
 
   return (
@@ -198,7 +254,13 @@ const Step30 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

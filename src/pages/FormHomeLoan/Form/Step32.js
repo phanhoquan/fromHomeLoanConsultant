@@ -40,13 +40,34 @@ const Step32 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
-
-  const nextStep = () => {
-    window.localStorage.setItem("currentlyRenting", currentlyRenting);
+  const finDataStep = listDataSubmit.find((item) => item.id === 32);
+  const nextStep = (option) => {
+    window.localStorage.setItem("currentlyRenting", option);
+    const step32 = {
+      id: 32,
+      question: "So with that property, are you \n currently renting it out?",
+      answer: option,
+      skip: "Skipped",
+    };
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 32 ? step32 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step32])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-success`,
     });
@@ -60,7 +81,7 @@ const Step32 = () => {
     if (checkStatusValid(currentlyRenting)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(currentlyRenting);
         }, 500);
       }
     }
@@ -68,6 +89,33 @@ const Step32 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep32 = {
+      id: 32,
+      question: "So with that property, are you \n currently renting it out?",
+      answer: currentlyRenting,
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 32 ? skipStep32 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep32])
+      );
+    }
+    history.push({
+      pathname: `/refinance-fact-find/step-33`,
+    });
   };
 
   return (
@@ -130,7 +178,13 @@ const Step32 = () => {
                     ADDITIONAL NOTES
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

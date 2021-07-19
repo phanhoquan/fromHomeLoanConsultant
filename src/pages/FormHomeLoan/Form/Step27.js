@@ -16,8 +16,8 @@ export const types = {
 
 const Step27 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
@@ -46,9 +46,32 @@ const Step27 = () => {
       }, 500);
     }
   };
+  const finDataStep = listDataSubmit.find((item) => item.id === 27);
 
   const nextStep = (option) => {
     window.localStorage.setItem("personalLoansStatus", option);
+    const step27 = {
+      id: 27,
+      question:
+        "Are you currently paying off any personal loans, \n car loans or HECS debt?",
+      answer: option,
+      skip: "",
+    };
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 27 ? step27 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step27])
+      );
+    }
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-28a`,
@@ -84,6 +107,49 @@ const Step27 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep27 = {
+      id: 27,
+      question:
+        "Are you currently paying off any personal loans, \n car loans or HECS debt?",
+      answer: personalLoansStatus,
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 27 ? skipStep27 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep27])
+      );
+    }
+
+    if (personalLoansStatus === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-28a`,
+      });
+    } else if (personalLoansStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-28b`,
+      });
+    } else if (personalLoansStatus === types[3]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-28c`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-29`,
+      });
+    }
   };
 
   return (
@@ -158,7 +224,13 @@ const Step27 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>
