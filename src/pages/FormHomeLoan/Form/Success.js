@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import FadeLoader from "react-spinners/FadeLoader";
 import { useHistory } from "react-router-dom";
+import { redirectTo } from "../../../utils/beginPage";
 import { parseZipCodeToObject } from "../../../utils/zipCodes";
 import { getIPClient, sendDataToDatabowl } from "../../../utils/api";
 import { getTimeNow } from "../../../utils/formatTime";
@@ -93,7 +94,7 @@ export default function Success() {
 
   const redirectThank = (data) => {
     const fname = localStorage.getItem("firstName");
-    localStorage.clear();
+    redirectTo("/refinance-fact-find");
     window.location = `https://makescents.com.au/thank-you-echoice/?f=${fname}`;
   };
 

@@ -33,7 +33,13 @@ const Router = () => {
     <Switch>
       <PrivateRoute
         exact
-        path="/refinance-fact-find"
+        path="/refinance-fact-find/"
+        component={HomeLoan}
+        isAuthenticated={isAuthenticated}
+      />
+      <PrivateRoute
+        exact
+        path="/refinance-fact-find/*"
         component={HomeLoan}
         isAuthenticated={isAuthenticated}
       />

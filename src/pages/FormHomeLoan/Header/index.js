@@ -3,12 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import imgLogo from "../../../images/life/logo.svg";
-import { useHistory } from "react-router-dom";
+import { redirectTo } from "../../../utils/beginPage";
 import imgReset from "../../../images/life/reset.svg";
 import Modal from "../../Modal/Modal";
 
 const Header = () => {
-  const history = useHistory();
   const [isShowModal, setIsShowModal] = useState(false);
 
   // custom header sticky
@@ -28,10 +27,8 @@ const Header = () => {
   }, []);
 
   const handleReset = () => {
-    localStorage.clear();
-    history.push({
-      pathname: `/refinance-fact-find`,
-    });
+    redirectTo("/refinance-fact-find");
+    console.log("ssssssssss");
     setIsShowModal(false);
   };
 

@@ -48,7 +48,7 @@ const Form = () => {
   const location = useLocation();
   //Redirect all page not begin
   useEffect(() => {
-    // beginPage(history, "/refinance-fact-find");
+    beginPage(history, "/refinance-fact-find");
   }, [history]);
   //Redirect all page not begin
   useEffect(() => {
@@ -61,11 +61,11 @@ const Form = () => {
         for (let item in paramOuters) {
           localStorage.setItem(item, paramOuters[item]);
         }
-        // history.replace({
-        //   pathname: "/refinance-fact-find",
-        //   search: history.location.search,
-        //   hash: history.location.hash,
-        // });
+        history.replace({
+          pathname: "/refinance-fact-find",
+          search: history.location.search,
+          hash: history.location.hash,
+        });
       }, 0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
