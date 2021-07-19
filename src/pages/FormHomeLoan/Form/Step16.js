@@ -58,10 +58,30 @@ const Step16 = () => {
     }
     // eslint-disable-next-line
   }, [occupation]);
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 16);
+  const step16 = {
+    id: 16,
+    question: "What job role are you currently working in?",
+    answer: occupation,
+    skip: "",
+  };
   const nextStep = () => {
     window.localStorage.setItem("occupation", occupation);
-
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 16 ? step16 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step16])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-17`,
     });
@@ -120,6 +140,33 @@ const Step16 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep16 = {
+      id: 16,
+      question: "What job role are you currently working in?",
+      answer: occupation,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 16 ? skipStep16 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep16])
+      );
+    }
+
+    history.push({
+      pathname: `/refinance-fact-find/step-17`,
+    });
   };
 
   return (
@@ -196,7 +243,13 @@ const Step16 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

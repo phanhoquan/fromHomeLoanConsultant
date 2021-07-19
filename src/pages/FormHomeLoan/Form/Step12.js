@@ -12,8 +12,8 @@ const listOtherChildrenNumber = ["1", "2", "3", "4", "5"];
 
 const Step12 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const otherChildrenNumberRef = useRef(null);
   const wrapperInfoRef = useRef();
 
@@ -37,9 +37,30 @@ const Step12 = () => {
     setIsShowModal(false);
     return test;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 12);
   const nextStep = (value) => {
+    const step12 = {
+      id: 12,
+      question: "How many other dependants do you have?",
+      answer: value,
+      skip: "",
+    };
     window.localStorage.setItem("otherChildrenNumber", value);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 12 ? step12 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step12])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-13`,
     });
@@ -75,6 +96,34 @@ const Step12 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const skipStep12 = {
+    id: 12,
+    question: "How many other dependants do you have?",
+    answer: otherChildrenNumber,
+    skip: "Skipped",
+  };
+
+  const handleSkip = () => {
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 12 ? skipStep12 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep12])
+      );
+    }
+
+    history.push({
+      pathname: `/refinance-fact-find/step-13`,
+    });
   };
 
   return (
@@ -164,7 +213,13 @@ const Step12 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

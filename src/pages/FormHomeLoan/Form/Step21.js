@@ -14,8 +14,8 @@ export const types = {
 
 const Step21 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const priceTax2019Ref = useRef(null);
   const priceTax2020Ref = useRef(null);
   const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
@@ -52,7 +52,17 @@ const Step21 = () => {
     setPriceTax2020Valid(Number(test));
     return test;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 21);
+  const step21 = {
+    id: 21,
+    question: "What was your 2019 taxable income?",
+    answer: priceTax2019 ? parseInt(priceTax2019, 10).toLocaleString("en") : "",
+    question2: "What was your 2020 taxable income?",
+    answer2: priceTax2020
+      ? parseInt(priceTax2020, 10).toLocaleString("en")
+      : "",
+    skip: "",
+  };
   const nextStep = () => {
     window.localStorage.setItem(
       "priceTax2019",
@@ -62,6 +72,21 @@ const Step21 = () => {
       "priceTax2020",
       priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
     );
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 21 ? step21 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step21])
+      );
+    }
     if (jointApplicationStatus === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-22`,
@@ -107,6 +132,45 @@ const Step21 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    const skipStep21 = {
+      id: 21,
+      question: "What was your 2019 taxable income?",
+      answer: priceTax2019
+        ? parseInt(priceTax2019, 10).toLocaleString("en")
+        : "",
+      question2: "What was your 2020 taxable income?",
+      answer2: priceTax2020
+        ? parseInt(priceTax2020, 10).toLocaleString("en")
+        : "",
+      skip: "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 21 ? skipStep21 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep21])
+      );
+    }
+    if (jointApplicationStatus === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-22`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-24`,
+      });
+    }
   };
 
   return (
@@ -203,7 +267,13 @@ const Step21 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

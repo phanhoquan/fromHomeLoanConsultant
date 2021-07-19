@@ -14,8 +14,8 @@ export const types = {
 
 const Step11 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
-  ? JSON.parse(localStorage.getItem("listDataSubmit"))
-  : [];
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
@@ -45,8 +45,31 @@ const Step11 = () => {
     }
   };
 
+  const finDataStep = listDataSubmit.find((item) => item.id === 11);
+
   const nextStep = (option) => {
+    const step11 = {
+      id: 11,
+      question: "Do you have any other dependants?",
+      answer: option,
+      skip: "",
+    };
     window.localStorage.setItem("otherDependents", option);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 11 ? step11 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step11])
+      );
+    }
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-12`,
@@ -76,6 +99,39 @@ const Step11 = () => {
     history.go(-1);
   };
 
+  const skipStep11 = {
+    id: 11,
+    question: "Do you have any other dependants?",
+    answer: otherDependents,
+    skip: "Skipped",
+  };
+
+  const handleSkip = () => {
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 11 ? skipStep11 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep11])
+      );
+    }
+
+    if (otherDependents === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-12`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-14`,
+      });
+    }
+  };
   return (
     <LifeInsurance isShowHeader activeStep={11}>
       <section className="formContent-step-first pb-5">
@@ -133,7 +189,13 @@ const Step11 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

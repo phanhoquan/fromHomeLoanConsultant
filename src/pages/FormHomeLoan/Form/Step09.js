@@ -37,9 +37,30 @@ const Step09 = () => {
     setIsShowModal(false);
     return test;
   };
-
+  const finDataStep = listDataSubmit.find((item) => item.id === 9);
   const nextStep = (value) => {
+    const step9 = {
+      id: 9,
+      question: "How many kids or dependants do you have?",
+      answer: value,
+      skip: "",
+    };
     window.localStorage.setItem("childrenNumber", value);
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 9 ? step9 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step9])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-10`,
     });

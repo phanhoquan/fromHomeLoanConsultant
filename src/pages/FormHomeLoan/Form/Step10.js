@@ -17,7 +17,7 @@ const Step10 = () => {
       ? JSON.parse(localStorage.getItem("chillApplicantAge"))
       : {}
   );
-  const childrenNumber = localStorage.getItem("childrenNumber") || 1;
+  const childrenNumber = localStorage.getItem("childrenNumber") || 3;
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [chillApplicantAgeValid, setChillApplicantAgeValid] = useState({});
@@ -78,18 +78,40 @@ const Step10 = () => {
       [name]: valid.NON_VALID,
     });
   };
+  const finAgeValid = chillApplicantAge && Object.values(chillApplicantAge);
+  const step10 = {
+    id: 10,
+    question: "What are the age of these kids\dependants",
+    answer: finAgeValid && finAgeValid.join("/"),
+    skip: "",
+  };
 
+  const finDataStep = listDataSubmit.find((item) => item.id === 10);
   const nextStep = () => {
     window.localStorage.setItem(
       "chillApplicantAge",
       JSON.stringify(chillApplicantAge)
     );
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 10 ? step10 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step10])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-11`,
     });
   };
 
-  const finAgeValid = chillApplicantAge && Object.values(chillApplicantAge);
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
@@ -153,6 +175,33 @@ const Step10 = () => {
     history.go(-1);
   };
 
+  const skipStep10 = {
+    id: 10,
+    question: "What are the age of these kids\dependants",
+    answer: finAgeValid && finAgeValid.join("/"),
+    skip: "Skipped",
+  };
+  const handleSkip = () => {
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 10 ? skipStep10 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep10])
+      );
+    }
+
+    history.push({
+      pathname: `/refinance-fact-find/step-11`,
+    });
+  };
+
   return (
     <LifeInsurance isShowHeader activeStep={10}>
       <section className="formContent-step-first pb-5">
@@ -188,7 +237,13 @@ const Step10 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>
