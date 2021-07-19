@@ -69,7 +69,7 @@ const Step32 = () => {
       );
     }
     history.push({
-      pathname: `/refinance-fact-find/step-success`,
+      pathname: `/refinance-fact-find/step-33`,
     });
   };
 

@@ -331,3 +331,11 @@ footer.position-relative {
     }
   }
 }
+
+textarea {
+  &.noteVale {
+    min-height: 150px;
+    background-color: #f6fbff;
+    color: #212121;
+  }
+}
