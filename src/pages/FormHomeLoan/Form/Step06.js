@@ -11,6 +11,9 @@ import useOnClickOutside from "../../../hooks/useClickOutSide";
 const listHomeLoan = ["Spouse", "Defacto", "Sibling", "Parent", "Offspring"];
 
 const Step06 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const relationshipYourRef = useRef(null);
   const wrapperInfoRef = useRef();
   const firstNameOther = localStorage.getItem("firstNameOther");

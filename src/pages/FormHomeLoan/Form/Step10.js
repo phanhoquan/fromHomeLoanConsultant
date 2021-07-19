@@ -9,6 +9,9 @@ import formatCurrency from "../../../utils/formatCurrency";
 import ChillApplicantAge from "./Components/ChillApplicantAge";
 
 const Step10 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const [chillApplicantAge, setChillApplicantAge] = useState(
     localStorage.getItem("chillApplicantAge")
       ? JSON.parse(localStorage.getItem("chillApplicantAge"))

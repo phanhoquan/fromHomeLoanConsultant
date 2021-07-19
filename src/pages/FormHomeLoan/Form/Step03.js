@@ -15,6 +15,9 @@ export const types = {
 };
 
 const Step03 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const currentLoanStatus =
     localStorage.getItem("currentLoanStatus") || "Fixed";
   const [valueInterestRate, setValueInterestRate] = useState(
@@ -130,8 +133,31 @@ const Step03 = () => {
         break;
     }
   };
-
+  const step3 = {
+    id: 3,
+    question:
+      "What is the current interest rate you are \n paying on your loan?",
+    answer: valueInterestRate,
+    answer2: valueInterestRate2,
+    skip: "",
+  };
+  const finDataStep = listDataSubmit.find((item) => item.id === 3);
   const nextStep = () => {
+    // eslint-disable-next-line
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 3 ? step3 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step3])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-04`,
     });
@@ -186,6 +212,34 @@ const Step03 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const handleSkip = () => {
+    history.push({
+      pathname: `/refinance-fact-find/step-04`,
+    });
+    const skipStep2 = {
+      id: 3,
+      question:
+        "What is the current interest rate you are \n paying on your loan?",
+      answer: valueInterestRate,
+      answer2: valueInterestRate2,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 3 ? skipStep2 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep2])
+      );
+    }
   };
 
   return (
@@ -282,7 +336,13 @@ const Step03 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

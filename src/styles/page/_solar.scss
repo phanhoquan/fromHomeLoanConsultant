@@ -255,6 +255,7 @@ footer.position-relative {
     font-weight: 500;
     padding-bottom: 20px;
     border-bottom: 2px solid #42adff;
+    padding-left: 30px;
 
     p {
       font-weight: 700;
@@ -271,6 +272,40 @@ footer.position-relative {
     margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.3s;
+    padding-left: 30px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 3px;
+      width: 16px;
+      height: 16px;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    &.answerActive {
+      &::before {
+        background-image: url("../../images/tick.png");
+      }
+    }
+
+    &.answerSkip {
+      &::before {
+        background-image: url("../../images/skip.png");
+      }
+
+      .question {
+        color: #a7a7a7 !important;
+        font-weight: 500;
+      }
+
+      .answer {
+        color: #ff6060 !important;
+      }
+    }
 
     &.active,
     &:hover {

@@ -14,6 +14,9 @@ export const types = {
 };
 
 const Step02 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const typesApplication =
     localStorage.getItem("jointApplicationStatus") || "Sole Applicant";
   const [soleApplicantAge, setSoleApplicantAge] = useState(

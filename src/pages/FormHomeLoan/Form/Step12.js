@@ -11,6 +11,9 @@ import useOnClickOutside from "../../../hooks/useClickOutSide";
 const listOtherChildrenNumber = ["1", "2", "3", "4", "5"];
 
 const Step12 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const otherChildrenNumberRef = useRef(null);
   const wrapperInfoRef = useRef();
 

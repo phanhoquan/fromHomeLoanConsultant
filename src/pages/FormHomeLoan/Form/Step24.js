@@ -23,6 +23,9 @@ export const types = {
 };
 
 const Step24 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");

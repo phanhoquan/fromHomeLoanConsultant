@@ -17,6 +17,10 @@ const Step02 = () => {
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
+
   const [currentLoanStatus, setCurrentLoanStatus] = useState(
     localStorage.getItem("currentLoanStatus") || ""
   );
@@ -38,12 +42,33 @@ const Step02 = () => {
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
       setTimeout(function () {
-        nextStep();
+        nextStep(option);
       }, 500);
     }
   };
 
-  const nextStep = () => {
+  const finDataStep = listDataSubmit.find((item) => item.id === 3);
+  const nextStep = (option) => {
+    const step2 = {
+      id: 2,
+      question: "Is the loan you currently have Fixed, \n Variable or Split?",
+      answer: option,
+      skip: "",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 2 ? step2 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, step2])
+      );
+    }
     history.push({
       pathname: `/refinance-fact-find/step-03`,
     });
@@ -57,16 +82,43 @@ const Step02 = () => {
     if (checkStatusValid(currentLoanStatus)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(currentLoanStatus);
         }, 500);
       }
     }
   };
+
   const onClickBack = () => {
     history.go(-1);
   };
+
+  const handleSkip = () => {
+    history.push({
+      pathname: `/refinance-fact-find/step-03`,
+    });
+    const skipStep2 = {
+      id: 2,
+      question: "Is the loan you currently have Fixed, \n Variable or Split?",
+      answer: currentLoanStatus,
+      skip: "Skipped",
+    };
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 2 ? skipStep2 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep2])
+      );
+    }
+  };
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader activeStep={1}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -133,7 +185,13 @@ const Step02 = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

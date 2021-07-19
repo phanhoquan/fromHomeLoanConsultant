@@ -9,7 +9,9 @@ import InputNumber from "../../../Components/InputNumber";
 
 const Step26 = () => {
   const partnersSalaryRef = useRef(null);
-
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [partnersSalary, setPartnersSalary] = useState(

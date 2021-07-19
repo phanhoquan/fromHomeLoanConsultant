@@ -35,10 +35,16 @@ const First = () => {
     localStorage.getItem("employmentStatus") || ""
   );
   // employment status
-
   const [employmentStatusValid, setEmploymentStatusValid] = useState(
     valid.NON_VALID
   );
+  const [dataDetail, setDataDetail] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    question: "Are you currently employed?",
+  });
+
   const checkEmailStatus = (value) => {
     let test = value && checkEmail(value || "");
     setEmailValid(Number(test));
@@ -49,6 +55,7 @@ const First = () => {
     setTimeout(() => {
       firstNameRef?.current?.focus();
     }, 400);
+    window.localStorage.setItem("step1", "Are you currently employed?");
   }, []);
 
   const checkFirstNameStatus = (value) => {
@@ -71,7 +78,6 @@ const First = () => {
 
   const onCheck = (option) => {
     setEmploymentStatus(option);
-    window.localStorage.setItem("employmentStatus", option);
   };
 
   const nextStep = () => {
@@ -79,6 +85,13 @@ const First = () => {
     window.localStorage.setItem("lastName", lastName);
     window.localStorage.setItem("email", email);
     window.localStorage.setItem("employmentStatus", employmentStatus);
+    setDataDetail({
+      firstName,
+      lastName,
+      email,
+      question: "Are you currently employed?",
+      answer: employmentStatus,
+    });
     history.push({
       pathname: `/refinance-fact-find/step-02`,
     });
@@ -128,8 +141,23 @@ const First = () => {
     }
   };
 
+  const handleSkip = () => {
+    window.localStorage.setItem("skip1", "Skipped");
+    setDataDetail({
+      firstName: "",
+      lastName: "",
+      email: "",
+      question: "Are you currently employed?",
+      answer: "",
+      skip: "Skipped",
+    });
+    history.push({
+      pathname: `/refinance-fact-find/step-02`,
+    });
+  };
+
   return (
-    <LifeInsurance isShowHeader>
+    <LifeInsurance isShowHeader dataDetail={dataDetail} activeStep={1}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -263,7 +291,7 @@ const First = () => {
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
-                    onClick={onClickNext}
+                    onClick={() => {}}
                   >
                     BACK
                   </Button>
@@ -276,7 +304,13 @@ const First = () => {
                     NEXT
                   </Button>
                 </div>
-                <div className="SKIP">SKIP</div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
+                </div>
               </Col>
             </Row>
           </div>

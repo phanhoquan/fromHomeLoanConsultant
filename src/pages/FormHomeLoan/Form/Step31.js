@@ -9,6 +9,9 @@ import { getZipCodeWithAddress } from "../../../utils/googleApi";
 import InputGoogleAddress from "../../../Components/InputGoogleAddress2";
 
 const Step31 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const fullAddressRef = useRef(null);
   const [zipCodeState, setZipCodeState] = useState({
     street: localStorage.getItem("street") || "",

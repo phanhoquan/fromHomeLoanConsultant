@@ -12,7 +12,9 @@ import useOnClickOutside from "../../../hooks/useClickOutSide";
 
 const Step22 = () => {
   const partnersOccupationRef = useRef(null);
-
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const wrapperInfoRef = useRef();
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);

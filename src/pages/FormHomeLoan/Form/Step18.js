@@ -7,9 +7,20 @@ import { valid } from "../../../utils/constant";
 import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
 
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Self Employed",
+  4: "Unemployed",
+};
+
 const Step18 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const typeOfBusinessRef = useRef(null);
   const history = useHistory();
+  const employmentStatus = localStorage.getItem("employmentStatus");
   const [showLoading, setShowLoading] = useState(false);
   const [typeOfBusiness, setTypeOfBusiness] = useState(
     localStorage.getItem("typeOfBusinessOther") || ""
@@ -33,9 +44,15 @@ const Step18 = () => {
 
   const nextStep = () => {
     window.localStorage.setItem("typeOfBusinessOther", typeOfBusiness);
-    history.push({
-      pathname: `/refinance-fact-find/step-19`,
-    });
+    if (employmentStatus === types[3]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-19`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-20`,
+      });
+    }
   };
   const onKeyUpHandle = (value) => {
     setTypeOfBusiness(value.replace(/[0-9]/g, ""));

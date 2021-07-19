@@ -19,6 +19,9 @@ const listBusinessBeenRegistered = [
 ];
 
 const Step19 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const businessBeenRegisteredRef = useRef(null);
   const wrapperInfoRef = useRef();
 

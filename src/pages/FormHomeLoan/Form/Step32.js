@@ -13,6 +13,9 @@ export const types = {
 };
 
 const Step32 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
@@ -124,7 +127,7 @@ const Step32 = () => {
                     onClick={onClickNext}
                   >
                     {showLoading && <Spinner animation="border" />}
-                    SUBMIT
+                    ADDITIONAL NOTES
                   </Button>
                 </div>
                 <div className="SKIP">SKIP</div>

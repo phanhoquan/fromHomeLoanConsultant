@@ -17,9 +17,11 @@ export const types = {
 };
 
 const Step23 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
     localStorage.getItem("employmentPartnersWorkingStatus") || ""
   );

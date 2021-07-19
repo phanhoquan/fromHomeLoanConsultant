@@ -8,6 +8,9 @@ import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
 
 const First = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const firstNameRef = useRef(null);
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);

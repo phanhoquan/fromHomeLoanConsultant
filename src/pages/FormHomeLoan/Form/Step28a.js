@@ -9,6 +9,9 @@ import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
 
 const Step28A = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+    ? JSON.parse(localStorage.getItem("listDataSubmit"))
+    : [];
   const personalLoanRef = useRef(null);
   const personalLoanAmountRef = useRef(null);
 

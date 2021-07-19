@@ -8,6 +8,13 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Self Employed",
+  4: "Unemployed",
+};
+
 const listNumberYearWorking = [
   "1 year",
   "2 years",
@@ -17,9 +24,12 @@ const listNumberYearWorking = [
 ];
 
 const Step17 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
-
+  const employmentStatus = localStorage.getItem("employmentStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [numberYearWorking, setNumberYearWorking] = useState(
@@ -43,9 +53,15 @@ const Step17 = () => {
 
   const nextStep = (value) => {
     window.localStorage.setItem("numberYearWorking", value);
-    history.push({
-      pathname: `/refinance-fact-find/step-18`,
-    });
+    if (employmentStatus === types[3]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-18`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-20`,
+      });
+    }
   };
   const onClickSelect = (value) => {
     setNumberYearWorking(value);

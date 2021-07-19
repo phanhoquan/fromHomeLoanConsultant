@@ -13,6 +13,9 @@ export const types = {
 };
 
 const Step21 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const priceTax2019Ref = useRef(null);
   const priceTax2020Ref = useRef(null);
   const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");

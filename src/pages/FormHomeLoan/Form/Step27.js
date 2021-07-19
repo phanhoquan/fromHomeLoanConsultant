@@ -15,6 +15,9 @@ export const types = {
 };
 
 const Step27 = () => {
+  let listDataSubmit = localStorage.getItem("listDataSubmit")
+  ? JSON.parse(localStorage.getItem("listDataSubmit"))
+  : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
