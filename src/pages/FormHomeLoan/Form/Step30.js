@@ -162,7 +162,7 @@ const Step30 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={30}>
+    <LifeInsurance isShowHeader activeStep={30} numberScroll={1600}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
         <Container>
           <div className="wForm wow fadeInUp">

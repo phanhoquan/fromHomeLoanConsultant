@@ -9,8 +9,8 @@ import Router from "./pages/Router";
 export default function App() {
   useEffect(() => {
     document.title = "makescents";
-    localStorage.removeItem("firstname");
-    localStorage.removeItem("lastname");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
     localStorage.removeItem("email");
   }, []);
   return (

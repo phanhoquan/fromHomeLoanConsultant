@@ -127,7 +127,7 @@ const Step11 = () => {
     }
   };
   return (
-    <LifeInsurance isShowHeader activeStep={11}>
+    <LifeInsurance isShowHeader activeStep={11} numberScroll={540}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div

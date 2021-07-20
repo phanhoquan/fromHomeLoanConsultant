@@ -48,7 +48,7 @@ const Form = () => {
   const location = useLocation();
   //Redirect all page not begin
   useEffect(() => {
-    // beginPage(history, "/refinance-fact-find");
+    beginPage(history, "/refinance-fact-find");
   }, [history]);
 
   //Redirect all page not begin

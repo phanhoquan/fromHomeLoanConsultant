@@ -39,7 +39,7 @@ const Step15 = () => {
     setEmploymentWorkingStatus(option);
     window.localStorage.setItem("employmentWorkingStatus", option);
   };
-  
+
   const finDataStep = listDataSubmit.find((item) => item.id === 15);
   const nextStep = (option) => {
     const step15 = {
@@ -134,7 +134,7 @@ const Step15 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={15}>
+    <LifeInsurance isShowHeader activeStep={15} numberScroll={580}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div

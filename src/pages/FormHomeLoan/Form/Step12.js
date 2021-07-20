@@ -124,7 +124,7 @@ const Step12 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={12}>
+    <LifeInsurance isShowHeader activeStep={12} numberScroll={550}>
       <section
         className={`formContent-step-second formContent-life-insurance ${
           isShowModal ? "mb-10" : "mb-2"

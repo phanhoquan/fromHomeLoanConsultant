@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
@@ -8,7 +8,13 @@ import imgMenu from "../../images/menu.png";
 import useOnClickOutside from "../../hooks/useClickOutSide";
 import imgMenuClose from "../../images/closemenu.png";
 
-const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
+const HomeLoan = ({
+  isShowHeader,
+  children,
+  className = "",
+  activeStep,
+  numberScroll = 10,
+}) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
   if (document.body) {
@@ -28,6 +34,8 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowMenu(false);
   });
+
+  console.log(activeStep, "activeStep");
 
   const renderListQuestion =
     listDataSubmit &&
@@ -86,16 +94,18 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
     setIsShowMenu(!isShowMenu);
   };
 
-  // const scrollToBottom = () => {
-  //   wrapperInfoRef.current?.scrollTo({
-  //     block: "end",
-  //     top: 1000000,
-  //   });
-  // };
+  const scrollToBottom = () => {
+    wrapperInfoRef.current?.scrollTo({
+      block: "end",
+      top: numberScroll,
+    });
+  };
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, []);
+  useEffect(() => {
+    scrollToBottom();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <React.Fragment>
       <Helmet>
