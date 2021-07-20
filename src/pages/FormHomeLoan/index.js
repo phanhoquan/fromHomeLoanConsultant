@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
@@ -39,7 +39,7 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
           <li
             key={item.id}
             className={`${activeStep === item.id ? "active " : ""} ${
-              item.answer ? " answerActive" : ""
+              item?.answer?.trim() ? " answerActive" : ""
             }${item.skip ? " answerSkip" : ""}
       `}
             onClick={() => history.push(`/refinance-fact-find/step-${idItem}`)}
@@ -51,7 +51,7 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
                 {item.question || item.question2 || ""}
               </p>
               <p className="answer">
-                {item.answer || item.answer2 || item.skip}
+                {item.answer?.trim() || item?.answer2?.trim() || item.skip}
               </p>
             </div>
           </li>
@@ -68,7 +68,7 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
               <div className={` step`}></div>
               <div className="wrap-question">
                 <p className="question">{item.question2 || ""}</p>
-                <p className="answer">{item.answer2 || item.skip}</p>
+                <p className="answer">{item?.answer2?.trim() || item.skip}</p>
               </div>
             </li>
           ) : (
@@ -82,6 +82,18 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
     setIsShowMenu(!isShowMenu);
   };
 
+  const scrollToBottom = () => {
+    wrapperInfoRef.current?.scrollTo({
+      block: "end",
+      top: 1000000,
+    });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
+  console.log(wrapperInfoRef, "wrapperInfoRef");
   return (
     <React.Fragment>
       <Helmet>
@@ -112,6 +124,7 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
             <div
               className={`nav-left ${isShowMenu ? "open" : ""}`}
               ref={wrapperInfoRef}
+              id="navLeft"
             >
               <div className="iconMenuClose">
                 <div
