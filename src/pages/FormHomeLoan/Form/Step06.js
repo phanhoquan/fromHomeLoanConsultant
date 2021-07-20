@@ -73,9 +73,9 @@ const Step06 = () => {
     setRelationshipYourValid(valid.NON_VALID);
     setIsShowModal(false);
     window.localStorage.setItem("relationshipYour", value);
-    setTimeout(() => {
-      nextStep(value);
-    }, 500);
+    // setTimeout(() => {
+    //   nextStep(value);
+    // }, 500);
   };
 
   const onClickNext = () => {

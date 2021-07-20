@@ -50,9 +50,9 @@ const Step33 = () => {
         JSON.stringify([...listDataSubmit, step33])
       );
     }
-    // history.push({
-    //   pathname: `/refinance-fact-find/step-success`,
-    // });
+    history.push({
+      pathname: `/refinance-fact-find/step-success`,
+    });
   };
 
   const onClickNext = () => {
@@ -97,9 +97,9 @@ const Step33 = () => {
         JSON.stringify([...listDataSubmit, skipStep33])
       );
     }
-    // history.push({
-    //   pathname: `/refinance-fact-find/step-success`,
-    // });
+    history.push({
+      pathname: `/refinance-fact-find/step-success`,
+    });
   };
 
   return (

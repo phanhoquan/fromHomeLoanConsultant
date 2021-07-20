@@ -118,6 +118,10 @@ const Step13 = () => {
   };
 
   const onClickNext = () => {
+    window.localStorage.setItem(
+      "otherChillApplicantAge",
+      JSON.stringify(otherChillApplicantAge)
+    );
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
     if (

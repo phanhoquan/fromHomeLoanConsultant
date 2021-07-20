@@ -96,8 +96,6 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
   // useEffect(() => {
   //   scrollToBottom();
   // }, []);
-
-  console.log(wrapperInfoRef, "wrapperInfoRef");
   return (
     <React.Fragment>
       <Helmet>

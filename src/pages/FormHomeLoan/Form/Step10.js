@@ -17,7 +17,7 @@ const Step10 = () => {
       ? JSON.parse(localStorage.getItem("chillApplicantAge"))
       : {}
   );
-  const childrenNumber = localStorage.getItem("childrenNumber") || 3;
+  const childrenNumber = localStorage.getItem("childrenNumber") || 1;
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [chillApplicantAgeValid, setChillApplicantAgeValid] = useState({});
@@ -113,6 +113,10 @@ const Step10 = () => {
   };
 
   const onClickNext = () => {
+    window.localStorage.setItem(
+      "chillApplicantAge",
+      JSON.stringify(chillApplicantAge)
+    );
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading && finAgeValid?.length === parseInt(childrenNumber, 10)) {

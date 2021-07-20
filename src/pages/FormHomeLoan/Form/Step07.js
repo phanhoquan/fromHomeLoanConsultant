@@ -226,6 +226,9 @@ const Step02 = () => {
       );
     }
   };
+  const firstName = localStorage.getItem("firstName") || "";
+  const firstNameOther = localStorage.getItem("firstNameOther") || "";
+  const title = `7. What are the ages of both ${firstName} & ${firstNameOther}?`;
 
   return (
     <LifeInsurance isShowHeader activeStep={7}>
@@ -239,7 +242,35 @@ const Step02 = () => {
           >
             <Row>
               <Col xs={12} className="text-center mt-3">
-                <h2 className="mb-4">7. What is the age of the applicant?</h2>
+                <h2 className="mb-4">
+                  {typesApplication === types[2]
+                    ? title
+                    : "7. What is the age of the applicant?"}
+                </h2>
+              </Col>
+
+              <Col xs={12}>
+                <Row className="info-customer">
+                  <Col xs={12}>
+                    <InputCustom2
+                      onChange={(e) => onKeyUp(e, "soleApplicantAge")}
+                      label="Sole Applicant Age"
+                      value={soleApplicantAge}
+                      type="text"
+                      id="email-input"
+                      customClassLabel={soleApplicantAge ? "active" : ""}
+                      maxLength="3"
+                      customClassWrap="email"
+                      onBlur={(e) => onBlur(e, "soleApplicantAge")}
+                      onFocus={() => onFocus("soleApplicantAge")}
+                    />
+                  </Col>
+                </Row>
+                {soleApplicantAgeValid === valid.INVALID && (
+                  <div className="text-error mb-3">
+                    <p>{validMessage}</p>
+                  </div>
+                )}
               </Col>
               {typesApplication === types[2] ? (
                 <Col xs={12}>
@@ -268,31 +299,6 @@ const Step02 = () => {
               ) : (
                 ""
               )}
-
-              <Col xs={12}>
-                <Row className="info-customer">
-                  <Col xs={12}>
-                    <InputCustom2
-                      onChange={(e) => onKeyUp(e, "soleApplicantAge")}
-                      label="Sole Applicant Age"
-                      value={soleApplicantAge}
-                      type="text"
-                      id="email-input"
-                      customClassLabel={soleApplicantAge ? "active" : ""}
-                      maxLength="3"
-                      customClassWrap="email"
-                      onBlur={(e) => onBlur(e, "soleApplicantAge")}
-                      onFocus={() => onFocus("soleApplicantAge")}
-                    />
-                  </Col>
-                </Row>
-                {soleApplicantAgeValid === valid.INVALID && (
-                  <div className="text-error mb-3">
-                    <p>{validMessage}</p>
-                  </div>
-                )}
-              </Col>
-
               <Col xs={12} className="fadeInDown wow  mt-4">
                 <div className="group-btn-footer col d-flex justify-content-center">
                   <Button
