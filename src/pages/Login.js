@@ -12,8 +12,8 @@ const Login = ({ handleGetIsLogin }) => {
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
-  const initPassword = "admin@xyz";
-  const initUserName = "adminloan";
+  const initPassword = "j8%@c#za@NE3Q";
+  const initUserName = "admin";
   const userNameRef = useRef(null);
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);

@@ -147,7 +147,7 @@ const Step21 = () => {
       answer2: priceTax2020
         ? parseInt(priceTax2020.replace(/,/gi, ""), 10).toLocaleString("en")
         : "",
-      skip: (!priceTax2019 || !priceTax2020) && "Skipped",
+      skip: (!priceTax2019 && "Skipped") || (!priceTax2020 && "Skipped"),
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

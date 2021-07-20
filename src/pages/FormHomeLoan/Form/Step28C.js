@@ -132,7 +132,7 @@ const Step28C = () => {
       answer2: HECSDebtAmount
         ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
         : "",
-      skip: (!HECSDebtAmount || !HECSDebt) && "Skipped",
+      skip: (!HECSDebtAmount && "Skipped") || (!HECSDebt && "Skipped"),
       menu: "28c",
     };
 

@@ -137,7 +137,9 @@ const Step30 = () => {
             "en"
           )
         : "",
-      skip: (!valueCreditCard || !valueCreditCardAmount) && "Skipped",
+      skip:
+        (!valueCreditCard && "Skipped") ||
+        (!valueCreditCardAmount && "Skipped"),
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

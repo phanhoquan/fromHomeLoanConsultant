@@ -28,7 +28,6 @@ const Header = () => {
 
   const handleReset = () => {
     redirectTo("/refinance-fact-find");
-    console.log("ssssssssss");
     setIsShowModal(false);
   };
 

@@ -113,7 +113,7 @@ const First = () => {
       id: 5,
       question: "What is the other name of the applicant?",
       answer: `${firstName} ${lastName}`,
-      skip: (!firstName || !firstName) && "Skipped",
+      skip: (!firstName && "Skipped") || (!firstName && "Skipped"),
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 5 ? skipStep5 : item
