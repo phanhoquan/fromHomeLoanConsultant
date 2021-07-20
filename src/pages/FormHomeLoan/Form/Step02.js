@@ -38,13 +38,6 @@ const Step02 = () => {
   const onCheck = (option) => {
     setCurrentLoanStatus(option);
     window.localStorage.setItem("currentLoanStatus", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 2);

@@ -366,6 +366,12 @@ footer.position-relative {
         background-image: url("../../images/skip.png");
       }
 
+      &.answerSkip2 {
+        &::before {
+          display: none;
+        }
+      }
+
       .question {
         color: #a7a7a7 !important;
         font-weight: 500;

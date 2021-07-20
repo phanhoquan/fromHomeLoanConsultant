@@ -35,13 +35,6 @@ const Step04 = () => {
   const onCheck = (option) => {
     setJointApplicationStatus(option);
     window.localStorage.setItem("jointApplicationStatus", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 4);

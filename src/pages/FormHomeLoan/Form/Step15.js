@@ -38,14 +38,8 @@ const Step15 = () => {
   const onCheck = (option) => {
     setEmploymentWorkingStatus(option);
     window.localStorage.setItem("employmentWorkingStatus", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
+  
   const finDataStep = listDataSubmit.find((item) => item.id === 15);
   const nextStep = (option) => {
     const step15 = {

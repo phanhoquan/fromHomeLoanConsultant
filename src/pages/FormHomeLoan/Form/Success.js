@@ -133,7 +133,7 @@ export default function Success() {
   return (
     <div className="loadingSection loadingLifeInsurance">
       <FadeLoader margin={10} />
-      <p className="text-center mt-5"> Processing...</p>
+      <p className="text-center mt-5">Processing...</p>
     </div>
   );
 }

@@ -36,13 +36,6 @@ const Step32 = () => {
   const onCheck = (option) => {
     setCurrentlyRenting(option);
     window.localStorage.setItem("currentlyRenting", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 32);
   const nextStep = (option) => {
@@ -77,7 +70,6 @@ const Step32 = () => {
     setShowLoading(true);
     checkStatusValid(currentlyRenting);
     setTimeout(() => setShowLoading(false), 500);
-
     if (checkStatusValid(currentlyRenting)) {
       if (!showLoading) {
         setTimeout(function () {

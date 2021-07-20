@@ -34,14 +34,8 @@ const Step14 = () => {
   const onCheck = (option) => {
     setWorkingStatus(option);
     window.localStorage.setItem("workingStatus", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
+  
   const finDataStep = listDataSubmit.find((item) => item.id === 14);
   const nextStep = (option) => {
     const step14 = {

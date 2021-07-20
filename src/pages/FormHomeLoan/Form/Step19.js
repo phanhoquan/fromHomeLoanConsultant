@@ -80,9 +80,6 @@ const Step19 = () => {
     setBusinessBeenRegisteredValid(valid.NON_VALID);
     setIsShowModal(false);
     window.localStorage.setItem("businessBeenRegistered", value);
-    setTimeout(() => {
-      nextStep(value);
-    }, 500);
   };
 
   const onClickNext = () => {

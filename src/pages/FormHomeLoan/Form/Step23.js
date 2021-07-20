@@ -38,13 +38,13 @@ const Step23 = () => {
   const onCheck = (option) => {
     setEmploymentWorkingStatus(option);
     window.localStorage.setItem("employmentPartnersWorkingStatus", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
+    // setShowLoading(true);
+    // setTimeout(() => setShowLoading(false), 500);
+    // if (!showLoading) {
+    //   setTimeout(function () {
+    //     nextStep(option);
+    //   }, 500);
+    // }
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 23);
 

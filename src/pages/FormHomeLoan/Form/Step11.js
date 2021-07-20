@@ -36,13 +36,6 @@ const Step11 = () => {
   const onCheck = (option) => {
     setOtherDependents(option);
     window.localStorage.setItem("otherDependents", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 11);

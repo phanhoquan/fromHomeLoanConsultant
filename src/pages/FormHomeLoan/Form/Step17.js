@@ -91,9 +91,6 @@ const Step17 = () => {
     setNumberYearWorkingValid(valid.NON_VALID);
     setIsShowModal(false);
     window.localStorage.setItem("numberYearWorking", value);
-    setTimeout(() => {
-      nextStep(value);
-    }, 500);
   };
 
   const onClickNext = () => {

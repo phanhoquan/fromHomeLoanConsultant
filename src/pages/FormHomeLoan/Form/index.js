@@ -5,7 +5,7 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { beginPage } from "../../../utils/beginPage";
 //Calling WOWjs
 import qs from "qs";
-import WOW from "wowjs";
+// import WOW from "wowjs";
 
 import Step01 from "./Step01";
 import Step02 from "./Step02";
@@ -91,11 +91,11 @@ const Form = () => {
       }
     }, 300);
 
-    const wow = new WOW.WOW({
-      live: false,
-      mobile: false,
-    });
-    wow.init();
+    // const wow = new WOW.WOW({
+    //   live: false,
+    //   mobile: false,
+    // });
+    // wow.init();
   }, [location]);
 
   return (

@@ -38,13 +38,6 @@ const Step27 = () => {
   const onCheck = (option) => {
     setPersonalLoansStatus(option);
     window.localStorage.setItem("personalLoansStatus", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 27);
 

@@ -70,9 +70,6 @@ const Step12 = () => {
     setOtherChildrenNumberValid(valid.NON_VALID);
     setIsShowModal(false);
     window.localStorage.setItem("otherChildrenNumber", value);
-    setTimeout(() => {
-      nextStep(value);
-    }, 500);
   };
 
   const onClickNext = () => {

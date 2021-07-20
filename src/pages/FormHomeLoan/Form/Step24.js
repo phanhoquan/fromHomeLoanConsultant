@@ -89,9 +89,9 @@ const Step24 = () => {
     setNumberPartnerReturnValid(valid.NON_VALID);
     setIsShowModal(false);
     window.localStorage.setItem("numberPartnerReturn", value);
-    setTimeout(() => {
-      nextStep(value);
-    }, 500);
+    // setTimeout(() => {
+    //   nextStep(value);
+    // }, 500);
   };
 
   const onClickNext = () => {

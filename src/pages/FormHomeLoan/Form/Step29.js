@@ -34,13 +34,6 @@ const Step29 = () => {
   const onCheck = (option) => {
     setCreditCard(option);
     window.localStorage.setItem("creditCard", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 29);
   const nextStep = (option) => {

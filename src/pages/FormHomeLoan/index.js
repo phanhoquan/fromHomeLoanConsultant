@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
@@ -61,7 +61,11 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
               onClick={() =>
                 history.push(`/refinance-fact-find/step-${idItem}`)
               }
-              className={`${item.skip && !item.question2 ? " answerSkip" : ""}
+              className={`${
+                item.skip && !item?.answer2?.trim()
+                  ? " answerSkip answerSkip2"
+                  : ""
+              }
       `}
               role="button"
             >
@@ -82,16 +86,16 @@ const HomeLoan = ({ isShowHeader, children, className = "", activeStep }) => {
     setIsShowMenu(!isShowMenu);
   };
 
-  const scrollToBottom = () => {
-    wrapperInfoRef.current?.scrollTo({
-      block: "end",
-      top: 1000000,
-    });
-  };
+  // const scrollToBottom = () => {
+  //   wrapperInfoRef.current?.scrollTo({
+  //     block: "end",
+  //     top: 1000000,
+  //   });
+  // };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, []);
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, []);
 
   console.log(wrapperInfoRef, "wrapperInfoRef");
   return (

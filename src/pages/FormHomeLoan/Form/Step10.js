@@ -179,7 +179,7 @@ const Step10 = () => {
     id: 10,
     question: "What are the age of these kids/dependants",
     answer: finAgeValid && finAgeValid.join("/"),
-    skip: !finAgeValid && "Skipped",
+    skip: !finAgeValid.join("/") && "Skipped",
   };
   const handleSkip = () => {
     const updateDataStep = listDataSubmit.map((item) =>

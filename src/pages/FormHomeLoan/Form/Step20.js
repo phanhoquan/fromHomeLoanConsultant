@@ -34,13 +34,13 @@ const Step20 = () => {
   const onCheck = (option) => {
     setTaxReturns(option);
     window.localStorage.setItem("taxReturns", option);
-    setShowLoading(true);
-    setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep(option);
-      }, 500);
-    }
+    // setShowLoading(true);
+    // setTimeout(() => setShowLoading(false), 500);
+    // if (!showLoading) {
+    //   setTimeout(function () {
+    //     nextStep(option);
+    //   }, 500);
+    // }
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 20);
   const nextStep = (option) => {
