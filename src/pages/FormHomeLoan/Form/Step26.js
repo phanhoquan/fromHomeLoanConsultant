@@ -85,17 +85,21 @@ const Step26 = () => {
         JSON.stringify([...listDataSubmit, step26])
       );
     }
-    if (option === types[1]) {
+    if (option?.length === 1 && !!option?.includes(types[1])) {
       history.push({
         pathname: `/refinance-fact-find/step-27a`,
       });
-    } else if (option === types[2]) {
+    } else if (option?.length === 1 && !!option?.includes(types[2])) {
       history.push({
         pathname: `/refinance-fact-find/step-27b`,
       });
-    } else if (option === types[3]) {
+    } else if (option?.length === 1 && !!option?.includes(types[3])) {
       history.push({
         pathname: `/refinance-fact-find/step-27c`,
+      });
+    } else if (option?.length > 1) {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
       });
     } else {
       history.push({
@@ -146,17 +150,30 @@ const Step26 = () => {
       );
     }
 
-    if (personalLoansStatus === types[1]) {
+    if (
+      personalLoansStatus?.length === 1 &&
+      !!personalLoansStatus?.includes(types[1])
+    ) {
       history.push({
         pathname: `/refinance-fact-find/step-27a`,
       });
-    } else if (personalLoansStatus === types[2]) {
+    } else if (
+      personalLoansStatus?.length === 1 &&
+      !!personalLoansStatus?.includes(types[2])
+    ) {
       history.push({
         pathname: `/refinance-fact-find/step-27b`,
       });
-    } else if (personalLoansStatus === types[3]) {
+    } else if (
+      personalLoansStatus?.length === 1 &&
+      !!personalLoansStatus?.includes(types[3])
+    ) {
       history.push({
         pathname: `/refinance-fact-find/step-27c`,
+      });
+    } else if (personalLoansStatus?.length > 1) {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
       });
     } else {
       history.push({
@@ -164,7 +181,11 @@ const Step26 = () => {
       });
     }
   };
-
+  console.log(
+    personalLoansStatus?.length === 1,
+    !!personalLoansStatus?.includes(types[2])
+  );
+  console.log(personalLoansStatus, "personalLoansStatus");
   return (
     <LifeInsurance isShowHeader activeStep={26} numberScroll={1750}>
       <section className="formContent-step-first pb-5">

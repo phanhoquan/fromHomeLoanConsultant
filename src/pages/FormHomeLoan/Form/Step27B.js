@@ -51,7 +51,7 @@ const Step27B = () => {
     answer: carLoan,
     question2: "What is the limit on the car loan amount?",
     answer2: carLoanAmount
-      ? parseInt(carLoanAmount, 10).toLocaleString("en")
+      ? parseInt(carLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
       : "",
     skip: "",
     menu: "27b",
@@ -125,7 +125,7 @@ const Step27B = () => {
       answer: carLoan,
       question2: "What is the limit on the car loan amount?",
       answer2: carLoanAmount
-        ? parseInt(carLoanAmount, 10).toLocaleString("en")
+        ? parseInt(carLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
         : "",
       skip: (!carLoanAmount && "Skipped") || (!carLoan && "Skipped"),
       menu: "27b",

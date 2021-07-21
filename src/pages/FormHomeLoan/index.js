@@ -35,8 +35,6 @@ const HomeLoan = ({
     setIsShowMenu(false);
   });
 
-  console.log(activeStep, "activeStep");
-
   const renderListQuestion =
     listDataSubmit &&
     listDataSubmit.map((item, index) => {
@@ -69,7 +67,7 @@ const HomeLoan = ({
               onClick={() =>
                 history.push(`/refinance-fact-find/step-${idItem}`)
               }
-              className={`${
+              className={`${activeStep === item.id ? "active " : ""} ${
                 item.skip && !item?.answer2?.trim()
                   ? " answerSkip answerSkip2"
                   : ""
@@ -83,6 +81,96 @@ const HomeLoan = ({
                 <p className="answer">{item?.answer2?.trim() || item.skip}</p>
               </div>
             </li>
+          ) : (
+            ""
+          )}
+
+          {item?.id === 27 ? (
+            <>
+              <li
+                key={index}
+                onClick={() =>
+                  history.push(`/refinance-fact-find/step-${idItem}`)
+                }
+                className={`${activeStep === item.id ? "active " : ""} ${
+                  item.skip && !item?.answer3?.trim()
+                    ? " answerSkip answerSkip2"
+                    : ""
+                }
+                ${item.question3 ? "" : " d-none"}
+      `}
+                role="button"
+              >
+                <div className={` step`}></div>
+                <div className="wrap-question">
+                  <p className="question">{item.question3 || ""}</p>
+                  <p className="answer">{item?.answer3?.trim() || item.skip}</p>
+                </div>
+              </li>
+
+              <li
+                key={index}
+                onClick={() =>
+                  history.push(`/refinance-fact-find/step-${idItem}`)
+                }
+                className={`${activeStep === item.id ? "active " : ""} ${
+                  item.skip && !item?.answer4?.trim()
+                    ? " answerSkip answerSkip2"
+                    : ""
+                }
+                ${item.question4 ? "" : " d-none"}
+      `}
+                role="button"
+              >
+                <div className={` step`}></div>
+                <div className="wrap-question">
+                  <p className="question">{item.question4 || ""}</p>
+                  <p className="answer">{item?.answer4?.trim() || item.skip}</p>
+                </div>
+              </li>
+
+              <li
+                key={index}
+                onClick={() =>
+                  history.push(`/refinance-fact-find/step-${idItem}`)
+                }
+                className={`${activeStep === item.id ? "active " : ""} ${
+                  item.skip && !item?.answer5?.trim()
+                    ? " answerSkip answerSkip2"
+                    : ""
+                }
+                ${item.question5 ? "" : " d-none"}
+      `}
+                role="button"
+              >
+                <div className={` step`}></div>
+                <div className="wrap-question">
+                  <p className="question">{item.question5 || ""}</p>
+                  <p className="answer">{item?.answer5?.trim() || item.skip}</p>
+                </div>
+              </li>
+
+              <li
+                key={index}
+                onClick={() =>
+                  history.push(`/refinance-fact-find/step-${idItem}`)
+                }
+                className={`${activeStep === item.id ? "active " : ""} ${
+                  item.skip && !item?.answer6?.trim()
+                    ? " answerSkip answerSkip2"
+                    : ""
+                }
+                ${item.question6 ? "" : " d-none"}
+      `}
+                role="button"
+              >
+                <div className={` step`}></div>
+                <div className="wrap-question">
+                  <p className="question">{item.question6 || ""}</p>
+                  <p className="answer">{item?.answer6?.trim() || item.skip}</p>
+                </div>
+              </li>
+            </>
           ) : (
             ""
           )}

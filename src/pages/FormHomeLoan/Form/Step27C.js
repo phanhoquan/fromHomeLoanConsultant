@@ -55,7 +55,7 @@ const Step27C = () => {
     answer: HECSDebt,
     question2: "What is the limit on the HECS Debt amount?",
     answer2: HECSDebtAmount
-      ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
+      ? parseInt(HECSDebtAmount.replace(/,/g, ""), 10).toLocaleString("en")
       : "",
     skip: "",
     menu: "27c",
@@ -130,14 +130,14 @@ const Step27C = () => {
       answer: HECSDebt,
       question2: "What is the limit on the HECS Debt amount?",
       answer2: HECSDebtAmount
-        ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
+        ? parseInt(HECSDebtAmount.replace(/,/g, ""), 10).toLocaleString("en")
         : "",
       skip: (!HECSDebtAmount && "Skipped") || (!HECSDebt && "Skipped"),
       menu: "27c",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? skipStep27: item
+      item.id === 27 ? skipStep27 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
