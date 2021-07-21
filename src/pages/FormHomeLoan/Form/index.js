@@ -36,8 +36,8 @@ import Step26 from "./Step26";
 import Step27A from "./Step27a";
 import Step27B from "./Step27B";
 import Step27C from "./Step27C";
+import Step28 from "./Step28";
 import Step29 from "./Step29";
-import Step30 from "./Step30";
 import Step31 from "./Step31";
 import Step32 from "./Step32";
 import Step33 from "./Step33";
@@ -131,8 +131,8 @@ const Form = () => {
         <Route path="/refinance-fact-find/step-27a" component={Step27A} />
         <Route path="/refinance-fact-find/step-27B" component={Step27B} />
         <Route path="/refinance-fact-find/step-27C" component={Step27C} />
+        <Route path="/refinance-fact-find/step-28" component={Step28} />
         <Route path="/refinance-fact-find/step-29" component={Step29} />
-        <Route path="/refinance-fact-find/step-30" component={Step30} />
         <Route path="/refinance-fact-find/step-31" component={Step31} />
         <Route path="/refinance-fact-find/step-32" component={Step32} />
         <Route path="/refinance-fact-find/step-33" component={Step33} />

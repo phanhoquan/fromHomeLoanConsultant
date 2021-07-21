@@ -209,10 +209,10 @@ export default function Success() {
       f_1622_hecs_institution: localStorage.getItem("HECSDebt") || "", //27c
       f_1623_hecs_amount: HECSDebtAmount || "", // 27c
 
-      f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //29
+      f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //28
       f_1626_credit_card_institution:
-        localStorage.getItem("valueCreditCard") || "", // 30
-      f_1627_credit_card_amount: valueCreditCardAmount || "", // 30
+        localStorage.getItem("valueCreditCard") || "", // 29
+      f_1627_credit_card_amount: valueCreditCardAmount || "", // 29
       f_1632_loan_type: localStorage.getItem("currentlyRenting") || "", //32,
       f_1633_additional_notes: localStorage.getItem("noteVale") || "", //33
 
