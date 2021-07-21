@@ -250,7 +250,12 @@ const HomeLoan = ({
                     ? " answerActive"
                     : ""
                 }
-                ${localStorage.getItem("skip1") ? " answerSkip" : ""}
+                ${
+                  localStorage.getItem("skip1") &&
+                  !localStorage.getItem("employmentStatus")
+                    ? " answerSkip"
+                    : ""
+                }
                 `}
                   onClick={() => history.push(`/refinance-fact-find/step-01`)}
                   role="button"
