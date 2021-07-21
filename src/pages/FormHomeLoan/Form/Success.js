@@ -1,8 +1,8 @@
 /** @format */
 
 import React, { useState, useEffect, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import FadeLoader from "react-spinners/FadeLoader";
-import { redirectTo } from "../../../utils/beginPage";
 import { getIPClient, sendDataToDatabowl } from "../../../utils/api";
 import { getTimeNow } from "../../../utils/formatTime";
 
@@ -35,7 +35,15 @@ const getDataMore = () => {
   return dataMore;
 };
 
+export const types = {
+  1: "Personal Loans",
+  2: "Car Loans",
+  3: "HECS debt",
+  4: "None of the above",
+};
+
 export default function Success() {
+  const history = useHistory();
   const [dataState, setDataState] = useState(false);
   const [timeSubmit, setTimeSubmit] = useState(false);
 
@@ -175,12 +183,18 @@ export default function Success() {
       f_1618_joint_applicant_maternity:
         localStorage.getItem("numberPartnerReturn") || "", //24
 
-      f_1629_car_loan_confirm:
-        (personalLoansStatus && personalLoansStatus[0]) || "",
-      f_1631_hecs_debt_confirm:
-        (personalLoansStatus && personalLoansStatus[1]) || "",
       f_1630_personal_loan_confirm:
-        (personalLoansStatus && personalLoansStatus[2]) || "", //27 TODO
+        (personalLoansStatus && !!personalLoansStatus?.includes(types[1])
+          ? types[1]
+          : "") || "", //27 TODO
+      f_1629_car_loan_confirm:
+        (personalLoansStatus && !!personalLoansStatus?.includes(types[2])
+          ? types[2]
+          : "") || "",
+      f_1631_hecs_debt_confirm:
+        (personalLoansStatus && !!personalLoansStatus?.includes(types[3])
+          ? types[3]
+          : "") || "",
 
       f_1620_car_loan_institution: localStorage.getItem("personalLoan") || "", //28a,
       f_1621_car_loan_amount: personalLoanAmount || "", // 28a,
@@ -204,9 +218,9 @@ export default function Success() {
   };
 
   const redirectThank = (data) => {
-    const fname = localStorage.getItem("firstName");
-    redirectTo("/refinance-fact-find");
-    window.location = `https://makescents.com.au/thank-you-echoice/?f=${fname}`;
+    history.push({
+      pathname: `/refinance-fact-find/step-reset`,
+    });
   };
 
   const success = (data) => {

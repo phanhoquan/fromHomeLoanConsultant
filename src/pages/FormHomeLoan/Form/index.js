@@ -41,6 +41,7 @@ import Step30 from "./Step30";
 import Step31 from "./Step31";
 import Step32 from "./Step32";
 import Step33 from "./Step33";
+import StepReset from "./PageReset";
 import Success from "./Success";
 
 const Form = () => {
@@ -136,6 +137,7 @@ const Form = () => {
         <Route path="/refinance-fact-find/step-32" component={Step32} />
         <Route path="/refinance-fact-find/step-33" component={Step33} />
         <Route path="/refinance-fact-find/step-success" component={Success} />
+        <Route path="/refinance-fact-find/step-reset" component={StepReset} />
         <Route path="/refinance-fact-find" component={Step01} />
       </Switch>
     </section>
