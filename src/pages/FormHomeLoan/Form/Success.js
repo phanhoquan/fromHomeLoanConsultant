@@ -114,7 +114,7 @@ export default function Success() {
       f_40_city: localStorage.getItem("city") || "",
       f_41_state: localStorage.getItem("state") || "",
       f_11_postcode: localStorage.getItem("postcode") || "",
-      f_6_address1: localStorage.getItem("fullAddress") || "", //31
+      f_6_address1: localStorage.getItem("fullAddress") || "", //30
       f_17_ipaddress: ipClient,
       f_58_submissiondate: getTimeNow(),
       f_76_user_agent: navigator.userAgent,
@@ -213,8 +213,8 @@ export default function Success() {
       f_1626_credit_card_institution:
         localStorage.getItem("valueCreditCard") || "", // 29
       f_1627_credit_card_amount: valueCreditCardAmount || "", // 29
-      f_1632_loan_type: localStorage.getItem("currentlyRenting") || "", //32,
-      f_1633_additional_notes: localStorage.getItem("noteVale") || "", //33
+      f_1632_loan_type: localStorage.getItem("currentlyRenting") || "", //31,
+      f_1633_additional_notes: localStorage.getItem("noteVale") || "", //32
 
       cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/refinance-fact-find",

@@ -1,84 +1,51 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
+import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
-import { getZipCodeWithAddress } from "../../../utils/googleApi";
-import InputGoogleAddress from "../../../Components/InputGoogleAddress2";
+
+export const types = {
+  1: "YES",
+  2: "NO",
+};
 
 const Step31 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const fullAddressRef = useRef(null);
-  const [zipCodeState, setZipCodeState] = useState({
-    street: localStorage.getItem("street") || "",
-    city: localStorage.getItem("city") || "",
-    state: localStorage.getItem("state") || "",
-    postcode: localStorage.getItem("postcode") || "",
-  });
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [fullAddress, setFullAddress] = useState(
-    localStorage.getItem("fullAddress") || ""
+
+  const [currentlyRenting, setCurrentlyRenting] = useState(
+    localStorage.getItem("currentlyRenting") || ""
   );
-  const [fullAddressValid, setFullAddressValid] = useState(valid.NON_VALID);
-  const [validMessage, setValidMessage] = useState("This field is required");
 
-  useEffect(() => {
-    setTimeout(() => {
-      fullAddressRef?.current?.focus();
-      setFullAddress(localStorage.getItem("fullAddress"));
-    }, 400);
-  }, []);
+  const [currentlyRentingValid, setCurrentlyRentingValid] = useState(
+    valid.NON_VALID
+  );
 
-  const checkStatusValid = (zipCode) => {
-    if (!zipCode) {
-      setValidMessage("This field is required");
-      setFullAddressValid(valid.INVALID);
-      setFullAddress("");
-      localStorage.setItem("fullAddress", "");
-      localStorage.setItem("street", "");
-      localStorage.setItem("city", "");
-      localStorage.setItem("state", "");
-      localStorage.setItem("postcode", "");
-      return valid.INVALID;
-    }
+  const checkStatusValid = (option) => {
+    let test = Object.values(types).includes(option);
+    setCurrentlyRentingValid(Number(test));
+    return test;
+  };
 
-    if (zipCode.street === undefined) {
-      setValidMessage("Please select your full street address");
-      setFullAddressValid(valid.INVALID);
-      localStorage.setItem("fullAddress", "");
-      localStorage.setItem("street", "");
-      localStorage.setItem("city", "");
-      localStorage.setItem("state", "");
-      localStorage.setItem("postcode", "");
-      setFullAddress("");
-      return valid.INVALID;
-    }
-    if (zipCode.street && zipCode.city && zipCode.state && zipCode.postcode) {
-      setFullAddressValid(valid.VALID);
-      return valid.VALID;
-    }
-    setFullAddressValid(valid.INVALID);
-    return valid.INVALID;
+  const onCheck = (option) => {
+    setCurrentlyRenting(option);
+    window.localStorage.setItem("currentlyRenting", option);
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 31);
-  const step31 = {
-    id: 31,
-    question:
-      "What is the full residential address \n of your current property?",
-    answer: fullAddress,
-    skip: "",
-  };
-  const nextStep = () => {
-    localStorage.setItem("fullAddress", fullAddress);
-    localStorage.setItem("street", zipCodeState?.street);
-    localStorage.setItem("city", zipCodeState?.city);
-    localStorage.setItem("state", zipCodeState?.state);
-    localStorage.setItem("postcode", zipCodeState?.postcode);
+  const nextStep = (option) => {
+    window.localStorage.setItem("currentlyRenting", option);
+    const step31 = {
+      id: 31,
+      question: "So with that property, are you \n currently renting it out?",
+      answer: option,
+      skip: "",
+    };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 31 ? step31 : item
@@ -99,46 +66,16 @@ const Step31 = () => {
     });
   };
 
-  const onUpdateState = (zipCode) => {
-    setZipCodeState(zipCode);
-    checkStatusValid(zipCode);
-  };
-
-  const handleOnBlur = () => {};
-
-  const handleOnFocus = () => {
-    setFullAddress("");
-    if (fullAddressRef?.current?.value) {
-      setValidMessage("Please select your full street address");
-      setFullAddressValid(valid.INVALID);
-    }
-    setFullAddressValid(valid.NON_VALID);
-  };
-
   const onClickNext = () => {
     setShowLoading(true);
+    checkStatusValid(currentlyRenting);
     setTimeout(() => setShowLoading(false), 500);
-    if (fullAddress && fullAddressRef?.current?.value) {
-      getZipCodeWithAddress(fullAddressRef?.current?.value, onUpdateState);
+    if (checkStatusValid(currentlyRenting)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(currentlyRenting);
         }, 500);
       }
-    } else {
-      if (!fullAddress && fullAddressRef?.current?.value) {
-        setValidMessage("Please select your full street address");
-      } else {
-        setValidMessage("This field is required");
-      }
-      setFullAddressValid(valid.INVALID);
-      return;
-    }
-  };
-
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      onClickNext();
     }
   };
 
@@ -149,10 +86,9 @@ const Step31 = () => {
   const handleSkip = () => {
     const skipStep31 = {
       id: 31,
-      question:
-        "What is the full residential address \n of your current property?",
-      answer: fullAddress,
-      skip: !fullAddress && "Skipped",
+      question: "So with that property, are you \n currently renting it out?",
+      answer: currentlyRenting,
+      skip: !currentlyRenting && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
@@ -176,7 +112,7 @@ const Step31 = () => {
 
   return (
     <LifeInsurance isShowHeader activeStep={31} numberScroll={1740}>
-      <section className="formContent-step-second formContent-life-insurance mb-2">
+      <section className="formContent-step-first pb-5">
         <Container>
           <div
             className={
@@ -185,36 +121,39 @@ const Step31 = () => {
             }
           >
             <Row>
-              <Col xs={12} className="text-center">
-                <h2 className="mb-3">
-                  31. What is the full residential address <br />
-                  of your current property?
+              <Col xs={12} className="text-center mt-3">
+                <h2 className="mb-4">
+                  31. So with that property, are you <br />
+                  currently renting it out?
                 </h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <InputGoogleAddress
-                      country="au"
-                      defaultValue={fullAddress || ""}
-                      updateState={onUpdateState}
-                      updateAddress={setFullAddress}
-                      invalid={fullAddressValid === valid.INVALID}
-                      onKeyDown={onKeyDown}
-                      onFocus={() => handleOnFocus()}
-                      innerRef={fullAddressRef}
-                      onBlur={handleOnBlur}
+                <Row className="info-customer mt-4">
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      checkBox={currentlyRenting === types[1]}
+                      onClick={() => onCheck(types[1])}
+                      name={types[1]}
+                      classContainer="radius"
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[2])}
+                      checkBox={currentlyRenting === types[2]}
+                      name={types[2]}
+                      classContainer="radius"
                     />
                   </Col>
                 </Row>
-                {fullAddressValid === valid.INVALID && (
+                {currentlyRentingValid === valid.INVALID && (
                   <div className="text-error">
-                    <p> {validMessage}</p>
+                    <p>Please select an option</p>
                   </div>
                 )}
               </Col>
               <Col xs={12} className="fadeInDown wow  mt-4">
-                <div className="group-btn-footer col d-flex justify-content-center">
+                <div className="group-btn-footer w-500 col d-flex justify-content-center">
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
@@ -228,7 +167,7 @@ const Step31 = () => {
                     onClick={onClickNext}
                   >
                     {showLoading && <Spinner animation="border" />}
-                    NEXT
+                    ADDITIONAL NOTES
                   </Button>
                 </div>
                 <div
