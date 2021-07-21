@@ -135,14 +135,17 @@ const Step03 = () => {
   };
   let textRate = "";
   if (currentLoanStatus === types[1]) {
-    textRate = `Fixed: ${valueInterestRate}%`;
+    textRate = valueInterestRate ? `Fixed: ${valueInterestRate}%` : "";
   }
   if (currentLoanStatus === types[2]) {
-    textRate = `Variable: ${valueInterestRate2}%`;
+    textRate = valueInterestRate2 ? `Variable: ${valueInterestRate2}%` : "";
   }
 
   if (currentLoanStatus === types[3]) {
-    textRate = `Fixed: ${valueInterestRate}% \n Variable${valueInterestRate2}%`;
+    textRate =
+      valueInterestRate && valueInterestRate2
+        ? `Fixed: ${valueInterestRate}% \n Variable${valueInterestRate2}%`
+        : "";
   }
   const step3 = {
     id: 3,
