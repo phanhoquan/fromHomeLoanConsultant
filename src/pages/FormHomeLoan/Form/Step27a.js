@@ -8,68 +8,68 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
 
-const Step28C = () => {
+const Step27A = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const HECSDebtRef = useRef(null);
-  const HECSDebtAmountRef = useRef(null);
+  const personalLoanRef = useRef(null);
+  const personalLoanAmountRef = useRef(null);
 
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [HECSDebt, setHECSDebt] = useState(
-    localStorage.getItem("HECSDebt") || ""
+  const [personalLoan, setPersonalLoan] = useState(
+    localStorage.getItem("personalLoan") || ""
   );
-  const [HECSDebtValid, setHECSDebtValid] = useState(valid.NON_VALID);
+  const [personalLoanValid, setPersonalLoanValid] = useState(valid.NON_VALID);
 
-  const [HECSDebtAmount, setHECSDebtAmount] = useState(
-    localStorage.getItem("HECSDebtAmount") || ""
+  const [personalLoanAmount, setPersonalLoanAmount] = useState(
+    localStorage.getItem("personalLoanAmount") || ""
   );
-  const [HECSDebtAmountValid, setHECSDebtAmountValid] = useState(
+  const [personalLoanAmountValid, setPersonalLoanAmountValid] = useState(
     valid.NON_VALID
   );
 
   useEffect(() => {
     setTimeout(() => {
-      HECSDebtRef?.current?.element?.focus();
+      personalLoanRef?.current?.element?.focus();
     }, 400);
   }, []);
 
-  const checkHECSDebtStatus = (value) => {
+  const checkPersonalLoanStatus = (value) => {
     let test = value.length > 1;
-    setHECSDebtValid(Number(test));
+    setPersonalLoanValid(Number(test));
     return test;
   };
 
-  const checkHECSDebtAmountStatus = (value) => {
+  const checkPersonalLoanAmountStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
       parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
-    setHECSDebtAmountValid(Number(test));
+    setPersonalLoanAmountValid(Number(test));
     return test;
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 28);
-  const step28 = {
-    id: 28,
-    question: "Which institution is the HECS debt with?",
-    answer: HECSDebt,
-    question2: "What is the limit on the HECS Debt amount?",
-    answer2: HECSDebtAmount
-      ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
+  const finDataStep = listDataSubmit.find((item) => item.id === 27);
+  const step27 = {
+    id: 27,
+    question: "Which institution is the personal loan with?",
+    answer: personalLoan,
+    question2: "What is the limit on the personal loan amount?",
+    answer2: personalLoanAmount
+      ? parseInt(personalLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
       : "",
     skip: "",
-    menu: "28c",
+    menu: "27a",
   };
 
   const nextStep = () => {
-    window.localStorage.setItem("HECSDebt", HECSDebt);
+    window.localStorage.setItem("personalLoan", personalLoan);
     window.localStorage.setItem(
-      "HECSDebtAmount",
-      HECSDebtAmount && parseInt(HECSDebtAmount.replace(/,/g, ""), 10)
+      "personalLoanAmount",
+      personalLoanAmount && parseInt(personalLoanAmount.replace(/,/g, ""), 10)
     );
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 28 ? step28 : item
+      item.id === 27 ? step27 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -79,7 +79,7 @@ const Step28C = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step28])
+        JSON.stringify([...listDataSubmit, step27])
       );
     }
     history.push({
@@ -88,22 +88,22 @@ const Step28C = () => {
   };
 
   const onKeyUpHandle = (value, name) => {
-    if (name === "HECSDebt") {
-      setHECSDebt(value);
+    if (name === "personalLoan") {
+      setPersonalLoan(value);
     }
-    if (name === "HECSDebtAmount") {
-      setHECSDebtAmount(value);
+    if (name === "personalLoanAmount") {
+      setPersonalLoanAmount(value);
     }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkHECSDebtStatus(HECSDebt);
-    checkHECSDebtAmountStatus(HECSDebtAmount);
+    checkPersonalLoanStatus(personalLoan);
+    checkPersonalLoanAmountStatus(personalLoanAmount);
     if (
-      checkHECSDebtStatus(HECSDebt) &&
-      checkHECSDebtAmountStatus(HECSDebtAmount)
+      checkPersonalLoanStatus(personalLoan) &&
+      checkPersonalLoanAmountStatus(personalLoanAmount)
     ) {
       if (!showLoading) {
         setTimeout(function () {
@@ -124,20 +124,22 @@ const Step28C = () => {
   };
 
   const handleSkip = () => {
-    const skipStep28 = {
-      id: 28,
-      question: "Which institution is the HECS debt with?",
-      answer: HECSDebt,
-      question2: "What is the limit on the HECS Debt amount?",
-      answer2: HECSDebtAmount
-        ? parseInt(HECSDebtAmount, 10).toLocaleString("en")
+    const skipStep27 = {
+      id: 27,
+      question: "Which institution is the personal loan with?",
+      answer: personalLoan,
+      question2: "What is the limit on the personal loan amount?",
+      answer2: personalLoanAmount
+        ? parseInt(personalLoanAmount.replace(/,/g, ""), 10).toLocaleString(
+            "en"
+          )
         : "",
-      skip: (!HECSDebtAmount && "Skipped") || (!HECSDebt && "Skipped"),
-      menu: "28c",
+      skip: (!personalLoanAmount && "Skipped") || (!personalLoan && "Skipped"),
+      menu: "27a",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 28 ? skipStep28 : item
+      item.id === 27 ? skipStep27 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -147,7 +149,7 @@ const Step28C = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep28])
+        JSON.stringify([...listDataSubmit, skipStep27])
       );
     }
     history.push({
@@ -156,47 +158,47 @@ const Step28C = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={28} numberScroll={1750}>
+    <LifeInsurance isShowHeader activeStep={27} numberScroll={1750}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
         <Container>
           <div className="wForm wow fadeInUp">
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  28. Which institution is the HECS debt with?
+                  27. Which institution is the personal loan with?
                 </h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4 pt-2">
                   <Col xs={12} className="wForm-input pl-0">
                     <InputCustom2
-                      onFocus={() => setHECSDebtValid(valid.NON_VALID)}
+                      onFocus={() => setPersonalLoanValid(valid.NON_VALID)}
                       onKeyPress={onKeyDown}
                       onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "HECSDebt")
+                        onKeyUpHandle(e.target.value, "personalLoan")
                       }
-                      label="HECS debt Institution"
+                      label="Personal Loan Institution"
                       value={
-                        HECSDebt &&
-                        HECSDebt[0].toUpperCase() + HECSDebt.slice(1)
+                        personalLoan &&
+                        personalLoan[0].toUpperCase() + personalLoan.slice(1)
                       }
                       id="price-input"
-                      customClassLabel={HECSDebt ? "active" : ""}
+                      customClassLabel={personalLoan ? "active" : ""}
                       customClassWrap="email five"
-                      innerRef={HECSDebtRef}
+                      innerRef={personalLoanRef}
                     />
                   </Col>
                 </Row>
-                {HECSDebtValid === valid.INVALID && (
+                {personalLoanValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please enter your Car Loan Institution</p>
+                    <p>Please enter your personal Loan Institution</p>
                   </div>
                 )}
               </Col>
 
               <Col xs={12} className="text-center mt-4">
                 <h2 className="mb-3">
-                  28. What is the limit on the HECS Debt amount?
+                  27. What is the limit on the personal loan amount?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -211,22 +213,24 @@ const Step28C = () => {
                         delimiter: ",",
                         numeralThousandsGroupStyle: "thousand",
                       }}
-                      onFocus={() => setHECSDebtAmountValid(valid.NON_VALID)}
+                      onFocus={() =>
+                        setPersonalLoanAmountValid(valid.NON_VALID)
+                      }
                       onKeyPress={onKeyDown}
                       onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "HECSDebtAmount")
+                        onKeyUpHandle(e.target.value, "personalLoanAmount")
                       }
                       label="E.G. $10,000"
-                      value={HECSDebtAmount}
+                      value={personalLoanAmount}
                       id="price-input"
-                      customClassLabel={HECSDebtAmount ? "active" : ""}
+                      customClassLabel={personalLoanAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"
-                      innerRef={HECSDebtAmountRef}
+                      innerRef={personalLoanAmountRef}
                     />
                   </Col>
                 </Row>
-                {HECSDebtAmountValid === valid.INVALID && (
+                {personalLoanAmountValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Value should be in between $0 - $10,000,000</p>
                   </div>
@@ -267,4 +271,4 @@ const Step28C = () => {
   );
 };
 
-export default Step28C;
+export default Step27A;

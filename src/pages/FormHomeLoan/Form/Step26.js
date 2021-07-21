@@ -14,7 +14,7 @@ export const types = {
   4: "None of the above",
 };
 
-const Step27 = () => {
+const Step26 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
@@ -59,12 +59,12 @@ const Step27 = () => {
     }
   };
 
-  const finDataStep = listDataSubmit.find((item) => item.id === 27);
+  const finDataStep = listDataSubmit.find((item) => item.id === 26);
 
   const nextStep = (option) => {
     window.localStorage.setItem("personalLoansStatus", option);
-    const step27 = {
-      id: 27,
+    const step26 = {
+      id: 26,
       question:
         "Are you currently paying off any personal loans, \n car loans or HECS debt?",
       answer: option.toString(),
@@ -72,7 +72,7 @@ const Step27 = () => {
     };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? step27 : item
+      item.id === 26 ? step26 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -82,20 +82,20 @@ const Step27 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step27])
+        JSON.stringify([...listDataSubmit, step26])
       );
     }
     if (option === types[1]) {
       history.push({
-        pathname: `/refinance-fact-find/step-28a`,
+        pathname: `/refinance-fact-find/step-27a`,
       });
     } else if (option === types[2]) {
       history.push({
-        pathname: `/refinance-fact-find/step-28b`,
+        pathname: `/refinance-fact-find/step-27b`,
       });
     } else if (option === types[3]) {
       history.push({
-        pathname: `/refinance-fact-find/step-28c`,
+        pathname: `/refinance-fact-find/step-27c`,
       });
     } else {
       history.push({
@@ -123,8 +123,8 @@ const Step27 = () => {
   };
 
   const handleSkip = () => {
-    const skipStep27 = {
-      id: 27,
+    const skipStep26 = {
+      id: 26,
       question:
         "Are you currently paying off any personal loans, \n car loans or HECS debt?",
       answer: personalLoansStatus.toString(),
@@ -132,7 +132,7 @@ const Step27 = () => {
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? skipStep27 : item
+      item.id === 26 ? skipStep26 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -142,21 +142,21 @@ const Step27 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep27])
+        JSON.stringify([...listDataSubmit, skipStep26])
       );
     }
 
     if (personalLoansStatus === types[1]) {
       history.push({
-        pathname: `/refinance-fact-find/step-28a`,
+        pathname: `/refinance-fact-find/step-27a`,
       });
     } else if (personalLoansStatus === types[2]) {
       history.push({
-        pathname: `/refinance-fact-find/step-28b`,
+        pathname: `/refinance-fact-find/step-27b`,
       });
     } else if (personalLoansStatus === types[3]) {
       history.push({
-        pathname: `/refinance-fact-find/step-28c`,
+        pathname: `/refinance-fact-find/step-27c`,
       });
     } else {
       history.push({
@@ -166,7 +166,7 @@ const Step27 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={27} numberScroll={1750}>
+    <LifeInsurance isShowHeader activeStep={26} numberScroll={1750}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -256,4 +256,4 @@ const Step27 = () => {
   );
 };
 
-export default Step27;
+export default Step26;

@@ -8,68 +8,63 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
 
-const Step28A = () => {
+const Step27B = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const personalLoanRef = useRef(null);
-  const personalLoanAmountRef = useRef(null);
+  const carLoanRef = useRef(null);
+  const carLoanAmountRef = useRef(null);
 
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [personalLoan, setPersonalLoan] = useState(
-    localStorage.getItem("personalLoan") || ""
-  );
-  const [personalLoanValid, setPersonalLoanValid] = useState(valid.NON_VALID);
+  const [carLoan, setCarLoan] = useState(localStorage.getItem("carLoan") || "");
+  const [carLoanValid, setCarLoanValid] = useState(valid.NON_VALID);
 
-  const [personalLoanAmount, setPersonalLoanAmount] = useState(
-    localStorage.getItem("personalLoanAmount") || ""
+  const [carLoanAmount, setCarLoanAmount] = useState(
+    localStorage.getItem("carLoanAmount") || ""
   );
-  const [personalLoanAmountValid, setPersonalLoanAmountValid] = useState(
-    valid.NON_VALID
-  );
+  const [carLoanAmountValid, setCarLoanAmountValid] = useState(valid.NON_VALID);
 
   useEffect(() => {
     setTimeout(() => {
-      personalLoanRef?.current?.element?.focus();
+      carLoanRef?.current?.element?.focus();
     }, 400);
   }, []);
 
-  const checkPersonalLoanStatus = (value) => {
+  const checkCarLoanStatus = (value) => {
     let test = value.length > 1;
-    setPersonalLoanValid(Number(test));
+    setCarLoanValid(Number(test));
     return test;
   };
 
-  const checkPersonalLoanAmountStatus = (value) => {
+  const checkCarLoanAmountStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
       parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
-    setPersonalLoanAmountValid(Number(test));
+    setCarLoanAmountValid(Number(test));
     return test;
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 28);
-  const step28 = {
-    id: 28,
-    question: "Which institution is the personal loan with?",
-    answer: personalLoan,
-    question2: "What is the limit on the personal loan amount?",
-    answer2: personalLoanAmount
-      ? parseInt(personalLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
+  const finDataStep = listDataSubmit.find((item) => item.id === 27);
+  const step27 = {
+    id: 27,
+    question: "Which institution is the car loan with?",
+    answer: carLoan,
+    question2: "What is the limit on the car loan amount?",
+    answer2: carLoanAmount
+      ? parseInt(carLoanAmount, 10).toLocaleString("en")
       : "",
     skip: "",
-    menu: "28a",
+    menu: "27b",
   };
-
   const nextStep = () => {
-    window.localStorage.setItem("personalLoan", personalLoan);
+    window.localStorage.setItem("carLoan", carLoan);
     window.localStorage.setItem(
-      "personalLoanAmount",
-      personalLoanAmount && parseInt(personalLoanAmount.replace(/,/g, ""), 10)
+      "carLoanAmount",
+      carLoanAmount && parseInt(carLoanAmount.replace(/,/g, ""), 10)
     );
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 28 ? step28 : item
+      item.id === 27 ? step27 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -79,7 +74,7 @@ const Step28A = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step28])
+        JSON.stringify([...listDataSubmit, step27])
       );
     }
     history.push({
@@ -88,22 +83,22 @@ const Step28A = () => {
   };
 
   const onKeyUpHandle = (value, name) => {
-    if (name === "personalLoan") {
-      setPersonalLoan(value);
+    if (name === "carLoan") {
+      setCarLoan(value);
     }
-    if (name === "personalLoanAmount") {
-      setPersonalLoanAmount(value);
+    if (name === "carLoanAmount") {
+      setCarLoanAmount(value);
     }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkPersonalLoanStatus(personalLoan);
-    checkPersonalLoanAmountStatus(personalLoanAmount);
+    checkCarLoanStatus(carLoan);
+    checkCarLoanAmountStatus(carLoanAmount);
     if (
-      checkPersonalLoanStatus(personalLoan) &&
-      checkPersonalLoanAmountStatus(personalLoanAmount)
+      checkCarLoanStatus(carLoan) &&
+      checkCarLoanAmountStatus(carLoanAmount)
     ) {
       if (!showLoading) {
         setTimeout(function () {
@@ -124,22 +119,20 @@ const Step28A = () => {
   };
 
   const handleSkip = () => {
-    const skipStep28 = {
-      id: 28,
-      question: "Which institution is the personal loan with?",
-      answer: personalLoan,
-      question2: "What is the limit on the personal loan amount?",
-      answer2: personalLoanAmount
-        ? parseInt(personalLoanAmount.replace(/,/g, ""), 10).toLocaleString(
-            "en"
-          )
+    const skipStep27 = {
+      id: 27,
+      question: "Which institution is the car loan with?",
+      answer: carLoan,
+      question2: "What is the limit on the car loan amount?",
+      answer2: carLoanAmount
+        ? parseInt(carLoanAmount, 10).toLocaleString("en")
         : "",
-      skip: (!personalLoanAmount && "Skipped") || (!personalLoan && "Skipped"),
-      menu: "28a",
+      skip: (!carLoanAmount && "Skipped") || (!carLoan && "Skipped"),
+      menu: "27b",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 28 ? skipStep28 : item
+      item.id === 27 ? skipStep27 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -149,7 +142,7 @@ const Step28A = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep28])
+        JSON.stringify([...listDataSubmit, skipStep27])
       );
     }
     history.push({
@@ -158,47 +151,44 @@ const Step28A = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={28} numberScroll={1750}>
+    <LifeInsurance isShowHeader activeStep={27} numberScroll={1750}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
         <Container>
           <div className="wForm wow fadeInUp">
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  28. Which institution is the personal loan with?
+                  27. Which institution is the car loan with?
                 </h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4 pt-2">
                   <Col xs={12} className="wForm-input pl-0">
                     <InputCustom2
-                      onFocus={() => setPersonalLoanValid(valid.NON_VALID)}
+                      onFocus={() => setCarLoanValid(valid.NON_VALID)}
                       onKeyPress={onKeyDown}
-                      onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "personalLoan")
-                      }
-                      label="Personal Loan Institution"
+                      onChange={(e) => onKeyUpHandle(e.target.value, "carLoan")}
+                      label="Car Loan Institution"
                       value={
-                        personalLoan &&
-                        personalLoan[0].toUpperCase() + personalLoan.slice(1)
+                        carLoan && carLoan[0].toUpperCase() + carLoan.slice(1)
                       }
                       id="price-input"
-                      customClassLabel={personalLoan ? "active" : ""}
+                      customClassLabel={carLoan ? "active" : ""}
                       customClassWrap="email five"
-                      innerRef={personalLoanRef}
+                      innerRef={carLoanRef}
                     />
                   </Col>
                 </Row>
-                {personalLoanValid === valid.INVALID && (
+                {carLoanValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please enter your personal Loan Institution</p>
+                    <p>Please enter your Car Loan Institution</p>
                   </div>
                 )}
               </Col>
 
               <Col xs={12} className="text-center mt-4">
                 <h2 className="mb-3">
-                  28. What is the limit on the personal loan amount?
+                  27. What is the limit on the car loan amount?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -213,24 +203,22 @@ const Step28A = () => {
                         delimiter: ",",
                         numeralThousandsGroupStyle: "thousand",
                       }}
-                      onFocus={() =>
-                        setPersonalLoanAmountValid(valid.NON_VALID)
-                      }
+                      onFocus={() => setCarLoanAmountValid(valid.NON_VALID)}
                       onKeyPress={onKeyDown}
                       onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "personalLoanAmount")
+                        onKeyUpHandle(e.target.value, "carLoanAmount")
                       }
                       label="E.G. $10,000"
-                      value={personalLoanAmount}
+                      value={carLoanAmount}
                       id="price-input"
-                      customClassLabel={personalLoanAmount ? "active" : ""}
+                      customClassLabel={carLoanAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"
-                      innerRef={personalLoanAmountRef}
+                      innerRef={carLoanAmountRef}
                     />
                   </Col>
                 </Row>
-                {personalLoanAmountValid === valid.INVALID && (
+                {carLoanAmountValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Value should be in between $0 - $10,000,000</p>
                   </div>
@@ -271,4 +259,4 @@ const Step28A = () => {
   );
 };
 
-export default Step28A;
+export default Step27B;

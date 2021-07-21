@@ -41,7 +41,7 @@ const HomeLoan = ({
     listDataSubmit &&
     listDataSubmit.map((item, index) => {
       const idItem =
-        item.id < 10 ? `0${item.id}` : item.id === 28 ? item.menu : item.id;
+        item.id < 10 ? `0${item.id}` : item.id === 27 ? item.menu : item.id;
       return (
         <>
           <li
@@ -63,7 +63,7 @@ const HomeLoan = ({
               </p>
             </div>
           </li>
-          {item?.id === 21 || item?.id === 28 || item?.id === 30 ? (
+          {item?.id === 21 || item?.id === 27 || item?.id === 30 ? (
             <li
               key={index}
               onClick={() =>
