@@ -140,7 +140,7 @@ const Form = () => {
         <Route path="/refinance-fact-find/step-32" component={Step32} />
         <Route path="/refinance-fact-find/step-success" component={Success} />
         <Route path="/refinance-fact-find/step-reset" component={StepReset} />
-        <Route path="/refinance-fact-find" component={Step26} />
+        <Route path="/refinance-fact-find" component={Step01} />
       </Switch>
     </section>
   );
