@@ -75,7 +75,7 @@ const Step24 = () => {
     }
     if (jointApplicationStatus === types[1]) {
       history.push({
-        pathname: `/refinance-fact-find/step-26`,
+        pathname: `/refinance-fact-find/step-25`,
       });
     } else {
       history.push({
@@ -141,7 +141,7 @@ const Step24 = () => {
     }
     if (jointApplicationStatus === types[1]) {
       history.push({
-        pathname: `/refinance-fact-find/step-26`,
+        pathname: `/refinance-fact-find/step-25`,
       });
     } else {
       history.push({

@@ -10,8 +10,9 @@ import LifeInsurance from "../index";
 export const types = {
   1: "Full Time",
   2: "Part Time",
-  3: "Self Employed",
-  4: "Unemployed",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
 };
 
 const Step18 = () => {
@@ -20,7 +21,7 @@ const Step18 = () => {
     : [];
   const typeOfBusinessRef = useRef(null);
   const history = useHistory();
-  const employmentStatus = localStorage.getItem("employmentStatus");
+  const employmentStatus = localStorage.getItem("employmentWorkingStatus");
   const [showLoading, setShowLoading] = useState(false);
   const [typeOfBusiness, setTypeOfBusiness] = useState(
     localStorage.getItem("typeOfBusinessOther") || ""
@@ -65,7 +66,7 @@ const Step18 = () => {
         JSON.stringify([...listDataSubmit, step18])
       );
     }
-    if (employmentStatus === types[3]) {
+    if (employmentStatus === types[4]) {
       history.push({
         pathname: `/refinance-fact-find/step-19`,
       });
@@ -125,7 +126,7 @@ const Step18 = () => {
       );
     }
 
-    if (employmentStatus === types[3]) {
+    if (employmentStatus === types[4]) {
       history.push({
         pathname: `/refinance-fact-find/step-19`,
       });

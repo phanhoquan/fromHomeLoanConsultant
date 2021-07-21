@@ -178,7 +178,7 @@ const Step27 = () => {
             <Row>
               <Col xs={12} className="text-center mt-3">
                 <h2 className="mb-2">
-                  27. Are you currently paying off any personal loans, <br />
+                  26. Are you currently paying off any personal loans, <br />
                   car loans or HECS debt?
                 </h2>
                 <p style={{ fontFamily: "Lato", color: "red" }}>

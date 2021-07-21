@@ -31,7 +31,7 @@ import Step21 from "./Step21";
 import Step22 from "./Step22";
 import Step23 from "./Step23";
 import Step24 from "./Step24";
-import Step26 from "./Step26";
+import Step25 from "./Step25";
 import Step27 from "./Step27";
 import Step28A from "./Step28a";
 import Step28B from "./Step28B";
@@ -49,7 +49,7 @@ const Form = () => {
   const location = useLocation();
   //Redirect all page not begin
   useEffect(() => {
-    beginPage(history, "/refinance-fact-find");
+    // beginPage(history, "/refinance-fact-find");
   }, [history]);
 
   //Redirect all page not begin
@@ -63,11 +63,11 @@ const Form = () => {
         for (let item in paramOuters) {
           localStorage.setItem(item, paramOuters[item]);
         }
-        history.replace({
-          pathname: "/refinance-fact-find",
-          search: history.location.search,
-          hash: history.location.hash,
-        });
+        // history.replace({
+        //   pathname: "/refinance-fact-find",
+        //   search: history.location.search,
+        //   hash: history.location.hash,
+        // });
       }, 0);
     }
     window.scrollTo({
@@ -126,7 +126,7 @@ const Form = () => {
         <Route path="/refinance-fact-find/step-22" component={Step22} />
         <Route path="/refinance-fact-find/step-23" component={Step23} />
         <Route path="/refinance-fact-find/step-24" component={Step24} />
-        <Route path="/refinance-fact-find/step-26" component={Step26} />
+        <Route path="/refinance-fact-find/step-25" component={Step25} />
         <Route path="/refinance-fact-find/step-27" component={Step27} />
         <Route path="/refinance-fact-find/step-28a" component={Step28A} />
         <Route path="/refinance-fact-find/step-28B" component={Step28B} />
@@ -138,7 +138,7 @@ const Form = () => {
         <Route path="/refinance-fact-find/step-33" component={Step33} />
         <Route path="/refinance-fact-find/step-success" component={Success} />
         <Route path="/refinance-fact-find/step-reset" component={StepReset} />
-        <Route path="/refinance-fact-find" component={Step01} />
+        <Route path="/refinance-fact-find" component={Step15} />
       </Switch>
     </section>
   );

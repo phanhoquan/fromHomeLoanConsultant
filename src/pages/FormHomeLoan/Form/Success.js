@@ -120,9 +120,13 @@ export default function Success() {
       f_76_user_agent: navigator.userAgent,
       f_85_type_of_loan: localStorage.getItem("currentLoanStatus") || "", //2
       f_1579_current_interest_rate_fixed:
-        localStorage.getItem("valueInterestRate") || "", //3
+        (localStorage.getItem("valueInterestRate") &&
+          `${localStorage.getItem("valueInterestRate")}%`) ||
+        "", //3
       f_1580_current_interest_rate_variable:
-        localStorage.getItem("valueInterestRate2") || "", //3
+        (localStorage.getItem("valueInterestRate2") &&
+          `${localStorage.getItem("valueInterestRate2")}%`) ||
+        "", //3
       f_1581_sole_or_joint_applicant:
         localStorage.getItem("jointApplicationStatus") || "", //4
       f_1582_firstname_joint_applicant:

@@ -135,13 +135,14 @@ const Step03 = () => {
   };
   let textRate = "";
   if (currentLoanStatus === types[1]) {
-    textRate = valueInterestRate;
+    textRate = `Fixed: ${valueInterestRate}%`;
   }
   if (currentLoanStatus === types[2]) {
-    textRate = valueInterestRate2;
+    textRate = `Variable: ${valueInterestRate2}%`;
   }
+
   if (currentLoanStatus === types[3]) {
-    textRate = `${valueInterestRate}/${valueInterestRate2}`;
+    textRate = `Fixed: ${valueInterestRate}% \n Variable${valueInterestRate2}%`;
   }
   const step3 = {
     id: 3,
@@ -233,7 +234,7 @@ const Step03 = () => {
       question:
         "What is the current interest rate you are \n paying on your loan?",
       answer: textRate,
-      skip: !textRate&&"Skipped",
+      skip: !textRate && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>

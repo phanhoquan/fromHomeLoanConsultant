@@ -155,7 +155,7 @@ const Step09 = () => {
                       }}
                       onKeyPress={onKeyDown}
                       onChange={() => () => {}}
-                      label="Select your relationship with the applicant"
+                      label="Select how many kids or dependents you have"
                       value={childrenNumber}
                       id="price-input"
                       customClassLabel={childrenNumber ? "active" : ""}

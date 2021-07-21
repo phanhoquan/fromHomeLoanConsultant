@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputNumber from "../../../Components/InputNumber";
 
-const Step26 = () => {
+const Step25 = () => {
   const partnersSalaryRef = useRef(null);
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
@@ -34,9 +34,9 @@ const Step26 = () => {
     setPartnersSalaryValid(Number(test));
     return test;
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 26);
-  const step26 = {
-    id: 26,
+  const finDataStep = listDataSubmit.find((item) => item.id === 25);
+  const step25 = {
+    id: 25,
     question: "What is your partners salary?",
     answer: partnersSalary
       ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
@@ -51,7 +51,7 @@ const Step26 = () => {
     );
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 26 ? step26 : item
+      item.id === 25 ? step25 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -61,7 +61,7 @@ const Step26 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step26])
+        JSON.stringify([...listDataSubmit, step25])
       );
     }
     history.push({
@@ -97,8 +97,8 @@ const Step26 = () => {
   };
 
   const handleSkip = () => {
-    const skipStep26 = {
-      id: 26,
+    const skipStep25 = {
+      id: 25,
       question: "What is your partners salary?",
       answer: partnersSalary
         ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
@@ -107,7 +107,7 @@ const Step26 = () => {
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 26 ? skipStep26 : item
+      item.id === 25 ? skipStep25 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -117,7 +117,7 @@ const Step26 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep26])
+        JSON.stringify([...listDataSubmit, skipStep25])
       );
     }
 
@@ -127,13 +127,13 @@ const Step26 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={26} numberScroll={1100}>
+    <LifeInsurance isShowHeader activeStep={25} numberScroll={1100}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
         <Container>
           <div className="wForm wow fadeInUp">
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-3">26. What is your partners salary?</h2>
+                <h2 className="mb-3">25. What is your partners salary?</h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4 pt-2">
@@ -201,4 +201,4 @@ const Step26 = () => {
   );
 };
 
-export default Step26;
+export default Step25;
