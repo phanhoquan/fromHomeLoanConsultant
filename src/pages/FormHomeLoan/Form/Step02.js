@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Fixed",
@@ -37,7 +39,6 @@ const Step02 = () => {
 
   const onCheck = (option) => {
     setCurrentLoanStatus(option);
-    window.localStorage.setItem("currentLoanStatus", option);
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 2);
@@ -45,7 +46,7 @@ const Step02 = () => {
   const nextStep = (option) => {
     const step2 = {
       id: 2,
-      question: "Is the loan you currently have Fixed, \n Variable or Split?",
+      question: "Is the loan you currently have Fixed, Variable or Split?",
       answer: option,
       skip: "",
     };
@@ -63,16 +64,19 @@ const Step02 = () => {
         JSON.stringify([...listDataSubmit, step2])
       );
     }
+
+    if (localStorage.getItem("currentLoanStatus") !== option) {
+      currentStep(2, itemStep2);
+    }
+    window.localStorage.setItem("currentLoanStatus", option);
     history.push({
       pathname: `/refinance-fact-find/step-03`,
     });
   };
-
   const onClickNext = () => {
     setShowLoading(true);
     checkStatusValid(currentLoanStatus);
     setTimeout(() => setShowLoading(false), 500);
-
     if (checkStatusValid(currentLoanStatus)) {
       if (!showLoading) {
         setTimeout(function () {
@@ -81,7 +85,6 @@ const Step02 = () => {
       }
     }
   };
-
   const onClickBack = () => {
     history.go(-1);
   };
@@ -92,7 +95,7 @@ const Step02 = () => {
     });
     const skipStep2 = {
       id: 2,
-      question: "Is the loan you currently have Fixed, \n Variable or Split?",
+      question: "Is the loan you currently have Fixed, Variable or Split?",
       answer: currentLoanStatus,
       skip: !currentLoanStatus && "Skipped",
     };
