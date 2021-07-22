@@ -8,7 +8,7 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep12 } from "../../../utils/listLocalStorage";
 
 const listOtherChildrenNumber = ["1", "2", "3", "4", "5"];
 
@@ -47,7 +47,7 @@ const Step12 = () => {
       answer: value,
       skip: "",
     };
-    window.localStorage.setItem("otherChildrenNumber", value);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 12 ? step12 : item
@@ -63,6 +63,10 @@ const Step12 = () => {
         JSON.stringify([...listDataSubmit, step12])
       );
     }
+    if (localStorage.getItem("otherChildrenNumber") !== value) {
+      currentStep(12, itemStep12);
+    }
+    window.localStorage.setItem("otherChildrenNumber", value);
     history.push({
       pathname: `/refinance-fact-find/step-13`,
     });
@@ -71,7 +75,6 @@ const Step12 = () => {
     setOtherChildrenNumber(value);
     setOtherChildrenNumberValid(valid.NON_VALID);
     setIsShowModal(false);
-    window.localStorage.setItem("otherChildrenNumber", value);
   };
 
   const onClickNext = () => {

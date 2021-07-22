@@ -7,8 +7,6 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import { getZipCodeWithAddress } from "../../../utils/googleApi";
 import InputGoogleAddress from "../../../Components/InputGoogleAddress2";
-import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
 
 const Step30 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")

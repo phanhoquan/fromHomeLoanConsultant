@@ -7,8 +7,6 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
-import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Personal Loans",
@@ -25,7 +23,7 @@ const Step27 = () => {
   const personalLoansStatus = localStorage.getItem("personalLoansStatus")
     ? localStorage.getItem("personalLoansStatus").split(",")
     : [];
-  console.log(personalLoansStatus, "personalLoansStatus");
+
   const personalLoanRef = useRef(null);
   const personalLoanAmountRef = useRef(null);
   const history = useHistory();
@@ -50,12 +48,8 @@ const Step27 = () => {
   const [carLoanAmount, setCarLoanAmount] = useState(
     localStorage.getItem("carLoanAmount") || ""
   );
+
   const [carLoanAmountValid, setCarLoanAmountValid] = useState(valid.NON_VALID);
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     carLoanRef?.current?.element?.focus();
-  //   }, 400);
-  // }, []);
 
   const checkCarLoanStatus = (value) => {
     let test = value.length > 1;
@@ -86,12 +80,6 @@ const Step27 = () => {
   const [HECSDebtAmountValid, setHECSDebtAmountValid] = useState(
     valid.NON_VALID
   );
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     HECSDebtRef?.current?.element?.focus();
-  //   }, 400);
-  // }, []);
 
   const checkHECSDebtStatus = (value) => {
     let test = value.length > 1;

@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep28 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "YES",
@@ -35,11 +35,9 @@ const Step28 = () => {
 
   const onCheck = (option) => {
     setCreditCard(option);
-    window.localStorage.setItem("creditCard", option);
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 28);
   const nextStep = (option) => {
-    window.localStorage.setItem("creditCard", option);
     const step28 = {
       id: 28,
       question: "Do you have a credit card?",
@@ -61,6 +59,10 @@ const Step28 = () => {
         JSON.stringify([...listDataSubmit, step28])
       );
     }
+    if (localStorage.getItem("creditCard") !== option) {
+      currentStep(28, itemStep28);
+    }
+    window.localStorage.setItem("creditCard", option);
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-29`,

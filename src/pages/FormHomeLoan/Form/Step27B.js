@@ -8,7 +8,7 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep27b } from "../../../utils/listLocalStorage";
 
 const Step27B = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
@@ -59,11 +59,6 @@ const Step27B = () => {
     menu: "27b",
   };
   const nextStep = () => {
-    window.localStorage.setItem("carLoan", carLoan);
-    window.localStorage.setItem(
-      "carLoanAmount",
-      carLoanAmount && parseInt(carLoanAmount.replace(/,/g, ""), 10)
-    );
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 27 ? step27 : item
@@ -79,6 +74,17 @@ const Step27B = () => {
         JSON.stringify([...listDataSubmit, step27])
       );
     }
+    if (
+      localStorage.getItem("carLoan") !== carLoan.trim() ||
+      localStorage.getItem("carLoanAmount") !== carLoanAmount
+    ) {
+      currentStep(27, itemStep27b);
+    }
+    window.localStorage.setItem("carLoan", carLoan);
+    window.localStorage.setItem(
+      "carLoanAmount",
+      carLoanAmount && parseInt(carLoanAmount.replace(/,/g, ""), 10)
+    );
     history.push({
       pathname: `/refinance-fact-find/step-28`,
     });

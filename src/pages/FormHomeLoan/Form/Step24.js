@@ -8,7 +8,7 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep24 } from "../../../utils/listLocalStorage";
 
 const listNumberPartnerReturn = [
   "Less than 3 months",
@@ -59,7 +59,7 @@ const Step24 = () => {
       answer: value,
       skip: "",
     };
-    window.localStorage.setItem("numberPartnerReturn", value);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 24 ? step24 : item
@@ -75,6 +75,11 @@ const Step24 = () => {
         JSON.stringify([...listDataSubmit, step24])
       );
     }
+
+    if (localStorage.getItem("numberPartnerReturn") !== value) {
+      currentStep(24, itemStep24);
+    }
+    window.localStorage.setItem("numberPartnerReturn", value);
     if (jointApplicationStatus === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-25`,
@@ -90,10 +95,6 @@ const Step24 = () => {
     setNumberPartnerReturn(value);
     setNumberPartnerReturnValid(valid.NON_VALID);
     setIsShowModal(false);
-    window.localStorage.setItem("numberPartnerReturn", value);
-    // setTimeout(() => {
-    //   nextStep(value);
-    // }, 500);
   };
 
   const onClickNext = () => {

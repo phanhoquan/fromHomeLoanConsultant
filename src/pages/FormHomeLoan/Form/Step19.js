@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep19 } from "../../../utils/listLocalStorage";
 import { currentStep } from "../../../utils/removeQuestion";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 
@@ -53,11 +53,11 @@ const Step19 = () => {
     const step19 = {
       id: 19,
       question:
-        "How many years has the ABN for this \n business been registered for?",
+        "How many years has the ABN for this business been registered for?",
       answer: value,
       skip: "",
     };
-    window.localStorage.setItem("businessBeenRegistered", value);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 19 ? step19 : item
@@ -73,6 +73,10 @@ const Step19 = () => {
         JSON.stringify([...listDataSubmit, step19])
       );
     }
+    if (localStorage.getItem("businessBeenRegistered") !== value) {
+      currentStep(19, itemStep19);
+    }
+    window.localStorage.setItem("businessBeenRegistered", value);
     history.push({
       pathname: `/refinance-fact-find/step-20`,
     });
@@ -81,7 +85,6 @@ const Step19 = () => {
     setBusinessBeenRegistered(value);
     setBusinessBeenRegisteredValid(valid.NON_VALID);
     setIsShowModal(false);
-    window.localStorage.setItem("businessBeenRegistered", value);
   };
 
   const onClickNext = () => {
@@ -111,7 +114,7 @@ const Step19 = () => {
     const skipStep19 = {
       id: 19,
       question:
-        "How many years has the ABN for this \n business been registered for?",
+        "How many years has the ABN for this business been registered for?",
       answer: businessBeenRegistered,
       skip: !businessBeenRegistered && "Skipped",
     };

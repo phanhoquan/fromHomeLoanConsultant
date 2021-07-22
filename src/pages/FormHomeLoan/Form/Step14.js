@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep14 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "YES",
@@ -43,11 +43,11 @@ const Step14 = () => {
     const step14 = {
       id: 14,
       question:
-        "You mentioned that you are working \n ‘Full Time’ Is that correct?",
+        "You mentioned that you are working ‘Full Time’ Is that correct?",
       answer: option,
       skip: "",
     };
-    window.localStorage.setItem("workingStatus", option);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 14 ? step14 : item
@@ -63,6 +63,10 @@ const Step14 = () => {
         JSON.stringify([...listDataSubmit, step14])
       );
     }
+    if (localStorage.getItem("workingStatus") !== option) {
+      currentStep(14, itemStep14);
+    }
+    window.localStorage.setItem("workingStatus", option);
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-16`,
@@ -96,7 +100,7 @@ const Step14 = () => {
     const skipStep14 = {
       id: 14,
       question:
-        "You mentioned that you are working \n ‘Full Time’ Is that correct?",
+        "You mentioned that you are working ‘Full Time’ Is that correct?",
       answer: workingStatus,
       skip: !workingStatus && "Skipped",
     };

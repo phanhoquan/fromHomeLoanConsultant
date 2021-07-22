@@ -10,7 +10,7 @@ import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
 import originArray from "../../../utils/quoteOccupations";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep16 } from "../../../utils/listLocalStorage";
 
 const Step16 = () => {
   const occupationRef = useRef(null);
@@ -68,7 +68,6 @@ const Step16 = () => {
     skip: "",
   };
   const nextStep = () => {
-    window.localStorage.setItem("occupation", occupation);
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 16 ? step16 : item
@@ -84,6 +83,10 @@ const Step16 = () => {
         JSON.stringify([...listDataSubmit, step16])
       );
     }
+    if (localStorage.getItem("occupation") !== occupation.trim()) {
+      currentStep(16, itemStep16);
+    }
+    window.localStorage.setItem("occupation", occupation);
     history.push({
       pathname: `/refinance-fact-find/step-17`,
     });
@@ -118,7 +121,6 @@ const Step16 = () => {
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    window.localStorage.setItem("occupation", occupation);
     checkOccupationStatus(occupation);
     if (checkOccupationStatus(occupation)) {
       if (!showLoading) {

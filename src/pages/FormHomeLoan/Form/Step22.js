@@ -9,7 +9,7 @@ import LifeInsurance from "../index";
 import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
 import originArray from "../../../utils/quoteOccupations";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep22 } from "../../../utils/listLocalStorage";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 
 const Step22 = () => {
@@ -68,8 +68,7 @@ const Step22 = () => {
     answer: partnersOccupation,
     skip: "",
   };
-  const nextStep = () => {
-    window.localStorage.setItem("partnersOccupation", partnersOccupation);
+  const nextStep = (option) => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 22 ? step22 : item
@@ -85,6 +84,10 @@ const Step22 = () => {
         JSON.stringify([...listDataSubmit, step22])
       );
     }
+    if (localStorage.getItem("partnersOccupation") !== partnersOccupation) {
+      currentStep(22, itemStep22);
+    }
+    window.localStorage.setItem("partnersOccupation", option);
     history.push({
       pathname: `/refinance-fact-find/step-23`,
     });
@@ -119,12 +122,11 @@ const Step22 = () => {
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    window.localStorage.setItem("partnersOccupation", partnersOccupation);
     checkPartnersOccupationStatus(partnersOccupation);
     if (checkPartnersOccupationStatus(partnersOccupation)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(partnersOccupation);
         }, 500);
       }
     }

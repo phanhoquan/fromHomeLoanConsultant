@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputNumber from "../../../Components/InputNumber";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep25 } from "../../../utils/listLocalStorage";
 
 const Step25 = () => {
   const partnersSalaryRef = useRef(null);
@@ -47,10 +47,6 @@ const Step25 = () => {
   };
 
   const nextStep = () => {
-    window.localStorage.setItem(
-      "partnersSalary",
-      partnersSalary && parseInt(partnersSalary.replace(/,/g, ""), 10)
-    );
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 25 ? step25 : item
@@ -66,6 +62,13 @@ const Step25 = () => {
         JSON.stringify([...listDataSubmit, step25])
       );
     }
+    if (localStorage.getItem("partnersSalary") !== partnersSalary?.trim()) {
+      currentStep(25, itemStep25);
+    }
+    window.localStorage.setItem(
+      "partnersSalary",
+      partnersSalary && parseInt(partnersSalary.replace(/,/g, ""), 10)
+    );
     history.push({
       pathname: `/refinance-fact-find/step-26`,
     });

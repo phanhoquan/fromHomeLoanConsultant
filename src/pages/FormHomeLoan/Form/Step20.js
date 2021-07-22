@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep20 } from "../../../utils/listLocalStorage";
 import LifeInsurance from "../index";
 
 export const types = {
@@ -41,7 +41,6 @@ const Step20 = () => {
 
   const onCheck = (option) => {
     setTaxReturns(option);
-    window.localStorage.setItem("taxReturns", option);
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 20);
 
@@ -52,7 +51,7 @@ const Step20 = () => {
       answer: option,
       skip: "",
     };
-    window.localStorage.setItem("taxReturns", option);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 20 ? step20 : item
@@ -68,6 +67,10 @@ const Step20 = () => {
         JSON.stringify([...listDataSubmit, step20])
       );
     }
+    if (localStorage.getItem("taxReturns") !== option) {
+      currentStep(20, itemStep20);
+    }
+    window.localStorage.setItem("taxReturns", option);
     if (jointApplicationStatus === types2[2]) {
       if (option === types[1]) {
         history.push({

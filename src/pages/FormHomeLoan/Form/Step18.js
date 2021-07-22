@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep18 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Full Time",
@@ -51,8 +51,7 @@ const Step18 = () => {
     answer: typeOfBusiness,
     skip: "",
   };
-  const nextStep = () => {
-    window.localStorage.setItem("typeOfBusinessOther", typeOfBusiness);
+  const nextStep = (option) => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 18 ? step18 : item
@@ -68,6 +67,10 @@ const Step18 = () => {
         JSON.stringify([...listDataSubmit, step18])
       );
     }
+    if (localStorage.getItem("typeOfBusinessOther") !== option) {
+      currentStep(18, itemStep18);
+    }
+    window.localStorage.setItem("typeOfBusinessOther", option);
     if (employmentStatus === types[4]) {
       history.push({
         pathname: `/refinance-fact-find/step-19`,
@@ -90,7 +93,7 @@ const Step18 = () => {
     if (checkTypeOfBusinessStatus(typeOfBusiness)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(typeOfBusiness);
         }, 500);
       }
     }

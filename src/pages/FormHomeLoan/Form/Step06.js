@@ -54,6 +54,7 @@ const Step06 = () => {
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 6 ? step6 : item
     );
+
     if (finDataStep) {
       window.localStorage.setItem(
         "listDataSubmit",
@@ -65,6 +66,7 @@ const Step06 = () => {
         JSON.stringify([...listDataSubmit, step6])
       );
     }
+
     if (localStorage.getItem("relationshipYour") !== value) {
       currentStep(6, itemStep6);
     }
@@ -77,10 +79,6 @@ const Step06 = () => {
     setRelationshipYour(value);
     setRelationshipYourValid(valid.NON_VALID);
     setIsShowModal(false);
-    window.localStorage.setItem("relationshipYour", value);
-    // setTimeout(() => {
-    //   nextStep(value);
-    // }, 500);
   };
 
   const onClickNext = () => {

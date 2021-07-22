@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep11 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "YES",
@@ -38,7 +38,6 @@ const Step11 = () => {
 
   const onCheck = (option) => {
     setOtherDependents(option);
-    window.localStorage.setItem("otherDependents", option);
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 11);
@@ -50,7 +49,7 @@ const Step11 = () => {
       answer: option,
       skip: "",
     };
-    window.localStorage.setItem("otherDependents", option);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 11 ? step11 : item
@@ -66,6 +65,10 @@ const Step11 = () => {
         JSON.stringify([...listDataSubmit, step11])
       );
     }
+    if (localStorage.getItem("otherDependents") !== option) {
+      currentStep(11, itemStep11);
+    }
+    window.localStorage.setItem("otherDependents", option);
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-12`,

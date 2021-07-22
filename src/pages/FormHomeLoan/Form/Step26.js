@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep26 } from "../../../utils/listLocalStorage";
 import LifeInsurance from "../index";
 
 export const types = {
@@ -25,7 +25,7 @@ const Step26 = () => {
 
   const [personalLoansStatus, setPersonalLoansStatus] = useState(
     localStorage.getItem("personalLoansStatus")
-      ? localStorage.getItem("personalLoansStatus").split(",")
+      ? localStorage.getItem("personalLoansStatus").split(", ")
       : []
   );
 
@@ -34,8 +34,7 @@ const Step26 = () => {
   );
 
   const checkStatusValid = (option) => {
-    let test =
-      option && option.length > 0 && Object.values(types).includes(option[0]);
+    let test = option && option.length > 0;
     setPersonalLoansStatusValid(Number(test));
     return test;
   };
@@ -64,12 +63,11 @@ const Step26 = () => {
   const finDataStep = listDataSubmit.find((item) => item.id === 26);
 
   const nextStep = (option) => {
-    window.localStorage.setItem("personalLoansStatus", option);
     const step26 = {
       id: 26,
       question:
-        "Are you currently paying off any personal loans, \n car loans or HECS debt?",
-      answer: option.toString(),
+        "Are you currently paying off any personal loans, car loans or HECS debt?",
+      answer: option.join(", "),
       skip: "",
     };
     // eslint-disable-next-line
@@ -87,6 +85,11 @@ const Step26 = () => {
         JSON.stringify([...listDataSubmit, step26])
       );
     }
+
+    if (localStorage.getItem("personalLoansStatus") !== option.join(", ")) {
+      currentStep(26, itemStep26);
+    }
+    window.localStorage.setItem("personalLoansStatus", option);
     if (option?.length === 1 && !!option?.includes(types[1])) {
       history.push({
         pathname: `/refinance-fact-find/step-27a`,
@@ -132,14 +135,15 @@ const Step26 = () => {
     const skipStep26 = {
       id: 26,
       question:
-        "Are you currently paying off any personal loans, \n car loans or HECS debt?",
-      answer: personalLoansStatus.toString(),
-      skip: !personalLoansStatus.toString() && "Skipped",
+        "Are you currently paying off any personal loans, car loans or HECS debt?",
+      answer: personalLoansStatus.join(", "),
+      skip: !personalLoansStatus.join(", ") && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 26 ? skipStep26 : item
     );
+
     if (finDataStep) {
       window.localStorage.setItem(
         "listDataSubmit",
@@ -183,11 +187,7 @@ const Step26 = () => {
       });
     }
   };
-  console.log(
-    personalLoansStatus?.length === 1,
-    !!personalLoansStatus?.includes(types[2])
-  );
-  console.log(personalLoansStatus, "personalLoansStatus");
+
   return (
     <LifeInsurance isShowHeader activeStep={26} numberScroll={1750}>
       <section className="formContent-step-first pb-5">

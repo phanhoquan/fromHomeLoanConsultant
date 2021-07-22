@@ -7,7 +7,7 @@ import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep15 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Full Time",
@@ -39,10 +39,10 @@ const Step15 = () => {
 
   const onCheck = (option) => {
     setEmploymentWorkingStatus(option);
-    window.localStorage.setItem("employmentWorkingStatus", option);
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 15);
+
   const nextStep = (option) => {
     const step15 = {
       id: 15,
@@ -50,7 +50,7 @@ const Step15 = () => {
       answer: option,
       skip: "",
     };
-    window.localStorage.setItem("employmentWorkingStatus", option);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 15 ? step15 : item
@@ -66,6 +66,10 @@ const Step15 = () => {
         JSON.stringify([...listDataSubmit, step15])
       );
     }
+    if (localStorage.getItem("employmentWorkingStatus") !== option) {
+      currentStep(15, itemStep15);
+    }
+    window.localStorage.setItem("employmentWorkingStatus", option);
     if (option === types[4]) {
       history.push({
         pathname: `/refinance-fact-find/step-18`,

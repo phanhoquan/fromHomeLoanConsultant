@@ -8,7 +8,7 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep17 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Full Time",
@@ -62,7 +62,7 @@ const Step17 = () => {
       answer: value,
       skip: "",
     };
-    window.localStorage.setItem("numberYearWorking", value);
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 17 ? step17 : item
@@ -78,6 +78,10 @@ const Step17 = () => {
         JSON.stringify([...listDataSubmit, step17])
       );
     }
+    if (localStorage.getItem("numberYearWorking") !== value) {
+      currentStep(17, itemStep17);
+    }
+    window.localStorage.setItem("numberYearWorking", value);
     if (employmentStatus === types[3]) {
       history.push({
         pathname: `/refinance-fact-find/step-18`,
@@ -92,7 +96,6 @@ const Step17 = () => {
     setNumberYearWorking(value);
     setNumberYearWorkingValid(valid.NON_VALID);
     setIsShowModal(false);
-    window.localStorage.setItem("numberYearWorking", value);
   };
 
   const onClickNext = () => {

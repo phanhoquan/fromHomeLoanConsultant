@@ -5,7 +5,7 @@ import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
-import { itemStep2 } from "../../../utils/listLocalStorage";
+import { itemStep21 } from "../../../utils/listLocalStorage";
 import { currentStep } from "../../../utils/removeQuestion";
 import InputNumber from "../../../Components/InputNumber";
 
@@ -68,14 +68,6 @@ const Step21 = () => {
     skip: "",
   };
   const nextStep = () => {
-    window.localStorage.setItem(
-      "priceTax2019",
-      priceTax2019 && parseInt(priceTax2019.replace(/,/g, ""), 10)
-    );
-    window.localStorage.setItem(
-      "priceTax2020",
-      priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
-    );
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 21 ? step21 : item
@@ -91,6 +83,21 @@ const Step21 = () => {
         JSON.stringify([...listDataSubmit, step21])
       );
     }
+
+    if (
+      localStorage.getItem("priceTax2019") !== priceTax2019.trim() ||
+      localStorage.getItem("priceTax2020") !== priceTax2020.trim()
+    ) {
+      currentStep(21, itemStep21);
+    }
+    window.localStorage.setItem(
+      "priceTax2019",
+      priceTax2019 && parseInt(priceTax2019.replace(/,/g, ""), 10)
+    );
+    window.localStorage.setItem(
+      "priceTax2020",
+      priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
+    );
     if (jointApplicationStatus === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-22`,
