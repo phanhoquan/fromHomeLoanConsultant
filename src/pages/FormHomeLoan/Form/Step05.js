@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep5 } from "../../../utils/listLocalStorage";
 
 const First = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
@@ -50,8 +52,6 @@ const First = () => {
   const finDataStep = listDataSubmit.find((item) => item.id === 5);
 
   const nextStep = () => {
-    window.localStorage.setItem("firstNameOther", firstName);
-    window.localStorage.setItem("lastNameOther", lastName);
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 5 ? step5 : item
@@ -67,6 +67,14 @@ const First = () => {
         JSON.stringify([...listDataSubmit, step5])
       );
     }
+    if (
+      localStorage.getItem("firstNameOther") !== firstName.trim() ||
+      localStorage.getItem("lastNameOther") !== lastName.trim()
+    ) {
+      currentStep(5, itemStep5);
+    }
+    window.localStorage.setItem("firstNameOther", firstName);
+    window.localStorage.setItem("lastNameOther", lastName);
     history.push({
       pathname: `/refinance-fact-find/step-06`,
     });

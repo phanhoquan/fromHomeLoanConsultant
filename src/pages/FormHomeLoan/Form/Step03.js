@@ -7,6 +7,8 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import formatCurrency from "../../../utils/formatCurrency";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep3 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Fixed",
@@ -128,12 +130,12 @@ const Step03 = () => {
   }
   const step3 = {
     id: 3,
-    question:
-      "What is the current interest rate you are paying on your loan?",
+    question: "What is the current interest rate you are paying on your loan?",
     answer: textRate,
     skip: "",
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 3);
+
   const nextStep = () => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
@@ -150,6 +152,14 @@ const Step03 = () => {
         JSON.stringify([...listDataSubmit, step3])
       );
     }
+    if (
+      localStorage.getItem("valueInterestRate") !== valueInterestRate ||
+      localStorage.getItem("valueInterestRate2") !== valueInterestRate2
+    ) {
+      currentStep(3, itemStep3);
+    }
+    localStorage.setItem("valueInterestRate", valueInterestRate);
+    localStorage.setItem("valueInterestRate2", valueInterestRate2);
     history.push({
       pathname: `/refinance-fact-find/step-04`,
     });
@@ -191,16 +201,6 @@ const Step03 = () => {
       }
     }
   };
-
-  useMemo(() => {
-    localStorage.setItem("valueInterestRate", valueInterestRate);
-    // eslint-disable-next-line
-  }, [valueInterestRate]);
-
-  useMemo(() => {
-    localStorage.setItem("valueInterestRate2", valueInterestRate2);
-    // eslint-disable-next-line
-  }, [valueInterestRate2]);
 
   const onClickBack = () => {
     history.go(-1);

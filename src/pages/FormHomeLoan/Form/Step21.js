@@ -5,6 +5,8 @@ import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
+import { itemStep2 } from "../../../utils/listLocalStorage";
+import { currentStep } from "../../../utils/removeQuestion";
 import InputNumber from "../../../Components/InputNumber";
 
 export const types = {

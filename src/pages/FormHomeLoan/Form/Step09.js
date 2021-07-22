@@ -7,6 +7,8 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 const listChildrenNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 

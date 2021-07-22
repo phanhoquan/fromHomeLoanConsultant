@@ -5,6 +5,8 @@ import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 import LifeInsurance from "../index";
 
 export const types = {

@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
+import { itemStep4 } from "../../../utils/listLocalStorage";
+import { currentStep } from "../../../utils/removeQuestion";
 
 export const types = {
   1: "Sole Applicant",
@@ -34,13 +36,11 @@ const Step04 = () => {
 
   const onCheck = (option) => {
     setJointApplicationStatus(option);
-    window.localStorage.setItem("jointApplicationStatus", option);
   };
 
   const finDataStep = listDataSubmit.find((item) => item.id === 4);
 
   const nextStep = (option) => {
-    window.localStorage.setItem("jointApplicationStatus", option);
     const step4 = {
       id: 4,
       question: "Are you the sole applicant or is this \n a joint application?",
@@ -62,6 +62,10 @@ const Step04 = () => {
         JSON.stringify([...listDataSubmit, step4])
       );
     }
+    if (localStorage.getItem("jointApplicationStatus") !== option) {
+      currentStep(4, itemStep4);
+    }
+    window.localStorage.setItem("jointApplicationStatus", option);
     if (option === types[1]) {
       history.push({
         pathname: `/refinance-fact-find/step-07`,

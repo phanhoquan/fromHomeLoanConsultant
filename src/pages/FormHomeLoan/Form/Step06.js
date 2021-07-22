@@ -7,6 +7,8 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep6 } from "../../../utils/listLocalStorage";
 
 const listHomeLoan = ["Spouse", "Defacto", "Sibling", "Parent", "Offspring"];
 
@@ -42,7 +44,6 @@ const Step06 = () => {
   const finDataStep = listDataSubmit.find((item) => item.id === 6);
 
   const nextStep = (value) => {
-    window.localStorage.setItem("relationshipYour", value);
     const step6 = {
       id: 6,
       question: `What is your relationship with ${firstNameOther}?`,
@@ -64,6 +65,10 @@ const Step06 = () => {
         JSON.stringify([...listDataSubmit, step6])
       );
     }
+    if (localStorage.getItem("relationshipYour") !== value) {
+      currentStep(6, itemStep6);
+    }
+    window.localStorage.setItem("relationshipYour", value);
     history.push({
       pathname: `/refinance-fact-find/step-07`,
     });

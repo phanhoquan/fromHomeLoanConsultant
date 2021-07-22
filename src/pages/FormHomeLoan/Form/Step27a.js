@@ -7,6 +7,8 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 const Step27A = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")

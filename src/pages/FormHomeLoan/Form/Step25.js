@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputNumber from "../../../Components/InputNumber";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 const Step25 = () => {
   const partnersSalaryRef = useRef(null);

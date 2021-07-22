@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Full Time",

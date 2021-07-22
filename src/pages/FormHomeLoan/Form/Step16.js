@@ -9,6 +9,8 @@ import LifeInsurance from "../index";
 import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
 import originArray from "../../../utils/quoteOccupations";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 const Step16 = () => {
   const occupationRef = useRef(null);

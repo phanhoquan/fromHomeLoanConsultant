@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
+import { itemStep2 } from "../../../utils/listLocalStorage";
+import { currentStep } from "../../../utils/removeQuestion";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 
 const listBusinessBeenRegistered = [

@@ -7,6 +7,8 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import formatCurrency from "../../../utils/formatCurrency";
 import ChillApplicantAge from "./Components/ChillApplicantAge";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 
 const Step10 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")

@@ -7,6 +7,8 @@ import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import formatCurrency from "../../../utils/formatCurrency";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep7 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Sole Applicant",
@@ -156,6 +158,14 @@ const Step02 = () => {
         JSON.stringify([...listDataSubmit, step7])
       );
     }
+    if (
+      localStorage.getItem("jointApplicantAge") !== jointApplicantAge ||
+      localStorage.getItem("jointApplicantAge") !== soleApplicantAge
+    ) {
+      currentStep(7, itemStep7);
+    }
+    localStorage.setItem("jointApplicantAge", jointApplicantAge);
+    localStorage.setItem("soleApplicantAge", soleApplicantAge);
     history.push({
       pathname: `/refinance-fact-find/step-08`,
     });
@@ -189,16 +199,6 @@ const Step02 = () => {
       }
     }
   };
-
-  useMemo(() => {
-    localStorage.setItem("soleApplicantAge", soleApplicantAge);
-    // eslint-disable-next-line
-  }, [soleApplicantAge]);
-
-  useMemo(() => {
-    localStorage.setItem("jointApplicantAge", jointApplicantAge);
-    // eslint-disable-next-line
-  }, [jointApplicantAge]);
 
   const onClickBack = () => {
     history.go(-1);

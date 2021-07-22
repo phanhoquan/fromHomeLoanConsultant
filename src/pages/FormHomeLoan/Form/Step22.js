@@ -8,6 +8,8 @@ import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
 import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
 import originArray from "../../../utils/quoteOccupations";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep2 } from "../../../utils/listLocalStorage";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 
 const Step22 = () => {
