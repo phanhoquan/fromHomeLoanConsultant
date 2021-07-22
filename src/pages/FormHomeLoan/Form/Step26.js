@@ -25,7 +25,7 @@ const Step26 = () => {
 
   const [personalLoansStatus, setPersonalLoansStatus] = useState(
     localStorage.getItem("personalLoansStatus")
-      ? localStorage.getItem("personalLoansStatus").split(", ")
+      ? localStorage.getItem("personalLoansStatus").split(",")
       : []
   );
 
@@ -67,7 +67,7 @@ const Step26 = () => {
       id: 26,
       question:
         "Are you currently paying off any personal loans, car loans or HECS debt?",
-      answer: option.join(", "),
+      answer: option.toString(),
       skip: "",
     };
     // eslint-disable-next-line
@@ -86,10 +86,12 @@ const Step26 = () => {
       );
     }
 
-    if (localStorage.getItem("personalLoansStatus") !== option.join(", ")) {
+    if (localStorage.getItem("personalLoansStatus") !== option.toString()) {
       currentStep(26, itemStep26);
     }
+
     window.localStorage.setItem("personalLoansStatus", option);
+
     if (option?.length === 1 && !!option?.includes(types[1])) {
       history.push({
         pathname: `/refinance-fact-find/step-27a`,
@@ -136,8 +138,8 @@ const Step26 = () => {
       id: 26,
       question:
         "Are you currently paying off any personal loans, car loans or HECS debt?",
-      answer: personalLoansStatus.join(", "),
-      skip: !personalLoansStatus.join(", ") && "Skipped",
+      answer: personalLoansStatus.toString(),
+      skip: !personalLoansStatus.toString() && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
