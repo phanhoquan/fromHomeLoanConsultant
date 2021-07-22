@@ -38,7 +38,7 @@ const Step18 = () => {
   }, []);
 
   const checkTypeOfBusinessStatus = (value) => {
-    let test = /^([A-Za-z]{2,})$/.test(value);
+    let test = value?.trim()?.length > 1;
     setTypeOfBusinessValid(Number(test));
     return test;
   };

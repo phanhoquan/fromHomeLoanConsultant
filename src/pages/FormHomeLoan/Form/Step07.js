@@ -122,11 +122,14 @@ const Step02 = () => {
   };
   let textAge = "";
   if (typesApplication === types[1]) {
-    textAge = jointApplicantAge;
+    textAge = soleApplicantAge && `Sole Age: ${soleApplicantAge}`;
   }
 
   if (typesApplication === types[2]) {
-    textAge = `${jointApplicantAge}/${soleApplicantAge}`;
+    textAge =
+      soleApplicantAge && jointApplicantAge
+        ? `Sole Age: ${soleApplicantAge} \n Joint Age: ${jointApplicantAge}`
+        : "";
   }
 
   const step7 = {

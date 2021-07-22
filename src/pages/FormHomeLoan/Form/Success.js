@@ -55,50 +55,10 @@ export default function Success() {
   const chillApplicantAge = localStorage.getItem("chillApplicantAge")
     ? JSON.parse(localStorage.getItem("chillApplicantAge"))
     : {};
+
   const otherChillApplicantAge = localStorage.getItem("otherChillApplicantAge")
     ? JSON.parse(localStorage.getItem("otherChillApplicantAge"))
     : {};
-
-  const priceTax2019 = localStorage.getItem("priceTax2019")
-    ? parseInt(
-        localStorage.getItem("priceTax2019").replace(/,/gi, ""),
-        10
-      ).toLocaleString("en")
-    : "";
-
-  const priceTax2020 = localStorage.getItem("priceTax2020")
-    ? parseInt(
-        localStorage.getItem("priceTax2020").replace(/,/gi, ""),
-        10
-      ).toLocaleString("en")
-    : "";
-  const valueCreditCardAmount = localStorage.getItem("valueCreditCardAmount")
-    ? parseInt(
-        localStorage.getItem("valueCreditCardAmount").replace(/,/gi, ""),
-        10
-      ).toLocaleString("en")
-    : "";
-
-  const personalLoanAmount = localStorage.getItem("personalLoanAmount")
-    ? parseInt(
-        localStorage.getItem("personalLoanAmount").replace(/,/gi, ""),
-        10
-      ).toLocaleString("en")
-    : "";
-
-  const carLoanAmount = localStorage.getItem("carLoanAmount")
-    ? parseInt(
-        localStorage.getItem("carLoanAmount").replace(/,/gi, ""),
-        10
-      ).toLocaleString("en")
-    : "";
-
-  const HECSDebtAmount = localStorage.getItem("HECSDebtAmount")
-    ? parseInt(
-        localStorage.getItem("HECSDebtAmount").replace(/,/gi, ""),
-        10
-      ).toLocaleString("en")
-    : "";
 
   const personalLoansStatus = localStorage.getItem("personalLoansStatus")
     ? localStorage.getItem("personalLoansStatus").split(",")
@@ -177,8 +137,8 @@ export default function Success() {
 
       f_1615_tax_completed: localStorage.getItem("taxReturns") || "", //20
 
-      f_1613_tax_2019: priceTax2019 || "", //21
-      f_1614_tax_2020: priceTax2020 || "", //21
+      f_1613_tax_2019: localStorage.getItem("priceTax2019") || "", //21
+      f_1614_tax_2020: localStorage.getItem("priceTax2020") || "", //21
 
       f_1616_joint_applicant_occupation:
         localStorage.getItem("partnersOccupation") || "", //22
@@ -201,18 +161,19 @@ export default function Success() {
           : "") || "",
 
       f_1620_car_loan_institution: localStorage.getItem("personalLoan") || "", //27a,
-      f_1621_car_loan_amount: personalLoanAmount || "", // 27a,
+      f_1621_car_loan_amount: localStorage.getItem("personalLoanAmount") || "", // 27a,
 
       f_1624_personal_loan_institution: localStorage.getItem("carLoan") || "", //27b
-      f_1625_personal_loan_amount: carLoanAmount || "", //27b
+      f_1625_personal_loan_amount: localStorage.getItem("carLoanAmount") || "", //27b
 
       f_1622_hecs_institution: localStorage.getItem("HECSDebt") || "", //27c
-      f_1623_hecs_amount: HECSDebtAmount || "", // 27c
+      f_1623_hecs_amount: localStorage.getItem("HECSDebtAmount") || "", // 27c
 
       f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //28
       f_1626_credit_card_institution:
         localStorage.getItem("valueCreditCard") || "", // 29
-      f_1627_credit_card_amount: valueCreditCardAmount || "", // 29
+      f_1627_credit_card_amount:
+        localStorage.getItem("valueCreditCardAmount") || "", // 29
       f_1632_loan_type: localStorage.getItem("currentlyRenting") || "", //31,
       f_1633_additional_notes: localStorage.getItem("noteVale") || "", //32
 

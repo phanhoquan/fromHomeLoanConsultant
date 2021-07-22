@@ -236,7 +236,7 @@ const HomeLoan = ({
                 </div>
               </div>
               <div className="nav-detail">
-                <p>User Detail:</p>
+                <p>User Details:</p>
                 User name: {localStorage.getItem("firstName")}{" "}
                 {localStorage.getItem("lastName")}
                 <br />

@@ -75,33 +75,6 @@ const Step32 = () => {
     history.go(-1);
   };
 
-  const handleSkip = () => {
-    const skipStep32 = {
-      id: 32,
-      question: "Please enter any additional notes",
-      answer: noteVale,
-      skip: !noteVale && "Skipped",
-    };
-
-    const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 32 ? skipStep32 : item
-    );
-    if (finDataStep) {
-      window.localStorage.setItem(
-        "listDataSubmit",
-        JSON.stringify(updateDataStep)
-      );
-    } else {
-      window.localStorage.setItem(
-        "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep32])
-      );
-    }
-    history.push({
-      pathname: `/refinance-fact-find/step-success`,
-    });
-  };
-
   return (
     <LifeInsurance isShowHeader activeStep={32} numberScroll={1750}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
@@ -147,13 +120,6 @@ const Step32 = () => {
                     {showLoading && <Spinner animation="border" />}
                     SUBMIT
                   </Button>
-                </div>
-                <div
-                  className="SKIP"
-                  onClick={() => handleSkip()}
-                  role="button"
-                >
-                  SKIP
                 </div>
               </Col>
             </Row>

@@ -39,16 +39,6 @@ const Step03 = () => {
   );
   const [validMessage, setValidMessage] = useState("This field is required");
   const [validMessage2, setValidMessage2] = useState("This field is required");
-  // const decimalCount = (num) => {
-  //   // Convert to String
-  //   const numStr = String(num);
-  //   // String Contains Decimal
-  //   if (numStr.includes(".")) {
-  //     return numStr.split(".")[1].length;
-  //   }
-  //   // String Does Not Contain Decimal
-  //   return 0;
-  // };
 
   const checkValueInterestRateStatus = (amount) => {
     const originAmount = Number(amount.replace(/[^0-9\\.-]+/g, ""));
@@ -57,12 +47,6 @@ const Step03 = () => {
       setValueInterestRateValid(valid.INVALID);
       return false;
     }
-    // if (originAmount) {
-    //   setValidMessage("Please enter valid decimal number");
-    //   setValueInterestRateValid(valid.INVALID);
-    //   return false;
-    // }
-
     if (originAmount > 100) {
       setValidMessage("Value should be less that 100%");
       setValueInterestRateValid(valid.INVALID);
@@ -79,11 +63,6 @@ const Step03 = () => {
       setValueInterestRateValid2(valid.INVALID);
       return false;
     }
-    // if (originAmount) {
-    //   setValidMessage2("Please enter valid decimal number");
-    //   setValueInterestRateValid2(valid.INVALID);
-    //   return false;
-    // }
 
     if (originAmount > 100) {
       setValidMessage2("Value should be less that 100%");
@@ -150,7 +129,7 @@ const Step03 = () => {
   const step3 = {
     id: 3,
     question:
-      "What is the current interest rate you are \n paying on your loan?",
+      "What is the current interest rate you are paying on your loan?",
     answer: textRate,
     skip: "",
   };
@@ -235,7 +214,7 @@ const Step03 = () => {
     const skipStep3 = {
       id: 3,
       question:
-        "What is the current interest rate you are \n paying on your loan?",
+        "What is the current interest rate you are paying on your loan?",
       answer: textRate,
       skip: !textRate && "Skipped",
     };
