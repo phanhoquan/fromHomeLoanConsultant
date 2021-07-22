@@ -42,6 +42,11 @@ export const types = {
   4: "None of the above",
 };
 
+export const types2 = {
+  1: "YES",
+  2: "NO",
+};
+
 export default function Success() {
   const history = useHistory();
   const [dataState, setDataState] = useState(false);
@@ -174,7 +179,10 @@ export default function Success() {
         localStorage.getItem("valueCreditCard") || "", // 29
       f_1627_credit_card_amount:
         localStorage.getItem("valueCreditCardAmount") || "", // 29
-      f_1632_loan_type: localStorage.getItem("currentlyRenting") || "", //31,
+      f_1632_loan_type:
+        localStorage.getItem("currentlyRenting") === types2[1]
+          ? "Investment"
+          : "Owner Occupied" || "", //31,
       f_1633_additional_notes: localStorage.getItem("noteVale") || "", //32
 
       cid: 10382,
