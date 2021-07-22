@@ -98,13 +98,13 @@ const Step21 = () => {
       "priceTax2020",
       priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
     );
-    if (jointApplicationStatus === types[1]) {
+    if (jointApplicationStatus === types[2]) {
       history.push({
         pathname: `/refinance-fact-find/step-22`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-24`,
+        pathname: `/refinance-fact-find/step-26`,
       });
     }
   };
@@ -173,13 +173,13 @@ const Step21 = () => {
         JSON.stringify([...listDataSubmit, skipStep21])
       );
     }
-    if (jointApplicationStatus === types[1]) {
+    if (jointApplicationStatus === types[2]) {
       history.push({
         pathname: `/refinance-fact-find/step-22`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-24`,
+        pathname: `/refinance-fact-find/step-26`,
       });
     }
   };

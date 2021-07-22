@@ -9,6 +9,11 @@ import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep23 } from "../../../utils/listLocalStorage";
 import LifeInsurance from "../index";
 
+export const types2 = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 export const types = {
   1: "Full Time",
   2: "Part Time",
@@ -22,6 +27,7 @@ const Step23 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
+  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
@@ -69,17 +75,23 @@ const Step23 = () => {
       currentStep(23, itemStep23);
     }
     window.localStorage.setItem("employmentPartnersWorkingStatus", option);
-    if (option === types[5]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-26`,
-      });
-    } else if (option === types[6]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-24`,
-      });
+    if (jointApplicationStatus === types[2]) {
+      if (option === types[5]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-26`,
+        });
+      } else if (option === types[6]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-24`,
+        });
+      } else {
+        history.push({
+          pathname: `/refinance-fact-find/step-25`,
+        });
+      }
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-25`,
+        pathname: `/refinance-fact-find/step-26`,
       });
     }
   };
@@ -124,17 +136,23 @@ const Step23 = () => {
         JSON.stringify([...listDataSubmit, skipStep23])
       );
     }
-    if (employmentWorkingStatus === types[5]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-26`,
-      });
-    } else if (employmentWorkingStatus === types[6]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-24`,
-      });
+    if (jointApplicationStatus === types[2]) {
+      if (employmentWorkingStatus === types[5]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-26`,
+        });
+      } else if (employmentWorkingStatus === types[6]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-24`,
+        });
+      } else {
+        history.push({
+          pathname: `/refinance-fact-find/step-25`,
+        });
+      }
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-25`,
+        pathname: `/refinance-fact-find/step-26`,
       });
     }
   };

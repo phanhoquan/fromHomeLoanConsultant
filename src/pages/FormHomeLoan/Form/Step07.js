@@ -200,6 +200,12 @@ const Step02 = () => {
     }
   };
 
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onClickNext();
+    }
+  };
+
   const onClickBack = () => {
     history.go(-1);
   };
@@ -261,6 +267,7 @@ const Step02 = () => {
                       value={soleApplicantAge}
                       type="text"
                       id="email-input"
+                      onKeyPress={onKeyDown}
                       customClassLabel={soleApplicantAge ? "active" : ""}
                       maxLength="3"
                       customClassWrap="email"
@@ -284,6 +291,7 @@ const Step02 = () => {
                         label="Joint Applicant Age"
                         value={jointApplicantAge}
                         type="text"
+                        onKeyPress={onKeyDown}
                         id="email-input"
                         customClassLabel={jointApplicantAge ? "active" : ""}
                         maxLength="3"

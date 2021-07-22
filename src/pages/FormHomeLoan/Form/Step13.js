@@ -152,7 +152,11 @@ const Step13 = () => {
       });
     }
   };
-
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onClickNext();
+    }
+  };
   const renderlistOtherChillApplicantAge = () => {
     const listOtherChillApplicantAge = [];
     for (let i = 1; i <= parseInt(otherChildrenNumber, 10); i += 1) {
@@ -167,6 +171,7 @@ const Step13 = () => {
           validMessage={validMessage[`name${i}`]}
           valueItem={otherChillApplicantAge[`name${i}`]}
           id={`name${i}`}
+          onKeyPress={onKeyDown}
         />
       );
     }

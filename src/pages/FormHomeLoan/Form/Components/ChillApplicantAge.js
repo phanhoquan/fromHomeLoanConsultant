@@ -14,6 +14,7 @@ const ChillApplicantAge = ({
   onFocus,
   id,
   numberKey,
+  onKeyPress,
 }) => {
   return (
     <Col xs={12}>
@@ -30,6 +31,7 @@ const ChillApplicantAge = ({
             customClassWrap="email"
             onBlur={onBlur}
             onFocus={onFocus}
+            onKeyPress={onKeyPress}
           />
           {chillApplicantAgeValid === valid.INVALID ? (
             <div className="text-error mt-2">

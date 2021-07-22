@@ -202,6 +202,12 @@ const Step03 = () => {
     }
   };
 
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onClickNext();
+    }
+  };
+
   const onClickBack = () => {
     history.go(-1);
   };
@@ -265,6 +271,7 @@ const Step03 = () => {
                         id="email-input1"
                         customClassLabel={valueInterestRate ? "active" : ""}
                         iconRate
+                        onKeyPress={onKeyDown}
                         maxLength="5"
                         customClassWrap="email"
                         onBlur={(e) => onBlur(e, "interestRate1")}
@@ -294,6 +301,7 @@ const Step03 = () => {
                         id="email-input"
                         customClassLabel={valueInterestRate2 ? "active" : ""}
                         iconRate
+                        onKeyPress={onKeyDown}
                         maxLength="5"
                         customClassWrap="email"
                         onBlur={(e) => onBlur(e, "interestRate2")}

@@ -12,11 +12,19 @@ import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep22 } from "../../../utils/listLocalStorage";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 const Step22 = () => {
   const partnersOccupationRef = useRef(null);
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
+
+  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
+
   const wrapperInfoRef = useRef();
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
@@ -88,9 +96,15 @@ const Step22 = () => {
       currentStep(22, itemStep22);
     }
     window.localStorage.setItem("partnersOccupation", option);
-    history.push({
-      pathname: `/refinance-fact-find/step-23`,
-    });
+    if (jointApplicationStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-23`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    }
   };
 
   const onKeyUpHandle = (name, value) => {
@@ -171,9 +185,15 @@ const Step22 = () => {
         JSON.stringify([...listDataSubmit, skipStep22])
       );
     }
-    history.push({
-      pathname: `/refinance-fact-find/step-23`,
-    });
+    if (jointApplicationStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-23`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    }
   };
 
   return (
