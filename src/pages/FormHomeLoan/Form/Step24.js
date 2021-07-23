@@ -80,7 +80,7 @@ const Step24 = () => {
       currentStep(24, itemStep24);
     }
     window.localStorage.setItem("numberPartnerReturn", value);
-    if (jointApplicationStatus === types[1]) {
+    if (jointApplicationStatus === types[2]) {
       history.push({
         pathname: `/refinance-fact-find/step-25`,
       });
@@ -142,7 +142,7 @@ const Step24 = () => {
         JSON.stringify([...listDataSubmit, skipStep24])
       );
     }
-    if (jointApplicationStatus === types[1]) {
+    if (jointApplicationStatus === types[2]) {
       history.push({
         pathname: `/refinance-fact-find/step-25`,
       });

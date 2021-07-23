@@ -8,6 +8,8 @@ import InputCustom2 from "../../../Components/InputCustom2";
 import checkEmail from "../../../utils/checkEmail";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
+import { currentStep } from "../../../utils/removeQuestion";
+import { itemStep1 } from "../../../utils/listLocalStorage";
 
 export const types = {
   1: "Full Time",
@@ -74,6 +76,14 @@ const First = () => {
   };
 
   const nextStep = () => {
+    if (
+      localStorage.getItem("firstName") !== firstName ||
+      localStorage.getItem("lastName") !== lastName ||
+      localStorage.getItem("email") !== email ||
+      localStorage.getItem("employmentStatus") !== employmentStatus
+    ) {
+      currentStep(1, itemStep1);
+    }
     window.localStorage.setItem("firstName", firstName);
     window.localStorage.setItem("lastName", lastName);
     window.localStorage.setItem("email", email);

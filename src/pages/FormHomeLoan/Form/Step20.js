@@ -23,7 +23,7 @@ const Step20 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
+  // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
 
@@ -71,21 +71,21 @@ const Step20 = () => {
       currentStep(20, itemStep20);
     }
     window.localStorage.setItem("taxReturns", option);
-    if (jointApplicationStatus === types2[2]) {
-      if (option === types[1]) {
-        history.push({
-          pathname: `/refinance-fact-find/step-21`,
-        });
-      } else {
-        history.push({
-          pathname: `/refinance-fact-find/step-22`,
-        });
-      }
+    // if (jointApplicationStatus === types2[2]) {
+    if (option === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-21`,
+      });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-26`,
+        pathname: `/refinance-fact-find/step-22`,
       });
     }
+    // } else {
+    //   history.push({
+    //     pathname: `/refinance-fact-find/step-26`,
+    //   });
+    // }
   };
 
   const onClickNext = () => {
@@ -129,21 +129,21 @@ const Step20 = () => {
       );
     }
 
-    if (jointApplicationStatus === types2[2]) {
-      if (taxReturns === types[1]) {
-        history.push({
-          pathname: `/refinance-fact-find/step-21`,
-        });
-      } else {
-        history.push({
-          pathname: `/refinance-fact-find/step-22`,
-        });
-      }
+    // if (jointApplicationStatus === types2[2]) {
+    if (taxReturns === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-21`,
+      });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-26`,
+        pathname: `/refinance-fact-find/step-22`,
       });
     }
+    // } else {
+    //   history.push({
+    //     pathname: `/refinance-fact-find/step-26`,
+    //   });
+    // }
   };
 
   return (

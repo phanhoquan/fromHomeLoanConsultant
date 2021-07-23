@@ -20,7 +20,7 @@ const Step14 = () => {
     : [];
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-
+  const employmentStatus = localStorage.getItem("employmentStatus");
   const [workingStatus, setWorkingStatus] = useState(
     localStorage.getItem("workingStatus") || ""
   );
@@ -42,8 +42,7 @@ const Step14 = () => {
   const nextStep = (option) => {
     const step14 = {
       id: 14,
-      question:
-        "You mentioned that you are working ‘Full Time’ Is that correct?",
+      question: `You mentioned that you are working ‘${employmentStatus}’ Is that correct?`,
       answer: option,
       skip: "",
     };
@@ -99,8 +98,7 @@ const Step14 = () => {
   const handleSkip = () => {
     const skipStep14 = {
       id: 14,
-      question:
-        "You mentioned that you are working ‘Full Time’ Is that correct?",
+      question: `You mentioned that you are working ‘${employmentStatus}’ Is that correct?`,
       answer: workingStatus,
       skip: !workingStatus && "Skipped",
     };
@@ -143,8 +141,8 @@ const Step14 = () => {
               <Col xs={12} className="text-center mt-3">
                 <h2 className="mb-4">
                   14. You mentioned that you are working{" "}
-                  <br className="d-block" />
-                  ‘Full Time’ Is that correct?
+                  <br className="d-block" />‘{employmentStatus}’ Is that
+                  correct?
                 </h2>
               </Col>
               <Col xs={12}>

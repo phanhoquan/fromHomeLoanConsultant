@@ -75,7 +75,7 @@ const Step23 = () => {
       currentStep(23, itemStep23);
     }
     window.localStorage.setItem("employmentPartnersWorkingStatus", option);
-    if (jointApplicationStatus === types[2]) {
+    if (jointApplicationStatus === types2[2]) {
       if (option === types[5]) {
         history.push({
           pathname: `/refinance-fact-find/step-26`,
@@ -136,7 +136,7 @@ const Step23 = () => {
         JSON.stringify([...listDataSubmit, skipStep23])
       );
     }
-    if (jointApplicationStatus === types[2]) {
+    if (jointApplicationStatus === types2[2]) {
       if (employmentWorkingStatus === types[5]) {
         history.push({
           pathname: `/refinance-fact-find/step-26`,

@@ -1,5 +1,19 @@
 /** @format */
 
+export const itemStep1 = [
+  "isLogin",
+  "password",
+  "userName",
+  "firstName",
+  "lastName",
+  "employmentStatus",
+  "email",
+  "listDataSubmit",
+  "questionStep1",
+  "skip1",
+];
+
+
 export const itemStep2 = [
   "isLogin",
   "password",
