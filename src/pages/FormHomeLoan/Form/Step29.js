@@ -94,7 +94,7 @@ const Step29 = () => {
         parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
     );
     history.push({
-      pathname: `/refinance-fact-find/step-30`,
+      pathname: `/refinance-fact-find/step-31`,
     });
   };
 
@@ -165,7 +165,7 @@ const Step29 = () => {
       );
     }
     history.push({
-      pathname: `/refinance-fact-find/step-30`,
+      pathname: `/refinance-fact-find/step-31`,
     });
   };
 

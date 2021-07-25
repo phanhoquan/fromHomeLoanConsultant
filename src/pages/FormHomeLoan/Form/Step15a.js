@@ -55,7 +55,7 @@ const Step15A = () => {
   const nextStep = (value) => {
     const step15A = {
       id: 15.1,
-      question: "When is your partner expected \n to return to work?",
+      question: "When are you expected to return to work?",
       answer: value,
       skip: "",
     };
@@ -117,7 +117,7 @@ const Step15A = () => {
   const handleSkip = () => {
     const skipStep15a = {
       id: 15.1,
-      question: "When is your partner expected \n to return to work?",
+      question: "When are you expected to return to work?",
       answer: numberPartnerReturn,
       skip: !numberPartnerReturn && "Skipped",
     };
@@ -159,8 +159,7 @@ const Step15A = () => {
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  15.1. When is your partner expected <br />
-                  to return to work?
+                  15.1. When are you expected to return to work?
                 </h2>
               </Col>
               <Col xs={12}>

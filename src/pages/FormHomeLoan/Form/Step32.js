@@ -1,40 +1,51 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { valid } from "../../../utils/constant";
+import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
+
+export const types = {
+  1: "YES",
+  2: "NO",
+};
 
 const Step32 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-
-  const noteValueRef = useRef(null);
-
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [noteVale, setNoteVale] = useState(
-    localStorage.getItem("noteVale") || ""
+
+  const [currentlyRenting, setCurrentlyRenting] = useState(
+    localStorage.getItem("currentlyRenting") || ""
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      noteValueRef?.current?.focus();
-    }, 400);
-  }, []);
+  const [currentlyRentingValid, setCurrentlyRentingValid] = useState(
+    valid.NON_VALID
+  );
 
-  const finDataStep = listDataSubmit.find((item) => item.id === 32);
-
-  const step32 = {
-    id: 32,
-    question: "Please enter any additional notes",
-    answer: noteVale,
-    skip: "",
+  const checkStatusValid = (option) => {
+    let test = Object.values(types).includes(option);
+    setCurrentlyRentingValid(Number(test));
+    return test;
   };
 
-  const nextStep = () => {
-    localStorage.setItem("noteVale", noteVale);
+  const onCheck = (option) => {
+    setCurrentlyRenting(option);
+    window.localStorage.setItem("currentlyRenting", option);
+  };
+  const finDataStep = listDataSubmit.find((item) => item.id === 32);
+  const nextStep = (option) => {
+    window.localStorage.setItem("currentlyRenting", option);
+    const step32 = {
+      id: 32,
+      question: "So with that property, are you \n currently renting it out?",
+      answer: option,
+      skip: "",
+    };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 32 ? step32 : item
@@ -51,17 +62,20 @@ const Step32 = () => {
       );
     }
     history.push({
-      pathname: `/refinance-fact-find/step-success`,
+      pathname: `/refinance-fact-find/step-33`,
     });
   };
 
   const onClickNext = () => {
     setShowLoading(true);
+    checkStatusValid(currentlyRenting);
     setTimeout(() => setShowLoading(false), 500);
-    if (!showLoading) {
-      setTimeout(function () {
-        nextStep();
-      }, 500);
+    if (checkStatusValid(currentlyRenting)) {
+      if (!showLoading) {
+        setTimeout(function () {
+          nextStep(currentlyRenting);
+        }, 500);
+      }
     }
   };
 
@@ -69,9 +83,36 @@ const Step32 = () => {
     history.go(-1);
   };
 
+  const handleSkip = () => {
+    const skipStep32 = {
+      id: 32,
+      question: "So with that property, are you \n currently renting it out?",
+      answer: currentlyRenting,
+      skip: !currentlyRenting && "Skipped",
+    };
+
+    const updateDataStep = listDataSubmit.map((item) =>
+      item.id === 32 ? skipStep32 : item
+    );
+    if (finDataStep) {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify(updateDataStep)
+      );
+    } else {
+      window.localStorage.setItem(
+        "listDataSubmit",
+        JSON.stringify([...listDataSubmit, skipStep32])
+      );
+    }
+    history.push({
+      pathname: `/refinance-fact-find/step-33`,
+    });
+  };
+
   return (
-    <LifeInsurance isShowHeader activeStep={32} numberScroll={1750}>
-      <section className="formContent-step-second formContent-life-insurance mb-2">
+    <LifeInsurance isShowHeader activeStep={32} numberScroll={1740}>
+      <section className="formContent-step-first pb-5">
         <Container>
           <div
             className={
@@ -80,24 +121,39 @@ const Step32 = () => {
             }
           >
             <Row>
-              <Col xs={12} className="text-center">
-                <h2 className="mb-3">32. Please enter any additional notes</h2>
+              <Col xs={12} className="text-center mt-3">
+                <h2 className="mb-4">
+                  32. So with that property, are you <br />
+                  currently renting it out?
+                </h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <textarea
-                      className="form-control noteVale"
-                      value={noteVale || ""}
-                      ref={noteValueRef}
-                      onChange={(e) => setNoteVale(e.target.value)}
-                      placeholder="Please enter your additional notes here..."
+                <Row className="info-customer mt-4">
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      checkBox={currentlyRenting === types[1]}
+                      onClick={() => onCheck(types[1])}
+                      name={types[1]}
+                      classContainer="radius"
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[2])}
+                      checkBox={currentlyRenting === types[2]}
+                      name={types[2]}
+                      classContainer="radius"
                     />
                   </Col>
                 </Row>
+                {currentlyRentingValid === valid.INVALID && (
+                  <div className="text-error">
+                    <p>Please select an option</p>
+                  </div>
+                )}
               </Col>
               <Col xs={12} className="fadeInDown wow  mt-4">
-                <div className="group-btn-footer col d-flex justify-content-center">
+                <div className="group-btn-footer w-500 col d-flex justify-content-center">
                   <Button
                     className="btnPrimary life wow fadeInUp mt-0 back"
                     type="next"
@@ -111,8 +167,15 @@ const Step32 = () => {
                     onClick={onClickNext}
                   >
                     {showLoading && <Spinner animation="border" />}
-                    SUBMIT
+                    ADDITIONAL NOTES
                   </Button>
+                </div>
+                <div
+                  className="SKIP"
+                  onClick={() => handleSkip()}
+                  role="button"
+                >
+                  SKIP
                 </div>
               </Col>
             </Row>
