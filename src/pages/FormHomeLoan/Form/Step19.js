@@ -1,63 +1,57 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
-import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
-import { itemStep19 } from "../../../utils/listLocalStorage";
+import LifeInsurance from "../index";
 import { currentStep } from "../../../utils/removeQuestion";
-import useOnClickOutside from "../../../hooks/useClickOutSide";
+import { itemStep19 } from "../../../utils/listLocalStorage";
 
-const listBusinessBeenRegistered = [
-  "1 year",
-  "2 years",
-  "3 years",
-  "4 years",
-  "5+ years",
-  "10+ years",
-  "15+ years",
-];
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+};
 
 const Step19 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const businessBeenRegisteredRef = useRef(null);
-  const wrapperInfoRef = useRef();
-
+  const typeOfBusinessRef = useRef(null);
   const history = useHistory();
+  const employmentStatus = localStorage.getItem("employmentWorkingStatus");
   const [showLoading, setShowLoading] = useState(false);
-  const [businessBeenRegistered, setBusinessBeenRegistered] = useState(
-    localStorage.getItem("businessBeenRegistered") || ""
+  const [typeOfBusiness, setTypeOfBusiness] = useState(
+    localStorage.getItem("typeOfBusinessOther") || ""
   );
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [businessBeenRegisteredValid, setBusinessBeenRegisteredValid] =
-    useState(valid.NON_VALID);
 
-  useOnClickOutside(wrapperInfoRef, () => {
-    setIsShowModal(false);
-  });
+  const [typeOfBusinessValid, setTypeOfBusinessValid] = useState(
+    valid.NON_VALID
+  );
 
-  const checkBusinessBeenRegisteredStatus = (value) => {
-    const test = listBusinessBeenRegistered.includes(value);
-    setBusinessBeenRegisteredValid(Number(test));
-    setIsShowModal(false);
+  useEffect(() => {
+    setTimeout(() => {
+      typeOfBusinessRef?.current?.focus();
+    }, 400);
+  }, []);
+
+  const checkTypeOfBusinessStatus = (value) => {
+    let test = value?.trim()?.length > 1;
+    setTypeOfBusinessValid(Number(test));
     return test;
   };
-
   const finDataStep = listDataSubmit.find((item) => item.id === 19);
-
-  const nextStep = (value) => {
-    const step19 = {
-      id: 19,
-      question:
-        "How many years has the ABN for this business been registered for?",
-      answer: value,
-      skip: "",
-    };
-
+  const step19 = {
+    id: 19,
+    question: "What type of business is this?",
+    answer: typeOfBusiness,
+    skip: "",
+  };
+  const nextStep = (option) => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 19 ? step19 : item
@@ -73,28 +67,33 @@ const Step19 = () => {
         JSON.stringify([...listDataSubmit, step19])
       );
     }
-    if (localStorage.getItem("businessBeenRegistered") !== value) {
+    if (localStorage.getItem("typeOfBusinessOther") !== option) {
       currentStep(19, itemStep19);
     }
-    window.localStorage.setItem("businessBeenRegistered", value);
-    history.push({
-      pathname: `/refinance-fact-find/step-21`,
-    });
+    window.localStorage.setItem("typeOfBusinessOther", option);
+    if (employmentStatus === types[4]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-20`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-21`,
+      });
+    }
   };
-  const onClickSelect = (value) => {
-    setBusinessBeenRegistered(value);
-    setBusinessBeenRegisteredValid(valid.NON_VALID);
-    setIsShowModal(false);
+  const onKeyUpHandle = (value) => {
+    setTypeOfBusiness(value.replace(/[0-9]/g, ""));
   };
 
   const onClickNext = () => {
     setShowLoading(true);
+    checkTypeOfBusinessStatus(typeOfBusiness);
     setTimeout(() => setShowLoading(false), 500);
-    checkBusinessBeenRegisteredStatus(businessBeenRegistered);
-    if (checkBusinessBeenRegisteredStatus(businessBeenRegistered)) {
+
+    if (checkTypeOfBusinessStatus(typeOfBusiness)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep(businessBeenRegistered);
+          nextStep(typeOfBusiness);
         }, 500);
       }
     }
@@ -113,12 +112,10 @@ const Step19 = () => {
   const handleSkip = () => {
     const skipStep19 = {
       id: 19,
-      question:
-        "How many years has the ABN for this business been registered for?",
-      answer: businessBeenRegistered,
-      skip: !businessBeenRegistered && "Skipped",
+      question: "What type of business is this?",
+      answer: typeOfBusiness,
+      skip: !typeOfBusiness && "Skipped",
     };
-
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 19 ? skipStep19 : item
     );
@@ -133,18 +130,21 @@ const Step19 = () => {
         JSON.stringify([...listDataSubmit, skipStep19])
       );
     }
-    history.push({
-      pathname: `/refinance-fact-find/step-21`,
-    });
+
+    if (employmentStatus === types[4]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-20`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-21`,
+      });
+    }
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={19} numberScroll={1000}>
-      <section
-        className={`formContent-step-second formContent-life-insurance ${
-          isShowModal ? "mb-10" : "mb-2"
-        }`}
-      >
+    <LifeInsurance isShowHeader activeStep={19} numberScroll={900}>
+      <section className="formContent-step-first pb-5">
         <Container>
           <div
             className={
@@ -154,60 +154,36 @@ const Step19 = () => {
           >
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-3">
-                  19. How many years has the ABN for this <br />
-                  business been registered for?
-                </h2>
+                <h2 className="mb-4">19. What type of business is this?</h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col
-                    xs={12}
-                    className="wForm-input pl-0 bankProviders"
-                    ref={wrapperInfoRef}
-                  >
+                <Row className="info-customer mt-4">
+                  <Col xs={12} className="wForm-input pl-0">
                     <InputCustom2
-                      onFocus={() => {
-                        setIsShowModal(true);
-                        setBusinessBeenRegisteredValid(valid.NON_VALID);
-                      }}
+                      onFocus={() => setTypeOfBusinessValid(valid.NON_VALID)}
                       onKeyPress={onKeyDown}
-                      onChange={() => () => {}}
-                      label="Please select how long you have worked"
-                      value={businessBeenRegistered}
-                      id="input"
-                      customClassLabel={businessBeenRegistered ? "active" : ""}
-                      iconArrow
-                      customClassWrap="email five"
-                      innerRef={businessBeenRegisteredRef}
-                      readOnly
+                      onChange={(e) => onKeyUpHandle(e.target.value)}
+                      label="Type of business"
+                      value={
+                        typeOfBusiness &&
+                        typeOfBusiness[0].toUpperCase() +
+                          typeOfBusiness.slice(1)
+                      }
+                      id="typeOfBusiness"
+                      customClassLabel={typeOfBusiness ? "active" : ""}
+                      innerRef={typeOfBusinessRef}
                     />
-                    <ul
-                      className={`list-occupation ${
-                        isShowModal ? "d-block" : "d-none"
-                      }`}
-                    >
-                      {listBusinessBeenRegistered &&
-                        listBusinessBeenRegistered.map((name, index) => (
-                          <li
-                            key={index + 1}
-                            onClick={() => onClickSelect(name)}
-                            className={
-                              businessBeenRegistered === name ? "active" : ""
-                            }
-                          >
-                            {name}
-                          </li>
-                        ))}
-                    </ul>
                   </Col>
                 </Row>
-                {businessBeenRegisteredValid === valid.INVALID && (
+              </Col>
+              <Col xs={12}>
+                {typeOfBusinessValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please select an option</p>
+                    <p>Please enter in a valid</p>
                   </div>
                 )}
               </Col>
+
               <Col xs={12} className="fadeInDown wow  mt-4">
                 <div className="group-btn-footer col d-flex justify-content-center">
                   <Button

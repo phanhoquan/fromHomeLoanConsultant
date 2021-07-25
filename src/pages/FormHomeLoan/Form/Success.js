@@ -136,11 +136,11 @@ export default function Success() {
       f_1609_job_duration_sole_applicant:
         localStorage.getItem("numberYearWorking") || "", //17
       f_1610_self_employed_business_type:
-        localStorage.getItem("typeOfBusinessOther") || "", //18
+        localStorage.getItem("typeOfBusinessOther") || "", //19
       f_1612_self_employed_abn_years:
-        localStorage.getItem("businessBeenRegistered") || "", //19
+        localStorage.getItem("businessBeenRegistered") || "", //20
 
-      f_1615_tax_completed: localStorage.getItem("taxReturns") || "", //20
+      f_1615_tax_completed: localStorage.getItem("taxReturns") || "", //21
 
       f_1613_tax_2019: localStorage.getItem("priceTax2019") || "", //22
       f_1614_tax_2020: localStorage.getItem("priceTax2020") || "", //22

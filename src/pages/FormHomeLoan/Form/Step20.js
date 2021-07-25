@@ -6,66 +6,61 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
-import useOnClickOutside from "../../../hooks/useClickOutSide";
+import { itemStep20 } from "../../../utils/listLocalStorage";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep17 } from "../../../utils/listLocalStorage";
+import useOnClickOutside from "../../../hooks/useClickOutSide";
 
-export const types = {
-  1: "Full Time",
-  2: "Part Time",
-  3: "Self Employed",
-  4: "Unemployed",
-};
-
-const listNumberYearWorking = [
+const listBusinessBeenRegistered = [
   "1 year",
   "2 years",
   "3 years",
   "4 years",
   "5+ years",
+  "10+ years",
+  "15+ years",
 ];
 
-const Step17 = () => {
+const Step20 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const numberYearWorkingRef = useRef(null);
+  const businessBeenRegisteredRef = useRef(null);
   const wrapperInfoRef = useRef();
-  const employmentStatus = localStorage.getItem("employmentStatus");
+
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [numberYearWorking, setNumberYearWorking] = useState(
-    localStorage.getItem("numberYearWorking") || ""
+  const [businessBeenRegistered, setBusinessBeenRegistered] = useState(
+    localStorage.getItem("businessBeenRegistered") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
-  const [numberYearWorkingValid, setNumberYearWorkingValid] = useState(
-    valid.NON_VALID
-  );
+  const [businessBeenRegisteredValid, setBusinessBeenRegisteredValid] =
+    useState(valid.NON_VALID);
 
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowModal(false);
   });
 
-  const checkNumberYearWorkingStatus = (value) => {
-    const test = listNumberYearWorking.includes(value);
-    setNumberYearWorkingValid(Number(test));
+  const checkBusinessBeenRegisteredStatus = (value) => {
+    const test = listBusinessBeenRegistered.includes(value);
+    setBusinessBeenRegisteredValid(Number(test));
     setIsShowModal(false);
     return test;
   };
 
-  const finDataStep = listDataSubmit.find((item) => item.id === 17);
+  const finDataStep = listDataSubmit.find((item) => item.id === 20);
 
   const nextStep = (value) => {
-    const step17 = {
-      id: 17,
-      question: "How long have you been working at this job for?",
+    const step20 = {
+      id: 20,
+      question:
+        "How many years has the ABN for this business been registered for?",
       answer: value,
       skip: "",
     };
 
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 17 ? step17 : item
+      item.id === 20 ? step20 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -75,37 +70,31 @@ const Step17 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step17])
+        JSON.stringify([...listDataSubmit, step20])
       );
     }
-    if (localStorage.getItem("numberYearWorking") !== value) {
-      currentStep(17, itemStep17);
+    if (localStorage.getItem("businessBeenRegistered") !== value) {
+      currentStep(20, itemStep20);
     }
-    window.localStorage.setItem("numberYearWorking", value);
-    if (employmentStatus === types[3]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-19`,
-      });
-    } else {
-      history.push({
-        pathname: `/refinance-fact-find/step-21`,
-      });
-    }
+    window.localStorage.setItem("businessBeenRegistered", value);
+    history.push({
+      pathname: `/refinance-fact-find/step-21`,
+    });
   };
   const onClickSelect = (value) => {
-    setNumberYearWorking(value);
-    setNumberYearWorkingValid(valid.NON_VALID);
+    setBusinessBeenRegistered(value);
+    setBusinessBeenRegisteredValid(valid.NON_VALID);
     setIsShowModal(false);
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkNumberYearWorkingStatus(numberYearWorking);
-    if (checkNumberYearWorkingStatus(numberYearWorking)) {
+    checkBusinessBeenRegisteredStatus(businessBeenRegistered);
+    if (checkBusinessBeenRegisteredStatus(businessBeenRegistered)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep(numberYearWorking);
+          nextStep(businessBeenRegistered);
         }, 500);
       }
     }
@@ -122,14 +111,16 @@ const Step17 = () => {
   };
 
   const handleSkip = () => {
-    const skipStep17 = {
-      id: 17,
-      question: "How long have you been working at this job for?",
-      answer: numberYearWorking,
-      skip: !numberYearWorking && "Skipped",
+    const skipStep20 = {
+      id: 20,
+      question:
+        "How many years has the ABN for this business been registered for?",
+      answer: businessBeenRegistered,
+      skip: !businessBeenRegistered && "Skipped",
     };
+
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 17 ? skipStep17 : item
+      item.id === 20 ? skipStep20 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -139,23 +130,16 @@ const Step17 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep17])
+        JSON.stringify([...listDataSubmit, skipStep20])
       );
     }
-
-    if (employmentStatus === types[3]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-19`,
-      });
-    } else {
-      history.push({
-        pathname: `/refinance-fact-find/step-21`,
-      });
-    }
+    history.push({
+      pathname: `/refinance-fact-find/step-21`,
+    });
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={17} numberScroll={900}>
+    <LifeInsurance isShowHeader activeStep={20} numberScroll={1000}>
       <section
         className={`formContent-step-second formContent-life-insurance ${
           isShowModal ? "mb-10" : "mb-2"
@@ -171,7 +155,8 @@ const Step17 = () => {
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  17. How long have you been working at this job for?
+                  20. How many years has the ABN for this <br />
+                  business been registered for?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -184,17 +169,17 @@ const Step17 = () => {
                     <InputCustom2
                       onFocus={() => {
                         setIsShowModal(true);
-                        setNumberYearWorkingValid(valid.NON_VALID);
+                        setBusinessBeenRegisteredValid(valid.NON_VALID);
                       }}
                       onKeyPress={onKeyDown}
                       onChange={() => () => {}}
                       label="Please select how long you have worked"
-                      value={numberYearWorking}
-                      id="price-input"
-                      customClassLabel={numberYearWorking ? "active" : ""}
+                      value={businessBeenRegistered}
+                      id="input"
+                      customClassLabel={businessBeenRegistered ? "active" : ""}
                       iconArrow
                       customClassWrap="email five"
-                      innerRef={numberYearWorkingRef}
+                      innerRef={businessBeenRegisteredRef}
                       readOnly
                     />
                     <ul
@@ -202,13 +187,13 @@ const Step17 = () => {
                         isShowModal ? "d-block" : "d-none"
                       }`}
                     >
-                      {listNumberYearWorking &&
-                        listNumberYearWorking.map((name, index) => (
+                      {listBusinessBeenRegistered &&
+                        listBusinessBeenRegistered.map((name, index) => (
                           <li
                             key={index + 1}
                             onClick={() => onClickSelect(name)}
                             className={
-                              numberYearWorking === name ? "active" : ""
+                              businessBeenRegistered === name ? "active" : ""
                             }
                           >
                             {name}
@@ -217,7 +202,7 @@ const Step17 = () => {
                     </ul>
                   </Col>
                 </Row>
-                {numberYearWorkingValid === valid.INVALID && (
+                {businessBeenRegisteredValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Please select an option</p>
                   </div>
@@ -257,4 +242,4 @@ const Step17 = () => {
   );
 };
 
-export default Step17;
+export default Step20;

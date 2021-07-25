@@ -73,7 +73,7 @@ const Step15 = () => {
     window.localStorage.setItem("employmentWorkingStatus", option);
     if (option === types[4]) {
       history.push({
-        pathname: `/refinance-fact-find/step-18`,
+        pathname: `/refinance-fact-find/step-19`,
       });
     } else if (option === types[5]) {
       history.push({
@@ -131,7 +131,7 @@ const Step15 = () => {
     }
     if (employmentWorkingStatus === types[4]) {
       history.push({
-        pathname: `/refinance-fact-find/step-18`,
+        pathname: `/refinance-fact-find/step-19`,
       });
     } else if (employmentWorkingStatus === types[5]) {
       history.push({

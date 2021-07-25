@@ -427,7 +427,7 @@ export const itemStep17 = [
   "numberYearWorking",
 ];
 
-export const itemStep18 = [
+export const itemStep19 = [
   "isLogin",
   "password",
   "userName",
@@ -460,7 +460,7 @@ export const itemStep18 = [
   "typeOfBusinessOther",
 ];
 
-export const itemStep19 = [
+export const itemStep20 = [
   "isLogin",
   "password",
   "userName",
