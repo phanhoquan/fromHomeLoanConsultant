@@ -83,7 +83,7 @@ const Step20 = () => {
     }
     // } else {
     //   history.push({
-    //     pathname: `/refinance-fact-find/step-26`,
+    //     pathname: `/refinance-fact-find/step-27`,
     //   });
     // }
   };
@@ -141,7 +141,7 @@ const Step20 = () => {
     }
     // } else {
     //   history.push({
-    //     pathname: `/refinance-fact-find/step-26`,
+    //     pathname: `/refinance-fact-find/step-27`,
     //   });
     // }
   };

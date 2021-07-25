@@ -724,7 +724,7 @@ export const itemStep25 = [
   "partnersSalary",
 ];
 
-export const itemStep26 = [
+export const itemStep27 = [
   "isLogin",
   "password",
   "userName",

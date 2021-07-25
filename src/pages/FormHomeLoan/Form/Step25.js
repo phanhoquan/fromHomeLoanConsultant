@@ -70,7 +70,7 @@ const Step25 = () => {
       partnersSalary && parseInt(partnersSalary.replace(/,/g, ""), 10)
     );
     history.push({
-      pathname: `/refinance-fact-find/step-26`,
+      pathname: `/refinance-fact-find/step-27`,
     });
   };
 
@@ -127,7 +127,7 @@ const Step25 = () => {
     }
 
     history.push({
-      pathname: `/refinance-fact-find/step-26`,
+      pathname: `/refinance-fact-find/step-27`,
     });
   };
 

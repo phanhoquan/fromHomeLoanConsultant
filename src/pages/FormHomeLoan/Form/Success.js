@@ -155,7 +155,7 @@ export default function Success() {
       f_1630_personal_loan_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[1])
           ? types[1]
-          : "") || "", //26
+          : "") || "", //27
       f_1629_car_loan_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[2])
           ? types[2]
@@ -175,7 +175,7 @@ export default function Success() {
       f_1623_hecs_amount: localStorage.getItem("HECSDebtAmount") || "", // 28c
 
       f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //29
-      f_1626_credit_card_institution:
+      f_1627_credit_card_institution:
         localStorage.getItem("valueCreditCard") || "", // 30
       f_1628_credit_card_amount:
         localStorage.getItem("valueCreditCardAmount") || "", // 30

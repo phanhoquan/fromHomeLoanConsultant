@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep26 } from "../../../utils/listLocalStorage";
+import { itemStep27 } from "../../../utils/listLocalStorage";
 import LifeInsurance from "../index";
 
 export const types = {
@@ -16,7 +16,7 @@ export const types = {
   4: "None of the above",
 };
 
-const Step26 = () => {
+const Step27 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
@@ -60,11 +60,11 @@ const Step26 = () => {
     }
   };
 
-  const finDataStep = listDataSubmit.find((item) => item.id === 26);
+  const finDataStep = listDataSubmit.find((item) => item.id === 27);
 
   const nextStep = (option) => {
-    const step26 = {
-      id: 26,
+    const step27 = {
+      id: 27,
       question:
         "Are you currently paying off any personal loans, car loans or HECS debt?",
       answer: option.toString(),
@@ -72,7 +72,7 @@ const Step26 = () => {
     };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 26 ? step26 : item
+      item.id === 27 ? step27 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -82,12 +82,12 @@ const Step26 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step26])
+        JSON.stringify([...listDataSubmit, step27])
       );
     }
 
     if (localStorage.getItem("personalLoansStatus") !== option.toString()) {
-      currentStep(26, itemStep26);
+      currentStep(27, itemStep27);
     }
 
     window.localStorage.setItem("personalLoansStatus", option);
@@ -134,8 +134,8 @@ const Step26 = () => {
   };
 
   const handleSkip = () => {
-    const skipStep26 = {
-      id: 26,
+    const skipStep27 = {
+      id: 27,
       question:
         "Are you currently paying off any personal loans, car loans or HECS debt?",
       answer: personalLoansStatus.toString(),
@@ -143,7 +143,7 @@ const Step26 = () => {
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 26 ? skipStep26 : item
+      item.id === 27 ? skipStep27 : item
     );
 
     if (finDataStep) {
@@ -154,7 +154,7 @@ const Step26 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep26])
+        JSON.stringify([...listDataSubmit, skipStep27])
       );
     }
 
@@ -191,7 +191,7 @@ const Step26 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={26} numberScroll={1750}>
+    <LifeInsurance isShowHeader activeStep={27} numberScroll={1750}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -203,7 +203,7 @@ const Step26 = () => {
             <Row>
               <Col xs={12} className="text-center mt-3">
                 <h2 className="mb-2">
-                  26. Are you currently paying off any personal loans, <br />
+                  27. Are you currently paying off any personal loans, <br />
                   car loans or HECS debt?
                 </h2>
                 <p style={{ fontFamily: "Lato", color: "red" }}>
@@ -281,4 +281,4 @@ const Step26 = () => {
   );
 };
 
-export default Step26;
+export default Step27;
