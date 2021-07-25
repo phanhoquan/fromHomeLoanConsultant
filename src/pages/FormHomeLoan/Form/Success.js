@@ -146,9 +146,9 @@ export default function Success() {
       f_1614_tax_2020: localStorage.getItem("priceTax2020") || "", //21
 
       f_1616_joint_applicant_occupation:
-        localStorage.getItem("partnersOccupation") || "", //22
+        localStorage.getItem("partnersOccupation") || "", //23
       f_1617_joint_applicant_employment_status:
-        localStorage.getItem("employmentPartnersWorkingStatus") || "", //23
+        localStorage.getItem("employmentPartnersWorkingStatus") || "", //24
       f_1618_joint_applicant_maternity:
         localStorage.getItem("numberPartnerReturn") || "", //25
 

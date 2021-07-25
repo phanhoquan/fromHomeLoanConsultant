@@ -6,55 +6,59 @@ import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import { CheckboxButton } from "../../../Components/CheckBox3";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep20 } from "../../../utils/listLocalStorage";
+import { itemStep24 } from "../../../utils/listLocalStorage";
 import LifeInsurance from "../index";
-
-export const types = {
-  1: "YES",
-  2: "NO",
-};
 
 export const types2 = {
   1: "Sole Applicant",
   2: "Joint Applicant",
 };
 
-const Step20 = () => {
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
+const Step24 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
+  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-
-  const [taxReturns, setTaxReturns] = useState(
-    localStorage.getItem("taxReturns") || ""
+  const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
+    localStorage.getItem("employmentPartnersWorkingStatus") || ""
   );
 
-  const [taxReturnsValid, setTaxReturnsValid] = useState(valid.NON_VALID);
+  const [employmentWorkingStatusValid, setEmploymentWorkingStatusValid] =
+    useState(valid.NON_VALID);
 
   const checkStatusValid = (option) => {
     let test = Object.values(types).includes(option);
-    setTaxReturnsValid(Number(test));
+    setEmploymentWorkingStatusValid(Number(test));
     return test;
   };
 
   const onCheck = (option) => {
-    setTaxReturns(option);
+    setEmploymentWorkingStatus(option);
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 20);
+  const finDataStep = listDataSubmit.find((item) => item.id === 24);
 
   const nextStep = (option) => {
-    const step20 = {
-      id: 20,
-      question: "Have the tax returns for 2019/2020 \n been completed?",
+    const step24 = {
+      id: 24,
+      question: "What is your partners employment status?",
       answer: option,
       skip: "",
     };
 
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 20 ? step20 : item
+      item.id === 24 ? step24 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -64,39 +68,43 @@ const Step20 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step20])
+        JSON.stringify([...listDataSubmit, step24])
       );
     }
-    if (localStorage.getItem("taxReturns") !== option) {
-      currentStep(20, itemStep20);
+    if (localStorage.getItem("employmentPartnersWorkingStatus") !== option) {
+      currentStep(24, itemStep24);
     }
-    window.localStorage.setItem("taxReturns", option);
-    // if (jointApplicationStatus === types2[2]) {
-    if (option === types[1]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-21`,
-      });
+    window.localStorage.setItem("employmentPartnersWorkingStatus", option);
+    if (jointApplicationStatus === types2[2]) {
+      if (option === types[5]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-27`,
+        });
+      } else if (option === types[6]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-25`,
+        });
+      } else {
+        history.push({
+          pathname: `/refinance-fact-find/step-26`,
+        });
+      }
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-23`,
+        pathname: `/refinance-fact-find/step-27`,
       });
     }
-    // } else {
-    //   history.push({
-    //     pathname: `/refinance-fact-find/step-27`,
-    //   });
-    // }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
-    checkStatusValid(taxReturns);
+    checkStatusValid(employmentWorkingStatus);
     setTimeout(() => setShowLoading(false), 500);
 
-    if (checkStatusValid(taxReturns)) {
+    if (checkStatusValid(employmentWorkingStatus)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep(taxReturns);
+          nextStep(employmentWorkingStatus);
         }, 500);
       }
     }
@@ -107,15 +115,15 @@ const Step20 = () => {
   };
 
   const handleSkip = () => {
-    const skipStep20 = {
-      id: 20,
-      question: "Have the tax returns for 2019/2020 \n been completed?",
-      answer: taxReturns,
-      skip: !taxReturns && "Skipped",
+    const skipStep24 = {
+      id: 24,
+      question: "What is your partners employment status?",
+      answer: employmentWorkingStatus,
+      skip: !employmentWorkingStatus && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 20 ? skipStep20 : item
+      item.id === 24 ? skipStep24 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -125,29 +133,32 @@ const Step20 = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep20])
+        JSON.stringify([...listDataSubmit, skipStep24])
       );
     }
-
-    // if (jointApplicationStatus === types2[2]) {
-    if (taxReturns === types[1]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-21`,
-      });
+    if (jointApplicationStatus === types2[2]) {
+      if (employmentWorkingStatus === types[5]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-27`,
+        });
+      } else if (employmentWorkingStatus === types[6]) {
+        history.push({
+          pathname: `/refinance-fact-find/step-25`,
+        });
+      } else {
+        history.push({
+          pathname: `/refinance-fact-find/step-26`,
+        });
+      }
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-23`,
+        pathname: `/refinance-fact-find/step-27`,
       });
     }
-    // } else {
-    //   history.push({
-    //     pathname: `/refinance-fact-find/step-27`,
-    //   });
-    // }
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={20} numberScroll={1000}>
+    <LifeInsurance isShowHeader activeStep={24} numberScroll={1200}>
       <section className="formContent-step-first pb-5">
         <Container>
           <div
@@ -159,30 +170,55 @@ const Step20 = () => {
             <Row>
               <Col xs={12} className="text-center mt-3">
                 <h2 className="mb-4">
-                  20. Have the tax returns for 2019/2020 <br />
-                  been completed?
+                  24. What is your partners employment status?
                 </h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4">
                   <Col xs={12} sm={6} className="wForm-input">
                     <CheckboxButton
-                      checkBox={taxReturns === types[1]}
+                      checkBox={employmentWorkingStatus === types[1]}
                       onClick={() => onCheck(types[1])}
                       name={types[1]}
-                      classContainer="radius"
                     />
                   </Col>
                   <Col xs={12} sm={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[2])}
-                      checkBox={taxReturns === types[2]}
+                      checkBox={employmentWorkingStatus === types[2]}
                       name={types[2]}
-                      classContainer="radius"
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      checkBox={employmentWorkingStatus === types[3]}
+                      onClick={() => onCheck(types[3])}
+                      name={types[3]}
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[4])}
+                      checkBox={employmentWorkingStatus === types[4]}
+                      name={types[4]}
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[5])}
+                      checkBox={employmentWorkingStatus === types[5]}
+                      name={types[5]}
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[6])}
+                      checkBox={employmentWorkingStatus === types[6]}
+                      name={types[6]}
                     />
                   </Col>
                 </Row>
-                {taxReturnsValid === valid.INVALID && (
+                {employmentWorkingStatusValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Please select an option</p>
                   </div>
@@ -222,4 +258,4 @@ const Step20 = () => {
   );
 };
 
-export default Step20;
+export default Step24;

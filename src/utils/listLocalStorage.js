@@ -566,7 +566,7 @@ export const itemStep21 = [
   "priceTax2020",
 ];
 
-export const itemStep22 = [
+export const itemStep23 = [
   "isLogin",
   "password",
   "userName",
@@ -604,7 +604,7 @@ export const itemStep22 = [
   "partnersOccupation",
 ];
 
-export const itemStep23 = [
+export const itemStep24 = [
   "isLogin",
   "password",
   "userName",

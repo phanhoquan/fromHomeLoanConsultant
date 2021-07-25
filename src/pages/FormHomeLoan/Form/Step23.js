@@ -1,61 +1,82 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
-import { CheckboxButton } from "../../../Components/CheckBox3";
+import InputCustom2 from "../../../Components/InputCustom2";
+import LifeInsurance from "../index";
+import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
+import originArray from "../../../utils/quoteOccupations";
 import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep23 } from "../../../utils/listLocalStorage";
-import LifeInsurance from "../index";
+import useOnClickOutside from "../../../hooks/useClickOutSide";
 
-export const types2 = {
+export const types = {
   1: "Sole Applicant",
   2: "Joint Applicant",
 };
 
-export const types = {
-  1: "Full Time",
-  2: "Part Time",
-  3: "Casual",
-  4: "Self Employed",
-  5: "Unemployed",
-  6: "Maternal Leave",
-};
-
 const Step23 = () => {
+  const partnersOccupationRef = useRef(null);
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
+
   const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
+
+  const wrapperInfoRef = useRef();
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
-    localStorage.getItem("employmentPartnersWorkingStatus") || ""
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [partnersOccupation, setPartnersOccupation] = useState(
+    localStorage.getItem("partnersOccupation") || ""
+  );
+  const [dataListPartnersOccupations, setDataListPartnersOccupations] =
+    useState(originArray || []);
+  const [partnersOccupationValid, setPartnersOccupationValid] = useState(
+    valid.NON_VALID
   );
 
-  const [employmentWorkingStatusValid, setEmploymentWorkingStatusValid] =
-    useState(valid.NON_VALID);
+  useEffect(() => {
+    setTimeout(() => {
+      partnersOccupationRef?.current?.focus();
+    }, 400);
+  }, []);
 
-  const checkStatusValid = (option) => {
-    let test = Object.values(types).includes(option);
-    setEmploymentWorkingStatusValid(Number(test));
-    return test;
+  const checkPartnersOccupationStatus = (value) => {
+    setIsShowModal(false);
+    let test = originArray.includes(value);
+    let testValid = /^([a-zA-Z\s]{2,})$/.test(value);
+    if (!test) {
+      setPartnersOccupationValid(Number(testValid));
+      return testValid;
+    } else {
+      setPartnersOccupationValid(Number(test));
+      return test;
+    }
   };
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowModal(false);
+  });
 
-  const onCheck = (option) => {
-    setEmploymentWorkingStatus(option);
-  };
+  useEffect(() => {
+    if (isShowModal) {
+      setDataListPartnersOccupations([
+        ...getDataListOccupationOptions(partnersOccupation),
+        partnersOccupation,
+      ]);
+    }
+    // eslint-disable-next-line
+  }, [partnersOccupation]);
   const finDataStep = listDataSubmit.find((item) => item.id === 23);
-
+  const step23 = {
+    id: 23,
+    question: "What is your partners occupation?",
+    answer: partnersOccupation,
+    skip: "",
+  };
   const nextStep = (option) => {
-    const step23 = {
-      id: 23,
-      question: "What is your partners employment status?",
-      answer: option,
-      skip: "",
-    };
-
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 23 ? step23 : item
@@ -71,24 +92,14 @@ const Step23 = () => {
         JSON.stringify([...listDataSubmit, step23])
       );
     }
-    if (localStorage.getItem("employmentPartnersWorkingStatus") !== option) {
+    if (localStorage.getItem("partnersOccupation") !== partnersOccupation) {
       currentStep(23, itemStep23);
     }
-    window.localStorage.setItem("employmentPartnersWorkingStatus", option);
-    if (jointApplicationStatus === types2[2]) {
-      if (option === types[5]) {
-        history.push({
-          pathname: `/refinance-fact-find/step-27`,
-        });
-      } else if (option === types[6]) {
-        history.push({
-          pathname: `/refinance-fact-find/step-25`,
-        });
-      } else {
-        history.push({
-          pathname: `/refinance-fact-find/step-26`,
-        });
-      }
+    window.localStorage.setItem("partnersOccupation", option);
+    if (jointApplicationStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-24`,
+      });
     } else {
       history.push({
         pathname: `/refinance-fact-find/step-27`,
@@ -96,19 +107,57 @@ const Step23 = () => {
     }
   };
 
+  const onKeyUpHandle = (name, value) => {
+    if (name === "partnersOccupation") {
+      setPartnersOccupation(value.replace(/[0-9]/g, ""));
+      if (value?.length >= 2) {
+        setIsShowModal(true);
+      } else {
+        setIsShowModal(false);
+      }
+    }
+  };
+
+  const handelOnFocus = (name) => {
+    if (name?.length >= 2) {
+      setIsShowModal(true);
+    } else {
+      setIsShowModal(false);
+    }
+    setPartnersOccupationValid(valid.NON_VALID);
+  };
+
+  const onClickSelect = (name) => {
+    setPartnersOccupation(name);
+    checkPartnersOccupationStatus(name);
+    setIsShowModal(false);
+  };
+
   const onClickNext = () => {
     setShowLoading(true);
-    checkStatusValid(employmentWorkingStatus);
     setTimeout(() => setShowLoading(false), 500);
-
-    if (checkStatusValid(employmentWorkingStatus)) {
+    checkPartnersOccupationStatus(partnersOccupation);
+    if (checkPartnersOccupationStatus(partnersOccupation)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep(employmentWorkingStatus);
+          nextStep(partnersOccupation);
         }, 500);
       }
     }
   };
+
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onClickNext();
+    }
+  };
+
+  const showClass =
+    isShowModal &&
+    partnersOccupation?.length >= 2 &&
+    dataListPartnersOccupations?.length > 0
+      ? "d-block"
+      : "d-none";
 
   const onClickBack = () => {
     history.go(-1);
@@ -117,9 +166,9 @@ const Step23 = () => {
   const handleSkip = () => {
     const skipStep23 = {
       id: 23,
-      question: "What is your partners employment status?",
-      answer: employmentWorkingStatus,
-      skip: !employmentWorkingStatus && "Skipped",
+      question: "What is your partners occupation?",
+      answer: partnersOccupation,
+      skip: !partnersOccupation && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
@@ -136,20 +185,10 @@ const Step23 = () => {
         JSON.stringify([...listDataSubmit, skipStep23])
       );
     }
-    if (jointApplicationStatus === types2[2]) {
-      if (employmentWorkingStatus === types[5]) {
-        history.push({
-          pathname: `/refinance-fact-find/step-27`,
-        });
-      } else if (employmentWorkingStatus === types[6]) {
-        history.push({
-          pathname: `/refinance-fact-find/step-25`,
-        });
-      } else {
-        history.push({
-          pathname: `/refinance-fact-find/step-26`,
-        });
-      }
+    if (jointApplicationStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-24`,
+      });
     } else {
       history.push({
         pathname: `/refinance-fact-find/step-27`,
@@ -158,8 +197,8 @@ const Step23 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={23} numberScroll={1200}>
-      <section className="formContent-step-first pb-5">
+    <LifeInsurance isShowHeader activeStep={23} numberScroll={1000}>
+      <section className="formContent-step-second form-six formContent-life-insurance mb-0">
         <Container>
           <div
             className={
@@ -168,59 +207,50 @@ const Step23 = () => {
             }
           >
             <Row>
-              <Col xs={12} className="text-center mt-3">
-                <h2 className="mb-4">
-                  23. What is your partners employment status?
-                </h2>
+              <Col xs={12} className="text-center">
+                <h2>23. What is your partners occupation?</h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4">
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      checkBox={employmentWorkingStatus === types[1]}
-                      onClick={() => onCheck(types[1])}
-                      name={types[1]}
+                  <Col
+                    xs={12}
+                    className="wForm-input pl-0"
+                    ref={wrapperInfoRef}
+                  >
+                    <InputCustom2
+                      onFocus={() => handelOnFocus(partnersOccupation)}
+                      onKeyPress={onKeyDown}
+                      onChange={(e) =>
+                        onKeyUpHandle("partnersOccupation", e.target.value)
+                      }
+                      label="Partners Occupation"
+                      value={partnersOccupation}
+                      id="iconOccupation"
+                      customClassWrap="email"
+                      customClassLabel={partnersOccupation ? "active" : ""}
+                      innerRef={partnersOccupationRef}
                     />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[2])}
-                      checkBox={employmentWorkingStatus === types[2]}
-                      name={types[2]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      checkBox={employmentWorkingStatus === types[3]}
-                      onClick={() => onCheck(types[3])}
-                      name={types[3]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[4])}
-                      checkBox={employmentWorkingStatus === types[4]}
-                      name={types[4]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[5])}
-                      checkBox={employmentWorkingStatus === types[5]}
-                      name={types[5]}
-                    />
-                  </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[6])}
-                      checkBox={employmentWorkingStatus === types[6]}
-                      name={types[6]}
-                    />
+
+                    <ul className={`list-occupation ${showClass}`}>
+                      {dataListPartnersOccupations &&
+                        dataListPartnersOccupations.length > 0 &&
+                        dataListPartnersOccupations.map((name, index) => (
+                          <li
+                            key={index + 1}
+                            onClick={() => onClickSelect(name)}
+                            className={
+                              partnersOccupation === name ? "active" : ""
+                            }
+                          >
+                            {name}
+                          </li>
+                        ))}
+                    </ul>
                   </Col>
                 </Row>
-                {employmentWorkingStatusValid === valid.INVALID && (
+                {partnersOccupationValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please select an option</p>
+                    <p>Please enter your partners occupation</p>
                   </div>
                 )}
               </Col>
