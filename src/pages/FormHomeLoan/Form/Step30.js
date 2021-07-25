@@ -8,65 +8,67 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep27c } from "../../../utils/listLocalStorage";
+import { itemStep30 } from "../../../utils/listLocalStorage";
 
-const Step27C = () => {
+const Step30 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const HECSDebtRef = useRef(null);
-  const HECSDebtAmountRef = useRef(null);
+  const valueCreditCardRef = useRef(null);
+  const valueCreditCardAmountRef = useRef(null);
 
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [HECSDebt, setHECSDebt] = useState(
-    localStorage.getItem("HECSDebt") || ""
+  const [valueCreditCard, setValueCreditCard] = useState(
+    localStorage.getItem("valueCreditCard") || ""
   );
-  const [HECSDebtValid, setHECSDebtValid] = useState(valid.NON_VALID);
+  const [valueCreditCardValid, setValueCreditCardValid] = useState(
+    valid.NON_VALID
+  );
 
-  const [HECSDebtAmount, setHECSDebtAmount] = useState(
-    localStorage.getItem("HECSDebtAmount") || ""
+  const [valueCreditCardAmount, setValueCreditCardAmount] = useState(
+    localStorage.getItem("valueCreditCardAmount") || ""
   );
-  const [HECSDebtAmountValid, setHECSDebtAmountValid] = useState(
+  const [valueCreditCardAmountValid, setValueCreditCardAmountValid] = useState(
     valid.NON_VALID
   );
 
   useEffect(() => {
     setTimeout(() => {
-      HECSDebtRef?.current?.element?.focus();
+      valueCreditCardRef?.current?.element?.focus();
     }, 400);
   }, []);
 
-  const checkHECSDebtStatus = (value) => {
+  const checkValueCreditCardStatus = (value) => {
     let test = value.length > 1;
-    setHECSDebtValid(Number(test));
+    setValueCreditCardValid(Number(test));
     return test;
   };
 
-  const checkHECSDebtAmountStatus = (value) => {
+  const checkValueCreditCardAmountStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
       parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
-    setHECSDebtAmountValid(Number(test));
+    setValueCreditCardAmountValid(Number(test));
     return test;
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 27);
-  const step27 = {
-    id: 27,
-    question: "Which institution is the HECS debt with?",
-    answer: HECSDebt,
-    question2: "What is the limit on the HECS Debt amount?",
-    answer2: HECSDebtAmount
-      ? parseInt(HECSDebtAmount.replace(/,/g, ""), 10).toLocaleString("en")
+  const finDataStep = listDataSubmit.find((item) => item.id === 30);
+  const step30 = {
+    id: 30,
+    question: "Which institution is the credit card with?",
+    answer: valueCreditCard,
+    question2: "What is the limit on the credit card?",
+    answer2: valueCreditCardAmount
+      ? parseInt(valueCreditCardAmount.replace(/,/gi, ""), 10).toLocaleString(
+          "en"
+        )
       : "",
     skip: "",
-    menu: "27c",
   };
-
   const nextStep = () => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? step27 : item
+      item.id === 30 ? step30 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -76,42 +78,43 @@ const Step27C = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step27])
+        JSON.stringify([...listDataSubmit, step30])
       );
     }
     if (
-      localStorage.getItem("HECSDebt") !== HECSDebt.trim() ||
-      localStorage.getItem("HECSDebtAmount") !== HECSDebtAmount
+      localStorage.getItem("valueCreditCard") !== valueCreditCard.trim() ||
+      localStorage.getItem("valueCreditCardAmount") !== valueCreditCardAmount
     ) {
-      currentStep(27, itemStep27c);
+      currentStep(30, itemStep30);
     }
-    window.localStorage.setItem("HECSDebt", HECSDebt);
+    window.localStorage.setItem("valueCreditCard", valueCreditCard);
     window.localStorage.setItem(
-      "HECSDebtAmount",
-      HECSDebtAmount && parseInt(HECSDebtAmount.replace(/,/g, ""), 10)
+      "valueCreditCardAmount",
+      valueCreditCardAmount &&
+        parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
     );
     history.push({
-      pathname: `/refinance-fact-find/step-28`,
+      pathname: `/refinance-fact-find/step-31`,
     });
   };
 
   const onKeyUpHandle = (value, name) => {
-    if (name === "HECSDebt") {
-      setHECSDebt(value);
+    if (name === "valueCreditCard") {
+      setValueCreditCard(value);
     }
-    if (name === "HECSDebtAmount") {
-      setHECSDebtAmount(value);
+    if (name === "valueCreditCardAmount") {
+      setValueCreditCardAmount(value);
     }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkHECSDebtStatus(HECSDebt);
-    checkHECSDebtAmountStatus(HECSDebtAmount);
+    checkValueCreditCardStatus(valueCreditCard);
+    checkValueCreditCardAmountStatus(valueCreditCardAmount);
     if (
-      checkHECSDebtStatus(HECSDebt) &&
-      checkHECSDebtAmountStatus(HECSDebtAmount)
+      checkValueCreditCardStatus(valueCreditCard) &&
+      checkValueCreditCardAmountStatus(valueCreditCardAmount)
     ) {
       if (!showLoading) {
         setTimeout(function () {
@@ -132,20 +135,23 @@ const Step27C = () => {
   };
 
   const handleSkip = () => {
-    const skipStep27 = {
-      id: 27,
-      question: "Which institution is the HECS debt with?",
-      answer: HECSDebt,
-      question2: "What is the limit on the HECS Debt amount?",
-      answer2: HECSDebtAmount
-        ? parseInt(HECSDebtAmount.replace(/,/g, ""), 10).toLocaleString("en")
+    const skipStep30 = {
+      id: 30,
+      question: "Which institution is the credit card with?",
+      answer: valueCreditCard,
+      question2: "What is the limit on the credit card?",
+      answer2: valueCreditCardAmount
+        ? parseInt(valueCreditCardAmount.replace(/,/gi, ""), 10).toLocaleString(
+            "en"
+          )
         : "",
-      skip: (!HECSDebtAmount && "Skipped") || (!HECSDebt && "Skipped"),
-      menu: "27c",
+      skip:
+        (!valueCreditCard && "Skipped") ||
+        (!valueCreditCardAmount && "Skipped"),
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? skipStep27 : item
+      item.id === 30 ? skipStep30 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -155,47 +161,48 @@ const Step27C = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep27])
+        JSON.stringify([...listDataSubmit, skipStep30])
       );
     }
     history.push({
-      pathname: `/refinance-fact-find/step-28`,
+      pathname: `/refinance-fact-find/step-31`,
     });
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={27} numberScroll={1750}>
+    <LifeInsurance isShowHeader activeStep={30} numberScroll={1600}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
         <Container>
           <div className="wForm wow fadeInUp">
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  27. Which institution is the HECS debt with?
+                  30. Which institution is the credit card with?
                 </h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4 pt-2">
                   <Col xs={12} className="wForm-input pl-0">
                     <InputCustom2
-                      onFocus={() => setHECSDebtValid(valid.NON_VALID)}
+                      onFocus={() => setValueCreditCardValid(valid.NON_VALID)}
                       onKeyPress={onKeyDown}
                       onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "HECSDebt")
+                        onKeyUpHandle(e.target.value, "valueCreditCard")
                       }
-                      label="HECS debt Institution"
+                      label="Credit Card Institution"
                       value={
-                        HECSDebt &&
-                        HECSDebt[0].toUpperCase() + HECSDebt.slice(1)
+                        valueCreditCard &&
+                        valueCreditCard[0].toUpperCase() +
+                          valueCreditCard.slice(1)
                       }
                       id="price-input"
-                      customClassLabel={HECSDebt ? "active" : ""}
+                      customClassLabel={valueCreditCard ? "active" : ""}
                       customClassWrap="email five"
-                      innerRef={HECSDebtRef}
+                      innerRef={valueCreditCardRef}
                     />
                   </Col>
                 </Row>
-                {HECSDebtValid === valid.INVALID && (
+                {valueCreditCardValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Please enter your Car Loan Institution</p>
                   </div>
@@ -204,7 +211,7 @@ const Step27C = () => {
 
               <Col xs={12} className="text-center mt-4">
                 <h2 className="mb-3">
-                  27. What is the limit on the HECS Debt amount?
+                  30. What is the limit on the credit card?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -219,22 +226,24 @@ const Step27C = () => {
                         delimiter: ",",
                         numeralThousandsGroupStyle: "thousand",
                       }}
-                      onFocus={() => setHECSDebtAmountValid(valid.NON_VALID)}
+                      onFocus={() =>
+                        setValueCreditCardAmountValid(valid.NON_VALID)
+                      }
                       onKeyPress={onKeyDown}
                       onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "HECSDebtAmount")
+                        onKeyUpHandle(e.target.value, "valueCreditCardAmount")
                       }
                       label="E.G. $10,000"
-                      value={HECSDebtAmount}
+                      value={valueCreditCardAmount}
                       id="price-input"
-                      customClassLabel={HECSDebtAmount ? "active" : ""}
+                      customClassLabel={valueCreditCardAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"
-                      innerRef={HECSDebtAmountRef}
+                      innerRef={valueCreditCardAmountRef}
                     />
                   </Col>
                 </Row>
-                {HECSDebtAmountValid === valid.INVALID && (
+                {valueCreditCardAmountValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Value should be in between $0 - $10,000,000</p>
                   </div>
@@ -275,4 +284,4 @@ const Step27C = () => {
   );
 };
 
-export default Step27C;
+export default Step30;

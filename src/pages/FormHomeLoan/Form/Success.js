@@ -165,20 +165,20 @@ export default function Success() {
           ? types[3]
           : "") || "",
 
-      f_1620_car_loan_institution: localStorage.getItem("personalLoan") || "", //27a,
-      f_1621_car_loan_amount: localStorage.getItem("personalLoanAmount") || "", // 27a,
+      f_1620_car_loan_institution: localStorage.getItem("personalLoan") || "", //28a,
+      f_1621_car_loan_amount: localStorage.getItem("personalLoanAmount") || "", // 28a,
 
-      f_1624_personal_loan_institution: localStorage.getItem("carLoan") || "", //27b
-      f_1625_personal_loan_amount: localStorage.getItem("carLoanAmount") || "", //27b
+      f_1624_personal_loan_institution: localStorage.getItem("carLoan") || "", //28b
+      f_1625_personal_loan_amount: localStorage.getItem("carLoanAmount") || "", //28b
 
-      f_1622_hecs_institution: localStorage.getItem("HECSDebt") || "", //27c
-      f_1623_hecs_amount: localStorage.getItem("HECSDebtAmount") || "", // 27c
+      f_1622_hecs_institution: localStorage.getItem("HECSDebt") || "", //28c
+      f_1623_hecs_amount: localStorage.getItem("HECSDebtAmount") || "", // 28c
 
-      f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //28
+      f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //29
       f_1626_credit_card_institution:
-        localStorage.getItem("valueCreditCard") || "", // 29
-      f_1627_credit_card_amount:
-        localStorage.getItem("valueCreditCardAmount") || "", // 29
+        localStorage.getItem("valueCreditCard") || "", // 30
+      f_1628_credit_card_amount:
+        localStorage.getItem("valueCreditCardAmount") || "", // 30
       f_1632_loan_type:
         localStorage.getItem("currentlyRenting") === types2[1]
           ? "Investment"

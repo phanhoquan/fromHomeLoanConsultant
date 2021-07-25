@@ -1,71 +1,49 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
+import { CheckboxButton } from "../../../Components/CheckBox3";
 import LifeInsurance from "../index";
-import InputCustom2 from "../../../Components/InputCustom2";
-import InputNumber from "../../../Components/InputNumber";
 import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep29 } from "../../../utils/listLocalStorage";
+
+export const types = {
+  1: "YES",
+  2: "NO",
+};
 
 const Step29 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const valueCreditCardRef = useRef(null);
-  const valueCreditCardAmountRef = useRef(null);
-
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [valueCreditCard, setValueCreditCard] = useState(
-    localStorage.getItem("valueCreditCard") || ""
-  );
-  const [valueCreditCardValid, setValueCreditCardValid] = useState(
-    valid.NON_VALID
+
+  const [creditCard, setCreditCard] = useState(
+    localStorage.getItem("creditCard") || ""
   );
 
-  const [valueCreditCardAmount, setValueCreditCardAmount] = useState(
-    localStorage.getItem("valueCreditCardAmount") || ""
-  );
-  const [valueCreditCardAmountValid, setValueCreditCardAmountValid] = useState(
-    valid.NON_VALID
-  );
+  const [creditCardValid, setCreditCardValid] = useState(valid.NON_VALID);
 
-  useEffect(() => {
-    setTimeout(() => {
-      valueCreditCardRef?.current?.element?.focus();
-    }, 400);
-  }, []);
-
-  const checkValueCreditCardStatus = (value) => {
-    let test = value.length > 1;
-    setValueCreditCardValid(Number(test));
+  const checkStatusValid = (option) => {
+    let test = Object.values(types).includes(option);
+    setCreditCardValid(Number(test));
     return test;
   };
 
-  const checkValueCreditCardAmountStatus = (value) => {
-    let test =
-      parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
-    setValueCreditCardAmountValid(Number(test));
-    return test;
+  const onCheck = (option) => {
+    setCreditCard(option);
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 29);
-  const step29 = {
-    id: 29,
-    question: "Which institution is the credit card with?",
-    answer: valueCreditCard,
-    question2: "What is the limit on the credit card?",
-    answer2: valueCreditCardAmount
-      ? parseInt(valueCreditCardAmount.replace(/,/gi, ""), 10).toLocaleString(
-          "en"
-        )
-      : "",
-    skip: "",
-  };
-  const nextStep = () => {
+  const nextStep = (option) => {
+    const step29 = {
+      id: 29,
+      question: "Do you have a credit card?",
+      answer: option,
+      skip: "",
+    };
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 29 ? step29 : item
@@ -81,52 +59,32 @@ const Step29 = () => {
         JSON.stringify([...listDataSubmit, step29])
       );
     }
-    if (
-      localStorage.getItem("valueCreditCard") !== valueCreditCard.trim() ||
-      localStorage.getItem("valueCreditCardAmount") !== valueCreditCardAmount
-    ) {
+    if (localStorage.getItem("creditCard") !== option) {
       currentStep(29, itemStep29);
     }
-    window.localStorage.setItem("valueCreditCard", valueCreditCard);
-    window.localStorage.setItem(
-      "valueCreditCardAmount",
-      valueCreditCardAmount &&
-        parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
-    );
-    history.push({
-      pathname: `/refinance-fact-find/step-31`,
-    });
-  };
-
-  const onKeyUpHandle = (value, name) => {
-    if (name === "valueCreditCard") {
-      setValueCreditCard(value);
-    }
-    if (name === "valueCreditCardAmount") {
-      setValueCreditCardAmount(value);
+    window.localStorage.setItem("creditCard", option);
+    if (option === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-30`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-31`,
+      });
     }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
+    checkStatusValid(creditCard);
     setTimeout(() => setShowLoading(false), 500);
-    checkValueCreditCardStatus(valueCreditCard);
-    checkValueCreditCardAmountStatus(valueCreditCardAmount);
-    if (
-      checkValueCreditCardStatus(valueCreditCard) &&
-      checkValueCreditCardAmountStatus(valueCreditCardAmount)
-    ) {
+
+    if (checkStatusValid(creditCard)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(creditCard);
         }, 500);
       }
-    }
-  };
-
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      onClickNext();
     }
   };
 
@@ -137,17 +95,9 @@ const Step29 = () => {
   const handleSkip = () => {
     const skipStep29 = {
       id: 29,
-      question: "Which institution is the credit card with?",
-      answer: valueCreditCard,
-      question2: "What is the limit on the credit card?",
-      answer2: valueCreditCardAmount
-        ? parseInt(valueCreditCardAmount.replace(/,/gi, ""), 10).toLocaleString(
-            "en"
-          )
-        : "",
-      skip:
-        (!valueCreditCard && "Skipped") ||
-        (!valueCreditCardAmount && "Skipped"),
+      question: "Do you have a credit card?",
+      answer: creditCard,
+      skip: !creditCard && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
@@ -164,92 +114,56 @@ const Step29 = () => {
         JSON.stringify([...listDataSubmit, skipStep29])
       );
     }
-    history.push({
-      pathname: `/refinance-fact-find/step-31`,
-    });
+    if (creditCard === types[1]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-30`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-31`,
+      });
+    }
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={29} numberScroll={1600}>
-      <section className="formContent-step-second formContent-life-insurance mb-2">
+    <LifeInsurance isShowHeader activeStep={29} numberScroll={1500}>
+      <section className="formContent-step-first pb-5">
         <Container>
-          <div className="wForm wow fadeInUp">
+          <div
+            className={
+              "wForm wow " +
+              (history?.location?.back ? "fadeInDown" : "fadeInUp")
+            }
+          >
             <Row>
-              <Col xs={12} className="text-center">
-                <h2 className="mb-3">
-                  29. Which institution is the credit card with?
-                </h2>
+              <Col xs={12} className="text-center mt-3">
+                <h2 className="mb-4">29. Do you have a credit card?</h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <InputCustom2
-                      onFocus={() => setValueCreditCardValid(valid.NON_VALID)}
-                      onKeyPress={onKeyDown}
-                      onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "valueCreditCard")
-                      }
-                      label="Credit Card Institution"
-                      value={
-                        valueCreditCard &&
-                        valueCreditCard[0].toUpperCase() +
-                          valueCreditCard.slice(1)
-                      }
-                      id="price-input"
-                      customClassLabel={valueCreditCard ? "active" : ""}
-                      customClassWrap="email five"
-                      innerRef={valueCreditCardRef}
+                <Row className="info-customer mt-4">
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      checkBox={creditCard === types[1]}
+                      onClick={() => onCheck(types[1])}
+                      name={types[1]}
+                      classContainer="radius"
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[2])}
+                      checkBox={creditCard === types[2]}
+                      name={types[2]}
+                      classContainer="radius"
                     />
                   </Col>
                 </Row>
-                {valueCreditCardValid === valid.INVALID && (
+                {creditCardValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please enter your Car Loan Institution</p>
+                    <p>Please select an option</p>
                   </div>
                 )}
               </Col>
-
-              <Col xs={12} className="text-center mt-4">
-                <h2 className="mb-3">
-                  29. What is the limit on the credit card?
-                </h2>
-              </Col>
-              <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <InputNumber
-                      inputMode="numeric"
-                      options={{
-                        numericOnly: true,
-                        numeral: true,
-                        numeralDecimalMark: "",
-                        delimiter: ",",
-                        numeralThousandsGroupStyle: "thousand",
-                      }}
-                      onFocus={() =>
-                        setValueCreditCardAmountValid(valid.NON_VALID)
-                      }
-                      onKeyPress={onKeyDown}
-                      onChange={(e) =>
-                        onKeyUpHandle(e.target.value, "valueCreditCardAmount")
-                      }
-                      label="E.G. $10,000"
-                      value={valueCreditCardAmount}
-                      id="price-input"
-                      customClassLabel={valueCreditCardAmount ? "active" : ""}
-                      iconPrice
-                      customClassWrap="email five"
-                      innerRef={valueCreditCardAmountRef}
-                    />
-                  </Col>
-                </Row>
-                {valueCreditCardAmountValid === valid.INVALID && (
-                  <div className="text-error">
-                    <p>Value should be in between $0 - $10,000,000</p>
-                  </div>
-                )}
-              </Col>
-
               <Col xs={12} className="fadeInDown wow  mt-4">
                 <div className="group-btn-footer col d-flex justify-content-center">
                   <Button

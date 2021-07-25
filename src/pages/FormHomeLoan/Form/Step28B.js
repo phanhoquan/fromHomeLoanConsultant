@@ -8,9 +8,9 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import InputNumber from "../../../Components/InputNumber";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep27b } from "../../../utils/listLocalStorage";
+import { itemStep28b } from "../../../utils/listLocalStorage";
 
-const Step27B = () => {
+const Step28B = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
@@ -46,9 +46,9 @@ const Step27B = () => {
     setCarLoanAmountValid(Number(test));
     return test;
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 27);
-  const step27 = {
-    id: 27,
+  const finDataStep = listDataSubmit.find((item) => item.id === 28);
+  const step28 = {
+    id: 28,
     question: "Which institution is the car loan with?",
     answer: carLoan,
     question2: "What is the limit on the car loan amount?",
@@ -56,12 +56,12 @@ const Step27B = () => {
       ? parseInt(carLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
       : "",
     skip: "",
-    menu: "27b",
+    menu: "28b",
   };
   const nextStep = () => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? step27 : item
+      item.id === 28 ? step28 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -71,14 +71,14 @@ const Step27B = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step27])
+        JSON.stringify([...listDataSubmit, step28])
       );
     }
     if (
       localStorage.getItem("carLoan") !== carLoan.trim() ||
       localStorage.getItem("carLoanAmount") !== carLoanAmount
     ) {
-      currentStep(27, itemStep27b);
+      currentStep(28, itemStep28b);
     }
     window.localStorage.setItem("carLoan", carLoan);
     window.localStorage.setItem(
@@ -86,7 +86,7 @@ const Step27B = () => {
       carLoanAmount && parseInt(carLoanAmount.replace(/,/g, ""), 10)
     );
     history.push({
-      pathname: `/refinance-fact-find/step-28`,
+      pathname: `/refinance-fact-find/step-29`,
     });
   };
 
@@ -127,8 +127,8 @@ const Step27B = () => {
   };
 
   const handleSkip = () => {
-    const skipStep27 = {
-      id: 27,
+    const skipStep28 = {
+      id: 28,
       question: "Which institution is the car loan with?",
       answer: carLoan,
       question2: "What is the limit on the car loan amount?",
@@ -136,11 +136,11 @@ const Step27B = () => {
         ? parseInt(carLoanAmount.replace(/,/g, ""), 10).toLocaleString("en")
         : "",
       skip: (!carLoanAmount && "Skipped") || (!carLoan && "Skipped"),
-      menu: "27b",
+      menu: "28b",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 27 ? skipStep27 : item
+      item.id === 28 ? skipStep28 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -150,23 +150,23 @@ const Step27B = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep27])
+        JSON.stringify([...listDataSubmit, skipStep28])
       );
     }
     history.push({
-      pathname: `/refinance-fact-find/step-28`,
+      pathname: `/refinance-fact-find/step-29`,
     });
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={27} numberScroll={1750}>
+    <LifeInsurance isShowHeader activeStep={28} numberScroll={1750}>
       <section className="formContent-step-second formContent-life-insurance mb-2">
         <Container>
           <div className="wForm wow fadeInUp">
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  27. Which institution is the car loan with?
+                  28. Which institution is the car loan with?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -196,7 +196,7 @@ const Step27B = () => {
 
               <Col xs={12} className="text-center mt-4">
                 <h2 className="mb-3">
-                  27. What is the limit on the car loan amount?
+                  28. What is the limit on the car loan amount?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -267,4 +267,4 @@ const Step27B = () => {
   );
 };
 
-export default Step27B;
+export default Step28B;

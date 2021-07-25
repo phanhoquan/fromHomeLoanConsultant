@@ -94,23 +94,23 @@ const Step26 = () => {
 
     if (option?.length === 1 && !!option?.includes(types[1])) {
       history.push({
-        pathname: `/refinance-fact-find/step-27a`,
+        pathname: `/refinance-fact-find/step-28a`,
       });
     } else if (option?.length === 1 && !!option?.includes(types[2])) {
       history.push({
-        pathname: `/refinance-fact-find/step-27b`,
+        pathname: `/refinance-fact-find/step-28b`,
       });
     } else if (option?.length === 1 && !!option?.includes(types[3])) {
       history.push({
-        pathname: `/refinance-fact-find/step-27c`,
+        pathname: `/refinance-fact-find/step-28c`,
       });
     } else if (option?.length > 1) {
       history.push({
-        pathname: `/refinance-fact-find/step-27`,
+        pathname: `/refinance-fact-find/step-28`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-28`,
+        pathname: `/refinance-fact-find/step-29`,
       });
     }
   };
@@ -163,29 +163,29 @@ const Step26 = () => {
       !!personalLoansStatus?.includes(types[1])
     ) {
       history.push({
-        pathname: `/refinance-fact-find/step-27a`,
+        pathname: `/refinance-fact-find/step-28a`,
       });
     } else if (
       personalLoansStatus?.length === 1 &&
       !!personalLoansStatus?.includes(types[2])
     ) {
       history.push({
-        pathname: `/refinance-fact-find/step-27b`,
+        pathname: `/refinance-fact-find/step-28b`,
       });
     } else if (
       personalLoansStatus?.length === 1 &&
       !!personalLoansStatus?.includes(types[3])
     ) {
       history.push({
-        pathname: `/refinance-fact-find/step-27c`,
+        pathname: `/refinance-fact-find/step-28c`,
       });
     } else if (personalLoansStatus?.length > 1) {
       history.push({
-        pathname: `/refinance-fact-find/step-27`,
+        pathname: `/refinance-fact-find/step-28`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-28`,
+        pathname: `/refinance-fact-find/step-29`,
       });
     }
   };
