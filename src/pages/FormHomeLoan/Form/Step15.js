@@ -77,7 +77,7 @@ const Step15 = () => {
       });
     } else if (option === types[5]) {
       history.push({
-        pathname: `/refinance-fact-find/step-20`,
+        pathname: `/refinance-fact-find/step-21`,
       });
     } else if (option === types[6]) {
       history.push({
@@ -135,7 +135,7 @@ const Step15 = () => {
       });
     } else if (employmentWorkingStatus === types[5]) {
       history.push({
-        pathname: `/refinance-fact-find/step-20`,
+        pathname: `/refinance-fact-find/step-21`,
       });
     } else if (employmentWorkingStatus === types[6]) {
       history.push({

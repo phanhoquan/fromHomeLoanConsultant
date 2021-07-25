@@ -61,7 +61,7 @@ const HomeLoan = ({
               </p>
             </div>
           </li>
-          {item?.id === 21 || item?.id === 28 || item?.id === 30 ? (
+          {item?.id === 22 || item?.id === 28 || item?.id === 30 ? (
             <li
               key={index}
               onClick={() =>

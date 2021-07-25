@@ -78,7 +78,7 @@ const Step19 = () => {
     }
     window.localStorage.setItem("businessBeenRegistered", value);
     history.push({
-      pathname: `/refinance-fact-find/step-20`,
+      pathname: `/refinance-fact-find/step-21`,
     });
   };
   const onClickSelect = (value) => {
@@ -134,7 +134,7 @@ const Step19 = () => {
       );
     }
     history.push({
-      pathname: `/refinance-fact-find/step-20`,
+      pathname: `/refinance-fact-find/step-21`,
     });
   };
 

@@ -1,15 +1,20 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
-import LifeInsurance from "../index";
-import { itemStep21 } from "../../../utils/listLocalStorage";
+import { CheckboxButton } from "../../../Components/CheckBox3";
 import { currentStep } from "../../../utils/removeQuestion";
-import InputNumber from "../../../Components/InputNumber";
+import { itemStep21 } from "../../../utils/listLocalStorage";
+import LifeInsurance from "../index";
 
 export const types = {
+  1: "YES",
+  2: "NO",
+};
+
+export const types2 = {
   1: "Sole Applicant",
   2: "Joint Applicant",
 };
@@ -18,56 +23,35 @@ const Step21 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const priceTax2019Ref = useRef(null);
-  const priceTax2020Ref = useRef(null);
-  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
+  // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [priceTax2019, setPriceTax2019] = useState(
-    localStorage.getItem("priceTax2019") || ""
+
+  const [taxReturns, setTaxReturns] = useState(
+    localStorage.getItem("taxReturns") || ""
   );
-  const [priceTax2019Valid, setPriceTax2019Valid] = useState(valid.NON_VALID);
 
-  const [priceTax2020, setPriceTax2020] = useState(
-    localStorage.getItem("priceTax2020") || ""
-  );
-  const [priceTax2020Valid, setPriceTax2020Valid] = useState(valid.NON_VALID);
+  const [taxReturnsValid, setTaxReturnsValid] = useState(valid.NON_VALID);
 
-  useEffect(() => {
-    setTimeout(() => {
-      priceTax2019Ref?.current?.element?.focus();
-    }, 400);
-  }, []);
-
-  const checkPriceTax2019Status = (value) => {
-    let test =
-      parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 1000000;
-    setPriceTax2019Valid(Number(test));
+  const checkStatusValid = (option) => {
+    let test = Object.values(types).includes(option);
+    setTaxReturnsValid(Number(test));
     return test;
   };
 
-  const checkPriceTax2020Status = (value) => {
-    let test =
-      parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 1000000;
-    setPriceTax2020Valid(Number(test));
-    return test;
+  const onCheck = (option) => {
+    setTaxReturns(option);
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 21);
-  const step21 = {
-    id: 21,
-    question: "What was your 2019 taxable income?",
-    answer: priceTax2019
-      ? parseInt(priceTax2019.replace(/,/gi, ""), 10).toLocaleString("en")
-      : "",
-    question2: "What was your 2020 taxable income?",
-    answer2: priceTax2020
-      ? parseInt(priceTax2020.replace(/,/gi, ""), 10).toLocaleString("en")
-      : "",
-    skip: "",
-  };
-  const nextStep = () => {
+
+  const nextStep = (option) => {
+    const step21 = {
+      id: 21,
+      question: "Have the tax returns for 2019/2020 \n been completed?",
+      answer: option,
+      skip: "",
+    };
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 21 ? step21 : item
@@ -83,61 +67,38 @@ const Step21 = () => {
         JSON.stringify([...listDataSubmit, step21])
       );
     }
-
-    if (
-      localStorage.getItem("priceTax2019") !== priceTax2019.trim() ||
-      localStorage.getItem("priceTax2020") !== priceTax2020.trim()
-    ) {
+    if (localStorage.getItem("taxReturns") !== option) {
       currentStep(21, itemStep21);
     }
-    window.localStorage.setItem(
-      "priceTax2019",
-      priceTax2019 && parseInt(priceTax2019.replace(/,/g, ""), 10)
-    );
-    window.localStorage.setItem(
-      "priceTax2020",
-      priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
-    );
-    if (jointApplicationStatus === types[2]) {
+    window.localStorage.setItem("taxReturns", option);
+    // if (jointApplicationStatus === types2[2]) {
+    if (option === types[1]) {
       history.push({
-        pathname: `/refinance-fact-find/step-23`,
+        pathname: `/refinance-fact-find/step-22`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-27`,
+        pathname: `/refinance-fact-find/step-23`,
       });
     }
-  };
-
-  const onKeyUpHandle = (value, name) => {
-    if (name === "tax2019") {
-      setPriceTax2019(value);
-    }
-    if (name === "tax2020") {
-      setPriceTax2020(value);
-    }
+    // } else {
+    //   history.push({
+    //     pathname: `/refinance-fact-find/step-27`,
+    //   });
+    // }
   };
 
   const onClickNext = () => {
     setShowLoading(true);
+    checkStatusValid(taxReturns);
     setTimeout(() => setShowLoading(false), 500);
-    checkPriceTax2019Status(priceTax2019);
-    checkPriceTax2020Status(priceTax2020);
-    if (
-      checkPriceTax2019Status(priceTax2019) &&
-      checkPriceTax2020Status(priceTax2020)
-    ) {
+
+    if (checkStatusValid(taxReturns)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(taxReturns);
         }, 500);
       }
-    }
-  };
-
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      onClickNext();
     }
   };
 
@@ -148,15 +109,9 @@ const Step21 = () => {
   const handleSkip = () => {
     const skipStep21 = {
       id: 21,
-      question: "What was your 2019 taxable income?",
-      answer: priceTax2019
-        ? parseInt(priceTax2019.replace(/,/gi, ""), 10).toLocaleString("en")
-        : "",
-      question2: "What was your 2020 taxable income?",
-      answer2: priceTax2020
-        ? parseInt(priceTax2020.replace(/,/gi, ""), 10).toLocaleString("en")
-        : "",
-      skip: (!priceTax2019 && "Skipped") || (!priceTax2020 && "Skipped"),
+      question: "Have the tax returns for 2019/2020 \n been completed?",
+      answer: taxReturns,
+      skip: !taxReturns && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
@@ -173,93 +128,66 @@ const Step21 = () => {
         JSON.stringify([...listDataSubmit, skipStep21])
       );
     }
-    if (jointApplicationStatus === types[2]) {
+
+    // if (jointApplicationStatus === types2[2]) {
+    if (taxReturns === types[1]) {
       history.push({
-        pathname: `/refinance-fact-find/step-23`,
+        pathname: `/refinance-fact-find/step-22`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-27`,
+        pathname: `/refinance-fact-find/step-23`,
       });
     }
+    // } else {
+    //   history.push({
+    //     pathname: `/refinance-fact-find/step-27`,
+    //   });
+    // }
   };
 
   return (
     <LifeInsurance isShowHeader activeStep={21} numberScroll={1000}>
-      <section className="formContent-step-second formContent-life-insurance mb-2">
+      <section className="formContent-step-first pb-5">
         <Container>
-          <div className="wForm wow fadeInUp">
+          <div
+            className={
+              "wForm wow " +
+              (history?.location?.back ? "fadeInDown" : "fadeInUp")
+            }
+          >
             <Row>
-              <Col xs={12} className="text-center">
-                <h2 className="mb-3">21. What was your 2019 taxable income?</h2>
+              <Col xs={12} className="text-center mt-3">
+                <h2 className="mb-4">
+                  21. Have the tax returns for 2019/2020 <br />
+                  been completed?
+                </h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <InputNumber
-                      inputMode="numeric"
-                      options={{
-                        numericOnly: true,
-                        numeral: true,
-                        numeralDecimalMark: "",
-                        delimiter: ",",
-                        numeralThousandsGroupStyle: "thousand",
-                      }}
-                      onFocus={() => setPriceTax2019Valid(valid.NON_VALID)}
-                      onKeyPress={onKeyDown}
-                      onChange={(e) => onKeyUpHandle(e.target.value, "tax2019")}
-                      label="E.G. $80,000"
-                      value={priceTax2019}
-                      id="price-input"
-                      customClassLabel={priceTax2019 ? "active" : ""}
-                      iconPrice
-                      customClassWrap="email five"
-                      innerRef={priceTax2019Ref}
+                <Row className="info-customer mt-4">
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      checkBox={taxReturns === types[1]}
+                      onClick={() => onCheck(types[1])}
+                      name={types[1]}
+                      classContainer="radius"
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[2])}
+                      checkBox={taxReturns === types[2]}
+                      name={types[2]}
+                      classContainer="radius"
                     />
                   </Col>
                 </Row>
-                {priceTax2019Valid === valid.INVALID && (
+                {taxReturnsValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Value should be in between $0 - $1,000,000</p>
+                    <p>Please select an option</p>
                   </div>
                 )}
               </Col>
-
-              <Col xs={12} className="text-center mt-4">
-                <h2 className="mb-3">21. What was your 2020 taxable income?</h2>
-              </Col>
-              <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <InputNumber
-                      inputMode="numeric"
-                      options={{
-                        numericOnly: true,
-                        numeral: true,
-                        numeralDecimalMark: "",
-                        delimiter: ",",
-                        numeralThousandsGroupStyle: "thousand",
-                      }}
-                      onFocus={() => setPriceTax2020Valid(valid.NON_VALID)}
-                      onKeyPress={onKeyDown}
-                      onChange={(e) => onKeyUpHandle(e.target.value, "tax2020")}
-                      label="E.G. $85,000"
-                      value={priceTax2020}
-                      id="price-input"
-                      customClassLabel={priceTax2020 ? "active" : ""}
-                      iconPrice
-                      customClassWrap="email five"
-                      innerRef={priceTax2020Ref}
-                    />
-                  </Col>
-                </Row>
-                {priceTax2020Valid === valid.INVALID && (
-                  <div className="text-error">
-                    <p>Value should be in between $0 - $1,000,000</p>
-                  </div>
-                )}
-              </Col>
-
               <Col xs={12} className="fadeInDown wow  mt-4">
                 <div className="group-btn-footer col d-flex justify-content-center">
                   <Button

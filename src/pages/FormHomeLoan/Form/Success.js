@@ -142,8 +142,8 @@ export default function Success() {
 
       f_1615_tax_completed: localStorage.getItem("taxReturns") || "", //20
 
-      f_1613_tax_2019: localStorage.getItem("priceTax2019") || "", //21
-      f_1614_tax_2020: localStorage.getItem("priceTax2020") || "", //21
+      f_1613_tax_2019: localStorage.getItem("priceTax2019") || "", //22
+      f_1614_tax_2020: localStorage.getItem("priceTax2020") || "", //22
 
       f_1616_joint_applicant_occupation:
         localStorage.getItem("partnersOccupation") || "", //23

@@ -494,7 +494,7 @@ export const itemStep19 = [
   "businessBeenRegistered",
 ];
 
-export const itemStep20 = [
+export const itemStep21 = [
   "isLogin",
   "password",
   "userName",
@@ -529,7 +529,7 @@ export const itemStep20 = [
   "taxReturns",
 ];
 
-export const itemStep21 = [
+export const itemStep22 = [
   "isLogin",
   "password",
   "userName",
