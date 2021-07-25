@@ -333,7 +333,7 @@ export const itemStep15 = [
   "employmentWorkingStatus",
 ];
 
-export const itemStep15A = [
+export const itemStep16 = [
   "isLogin",
   "password",
   "userName",
@@ -361,10 +361,10 @@ export const itemStep15A = [
   "otherChillApplicantAge",
   "workingStatus",
   "employmentWorkingStatus",
-  "numberPartnerReturn15A",
+  "numberPartnerReturn16",
 ];
 
-export const itemStep16 = [
+export const itemStep17 = [
   "isLogin",
   "password",
   "userName",
@@ -395,7 +395,7 @@ export const itemStep16 = [
   "occupation",
 ];
 
-export const itemStep17 = [
+export const itemStep18 = [
   "isLogin",
   "password",
   "userName",

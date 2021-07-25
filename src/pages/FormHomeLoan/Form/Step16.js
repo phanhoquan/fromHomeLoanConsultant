@@ -1,73 +1,65 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
-import InputCustom2 from "../../../Components/InputCustom2";
 import LifeInsurance from "../index";
-import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
-import originArray from "../../../utils/quoteOccupations";
+import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep16 } from "../../../utils/listLocalStorage";
 
+const listNumberPartnerReturn = [
+  "Less than 3 months",
+  "Less than 6 months",
+  "Less than 9 months",
+  "Less than 12 months",
+  "More than 12 months",
+  "Not returning to work",
+];
+
+// export const types = {
+//   1: "Sole Applicant",
+//   2: "Joint Applicant",
+// };
+
 const Step16 = () => {
-  const occupationRef = useRef(null);
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
+  const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
+  // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
+  const [numberPartnerReturn, setNumberPartnerReturn] = useState(
+    localStorage.getItem("numberPartnerReturn16") || ""
+  );
   const [isShowModal, setIsShowModal] = useState(false);
-  const [occupation, setOccupation] = useState(
-    localStorage.getItem("occupation") || ""
+  const [numberPartnerReturnValid, setNumberPartnerReturnValid] = useState(
+    valid.NON_VALID
   );
-  const [dataListOccupations, setDataListOccupations] = useState(
-    originArray || []
-  );
-  const [occupationValid, setOccupationValid] = useState(valid.NON_VALID);
 
-  useEffect(() => {
-    setTimeout(() => {
-      occupationRef?.current?.focus();
-    }, 400);
-  }, []);
-
-  const checkOccupationStatus = (value) => {
-    setIsShowModal(false);
-    let test = originArray.includes(value);
-    let testValid = /^([a-zA-Z\s]{2,})$/.test(value);
-    if (!test) {
-      setOccupationValid(Number(testValid));
-      return testValid;
-    } else {
-      setOccupationValid(Number(test));
-      return test;
-    }
-  };
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowModal(false);
   });
 
-  useEffect(() => {
-    if (isShowModal) {
-      setDataListOccupations([
-        ...getDataListOccupationOptions(occupation),
-        occupation,
-      ]);
-    }
-    // eslint-disable-next-line
-  }, [occupation]);
-  const finDataStep = listDataSubmit.find((item) => item.id === 16);
-  const step16 = {
-    id: 16,
-    question: "What job role are you currently working in?",
-    answer: occupation,
-    skip: "",
+  const checkNumberPartnerReturnStatus = (value) => {
+    const test = listNumberPartnerReturn.includes(value);
+    setNumberPartnerReturnValid(Number(test));
+    setIsShowModal(false);
+    return test;
   };
-  const nextStep = () => {
+  const finDataStep = listDataSubmit.find((item) => item.id === 16);
+  const nextStep = (value) => {
+    const step16 = {
+      id: 16,
+      question: "When are you expected to return to work?",
+      answer: value,
+      skip: "",
+    };
+
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 16 ? step16 : item
@@ -83,49 +75,30 @@ const Step16 = () => {
         JSON.stringify([...listDataSubmit, step16])
       );
     }
-    if (localStorage.getItem("occupation") !== occupation.trim()) {
+
+    if (localStorage.getItem("numberPartnerReturn16") !== value) {
       currentStep(16, itemStep16);
     }
-    window.localStorage.setItem("occupation", occupation);
+    window.localStorage.setItem("numberPartnerReturn16", value);
     history.push({
       pathname: `/refinance-fact-find/step-17`,
     });
   };
 
-  const onKeyUpHandle = (name, value) => {
-    if (name === "occupation") {
-      setOccupation(value.replace(/[0-9]/g, ""));
-      if (value?.length >= 2) {
-        setIsShowModal(true);
-      } else {
-        setIsShowModal(false);
-      }
-    }
-  };
-
-  const handelOnFocus = (name) => {
-    if (name?.length >= 2) {
-      setIsShowModal(true);
-    } else {
-      setIsShowModal(false);
-    }
-    setOccupationValid(valid.NON_VALID);
-  };
-
-  const onClickSelect = (name) => {
-    setOccupation(name);
-    checkOccupationStatus(name);
+  const onClickSelect = (value) => {
+    setNumberPartnerReturn(value);
+    setNumberPartnerReturnValid(valid.NON_VALID);
     setIsShowModal(false);
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkOccupationStatus(occupation);
-    if (checkOccupationStatus(occupation)) {
+    checkNumberPartnerReturnStatus(numberPartnerReturn);
+    if (checkNumberPartnerReturnStatus(numberPartnerReturn)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(numberPartnerReturn);
         }, 500);
       }
     }
@@ -137,11 +110,6 @@ const Step16 = () => {
     }
   };
 
-  const showClass =
-    isShowModal && occupation?.length >= 2 && dataListOccupations?.length > 0
-      ? "d-block"
-      : "d-none";
-
   const onClickBack = () => {
     history.go(-1);
   };
@@ -149,10 +117,11 @@ const Step16 = () => {
   const handleSkip = () => {
     const skipStep16 = {
       id: 16,
-      question: "What job role are you currently working in?",
-      answer: occupation,
-      skip: !occupation && "Skipped",
+      question: "When are you expected to return to work?",
+      answer: numberPartnerReturn,
+      skip: !numberPartnerReturn && "Skipped",
     };
+
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 16 ? skipStep16 : item
     );
@@ -174,8 +143,12 @@ const Step16 = () => {
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={16} numberScroll={900}>
-      <section className="formContent-step-second form-six formContent-life-insurance mb-0">
+    <LifeInsurance isShowHeader activeStep={16} numberScroll={1000}>
+      <section
+        className={`formContent-step-second formContent-life-insurance ${
+          isShowModal ? "mb-10" : "mb-2"
+        }`}
+      >
         <Container>
           <div
             className={
@@ -185,36 +158,46 @@ const Step16 = () => {
           >
             <Row>
               <Col xs={12} className="text-center">
-                <h2>16. What job role are you currently working in?</h2>
+                <h2 className="mb-3">
+                  16. When are you expected to return to work?
+                </h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4">
+                <Row className="info-customer mt-4 pt-2">
                   <Col
                     xs={12}
-                    className="wForm-input pl-0"
+                    className="wForm-input pl-0 bankProviders"
                     ref={wrapperInfoRef}
                   >
                     <InputCustom2
-                      onFocus={() => handelOnFocus(occupation)}
+                      onFocus={() => {
+                        setIsShowModal(true);
+                        setNumberPartnerReturnValid(valid.NON_VALID);
+                      }}
                       onKeyPress={onKeyDown}
-                      onChange={(e) =>
-                        onKeyUpHandle("occupation", e.target.value)
-                      }
-                      label="Current job role"
-                      value={occupation}
-                      id="iconOccupation"
-                      customClassLabel={occupation ? "active" : ""}
-                      innerRef={occupationRef}
+                      onChange={() => () => {}}
+                      label="Select when your partner return to work"
+                      value={numberPartnerReturn}
+                      id="price-input"
+                      customClassLabel={numberPartnerReturn ? "active" : ""}
+                      iconArrow
+                      customClassWrap="email five"
+                      innerRef={numberPartnerReturnRef}
+                      readOnly
                     />
-
-                    <ul className={`list-occupation ${showClass}`}>
-                      {dataListOccupations &&
-                        dataListOccupations.length > 0 &&
-                        dataListOccupations.map((name, index) => (
+                    <ul
+                      className={`list-occupation ${
+                        isShowModal ? "d-block" : "d-none"
+                      }`}
+                    >
+                      {listNumberPartnerReturn &&
+                        listNumberPartnerReturn.map((name, index) => (
                           <li
                             key={index + 1}
                             onClick={() => onClickSelect(name)}
-                            className={occupation === name ? "active" : ""}
+                            className={
+                              numberPartnerReturn === name ? "active" : ""
+                            }
                           >
                             {name}
                           </li>
@@ -222,9 +205,9 @@ const Step16 = () => {
                     </ul>
                   </Col>
                 </Row>
-                {occupationValid === valid.INVALID && (
+                {numberPartnerReturnValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please enter your working</p>
+                    <p>Please select an option</p>
                   </div>
                 )}
               </Col>

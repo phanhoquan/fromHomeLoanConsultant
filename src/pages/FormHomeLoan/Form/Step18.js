@@ -8,36 +8,37 @@ import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
-import { itemStep15A } from "../../../utils/listLocalStorage";
+import { itemStep18 } from "../../../utils/listLocalStorage";
 
-const listNumberPartnerReturn = [
-  "Less than 3 months",
-  "Less than 6 months",
-  "Less than 9 months",
-  "Less than 12 months",
-  "More than 12 months",
-  "Not returning to work",
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Self Employed",
+  4: "Unemployed",
+};
+
+const listNumberYearWorking = [
+  "1 year",
+  "2 years",
+  "3 years",
+  "4 years",
+  "5+ years",
 ];
 
-// export const types = {
-//   1: "Sole Applicant",
-//   2: "Joint Applicant",
-// };
-
-const Step15A = () => {
+const Step18 = () => {
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const numberPartnerReturnRef = useRef(null);
+  const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
-  // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
+  const employmentStatus = localStorage.getItem("employmentStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [numberPartnerReturn, setNumberPartnerReturn] = useState(
-    localStorage.getItem("numberPartnerReturn15A") || ""
+  const [numberYearWorking, setNumberYearWorking] = useState(
+    localStorage.getItem("numberYearWorking") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
-  const [numberPartnerReturnValid, setNumberPartnerReturnValid] = useState(
+  const [numberYearWorkingValid, setNumberYearWorkingValid] = useState(
     valid.NON_VALID
   );
 
@@ -45,24 +46,26 @@ const Step15A = () => {
     setIsShowModal(false);
   });
 
-  const checkNumberPartnerReturnStatus = (value) => {
-    const test = listNumberPartnerReturn.includes(value);
-    setNumberPartnerReturnValid(Number(test));
+  const checkNumberYearWorkingStatus = (value) => {
+    const test = listNumberYearWorking.includes(value);
+    setNumberYearWorkingValid(Number(test));
     setIsShowModal(false);
     return test;
   };
-  const finDataStep = listDataSubmit.find((item) => item.id === 15.1);
+
+  const finDataStep = listDataSubmit.find((item) => item.id === 18);
+
   const nextStep = (value) => {
-    const step15A = {
-      id: 15.1,
-      question: "When are you expected to return to work?",
+    const step18 = {
+      id: 18,
+      question: "How long have you been working at this job for?",
       answer: value,
       skip: "",
     };
 
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 15.1 ? step15A : item
+      item.id === 18 ? step18 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -72,33 +75,37 @@ const Step15A = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, step15A])
+        JSON.stringify([...listDataSubmit, step18])
       );
     }
-
-    if (localStorage.getItem("numberPartnerReturn15A") !== value) {
-      currentStep(15.1, itemStep15A);
+    if (localStorage.getItem("numberYearWorking") !== value) {
+      currentStep(18, itemStep18);
     }
-    window.localStorage.setItem("numberPartnerReturn15A", value);
-    history.push({
-      pathname: `/refinance-fact-find/step-16`,
-    });
+    window.localStorage.setItem("numberYearWorking", value);
+    if (employmentStatus === types[3]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-19`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-21`,
+      });
+    }
   };
-
   const onClickSelect = (value) => {
-    setNumberPartnerReturn(value);
-    setNumberPartnerReturnValid(valid.NON_VALID);
+    setNumberYearWorking(value);
+    setNumberYearWorkingValid(valid.NON_VALID);
     setIsShowModal(false);
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkNumberPartnerReturnStatus(numberPartnerReturn);
-    if (checkNumberPartnerReturnStatus(numberPartnerReturn)) {
+    checkNumberYearWorkingStatus(numberYearWorking);
+    if (checkNumberYearWorkingStatus(numberYearWorking)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep(numberPartnerReturn);
+          nextStep(numberYearWorking);
         }, 500);
       }
     }
@@ -115,15 +122,14 @@ const Step15A = () => {
   };
 
   const handleSkip = () => {
-    const skipStep15a = {
-      id: 15.1,
-      question: "When are you expected to return to work?",
-      answer: numberPartnerReturn,
-      skip: !numberPartnerReturn && "Skipped",
+    const skipStep18 = {
+      id: 18,
+      question: "How long have you been working at this job for?",
+      answer: numberYearWorking,
+      skip: !numberYearWorking && "Skipped",
     };
-
     const updateDataStep = listDataSubmit.map((item) =>
-      item.id === 15.1 ? skipStep15a : item
+      item.id === 18 ? skipStep18 : item
     );
     if (finDataStep) {
       window.localStorage.setItem(
@@ -133,17 +139,23 @@ const Step15A = () => {
     } else {
       window.localStorage.setItem(
         "listDataSubmit",
-        JSON.stringify([...listDataSubmit, skipStep15a])
+        JSON.stringify([...listDataSubmit, skipStep18])
       );
     }
 
-    history.push({
-      pathname: `/refinance-fact-find/step-16`,
-    });
+    if (employmentStatus === types[3]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-19`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-21`,
+      });
+    }
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={15.1} numberScroll={1000}>
+    <LifeInsurance isShowHeader activeStep={18} numberScroll={900}>
       <section
         className={`formContent-step-second formContent-life-insurance ${
           isShowModal ? "mb-10" : "mb-2"
@@ -159,7 +171,7 @@ const Step15A = () => {
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-3">
-                  15.1. When are you expected to return to work?
+                  18. How long have you been working at this job for?
                 </h2>
               </Col>
               <Col xs={12}>
@@ -172,17 +184,17 @@ const Step15A = () => {
                     <InputCustom2
                       onFocus={() => {
                         setIsShowModal(true);
-                        setNumberPartnerReturnValid(valid.NON_VALID);
+                        setNumberYearWorkingValid(valid.NON_VALID);
                       }}
                       onKeyPress={onKeyDown}
                       onChange={() => () => {}}
-                      label="Select when your partner return to work"
-                      value={numberPartnerReturn}
+                      label="Please select how long you have worked"
+                      value={numberYearWorking}
                       id="price-input"
-                      customClassLabel={numberPartnerReturn ? "active" : ""}
+                      customClassLabel={numberYearWorking ? "active" : ""}
                       iconArrow
                       customClassWrap="email five"
-                      innerRef={numberPartnerReturnRef}
+                      innerRef={numberYearWorkingRef}
                       readOnly
                     />
                     <ul
@@ -190,13 +202,13 @@ const Step15A = () => {
                         isShowModal ? "d-block" : "d-none"
                       }`}
                     >
-                      {listNumberPartnerReturn &&
-                        listNumberPartnerReturn.map((name, index) => (
+                      {listNumberYearWorking &&
+                        listNumberYearWorking.map((name, index) => (
                           <li
                             key={index + 1}
                             onClick={() => onClickSelect(name)}
                             className={
-                              numberPartnerReturn === name ? "active" : ""
+                              numberYearWorking === name ? "active" : ""
                             }
                           >
                             {name}
@@ -205,7 +217,7 @@ const Step15A = () => {
                     </ul>
                   </Col>
                 </Row>
-                {numberPartnerReturnValid === valid.INVALID && (
+                {numberYearWorkingValid === valid.INVALID && (
                   <div className="text-error">
                     <p>Please select an option</p>
                   </div>
@@ -245,4 +257,4 @@ const Step15A = () => {
   );
 };
 
-export default Step15A;
+export default Step18;

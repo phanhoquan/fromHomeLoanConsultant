@@ -81,11 +81,11 @@ const Step15 = () => {
       });
     } else if (option === types[6]) {
       history.push({
-        pathname: `/refinance-fact-find/step-15.1`,
+        pathname: `/refinance-fact-find/step-16`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-16`,
+        pathname: `/refinance-fact-find/step-17`,
       });
     }
   };
@@ -139,11 +139,11 @@ const Step15 = () => {
       });
     } else if (employmentWorkingStatus === types[6]) {
       history.push({
-        pathname: `/refinance-fact-find/step-15.1`,
+        pathname: `/refinance-fact-find/step-16`,
       });
     } else {
       history.push({
-        pathname: `/refinance-fact-find/step-16`,
+        pathname: `/refinance-fact-find/step-17`,
       });
     }
   };

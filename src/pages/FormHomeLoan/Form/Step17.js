@@ -1,68 +1,73 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
-import LifeInsurance from "../index";
 import InputCustom2 from "../../../Components/InputCustom2";
+import LifeInsurance from "../index";
+import { getDataListOccupationOptions } from "../../../utils/quoteOccupations";
+import originArray from "../../../utils/quoteOccupations";
 import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep17 } from "../../../utils/listLocalStorage";
 
-export const types = {
-  1: "Full Time",
-  2: "Part Time",
-  3: "Self Employed",
-  4: "Unemployed",
-};
-
-const listNumberYearWorking = [
-  "1 year",
-  "2 years",
-  "3 years",
-  "4 years",
-  "5+ years",
-];
-
 const Step17 = () => {
+  const occupationRef = useRef(null);
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
-  const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
-  const employmentStatus = localStorage.getItem("employmentStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [numberYearWorking, setNumberYearWorking] = useState(
-    localStorage.getItem("numberYearWorking") || ""
-  );
   const [isShowModal, setIsShowModal] = useState(false);
-  const [numberYearWorkingValid, setNumberYearWorkingValid] = useState(
-    valid.NON_VALID
+  const [occupation, setOccupation] = useState(
+    localStorage.getItem("occupation") || ""
   );
+  const [dataListOccupations, setDataListOccupations] = useState(
+    originArray || []
+  );
+  const [occupationValid, setOccupationValid] = useState(valid.NON_VALID);
 
+  useEffect(() => {
+    setTimeout(() => {
+      occupationRef?.current?.focus();
+    }, 400);
+  }, []);
+
+  const checkOccupationStatus = (value) => {
+    setIsShowModal(false);
+    let test = originArray.includes(value);
+    let testValid = /^([a-zA-Z\s]{2,})$/.test(value);
+    if (!test) {
+      setOccupationValid(Number(testValid));
+      return testValid;
+    } else {
+      setOccupationValid(Number(test));
+      return test;
+    }
+  };
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowModal(false);
   });
 
-  const checkNumberYearWorkingStatus = (value) => {
-    const test = listNumberYearWorking.includes(value);
-    setNumberYearWorkingValid(Number(test));
-    setIsShowModal(false);
-    return test;
-  };
-
+  useEffect(() => {
+    if (isShowModal) {
+      setDataListOccupations([
+        ...getDataListOccupationOptions(occupation),
+        occupation,
+      ]);
+    }
+    // eslint-disable-next-line
+  }, [occupation]);
   const finDataStep = listDataSubmit.find((item) => item.id === 17);
-
-  const nextStep = (value) => {
-    const step17 = {
-      id: 17,
-      question: "How long have you been working at this job for?",
-      answer: value,
-      skip: "",
-    };
-
+  const step17 = {
+    id: 17,
+    question: "What job role are you currently working in?",
+    answer: occupation,
+    skip: "",
+  };
+  const nextStep = () => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 17 ? step17 : item
@@ -78,34 +83,49 @@ const Step17 = () => {
         JSON.stringify([...listDataSubmit, step17])
       );
     }
-    if (localStorage.getItem("numberYearWorking") !== value) {
+    if (localStorage.getItem("occupation") !== occupation.trim()) {
       currentStep(17, itemStep17);
     }
-    window.localStorage.setItem("numberYearWorking", value);
-    if (employmentStatus === types[3]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-19`,
-      });
-    } else {
-      history.push({
-        pathname: `/refinance-fact-find/step-21`,
-      });
+    window.localStorage.setItem("occupation", occupation);
+    history.push({
+      pathname: `/refinance-fact-find/step-18`,
+    });
+  };
+
+  const onKeyUpHandle = (name, value) => {
+    if (name === "occupation") {
+      setOccupation(value.replace(/[0-9]/g, ""));
+      if (value?.length >= 2) {
+        setIsShowModal(true);
+      } else {
+        setIsShowModal(false);
+      }
     }
   };
-  const onClickSelect = (value) => {
-    setNumberYearWorking(value);
-    setNumberYearWorkingValid(valid.NON_VALID);
+
+  const handelOnFocus = (name) => {
+    if (name?.length >= 2) {
+      setIsShowModal(true);
+    } else {
+      setIsShowModal(false);
+    }
+    setOccupationValid(valid.NON_VALID);
+  };
+
+  const onClickSelect = (name) => {
+    setOccupation(name);
+    checkOccupationStatus(name);
     setIsShowModal(false);
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkNumberYearWorkingStatus(numberYearWorking);
-    if (checkNumberYearWorkingStatus(numberYearWorking)) {
+    checkOccupationStatus(occupation);
+    if (checkOccupationStatus(occupation)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep(numberYearWorking);
+          nextStep();
         }, 500);
       }
     }
@@ -117,6 +137,11 @@ const Step17 = () => {
     }
   };
 
+  const showClass =
+    isShowModal && occupation?.length >= 2 && dataListOccupations?.length > 0
+      ? "d-block"
+      : "d-none";
+
   const onClickBack = () => {
     history.go(-1);
   };
@@ -124,9 +149,9 @@ const Step17 = () => {
   const handleSkip = () => {
     const skipStep17 = {
       id: 17,
-      question: "How long have you been working at this job for?",
-      answer: numberYearWorking,
-      skip: !numberYearWorking && "Skipped",
+      question: "What job role are you currently working in?",
+      answer: occupation,
+      skip: !occupation && "Skipped",
     };
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 17 ? skipStep17 : item
@@ -143,24 +168,14 @@ const Step17 = () => {
       );
     }
 
-    if (employmentStatus === types[3]) {
-      history.push({
-        pathname: `/refinance-fact-find/step-19`,
-      });
-    } else {
-      history.push({
-        pathname: `/refinance-fact-find/step-21`,
-      });
-    }
+    history.push({
+      pathname: `/refinance-fact-find/step-18`,
+    });
   };
 
   return (
     <LifeInsurance isShowHeader activeStep={17} numberScroll={900}>
-      <section
-        className={`formContent-step-second formContent-life-insurance ${
-          isShowModal ? "mb-10" : "mb-2"
-        }`}
-      >
+      <section className="formContent-step-second form-six formContent-life-insurance mb-0">
         <Container>
           <div
             className={
@@ -170,46 +185,36 @@ const Step17 = () => {
           >
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-3">
-                  17. How long have you been working at this job for?
-                </h2>
+                <h2>17. What job role are you currently working in?</h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
+                <Row className="info-customer mt-4">
                   <Col
                     xs={12}
-                    className="wForm-input pl-0 bankProviders"
+                    className="wForm-input pl-0"
                     ref={wrapperInfoRef}
                   >
                     <InputCustom2
-                      onFocus={() => {
-                        setIsShowModal(true);
-                        setNumberYearWorkingValid(valid.NON_VALID);
-                      }}
+                      onFocus={() => handelOnFocus(occupation)}
                       onKeyPress={onKeyDown}
-                      onChange={() => () => {}}
-                      label="Please select how long you have worked"
-                      value={numberYearWorking}
-                      id="price-input"
-                      customClassLabel={numberYearWorking ? "active" : ""}
-                      iconArrow
-                      customClassWrap="email five"
-                      innerRef={numberYearWorkingRef}
-                      readOnly
+                      onChange={(e) =>
+                        onKeyUpHandle("occupation", e.target.value)
+                      }
+                      label="Current job role"
+                      value={occupation}
+                      id="iconOccupation"
+                      customClassLabel={occupation ? "active" : ""}
+                      innerRef={occupationRef}
                     />
-                    <ul
-                      className={`list-occupation ${
-                        isShowModal ? "d-block" : "d-none"
-                      }`}
-                    >
-                      {listNumberYearWorking &&
-                        listNumberYearWorking.map((name, index) => (
+
+                    <ul className={`list-occupation ${showClass}`}>
+                      {dataListOccupations &&
+                        dataListOccupations.length > 0 &&
+                        dataListOccupations.map((name, index) => (
                           <li
                             key={index + 1}
                             onClick={() => onClickSelect(name)}
-                            className={
-                              numberYearWorking === name ? "active" : ""
-                            }
+                            className={occupation === name ? "active" : ""}
                           >
                             {name}
                           </li>
@@ -217,9 +222,9 @@ const Step17 = () => {
                     </ul>
                   </Col>
                 </Row>
-                {numberYearWorkingValid === valid.INVALID && (
+                {occupationValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Please select an option</p>
+                    <p>Please enter your working</p>
                   </div>
                 )}
               </Col>
