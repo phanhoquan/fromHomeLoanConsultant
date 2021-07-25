@@ -15,6 +15,7 @@ export const types = {
   3: "Casual",
   4: "Self Employed",
   5: "Unemployed",
+  6: "Maternal Leave",
 };
 
 const Step15 = () => {
@@ -78,6 +79,10 @@ const Step15 = () => {
       history.push({
         pathname: `/refinance-fact-find/step-20`,
       });
+    } else if (option === types[6]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-15.1`,
+      });
     } else {
       history.push({
         pathname: `/refinance-fact-find/step-16`,
@@ -131,6 +136,10 @@ const Step15 = () => {
     } else if (employmentWorkingStatus === types[5]) {
       history.push({
         pathname: `/refinance-fact-find/step-20`,
+      });
+    } else if (employmentWorkingStatus === types[6]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-15.1`,
       });
     } else {
       history.push({
@@ -188,6 +197,13 @@ const Step15 = () => {
                       onClick={() => onCheck(types[5])}
                       checkBox={employmentWorkingStatus === types[5]}
                       name={types[5]}
+                    />
+                  </Col>
+                  <Col xs={12} sm={6} className="wForm-input">
+                    <CheckboxButton
+                      onClick={() => onCheck(types[6])}
+                      checkBox={employmentWorkingStatus === types[6]}
+                      name={types[6]}
                     />
                   </Col>
                 </Row>

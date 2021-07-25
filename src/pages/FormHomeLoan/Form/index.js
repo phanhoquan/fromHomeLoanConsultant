@@ -22,6 +22,7 @@ import Step12 from "./Step12";
 import Step13 from "./Step13";
 import Step14 from "./Step14";
 import Step15 from "./Step15";
+import Step15A from "./Step15a";
 import Step16 from "./Step16";
 import Step17 from "./Step17";
 import Step18 from "./Step18";
@@ -118,6 +119,7 @@ const Form = () => {
         <Route path="/refinance-fact-find/step-13" component={Step13} />
         <Route path="/refinance-fact-find/step-14" component={Step14} />
         <Route path="/refinance-fact-find/step-15" component={Step15} />
+        <Route path="/refinance-fact-find/step-15.1" component={Step15A} />
         <Route path="/refinance-fact-find/step-16" component={Step16} />
         <Route path="/refinance-fact-find/step-17" component={Step17} />
         <Route path="/refinance-fact-find/step-18" component={Step18} />

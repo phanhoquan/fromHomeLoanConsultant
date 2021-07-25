@@ -65,12 +65,6 @@ const Step32 = () => {
     }
   };
 
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      onClickNext();
-    }
-  };
-
   const onClickBack = () => {
     history.go(-1);
   };
@@ -96,7 +90,6 @@ const Step32 = () => {
                       className="form-control noteVale"
                       value={noteVale || ""}
                       ref={noteValueRef}
-                      onKeyPress={onKeyDown}
                       onChange={(e) => setNoteVale(e.target.value)}
                       placeholder="Please enter your additional notes here..."
                     />

@@ -13,7 +13,6 @@ export const itemStep1 = [
   "skip1",
 ];
 
-
 export const itemStep2 = [
   "isLogin",
   "password",
@@ -332,6 +331,37 @@ export const itemStep15 = [
   "otherChillApplicantAge",
   "workingStatus",
   "employmentWorkingStatus",
+];
+
+export const itemStep15A = [
+  "isLogin",
+  "password",
+  "userName",
+  "firstName",
+  "lastName",
+  "employmentStatus",
+  "email",
+  "listDataSubmit",
+  "questionStep1",
+  "skip1",
+  "currentLoanStatus",
+  "valueInterestRate",
+  "valueInterestRate2",
+  "jointApplicationStatus",
+  "firstNameOther",
+  "lastNameOther",
+  "relationshipYour",
+  "jointApplicantAge",
+  "soleApplicantAge",
+  "kidsOrDependant",
+  "childrenNumber",
+  "chillApplicantAge",
+  "otherDependents",
+  "otherChildrenNumber",
+  "otherChillApplicantAge",
+  "workingStatus",
+  "employmentWorkingStatus",
+  "numberPartnerReturn15A",
 ];
 
 export const itemStep16 = [
