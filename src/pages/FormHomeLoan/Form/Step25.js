@@ -1,52 +1,65 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { valid } from "../../../utils/constant";
 import LifeInsurance from "../index";
-import InputNumber from "../../../Components/InputNumber";
+import InputCustom2 from "../../../Components/InputCustom2";
+import useOnClickOutside from "../../../hooks/useClickOutSide";
 import { currentStep } from "../../../utils/removeQuestion";
 import { itemStep25 } from "../../../utils/listLocalStorage";
 
+const listNumberPartnerReturn = [
+  "Less than 3 months",
+  "Less than 6 months",
+  "Less than 9 months",
+  "Less than 12 months",
+  "More than 12 months",
+  "Not returning to work",
+];
+
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 const Step25 = () => {
-  const partnersSalaryRef = useRef(null);
   let listDataSubmit = localStorage.getItem("listDataSubmit")
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
+  const numberPartnerReturnRef = useRef(null);
+  const wrapperInfoRef = useRef();
+  const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
   const history = useHistory();
   const [showLoading, setShowLoading] = useState(false);
-  const [partnersSalary, setPartnersSalary] = useState(
-    localStorage.getItem("partnersSalary") || ""
+  const [numberPartnerReturn, setNumberPartnerReturn] = useState(
+    localStorage.getItem("numberPartnerReturn") || ""
   );
-  const [partnersSalaryValid, setPartnersSalaryValid] = useState(
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [numberPartnerReturnValid, setNumberPartnerReturnValid] = useState(
     valid.NON_VALID
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      partnersSalaryRef?.current?.element?.focus();
-    }, 400);
-  }, []);
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowModal(false);
+  });
 
-  const checkPartnersSalaryStatus = (value) => {
-    let test =
-      parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 1000000;
-    setPartnersSalaryValid(Number(test));
+  const checkNumberPartnerReturnStatus = (value) => {
+    const test = listNumberPartnerReturn.includes(value);
+    setNumberPartnerReturnValid(Number(test));
+    setIsShowModal(false);
     return test;
   };
   const finDataStep = listDataSubmit.find((item) => item.id === 25);
-  const step25 = {
-    id: 25,
-    question: "What is your partners salary?",
-    answer: partnersSalary
-      ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
-      : "",
-    skip: "",
-  };
+  const nextStep = (value) => {
+    const step25 = {
+      id: 25,
+      question: "When is your partner expected \n to return to work?",
+      answer: value,
+      skip: "",
+    };
 
-  const nextStep = () => {
     // eslint-disable-next-line
     const updateDataStep = listDataSubmit.map((item) =>
       item.id === 25 ? step25 : item
@@ -62,30 +75,36 @@ const Step25 = () => {
         JSON.stringify([...listDataSubmit, step25])
       );
     }
-    if (localStorage.getItem("partnersSalary") !== partnersSalary?.trim()) {
+
+    if (localStorage.getItem("numberPartnerReturn") !== value) {
       currentStep(25, itemStep25);
     }
-    window.localStorage.setItem(
-      "partnersSalary",
-      partnersSalary && parseInt(partnersSalary.replace(/,/g, ""), 10)
-    );
-    history.push({
-      pathname: `/refinance-fact-find/step-27`,
-    });
+    window.localStorage.setItem("numberPartnerReturn", value);
+    if (jointApplicationStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
+      });
+    }
   };
 
-  const onKeyUpHandle = (value) => {
-    setPartnersSalary(value);
+  const onClickSelect = (value) => {
+    setNumberPartnerReturn(value);
+    setNumberPartnerReturnValid(valid.NON_VALID);
+    setIsShowModal(false);
   };
 
   const onClickNext = () => {
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
-    checkPartnersSalaryStatus(partnersSalary);
-    if (checkPartnersSalaryStatus(partnersSalary)) {
+    checkNumberPartnerReturnStatus(numberPartnerReturn);
+    if (checkNumberPartnerReturnStatus(numberPartnerReturn)) {
       if (!showLoading) {
         setTimeout(function () {
-          nextStep();
+          nextStep(numberPartnerReturn);
         }, 500);
       }
     }
@@ -104,11 +123,9 @@ const Step25 = () => {
   const handleSkip = () => {
     const skipStep25 = {
       id: 25,
-      question: "What is your partners salary?",
-      answer: partnersSalary
-        ? parseInt(partnersSalary.replace(/,/g, ""), 10).toLocaleString("en")
-        : "",
-      skip: !partnersSalary && "Skipped",
+      question: "When is your partner expected \n to return to work?",
+      answer: numberPartnerReturn,
+      skip: !numberPartnerReturn && "Skipped",
     };
 
     const updateDataStep = listDataSubmit.map((item) =>
@@ -125,53 +142,87 @@ const Step25 = () => {
         JSON.stringify([...listDataSubmit, skipStep25])
       );
     }
-
-    history.push({
-      pathname: `/refinance-fact-find/step-27`,
-    });
+    if (jointApplicationStatus === types[2]) {
+      history.push({
+        pathname: `/refinance-fact-find/step-26`,
+      });
+    } else {
+      history.push({
+        pathname: `/refinance-fact-find/step-27`,
+      });
+    }
   };
 
   return (
-    <LifeInsurance isShowHeader activeStep={25} numberScroll={1100}>
-      <section className="formContent-step-second formContent-life-insurance mb-2">
+    <LifeInsurance isShowHeader activeStep={25} numberScroll={1400}>
+      <section
+        className={`formContent-step-second formContent-life-insurance ${
+          isShowModal ? "mb-10" : "mb-2"
+        }`}
+      >
         <Container>
-          <div className="wForm wow fadeInUp">
+          <div
+            className={
+              "wForm wow " +
+              (history?.location?.back ? "fadeInDown" : "fadeInUp")
+            }
+          >
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-3">25. What is your partners salary?</h2>
+                <h2 className="mb-3">
+                  25. When is your partner expected <br />
+                  to return to work?
+                </h2>
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4 pt-2">
-                  <Col xs={12} className="wForm-input pl-0">
-                    <InputNumber
-                      inputMode="numeric"
-                      options={{
-                        numericOnly: true,
-                        numeral: true,
-                        numeralDecimalMark: "",
-                        delimiter: ",",
-                        numeralThousandsGroupStyle: "thousand",
+                  <Col
+                    xs={12}
+                    className="wForm-input pl-0 bankProviders"
+                    ref={wrapperInfoRef}
+                  >
+                    <InputCustom2
+                      onFocus={() => {
+                        setIsShowModal(true);
+                        setNumberPartnerReturnValid(valid.NON_VALID);
                       }}
-                      onFocus={() => setPartnersSalaryValid(valid.NON_VALID)}
                       onKeyPress={onKeyDown}
-                      onChange={(e) => onKeyUpHandle(e.target.value)}
-                      label="E.G. $80,000"
-                      value={partnersSalary}
+                      onChange={() => () => {}}
+                      label="Select when your partner return to work"
+                      value={numberPartnerReturn}
                       id="price-input"
-                      customClassLabel={partnersSalary ? "active" : ""}
-                      iconPrice
+                      customClassLabel={numberPartnerReturn ? "active" : ""}
+                      iconArrow
                       customClassWrap="email five"
-                      innerRef={partnersSalaryRef}
+                      innerRef={numberPartnerReturnRef}
+                      readOnly
                     />
+                    <ul
+                      className={`list-occupation ${
+                        isShowModal ? "d-block" : "d-none"
+                      }`}
+                    >
+                      {listNumberPartnerReturn &&
+                        listNumberPartnerReturn.map((name, index) => (
+                          <li
+                            key={index + 1}
+                            onClick={() => onClickSelect(name)}
+                            className={
+                              numberPartnerReturn === name ? "active" : ""
+                            }
+                          >
+                            {name}
+                          </li>
+                        ))}
+                    </ul>
                   </Col>
                 </Row>
-                {partnersSalaryValid === valid.INVALID && (
+                {numberPartnerReturnValid === valid.INVALID && (
                   <div className="text-error">
-                    <p>Value should be in between $0 - $1,000,000</p>
+                    <p>Please select an option</p>
                   </div>
                 )}
               </Col>
-
               <Col xs={12} className="fadeInDown wow  mt-4">
                 <div className="group-btn-footer col d-flex justify-content-center">
                   <Button

@@ -643,7 +643,7 @@ export const itemStep23 = [
   "employmentPartnersWorkingStatus",
 ];
 
-export const itemStep24 = [
+export const itemStep25 = [
   "isLogin",
   "password",
   "userName",
@@ -683,7 +683,7 @@ export const itemStep24 = [
   "numberPartnerReturn",
 ];
 
-export const itemStep25 = [
+export const itemStep26 = [
   "isLogin",
   "password",
   "userName",

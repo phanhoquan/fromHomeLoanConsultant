@@ -79,7 +79,7 @@ export default function Success() {
       f_40_city: localStorage.getItem("city") || "",
       f_41_state: localStorage.getItem("state") || "",
       f_11_postcode: localStorage.getItem("postcode") || "",
-      f_6_address1: localStorage.getItem("fullAddress") || "", //31
+      f_6_address1: localStorage.getItem("fullAddress") || "", //30
       f_17_ipaddress: ipClient,
       f_58_submissiondate: getTimeNow(),
       f_76_user_agent: navigator.userAgent,
@@ -150,12 +150,12 @@ export default function Success() {
       f_1617_joint_applicant_employment_status:
         localStorage.getItem("employmentPartnersWorkingStatus") || "", //23
       f_1618_joint_applicant_maternity:
-        localStorage.getItem("numberPartnerReturn") || "", //24
+        localStorage.getItem("numberPartnerReturn") || "", //25
 
       f_1630_personal_loan_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[1])
           ? types[1]
-          : "") || "", //27
+          : "") || "", //26
       f_1629_car_loan_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[2])
           ? types[2]
@@ -165,19 +165,19 @@ export default function Success() {
           ? types[3]
           : "") || "",
 
-      f_1620_car_loan_institution: localStorage.getItem("personalLoan") || "", //28a,
-      f_1621_car_loan_amount: localStorage.getItem("personalLoanAmount") || "", // 28a,
+      f_1620_car_loan_institution: localStorage.getItem("personalLoan") || "", //27a,
+      f_1621_car_loan_amount: localStorage.getItem("personalLoanAmount") || "", // 27a,
 
-      f_1624_personal_loan_institution: localStorage.getItem("carLoan") || "", //28b
-      f_1625_personal_loan_amount: localStorage.getItem("carLoanAmount") || "", //28b
+      f_1624_personal_loan_institution: localStorage.getItem("carLoan") || "", //27b
+      f_1625_personal_loan_amount: localStorage.getItem("carLoanAmount") || "", //27b
 
-      f_1622_hecs_institution: localStorage.getItem("HECSDebt") || "", //28c
-      f_1623_hecs_amount: localStorage.getItem("HECSDebtAmount") || "", // 28c
+      f_1622_hecs_institution: localStorage.getItem("HECSDebt") || "", //27c
+      f_1623_hecs_amount: localStorage.getItem("HECSDebtAmount") || "", // 27c
 
       f_1628_credit_card_confirm: localStorage.getItem("creditCard") || "", //29
-      f_1627_credit_card_institution:
+      f_1626_credit_card_institution:
         localStorage.getItem("valueCreditCard") || "", // 30
-      f_1628_credit_card_amount:
+      f_1627_credit_card_amount:
         localStorage.getItem("valueCreditCardAmount") || "", // 30
       f_1632_loan_type:
         localStorage.getItem("currentlyRenting") === types2[1]
