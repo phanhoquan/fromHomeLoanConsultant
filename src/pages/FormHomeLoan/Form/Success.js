@@ -86,11 +86,11 @@ export default function Success() {
       f_85_type_of_loan: localStorage.getItem("currentLoanStatus") || "", //2
       f_1579_current_interest_rate_fixed:
         (localStorage.getItem("valueInterestRate") &&
-          `${localStorage.getItem("valueInterestRate")}%`) ||
+          `${localStorage.getItem("valueInterestRate")}`) ||
         "", //3
       f_1580_current_interest_rate_variable:
         (localStorage.getItem("valueInterestRate2") &&
-          `${localStorage.getItem("valueInterestRate2")}%`) ||
+          `${localStorage.getItem("valueInterestRate2")}`) ||
         "", //3
       f_1581_sole_or_joint_applicant:
         localStorage.getItem("jointApplicationStatus") || "", //4
