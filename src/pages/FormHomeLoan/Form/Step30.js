@@ -195,7 +195,7 @@ const Step30 = () => {
                         valueCreditCard[0].toUpperCase() +
                           valueCreditCard.slice(1)
                       }
-                      id="price-input"
+                      id="valueCreditCard"
                       customClassLabel={valueCreditCard ? "active" : ""}
                       customClassWrap="email five"
                       innerRef={valueCreditCardRef}
@@ -235,7 +235,7 @@ const Step30 = () => {
                       }
                       label="E.G. $10,000"
                       value={valueCreditCardAmount}
-                      id="price-input"
+                      id="valueCreditCardAmount"
                       customClassLabel={valueCreditCardAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"

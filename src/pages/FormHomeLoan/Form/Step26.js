@@ -157,7 +157,7 @@ const Step26 = () => {
                       onChange={(e) => onKeyUpHandle(e.target.value)}
                       label="E.G. $80,000"
                       value={partnersSalary}
-                      id="price-input"
+                      id="partnersSalary"
                       customClassLabel={partnersSalary ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"

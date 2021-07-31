@@ -55,7 +55,7 @@ const Step23 = () => {
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
-        isShowModal ? "mb-10" : "mb-2"
+        isShowModal ? "mb-10" : "mb-3"
       }`}
     >
       <Container>
@@ -68,7 +68,7 @@ const Step23 = () => {
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-2">
+              <Row className="info-customer mt-3">
                 <Col
                   xs={12}
                   className="wForm-input pl-0 bankProviders"

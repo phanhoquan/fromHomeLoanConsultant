@@ -3,12 +3,12 @@
 import React from "react";
 import LifeInsurance from "../../index";
 
-import Step12 from "./Step12";
+import Step26 from "./Step26";
 
 const Liabilities = () => {
   return (
     <LifeInsurance activeStep={6}>
-      <Step12 />
+      <Step26 />
     </LifeInsurance>
   );
 };

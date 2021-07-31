@@ -68,7 +68,7 @@ const Step16 = () => {
                     onChange={() => () => {}}
                     label="Please select how long you have worked"
                     value={numberYearWorking}
-                    id="price-input2"
+                    id="numberYearWorking"
                     customClassLabel={numberYearWorking ? "active" : ""}
                     iconArrow
                     customClassWrap="email five"

@@ -180,7 +180,7 @@ const Step28B = () => {
                       value={
                         carLoan && carLoan[0].toUpperCase() + carLoan.slice(1)
                       }
-                      id="price-input"
+                      id="carLoan"
                       customClassLabel={carLoan ? "active" : ""}
                       customClassWrap="email five"
                       innerRef={carLoanRef}
@@ -218,7 +218,7 @@ const Step28B = () => {
                       }
                       label="E.G. $10,000"
                       value={carLoanAmount}
-                      id="price-input"
+                      id="carLoanAmount"
                       customClassLabel={carLoanAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"

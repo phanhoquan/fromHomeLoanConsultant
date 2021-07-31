@@ -60,7 +60,7 @@ const Step14 = () => {
                     onChange={() => () => {}}
                     label="Select when your partner return to work"
                     value={numberPartnerReturn}
-                    id="price-input"
+                    id="numberPartnerReturn"
                     customClassLabel={numberPartnerReturn ? "active" : ""}
                     iconArrow
                     customClassWrap="email five"

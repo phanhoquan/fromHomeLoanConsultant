@@ -41,7 +41,7 @@ const Step22 = () => {
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-2">
+              <Row className="info-customer mt-3">
                 <Col xs={12} sm={6} className="wForm-input">
                   <CheckboxButton
                     checkBox={employmentWorkingStatus === types[1]}

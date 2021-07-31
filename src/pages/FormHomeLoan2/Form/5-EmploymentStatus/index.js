@@ -15,6 +15,7 @@ import Step20 from "./Step20";
 import Step21 from "./Step21";
 import Step22 from "./Step22";
 import Step23 from "./Step23";
+import Step24 from "./Step24";
 
 const EmploymentStatusSole = () => {
   return (
@@ -31,6 +32,7 @@ const EmploymentStatusSole = () => {
       <Step21 />
       <Step22 />
       <Step23 />
+      <Step24 />
     </LifeInsurance>
   );
 };

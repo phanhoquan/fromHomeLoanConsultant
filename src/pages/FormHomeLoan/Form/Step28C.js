@@ -188,7 +188,7 @@ const Step28C = () => {
                         HECSDebt &&
                         HECSDebt[0].toUpperCase() + HECSDebt.slice(1)
                       }
-                      id="price-input"
+                      id="HECSDebt"
                       customClassLabel={HECSDebt ? "active" : ""}
                       customClassWrap="email five"
                       innerRef={HECSDebtRef}
@@ -226,7 +226,7 @@ const Step28C = () => {
                       }
                       label="E.G. $10,000"
                       value={HECSDebtAmount}
-                      id="price-input"
+                      id="HECSDebtAmount"
                       customClassLabel={HECSDebtAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"

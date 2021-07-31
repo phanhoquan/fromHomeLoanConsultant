@@ -162,7 +162,7 @@ const Step09 = () => {
                       onChange={() => () => {}}
                       label="Select how many kids or dependents you have"
                       value={childrenNumber}
-                      id="price-input"
+                      id="childrenNumber"
                       customClassLabel={childrenNumber ? "active" : ""}
                       iconArrow
                       customClassWrap="email five"

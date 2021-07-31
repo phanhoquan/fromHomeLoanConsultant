@@ -54,7 +54,7 @@ const Step06 = () => {
                     onChange={() => () => {}}
                     label="Select your relationship with the applicant"
                     value={relationshipYour}
-                    id="price-input"
+                    id="relationshipYour"
                     customClassLabel={relationshipYour ? "active" : ""}
                     iconArrow
                     customClassWrap=" five"

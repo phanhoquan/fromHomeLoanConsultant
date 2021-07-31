@@ -381,7 +381,7 @@ const Step28 = () => {
                             personalLoan[0].toUpperCase() +
                               personalLoan.slice(1)
                           }
-                          id="price-input"
+                          id="personalLoan"
                           customClassLabel={personalLoan ? "active" : ""}
                           customClassWrap="email five"
                           innerRef={personalLoanRef}
@@ -421,7 +421,7 @@ const Step28 = () => {
                           }
                           label="E.G. $10,000"
                           value={personalLoanAmount}
-                          id="price-input"
+                          id="personalLoanAmount"
                           customClassLabel={personalLoanAmount ? "active" : ""}
                           iconPrice
                           customClassWrap="email five"
@@ -462,7 +462,7 @@ const Step28 = () => {
                             carLoan &&
                             carLoan[0].toUpperCase() + carLoan.slice(1)
                           }
-                          id="price-input"
+                          id="carLoan"
                           customClassLabel={carLoan ? "active" : ""}
                           customClassWrap="email five"
                           innerRef={carLoanRef}
@@ -500,7 +500,7 @@ const Step28 = () => {
                           }
                           label="E.G. $10,000"
                           value={carLoanAmount}
-                          id="price-input"
+                          id="carLoanAmount"
                           customClassLabel={carLoanAmount ? "active" : ""}
                           iconPrice
                           customClassWrap="email five"
@@ -543,7 +543,7 @@ const Step28 = () => {
                             HECSDebt &&
                             HECSDebt[0].toUpperCase() + HECSDebt.slice(1)
                           }
-                          id="price-input"
+                          id="HECSDebt"
                           customClassLabel={HECSDebt ? "active" : ""}
                           customClassWrap="email five"
                           innerRef={HECSDebtRef}
@@ -583,7 +583,7 @@ const Step28 = () => {
                           }
                           label="E.G. $10,000"
                           value={HECSDebtAmount}
-                          id="price-input"
+                          id="HECSDebtAmount"
                           customClassLabel={HECSDebtAmount ? "active" : ""}
                           iconPrice
                           customClassWrap="email five"

@@ -164,7 +164,7 @@ const Step12 = () => {
                       onChange={() => () => {}}
                       label="Select your number of dependents"
                       value={otherChildrenNumber}
-                      id="price-input"
+                      id="otherChildrenNumber"
                       customClassLabel={otherChildrenNumber ? "active" : ""}
                       iconArrow
                       customClassWrap="email five"

@@ -190,7 +190,7 @@ const Step28A = () => {
                         personalLoan &&
                         personalLoan[0].toUpperCase() + personalLoan.slice(1)
                       }
-                      id="price-input"
+                      id="personalLoan"
                       customClassLabel={personalLoan ? "active" : ""}
                       customClassWrap="email five"
                       innerRef={personalLoanRef}
@@ -230,7 +230,7 @@ const Step28A = () => {
                       }
                       label="E.G. $10,000"
                       value={personalLoanAmount}
-                      id="price-input"
+                      id="personalLoanAmount"
                       customClassLabel={personalLoanAmount ? "active" : ""}
                       iconPrice
                       customClassWrap="email five"

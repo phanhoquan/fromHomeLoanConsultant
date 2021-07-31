@@ -89,7 +89,7 @@ const Step20 = () => {
                     onChange={(e) => onKeyUpHandle(e.target.value, "tax2019")}
                     label="E.G. $80,000"
                     value={priceTax2019}
-                    id="price-input"
+                    id="priceTax2019"
                     customClassLabel={priceTax2019 ? "active" : ""}
                     iconPrice
                     customClassWrap="email five"
@@ -124,7 +124,7 @@ const Step20 = () => {
                     onChange={(e) => onKeyUpHandle(e.target.value, "tax2020")}
                     label="E.G. $85,000"
                     value={priceTax2020}
-                    id="price-input"
+                    id="priceTax2020"
                     customClassLabel={priceTax2020 ? "active" : ""}
                     iconPrice
                     customClassWrap="email five"

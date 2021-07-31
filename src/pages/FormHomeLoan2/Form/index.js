@@ -11,6 +11,7 @@ import LoanInformation from "./2-LoanInformation";
 import ApplicantDetails from "./3-ApplicantDetails";
 import KidsOrDependants from "./4-KidsOrDependants";
 import EmploymentStatus from "./5-EmploymentStatus";
+import Liabilities from "./6-Liabilities";
 // import Success from "./Success";
 
 const Form = () => {
@@ -87,8 +88,12 @@ const Form = () => {
           path="/refinance-fact-find-2/EmploymentStatus"
           component={EmploymentStatus}
         />
+        <Route
+          path="/refinance-fact-find-2/Liabilities"
+          component={Liabilities}
+        />
 
-        <Route path="/refinance-fact-find-2" component={EmploymentStatus} />
+        <Route path="/refinance-fact-find-2" component={Liabilities} />
       </Switch>
     </section>
   );
