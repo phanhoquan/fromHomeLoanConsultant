@@ -6,6 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 
 import HomePage from "./Home";
 const HomeLoan = lazy(() => import("./FormHomeLoan/Form"));
+const HomeLoan2 = lazy(() => import("./FormHomeLoan2"));
 const Login = lazy(() => import("./Login"));
 
 const Router = () => {
@@ -41,6 +42,12 @@ const Router = () => {
         exact
         path="/refinance-fact-find/*"
         component={HomeLoan}
+        isAuthenticated={isAuthenticated}
+      />
+      <PrivateRoute
+        exact
+        path="/refinance-fact-find-2/"
+        component={HomeLoan2}
         isAuthenticated={isAuthenticated}
       />
       <PrivateRoute

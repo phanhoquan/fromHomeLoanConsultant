@@ -62,7 +62,11 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="item ">
+            <div
+              className="item "
+              role="button"
+              onClick={() => history.push("./refinance-fact-find-2")}
+            >
               <div className="item-content ">
                 <div className="img2 mr-4 mr-md-5" />
                 <div className="info">
