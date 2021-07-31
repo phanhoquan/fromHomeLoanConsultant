@@ -10,7 +10,7 @@ import Step03C from "./Step03-3";
 
 const LoanInformation = () => {
   return (
-    <LifeInsurance isShowHeader activeStep={2}>
+    <LifeInsurance activeStep={2}>
       <Step02 />
       <Step03A />
       <Step03B />

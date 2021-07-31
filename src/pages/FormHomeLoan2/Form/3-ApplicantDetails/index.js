@@ -11,7 +11,7 @@ import Step07B from "./Step07B";
 
 const ApplicantDetails = () => {
   return (
-    <LifeInsurance isShowHeader activeStep={3}>
+    <LifeInsurance activeStep={3}>
       <Step04 />
       <Step05 />
       <Step06 />

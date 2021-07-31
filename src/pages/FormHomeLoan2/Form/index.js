@@ -9,6 +9,8 @@ import qs from "qs";
 import UserDetails from "./1-UserDetails/Step01";
 import LoanInformation from "./2-LoanInformation";
 import ApplicantDetails from "./3-ApplicantDetails";
+import KidsOrDependants from "./4-KidsOrDependants";
+import EmploymentStatus from "./5-EmploymentStatus";
 // import Success from "./Success";
 
 const Form = () => {
@@ -77,7 +79,16 @@ const Form = () => {
           path="/refinance-fact-find-2/ApplicantDetails"
           component={ApplicantDetails}
         />
-        <Route path="/refinance-fact-find-2" component={ApplicantDetails} />
+        <Route
+          path="/refinance-fact-find-2/KidsOrDependants"
+          component={KidsOrDependants}
+        />
+        <Route
+          path="/refinance-fact-find-2/EmploymentStatus"
+          component={EmploymentStatus}
+        />
+
+        <Route path="/refinance-fact-find-2" component={EmploymentStatus} />
       </Switch>
     </section>
   );
