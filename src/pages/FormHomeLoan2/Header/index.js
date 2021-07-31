@@ -1,15 +1,11 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import imgLogo from "../../../images/life/logo.svg";
-import { redirectTo } from "../../../utils/beginPage";
-import imgReset from "../../../images/life/reset.svg";
-import Modal from "../../Modal/Modal";
 
-const Header = () => {
-  const [isShowModal, setIsShowModal] = useState(false);
-
+const Header = ({ handleSubmit }) => {
   // custom header sticky
   useEffect(() => {
     const elementHeader = document.getElementById("header");
@@ -26,28 +22,26 @@ const Header = () => {
     };
   }, []);
 
-  const handleReset = () => {
-    redirectTo("/refinance-fact-find");
-    setIsShowModal(false);
-  };
-
   return (
     <>
-      <header className="header header-wrap home-loan" id="header">
+      <header
+        className="header header-wrap home-loan border-bottom-0"
+        id="header"
+      >
         <div className="logo">
           <a className="logo__img" href="/">
             <LazyLoadImage src={imgLogo} alt="logo" width="100%" height="66" />
           </a>
         </div>
-        <div className="btn-reset" onClick={() => setIsShowModal(true)}>
-          <LazyLoadImage src={imgReset} alt="Reset" width="130" height="45" />
+        <div className="btn-reset" style={{ opacity: "1" }}>
+          <Button
+            className="btnPrimary life min-150 mt-0 w-auto"
+            onClick={handleSubmit}
+          >
+            SUBMIT
+          </Button>
         </div>
       </header>
-      <Modal
-        isShow={isShowModal}
-        handleClose={() => setIsShowModal(false)}
-        handleSubmit={() => handleReset()}
-      />
     </>
   );
 };
