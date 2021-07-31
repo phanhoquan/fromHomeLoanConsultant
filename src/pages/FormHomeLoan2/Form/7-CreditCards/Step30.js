@@ -6,55 +6,58 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step27A = () => {
-  const personalLoanRef = useRef(null);
-  const personalLoanAmountRef = useRef(null);
+const Step30 = () => {
+  const valueCreditCardRef = useRef(null);
+  const valueCreditCardAmountRef = useRef(null);
 
-  const [personalLoan, setPersonalLoan] = useState(
-    localStorage.getItem("personalLoan") || ""
+  const [valueCreditCard, setValueCreditCard] = useState(
+    localStorage.getItem("valueCreditCard") || ""
   );
-  const [personalLoanValid, setPersonalLoanValid] = useState(valid.NON_VALID);
-
-  const [personalLoanAmount, setPersonalLoanAmount] = useState(
-    localStorage.getItem("personalLoanAmount") || ""
-  );
-  const [personalLoanAmountValid, setPersonalLoanAmountValid] = useState(
+  const [valueCreditCardValid, setValueCreditCardValid] = useState(
     valid.NON_VALID
   );
 
-  const checkPersonalLoanStatus = (value) => {
+  const [valueCreditCardAmount, setValueCreditCardAmount] = useState(
+    localStorage.getItem("valueCreditCardAmount") || ""
+  );
+  const [valueCreditCardAmountValid, setValueCreditCardAmountValid] = useState(
+    valid.NON_VALID
+  );
+
+  const checkValueCreditCardStatus = (value) => {
     let test = value.length > 1;
-    setPersonalLoanValid(Number(test));
+    setValueCreditCardValid(Number(test));
     return test;
   };
 
-  const checkPersonalLoanAmountStatus = (value) => {
+  const checkValueCreditCardAmountStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
       parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
-    setPersonalLoanAmountValid(Number(test));
+    setValueCreditCardAmountValid(Number(test));
     return test;
   };
 
   const onKeyUpHandle = (value, name) => {
-    if (name === "personalLoan") {
-      setPersonalLoan(value);
+    if (name === "valueCreditCard") {
+      setValueCreditCard(value);
     }
-    if (name === "personalLoanAmount") {
-      setPersonalLoanAmount(value);
+    if (name === "valueCreditCardAmount") {
+      setValueCreditCardAmount(value);
     }
   };
 
   useMemo(() => {
-    window.localStorage.setItem("personalLoan", personalLoan);
-  }, [personalLoan]);
+    window.localStorage.setItem("valueCreditCard", valueCreditCard);
+  }, [valueCreditCard]);
 
   useMemo(() => {
     window.localStorage.setItem(
-      "personalLoanAmount",
-      personalLoanAmount && parseInt(personalLoanAmount.replace(/,/g, ""), 10)
+      "valueCreditCardAmount",
+      valueCreditCardAmount &&
+        parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
     );
-  }, [personalLoanAmount]);
+  }, [valueCreditCardAmount]);
 
   return (
     <section className="formContent-step-second formContent-life-insurance mb-2">
@@ -63,40 +66,41 @@ const Step27A = () => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                27. Which institution is the personal loan with?
+                34. Which institution is the credit card with?
               </h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-3">
                 <Col xs={12} className="wForm-input pl-0">
                   <InputCustom2
-                    onFocus={() => setPersonalLoanValid(valid.NON_VALID)}
+                    onFocus={() => setValueCreditCardValid(valid.NON_VALID)}
                     onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "personalLoan")
+                      onKeyUpHandle(e.target.value, "valueCreditCard")
                     }
-                    label="Personal Loan Institution"
+                    label="Credit Card Institution"
                     value={
-                      personalLoan &&
-                      personalLoan[0].toUpperCase() + personalLoan.slice(1)
+                      valueCreditCard &&
+                      valueCreditCard[0].toUpperCase() +
+                        valueCreditCard.slice(1)
                     }
-                    id="personalLoan"
-                    customClassLabel={personalLoan ? "active" : ""}
+                    id="valueCreditCard"
+                    customClassLabel={valueCreditCard ? "active" : ""}
                     customClassWrap="email five"
-                    innerRef={personalLoanRef}
-                    onBlur={(e) => checkPersonalLoanStatus(e.target.value)}
+                    innerRef={valueCreditCardRef}
+                    onBlur={() => checkValueCreditCardStatus(valueCreditCard)}
                   />
                 </Col>
               </Row>
-              {personalLoanValid === valid.INVALID && (
+              {valueCreditCardValid === valid.INVALID && (
                 <div className="text-error">
-                  <p>Please enter your personal Loan Institution</p>
+                  <p>Please enter your Car Loan Institution</p>
                 </div>
               )}
             </Col>
 
             <Col xs={12} className="text-center mt-4">
               <h2 className="mb-3">
-                28. What is the limit on the personal loan amount?
+                35. What is the limit on the credit card?
               </h2>
             </Col>
             <Col xs={12}>
@@ -111,24 +115,26 @@ const Step27A = () => {
                       delimiter: ",",
                       numeralThousandsGroupStyle: "thousand",
                     }}
-                    onFocus={() => setPersonalLoanAmountValid(valid.NON_VALID)}
+                    onFocus={() =>
+                      setValueCreditCardAmountValid(valid.NON_VALID)
+                    }
                     onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "personalLoanAmount")
+                      onKeyUpHandle(e.target.value, "valueCreditCardAmount")
                     }
                     label="E.G. $10,000"
-                    value={personalLoanAmount}
-                    id="personalLoanAmount"
-                    customClassLabel={personalLoanAmount ? "active" : ""}
+                    value={valueCreditCardAmount}
+                    id="valueCreditCardAmount"
+                    customClassLabel={valueCreditCardAmount ? "active" : ""}
                     iconPrice
                     customClassWrap="email five"
-                    innerRef={personalLoanAmountRef}
+                    innerRef={valueCreditCardAmountRef}
                     onBlur={() =>
-                      checkPersonalLoanAmountStatus(personalLoanAmount)
+                      checkValueCreditCardAmountStatus(valueCreditCardAmount)
                     }
                   />
                 </Col>
               </Row>
-              {personalLoanAmountValid === valid.INVALID && (
+              {valueCreditCardAmountValid === valid.INVALID && (
                 <div className="text-error">
                   <p>Value should be in between $0 - $10,000,000</p>
                 </div>
@@ -141,4 +147,4 @@ const Step27A = () => {
   );
 };
 
-export default Step27A;
+export default Step30;

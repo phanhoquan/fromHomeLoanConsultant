@@ -27,6 +27,7 @@ const Header = ({ handleSubmit }) => {
       <header
         className="header header-wrap home-loan border-bottom-0"
         id="header"
+        style={{ backgroundColor: "transparent" }}
       >
         <div className="logo">
           <a className="logo__img" href="/">

@@ -58,7 +58,7 @@ const Step26 = () => {
               </p>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-4 w-600">
+              <Row className="info-customer mt-2 w-600">
                 <Col xs={12} sm={6} className="wForm-input">
                   <CheckboxButton
                     handleToggleCheckbox={() => onCheck(types[1])}

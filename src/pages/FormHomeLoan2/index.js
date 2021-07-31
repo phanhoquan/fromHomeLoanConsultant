@@ -9,6 +9,7 @@ import useOnClickOutside from "../../hooks/useClickOutSide";
 import imgMenuClose from "../../images/closemenu.png";
 import imgNote from "../../images/note.png";
 import imgArrowNote from "../../images/arrow-white.svg";
+import Modal from "../Modal/ModalSubmit";
 
 const HomeLoan = ({
   children,
@@ -26,6 +27,8 @@ const HomeLoan = ({
     ? JSON.parse(localStorage.getItem("listDataSubmit"))
     : [];
 
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowMess, setIsIsShowMess] = useState(false);
   const [contentNoteVale, setContentNoteVale] = useState("");
 
   const [isShowNoteVale, setIsShowNoteVale] = useState(false);
@@ -201,10 +204,25 @@ const HomeLoan = ({
     // eslint-disable-next-line
   }, []);
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    setIsShowModal(true);
+  };
 
   const handleTogglesAddNote = () => {
     setIsShowNoteVale(!isShowNoteVale);
+  };
+
+  const handleSubmitData = () => {
+    if (
+      !localStorage.getItem("firstName") ||
+      !localStorage.getItem("lastName") ||
+      !localStorage.getItem("email")
+    ) {
+      setIsIsShowMess(true);
+      return;
+    } else {
+      console.log("SUBMIT FORM");
+    }
   };
 
   return (
@@ -226,7 +244,7 @@ const HomeLoan = ({
 
         <main className={`life-insurance__MainCt ${className}`}>
           <div
-            className={`nav-left ${isShowMenu ? "open" : ""}`}
+            className={`nav-left style2 ${isShowMenu ? "open" : ""}`}
             ref={wrapperInfoRef}
             id="navLeft"
           >
@@ -260,6 +278,12 @@ const HomeLoan = ({
           />
         </div>
       </div>
+      <Modal
+        isShow={isShowModal}
+        handleClose={() => setIsShowModal(false)}
+        isShowMess={isShowMess}
+        handleSubmit={() => handleSubmitData()}
+      />
     </React.Fragment>
   );
 };
