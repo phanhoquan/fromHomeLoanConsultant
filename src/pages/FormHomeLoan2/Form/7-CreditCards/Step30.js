@@ -6,19 +6,19 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step30 = () => {
+const Step30 = ({ handleGetLoan2value }) => {
   const valueCreditCardRef = useRef(null);
   const valueCreditCardAmountRef = useRef(null);
 
   const [valueCreditCard, setValueCreditCard] = useState(
-    localStorage.getItem("valueCreditCard") || ""
+    localStorage.getItem("loan2valueCreditCard") || ""
   );
   const [valueCreditCardValid, setValueCreditCardValid] = useState(
     valid.NON_VALID
   );
 
   const [valueCreditCardAmount, setValueCreditCardAmount] = useState(
-    localStorage.getItem("valueCreditCardAmount") || ""
+    localStorage.getItem("loan2valueCreditCardAmount") || ""
   );
   const [valueCreditCardAmountValid, setValueCreditCardAmountValid] = useState(
     valid.NON_VALID
@@ -48,12 +48,12 @@ const Step30 = () => {
   };
 
   useMemo(() => {
-    window.localStorage.setItem("valueCreditCard", valueCreditCard);
+    window.localStorage.setItem("loan2valueCreditCard", valueCreditCard);
   }, [valueCreditCard]);
 
   useMemo(() => {
     window.localStorage.setItem(
-      "valueCreditCardAmount",
+      "loan2valueCreditCardAmount",
       valueCreditCardAmount &&
         parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
     );
@@ -87,7 +87,10 @@ const Step30 = () => {
                     customClassLabel={valueCreditCard ? "active" : ""}
                     customClassWrap="email five"
                     innerRef={valueCreditCardRef}
-                    onBlur={() => checkValueCreditCardStatus(valueCreditCard)}
+                    onBlur={() => {
+                      checkValueCreditCardStatus(valueCreditCard);
+                      handleGetLoan2value("valueCreditCard", valueCreditCard);
+                    }}
                   />
                 </Col>
               </Row>
@@ -128,9 +131,13 @@ const Step30 = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={valueCreditCardAmountRef}
-                    onBlur={() =>
-                      checkValueCreditCardAmountStatus(valueCreditCardAmount)
-                    }
+                    onBlur={() => {
+                      checkValueCreditCardAmountStatus(valueCreditCardAmount);
+                      handleGetLoan2value(
+                        "creditCardAmount",
+                        valueCreditCardAmount
+                      );
+                    }}
                   />
                 </Col>
               </Row>

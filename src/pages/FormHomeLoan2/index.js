@@ -29,6 +29,8 @@ const HomeLoan = ({
   listMenuStep1 = [],
   listMenuStep2 = [],
   listMenuStep3 = [],
+  listMenuStep8 = [],
+  listMenuStep9 = [],
 }) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
@@ -54,6 +56,14 @@ const HomeLoan = ({
     : [];
   let dataListMenuStep3 = localStorage.getItem("listMenuStep3")
     ? JSON.parse(localStorage.getItem("listMenuStep3"))
+    : [];
+
+  let dataListMenuStep8 = localStorage.getItem("listMenuStep8")
+    ? JSON.parse(localStorage.getItem("listMenuStep8"))
+    : [];
+
+  let dataListMenuStep9 = localStorage.getItem("listMenuStep9")
+    ? JSON.parse(localStorage.getItem("listMenuStep9"))
     : [];
 
   const [isShowModal, setIsShowModal] = useState(false);
@@ -247,30 +257,32 @@ const HomeLoan = ({
                 </ul>
               </Liabilities>
 
-              <CreditCards stepActive={activeStep}>
+              <CreditCards
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep8?.length > 0 ? listMenuStep8 : dataListMenuStep8
+                }
+              >
                 <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
+                  {renderMenu(
+                    listMenuStep8?.length > 0
+                      ? listMenuStep8
+                      : dataListMenuStep8
+                  )}
                 </ul>
               </CreditCards>
-              <ResidentialInformation stepActive={activeStep}>
+              <ResidentialInformation
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep9?.length > 0 ? listMenuStep9 : dataListMenuStep9
+                }
+              >
                 <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
+                  {renderMenu(
+                    listMenuStep9?.length > 0
+                      ? listMenuStep9
+                      : dataListMenuStep9
+                  )}
                 </ul>
               </ResidentialInformation>
             </ul>

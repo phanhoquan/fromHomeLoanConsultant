@@ -9,14 +9,15 @@ export const types = {
   2: "NO",
 };
 
-const Step32 = () => {
+const Step32 = ({ handleGetLoan2value }) => {
   const [currentlyRenting, setCurrentlyRenting] = useState(
-    localStorage.getItem("currentlyRenting") || ""
+    localStorage.getItem("loan2currentlyRenting") || ""
   );
 
   const onCheck = (option) => {
     setCurrentlyRenting(option);
-    window.localStorage.setItem("currentlyRenting", option);
+    window.localStorage.setItem("loan2currentlyRenting", option);
+    handleGetLoan2value("currentlyRenting", option);
   };
 
   return (

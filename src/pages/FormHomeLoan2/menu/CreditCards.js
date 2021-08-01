@@ -11,7 +11,7 @@ const CreditCards = ({ children, stepActive, answerActive }) => {
   return (
     <li
       className={`${stepActive === 7 ? "active" : ""} ${
-        answerActive ? "answerActive" : ""
+        answerActive && answerActive.length > 0 ? "answerActive" : ""
       }`}
       onClick={() => history.push("/refinance-fact-find-2/CreditCards")}
       role="button"
