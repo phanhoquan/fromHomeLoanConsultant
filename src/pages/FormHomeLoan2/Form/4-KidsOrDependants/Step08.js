@@ -9,14 +9,15 @@ export const types = {
   2: "NO",
 };
 
-const Step08 = () => {
+const Step08 = ({ handleGetLoan2value }) => {
   const [kidsOrDependant, setKidsOrDependant] = useState(
-    localStorage.getItem("kidsOrDependant") || ""
+    localStorage.getItem("loan2kidsOrDependant") || ""
   );
 
   const onCheck = (option) => {
     setKidsOrDependant(option);
-    window.localStorage.setItem("kidsOrDependant", option);
+    window.localStorage.setItem("loan2kidsOrDependant", option);
+    handleGetLoan2value("kidsOrDependant", option);
   };
 
   return (

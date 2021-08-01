@@ -25,12 +25,12 @@ export const types = {
 const EmploymentStatusJoint = () => {
   const jointApplicationStatus =
     localStorage.getItem("loan2jointApplicationStatus") || "";
-  let listMenuStep5 = localStorage.getItem("listMenuStep5")
-    ? JSON.parse(localStorage.getItem("listMenuStep5"))
+  let listMenuStep6 = localStorage.getItem("listMenuStep6")
+    ? JSON.parse(localStorage.getItem("listMenuStep6"))
     : [];
   const employmentStatus = localStorage.getItem("loan2employmentStatus");
-  const [dataListMenuStep5, setDataListMenuStep5] = useState(
-    listMenuStep5 || []
+  const [dataListMenuStep6, setdataListMenuStep6] = useState(
+    listMenuStep6 || []
   );
 
   const [loan2value, setLoan2value] = useState({
@@ -187,9 +187,9 @@ const EmploymentStatusJoint = () => {
       numberPartnerReturn ||
       partnersSalary
     ) {
-      setDataListMenuStep5(step5);
+      setdataListMenuStep6(step5);
     }
-    window.localStorage.setItem("listMenuStep5", JSON.stringify(step5));
+    window.localStorage.setItem("listMenuStep6", JSON.stringify(step5));
     // eslint-disable-next-line
   }, [
     workingStatus,
@@ -199,6 +199,7 @@ const EmploymentStatusJoint = () => {
     numberYearWorking,
     typeOfBusinessOther,
     businessBeenRegistered,
+    taxReturns,
     priceTax2019,
     priceTax2020,
     partnersOccupation,
@@ -211,7 +212,7 @@ const EmploymentStatusJoint = () => {
     <LifeInsurance
       activeStep={5.1}
       numberScroll={1200}
-      listMenuStep5={dataListMenuStep5}
+      listMenuStep6={dataListMenuStep6}
       jointApplicationStatus={jointApplicationStatus}
     >
       <Step12 handleGetLoan2value={handleGetLoan2value} />
@@ -224,15 +225,9 @@ const EmploymentStatusJoint = () => {
       <Step19 handleGetLoan2value={handleGetLoan2value} />
       <Step20 handleGetLoan2value={handleGetLoan2value} />
       <Step21 handleGetLoan2value={handleGetLoan2value} />
-      {jointApplicationStatus === types[2] ? (
-        <>
-          <Step22 handleGetLoan2value={handleGetLoan2value} />
-          <Step23 handleGetLoan2value={handleGetLoan2value} />
-          <Step24 handleGetLoan2value={handleGetLoan2value} />
-        </>
-      ) : (
-        ""
-      )}
+      <Step22 handleGetLoan2value={handleGetLoan2value} />
+      <Step23 handleGetLoan2value={handleGetLoan2value} />
+      <Step24 handleGetLoan2value={handleGetLoan2value} />
     </LifeInsurance>
   );
 };

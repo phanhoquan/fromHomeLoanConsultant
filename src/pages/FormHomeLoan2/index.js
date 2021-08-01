@@ -36,7 +36,9 @@ const HomeLoan = ({
   listMenuStep1 = [],
   listMenuStep2 = [],
   listMenuStep3 = [],
+  listMenuStep4 = [],
   listMenuStep5 = [],
+  listMenuStep6 = [],
   listMenuStep7 = [],
   listMenuStep8 = [],
   listMenuStep9 = [],
@@ -44,19 +46,11 @@ const HomeLoan = ({
 }) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
+  const wrapperInfoRefSole = useRef();
+  const wrapperInfoRefJoint = useRef();
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
-    : [];
-
-  listDataSubmit &&
-    listDataSubmit &&
-    listDataSubmit.length > 0 &&
-    listDataSubmit.sort(function (a, b) {
-      return a.id - b.id;
-    });
 
   let dataListMenuStep1 = localStorage.getItem("listMenuStep1")
     ? JSON.parse(localStorage.getItem("listMenuStep1"))
@@ -67,8 +61,14 @@ const HomeLoan = ({
   let dataListMenuStep3 = localStorage.getItem("listMenuStep3")
     ? JSON.parse(localStorage.getItem("listMenuStep3"))
     : [];
+  let dataListMenuStep4 = localStorage.getItem("listMenuStep4")
+    ? JSON.parse(localStorage.getItem("listMenuStep4"))
+    : [];
   let dataListMenuStep5 = localStorage.getItem("listMenuStep5")
     ? JSON.parse(localStorage.getItem("listMenuStep5"))
+    : [];
+  let dataListMenuStep6 = localStorage.getItem("listMenuStep6")
+    ? JSON.parse(localStorage.getItem("listMenuStep6"))
     : [];
   let dataListMenuStep7 = localStorage.getItem("listMenuStep7")
     ? JSON.parse(localStorage.getItem("listMenuStep7"))
@@ -95,7 +95,12 @@ const HomeLoan = ({
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowMenu(false);
   });
-
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowMessSole(false);
+  });
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowMessJoint(false);
+  });
   const handleShowMenu = () => {
     setIsShowMenu(!isShowMenu);
   };
@@ -245,17 +250,20 @@ const HomeLoan = ({
                 </ul>
               </ApplicantDetails>
 
-              <KidsOrDependents stepActive={activeStep}>
+              <KidsOrDependents
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep4?.length > 0
+                    ? listMenuStep4[0]
+                    : dataListMenuStep4[0]
+                }
+              >
                 <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
+                  {renderMenu(
+                    listMenuStep4?.length > 0
+                      ? listMenuStep4
+                      : dataListMenuStep4
+                  )}
                 </ul>
               </KidsOrDependents>
 
@@ -266,7 +274,10 @@ const HomeLoan = ({
                     ? listMenuStep5[0]
                     : dataListMenuStep5[0]
                 }
-                jointApplicationStatus={jointApplicationStatus}
+                jointApplicationStatus={
+                  jointApplicationStatus ||
+                  localStorage.getItem("loan2jointApplicationStatus")
+                }
                 handleShowMess={handleShowMessSole}
               >
                 <ul className="sub-question">
@@ -281,18 +292,21 @@ const HomeLoan = ({
               <EmploymentStatusJoint
                 stepActive={activeStep}
                 answerActive={
-                  listMenuStep5?.length > 0
-                    ? listMenuStep5[0]
-                    : dataListMenuStep5[0]
+                  listMenuStep6?.length > 0
+                    ? listMenuStep6[0]
+                    : dataListMenuStep6[0]
                 }
-                jointApplicationStatus={jointApplicationStatus}
+                jointApplicationStatus={
+                  jointApplicationStatus ||
+                  localStorage.getItem("loan2jointApplicationStatus")
+                }
                 handleShowMess={handleShowMessJoint}
               >
                 <ul className="sub-question">
                   {renderMenu(
-                    listMenuStep5?.length > 0
-                      ? listMenuStep5
-                      : dataListMenuStep5
+                    listMenuStep6?.length > 0
+                      ? listMenuStep6
+                      : dataListMenuStep6
                   )}
                 </ul>
               </EmploymentStatusJoint>
@@ -351,7 +365,7 @@ const HomeLoan = ({
         </main>
       </div>
       {isShowMessSole ? (
-        <div className="messagesSole">
+        <div className="messagesSole" ref={wrapperInfoRefSole}>
           <img src={imgAller} alt="" className="mr-3" /> This category is only
           accessible when you are the Sole applicant
         </div>
@@ -359,7 +373,7 @@ const HomeLoan = ({
         ""
       )}
       {isShowMessJoint ? (
-        <div className="messagesSole">
+        <div className="messagesSole" ref={wrapperInfoRefJoint}>
           <img src={imgAller} alt="" className="mr-3" /> This category is only
           accessible when you are the Joint applicant
         </div>

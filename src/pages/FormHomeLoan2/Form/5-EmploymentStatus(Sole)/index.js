@@ -13,9 +13,6 @@ import Step18 from "./Step18";
 import Step19 from "./Step19";
 import Step20 from "./Step20";
 import Step21 from "./Step21";
-import Step22 from "./Step22";
-import Step23 from "./Step23";
-import Step24 from "./Step24";
 
 export const types = {
   1: "Sole Applicant",
@@ -48,10 +45,6 @@ const EmploymentStatusSole = () => {
     priceTax2019: localStorage.getItem("loan2priceTax2019") || "",
     priceTax2020: localStorage.getItem("loan2priceTax2020") || "",
     partnersOccupation: localStorage.getItem("loan2partnersOccupation") || "",
-    employmentPartnersWorkingStatus:
-      localStorage.getItem("loan2employmentPartnersWorkingStatus") || "",
-    numberPartnerReturn: localStorage.getItem("loan2numberPartnerReturn") || "",
-    partnersSalary: localStorage.getItem("loan2partnersSalary") || "",
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -72,10 +65,8 @@ const EmploymentStatusSole = () => {
     priceTax2019,
     priceTax2020,
     partnersOccupation,
-    employmentPartnersWorkingStatus,
-    numberPartnerReturn,
-    partnersSalary,
   } = loan2value;
+
   const titleStep12 = `12. You mentioned that you are working ‘${employmentStatus}’ Is that correct?`;
   const step5 = [
     {
@@ -148,26 +139,6 @@ const EmploymentStatusSole = () => {
         partnersOccupation ? "22. What is your partners occupation?" : ""
       }`,
     },
-    {
-      id: 12,
-      question: `${
-        employmentPartnersWorkingStatus
-          ? "23. What is your partners employment status?"
-          : ""
-      }`,
-    },
-    {
-      id: 13,
-      question: `${
-        numberPartnerReturn
-          ? "24. When is your partner expected to return to work?"
-          : ""
-      }`,
-    },
-    {
-      id: 14,
-      question: `${partnersSalary ? "25. What is your partners salary?" : ""}`,
-    },
   ];
 
   useMemo(() => {
@@ -182,10 +153,7 @@ const EmploymentStatusSole = () => {
       taxReturns ||
       priceTax2019 ||
       priceTax2020 ||
-      partnersOccupation ||
-      employmentPartnersWorkingStatus ||
-      numberPartnerReturn ||
-      partnersSalary
+      partnersOccupation
     ) {
       setDataListMenuStep5(step5);
     }
@@ -202,9 +170,7 @@ const EmploymentStatusSole = () => {
     priceTax2019,
     priceTax2020,
     partnersOccupation,
-    employmentPartnersWorkingStatus,
-    numberPartnerReturn,
-    partnersSalary,
+    taxReturns,
   ]);
 
   return (
@@ -224,15 +190,6 @@ const EmploymentStatusSole = () => {
       <Step19 handleGetLoan2value={handleGetLoan2value} />
       <Step20 handleGetLoan2value={handleGetLoan2value} />
       <Step21 handleGetLoan2value={handleGetLoan2value} />
-      {jointApplicationStatus === types[2] ? (
-        <>
-          <Step22 handleGetLoan2value={handleGetLoan2value} />
-          <Step23 handleGetLoan2value={handleGetLoan2value} />
-          <Step24 handleGetLoan2value={handleGetLoan2value} />
-        </>
-      ) : (
-        ""
-      )}
     </LifeInsurance>
   );
 };

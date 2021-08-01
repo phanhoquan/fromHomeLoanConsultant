@@ -26,7 +26,7 @@ const EmploymentStatusJoint = ({
         answerActive && answerActive?.question ? "answerActive" : ""
       }`}
       onClick={() =>
-        jointApplicationStatus === types[1]
+        jointApplicationStatus === types[2]
           ? history.push("/refinance-fact-find-2/EmploymentStatusJoint")
           : handleShowMess()
       }
