@@ -12,9 +12,10 @@ export const types = {
   3: "Split",
 };
 
-const Step03A = () => {
-  // const currentLoanStatus =
-  //   localStorage.getItem("currentLoanStatus") || "Fixed";
+const Step03A = ({ loan2currentLoanStatus }) => {
+  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
+    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+    : [];
 
   const [valueInterestRate, setValueInterestRate] = useState(
     localStorage.getItem("valueInterestRate") || ""
@@ -42,7 +43,7 @@ const Step03A = () => {
     return true;
   };
 
-  const onKeyUp = (e, name) => {
+  const onKeyUp = (e) => {
     const valueConverted = formatCurrency(e.target.value);
     e.target.value = valueConverted;
     setValueInterestRate(valueConverted);
@@ -56,12 +57,55 @@ const Step03A = () => {
     setValueInterestRateValid(valid.NON_VALID);
   };
 
+  const step3 = {
+    id: 3,
+    question:
+      " 3. What is the current interest rate you are paying on your loan?",
+  };
+  const finDataStep3 = listDataSubmit?.find((item) => item.id === 3);
+  // const finDataStep3Remove = listDataSubmit?.filter((item) => item.id !== 3);
+  const updateDataStep3 = listDataSubmit?.map((item) =>
+    item.id === 3 ? step3 : item
+  );
+
   useMemo(() => {
     localStorage.setItem("valueInterestRate", valueInterestRate);
+    if (valueInterestRate) {
+      if (finDataStep3) {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify(updateDataStep3)
+        );
+      } else {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify([...listDataSubmit, step3])
+        );
+      }
+    }
+    // else {
+    //   window.localStorage.setItem(
+    //     "loan2listDataSubmit",
+    //     finDataStep3Remove
+    //       ? JSON.stringify(finDataStep3Remove)
+    //       : JSON.stringify([])
+    //   );
+    // }
+    // eslint-disable-next-line
   }, [valueInterestRate]);
 
+  useMemo(() => {
+    setValueInterestRateValid(valid.NON_VALID);
+    setValueInterestRate("");
+    // eslint-disable-next-line
+  }, [loan2currentLoanStatus]);
+
   return (
-    <section className="formContent-step-first">
+    <section
+      className={`formContent-step-first ${
+        loan2currentLoanStatus !== types[1] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

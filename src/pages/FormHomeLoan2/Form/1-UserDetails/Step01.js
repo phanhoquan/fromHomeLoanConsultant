@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
@@ -18,7 +17,6 @@ export const types = {
 
 const First = () => {
   const firstNameRef = useRef(null);
-  const history = useHistory();
 
   let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
     ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
@@ -106,11 +104,12 @@ const First = () => {
     question: "1. Are you currently employed?",
   };
 
-  const finDataStep1 = listDataSubmit.find((item) => item.id === 1);
-  const finDataStep1Remove = listDataSubmit.find((item) => item.id !== 1);
-  const updateDataStep1 = listDataSubmit.map((item) =>
+  const finDataStep1 = listDataSubmit?.find((item) => item.id === 1);
+  // const finDataStep1Remove = listDataSubmit?.find((item) => item.id !== 1);
+  const updateDataStep1 = listDataSubmit?.map((item) =>
     item.id === 1 ? step1 : item
   );
+
   useMemo(() => {
     window.localStorage.setItem("loan2lastName", lastName);
     window.localStorage.setItem("loan2firstName", firstName);
@@ -133,14 +132,15 @@ const First = () => {
           JSON.stringify([...listDataSubmit, step1])
         );
       }
-    } else {
-      window.localStorage.setItem(
-        "loan2listDataSubmit",
-        finDataStep1Remove
-          ? JSON.stringify(finDataStep1Remove)
-          : JSON.stringify([])
-      );
     }
+    // else {
+    //   window.localStorage.setItem(
+    //     "loan2listDataSubmit",
+    //     finDataStep1Remove
+    //       ? JSON.stringify(finDataStep1Remove)
+    //       : JSON.stringify([])
+    //   );
+    // }
 
     // eslint-disable-next-line
   }, [lastName, firstName, email, employmentStatus]);
@@ -149,12 +149,7 @@ const First = () => {
     <LifeInsurance activeStep={1} className="page-main">
       <section className="formContent-step-first pb-5">
         <Container>
-          <div
-            className={
-              "wForm wow " +
-              (history?.location?.back ? "fadeInDown" : "fadeInUp")
-            }
-          >
+          <div>
             <Row>
               <Col xs={12} className="text-center">
                 <h2 className="mb-4">1. Please enter your name</h2>

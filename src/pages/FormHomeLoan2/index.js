@@ -37,6 +37,8 @@ const HomeLoan = ({
     : [];
 
   listDataSubmit &&
+    listDataSubmit &&
+    listDataSubmit.length > 0 &&
     listDataSubmit.sort(function (a, b) {
       return a.id - b.id;
     });
@@ -97,6 +99,17 @@ const HomeLoan = ({
   }, [contentNoteVale]);
 
   const finDataStep1 = listDataSubmit?.find((item) => item.id === 1);
+  const finDataStep2 = listDataSubmit?.filter(
+    (item) => item.id >= 2 && item.id <= 3
+  );
+
+  console.log(finDataStep2, "sssssss");
+
+  const renderMenu = (listMenu) => {
+    return listMenu.map((item) => {
+      return <li key={item?.id}>{item?.question}</li>;
+    });
+  };
 
   return (
     <React.Fragment>
@@ -132,18 +145,11 @@ const HomeLoan = ({
             </div>
             <ul className="listAnswer style2">
               <UserDetail stepActive={activeStep} answerActive={finDataStep1} />
-              <LoanInformation stepActive={activeStep}>
-                <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                </ul>
+              <LoanInformation
+                stepActive={activeStep}
+                answerActive={finDataStep2}
+              >
+                <ul className="sub-question">{renderMenu(finDataStep2)}</ul>
               </LoanInformation>
 
               <ApplicantDetails stepActive={activeStep}>

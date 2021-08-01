@@ -12,10 +12,10 @@ export const types = {
   3: "Split",
 };
 
-const Step03 = () => {
-  // const currentLoanStatus =
-  //   localStorage.getItem("currentLoanStatus") || "Fixed";
-
+const Step03 = ({ loan2currentLoanStatus }) => {
+  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
+    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+    : [];
   const [valueInterestRate, setValueInterestRate] = useState(
     localStorage.getItem("valueInterestRate") || ""
   );
@@ -82,6 +82,14 @@ const Step03 = () => {
     }
   };
 
+  useMemo(() => {
+    setValueInterestRateValid2(valid.NON_VALID);
+    setValueInterestRateValid(valid.NON_VALID);
+    setValueInterestRate("");
+    setValueInterestRate2("");
+    // eslint-disable-next-line
+  }, [loan2currentLoanStatus]);
+
   const onBlur = (e, name) => {
     switch (name) {
       case "interestRate1":
@@ -108,16 +116,50 @@ const Step03 = () => {
     }
   };
 
+  const step3 = {
+    id: 3,
+    question:
+      " 3. What is the current interest rate you are paying on your loan?",
+  };
+  const finDataStep3 = listDataSubmit?.find((item) => item.id === 3);
+  // const finDataStep3Remove = listDataSubmit?.filter((item) => item.id !== 3);
+  const updateDataStep3 = listDataSubmit?.map((item) =>
+    item.id === 3 ? step3 : item
+  );
+
   useMemo(() => {
     localStorage.setItem("valueInterestRate", valueInterestRate);
-  }, [valueInterestRate]);
-
-  useMemo(() => {
     localStorage.setItem("valueInterestRate2", valueInterestRate2);
-  }, [valueInterestRate2]);
+    if (valueInterestRate || valueInterestRate2) {
+      if (finDataStep3) {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify(updateDataStep3)
+        );
+      } else {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify([...listDataSubmit, step3])
+        );
+      }
+    }
+    // else {
+    //   window.localStorage.setItem(
+    //     "loan2listDataSubmit",
+    //     finDataStep3Remove
+    //       ? JSON.stringify(finDataStep3Remove)
+    //       : JSON.stringify([])
+    //   );
+    // }
+    // eslint-disable-next-line
+  }, [valueInterestRate, valueInterestRate2]);
 
   return (
-    <section className="formContent-step-first pb-5">
+    <section
+      className={`formContent-step-first pb-5 ${
+        loan2currentLoanStatus !== types[3] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>
@@ -135,7 +177,7 @@ const Step03 = () => {
                     label="Fixed interest rate"
                     value={valueInterestRate}
                     type="text"
-                    id="email-input1"
+                    id="email-input3"
                     customClassLabel={valueInterestRate ? "active" : ""}
                     iconRate
                     maxLength="5"
@@ -160,7 +202,7 @@ const Step03 = () => {
                     label="Variable interest rate"
                     value={valueInterestRate2}
                     type="text"
-                    id="email-input"
+                    id="email-input4"
                     customClassLabel={valueInterestRate2 ? "active" : ""}
                     iconRate
                     maxLength="5"

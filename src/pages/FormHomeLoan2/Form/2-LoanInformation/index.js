@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import LifeInsurance from "../../index";
 
 import Step02 from "./Step02";
@@ -9,13 +9,22 @@ import Step03B from "./Step03-2";
 import Step03C from "./Step03-3";
 
 const LoanInformation = () => {
-  console.log(localStorage.getItem("loan2currentLoanStatus"), "sssssss");
+  const [loan2currentLoanStatus, setLoan2currentLoanStatus] = useState(
+    localStorage.getItem("loan2currentLoanStatus") || ""
+  );
+
+  const handelGetLoan2currentLoanStatus = (option) => {
+    setLoan2currentLoanStatus(option);
+  };
+
   return (
     <LifeInsurance activeStep={2}>
-      <Step02 />
-      <Step03A />
-      <Step03B />
-      <Step03C />
+      <Step02
+        handelGetLoan2currentLoanStatus={handelGetLoan2currentLoanStatus}
+      />
+      <Step03A loan2currentLoanStatus={loan2currentLoanStatus} />
+      <Step03B loan2currentLoanStatus={loan2currentLoanStatus} />
+      <Step03C loan2currentLoanStatus={loan2currentLoanStatus} />
     </LifeInsurance>
   );
 };
