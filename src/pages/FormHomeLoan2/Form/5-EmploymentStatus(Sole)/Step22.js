@@ -18,16 +18,17 @@ export const types = {
   6: "Maternal Leave",
 };
 
-const Step22 = () => {
+const Step22 = ({ handleGetLoan2value }) => {
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
 
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
-    localStorage.getItem("employmentPartnersWorkingStatus") || ""
+    localStorage.getItem("loan2employmentPartnersWorkingStatus") || ""
   );
 
   const onCheck = (option) => {
     setEmploymentWorkingStatus(option);
-    window.localStorage.setItem("employmentPartnersWorkingStatus", option);
+    window.localStorage.setItem("loan2employmentPartnersWorkingStatus", option);
+    handleGetLoan2value("employmentPartnersWorkingStatus", option);
   };
 
   return (

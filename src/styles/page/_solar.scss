@@ -348,7 +348,7 @@ footer.position-relative {
   &.style2 {
     >li {
       padding-left: 0;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
 
       &:hover,
       &.answerActive,
@@ -360,6 +360,17 @@ footer.position-relative {
         .light {
           display: none;
         }
+
+        .question {
+          font-weight: 700;
+          color: #42adff;
+        }
+
+      }
+
+      .question {
+        font-weight: 500;
+        color: #5e5e5e;
       }
 
       img {
@@ -582,5 +593,21 @@ textarea {
 
   * {
     pointer-events: none !important;
+  }
+}
+
+.messagesSole {
+  position: fixed;
+  bottom: 20px;
+  left: 400px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #ef0e0e;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+
+  img {
+    max-width: 20px;
   }
 }

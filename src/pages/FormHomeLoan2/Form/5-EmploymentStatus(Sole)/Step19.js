@@ -5,8 +5,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
 
 export const types = {
-  1: "YES",
-  2: "NO",
+  1: "YES ",
+  2: "NO ",
 };
 
 export const types2 = {
@@ -14,14 +14,15 @@ export const types2 = {
   2: "Joint Applicant",
 };
 
-const Step19 = () => {
+const Step19 = ({ handleGetLoan2value }) => {
   const [taxReturns, setTaxReturns] = useState(
-    localStorage.getItem("taxReturns") || ""
+    localStorage.getItem("loan2taxReturns") || ""
   );
 
   const onCheck = (option) => {
     setTaxReturns(option);
-    window.localStorage.setItem("taxReturns", option);
+    window.localStorage.setItem("loan2taxReturns", option);
+    handleGetLoan2value("taxReturns", option);
   };
 
   return (

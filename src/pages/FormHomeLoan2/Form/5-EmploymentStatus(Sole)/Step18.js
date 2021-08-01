@@ -15,11 +15,11 @@ const listBusinessBeenRegistered = [
   "15+ years",
 ];
 
-const Step18 = () => {
+const Step18 = ({ handleGetLoan2value }) => {
   const businessBeenRegisteredRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [businessBeenRegistered, setBusinessBeenRegistered] = useState(
-    localStorage.getItem("businessBeenRegistered") || ""
+    localStorage.getItem("loan2businessBeenRegistered") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -30,7 +30,8 @@ const Step18 = () => {
   const onClickSelect = (value) => {
     setBusinessBeenRegistered(value);
     setIsShowModal(false);
-    window.localStorage.setItem("businessBeenRegistered", value);
+    window.localStorage.setItem("loan2businessBeenRegistered", value);
+    handleGetLoan2value("businessBeenRegistered", value);
   };
 
   return (

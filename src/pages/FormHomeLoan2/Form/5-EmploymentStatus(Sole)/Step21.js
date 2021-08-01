@@ -13,7 +13,7 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step21 = () => {
+const Step21 = ({ handleGetLoan2value }) => {
   const partnersOccupationRef = useRef(null);
 
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
@@ -21,7 +21,7 @@ const Step21 = () => {
   const wrapperInfoRef = useRef();
   const [isShowModal, setIsShowModal] = useState(false);
   const [partnersOccupation, setPartnersOccupation] = useState(
-    localStorage.getItem("partnersOccupation") || ""
+    localStorage.getItem("loan2partnersOccupation") || ""
   );
   const [dataListPartnersOccupations, setDataListPartnersOccupations] =
     useState(originArray || []);
@@ -81,7 +81,8 @@ const Step21 = () => {
     checkPartnersOccupationStatus(name);
     setIsShowModal(false);
     checkPartnersOccupationStatus(partnersOccupation);
-    window.localStorage.setItem("partnersOccupation", name);
+    window.localStorage.setItem("loan2partnersOccupation", name);
+    handleGetLoan2value("partnersOccupation", name);
   };
 
   const showClass =
@@ -109,7 +110,7 @@ const Step21 = () => {
                     }
                     label="Partners Occupation"
                     value={partnersOccupation}
-                    id="iconOccupation"
+                    id="partnersOccupation"
                     customClassWrap="email"
                     customClassLabel={partnersOccupation ? "active" : ""}
                     innerRef={partnersOccupationRef}

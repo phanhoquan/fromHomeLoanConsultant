@@ -5,10 +5,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step24 = () => {
+const Step24 = ({ handleGetLoan2value }) => {
   const partnersSalaryRef = useRef(null);
   const [partnersSalary, setPartnersSalary] = useState(
-    localStorage.getItem("partnersSalary") || ""
+    localStorage.getItem("loan2partnersSalary") || ""
   );
   const [partnersSalaryValid, setPartnersSalaryValid] = useState(
     valid.NON_VALID
@@ -28,7 +28,7 @@ const Step24 = () => {
 
   useMemo(() => {
     window.localStorage.setItem(
-      "partnersSalary",
+      "loan2partnersSalary",
       partnersSalary && parseInt(partnersSalary.replace(/,/g, ""), 10)
     );
   }, [partnersSalary]);
@@ -62,7 +62,10 @@ const Step24 = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={partnersSalaryRef}
-                    onBlur={() => checkPartnersSalaryStatus(partnersSalary)}
+                    onBlur={() => {
+                      checkPartnersSalaryStatus(partnersSalary);
+                      handleGetLoan2value("partnersSalary", partnersSalary);
+                    }}
                   />
                 </Col>
               </Row>

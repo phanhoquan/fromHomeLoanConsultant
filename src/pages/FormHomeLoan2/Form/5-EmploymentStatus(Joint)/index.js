@@ -3,26 +3,26 @@
 import React, { useMemo, useState } from "react";
 import LifeInsurance from "../../index";
 
-import Step12 from "./Step12";
-import Step13 from "./Step13";
-import Step14 from "./Step14";
-import Step15 from "./Step15";
-import Step16 from "./Step16";
-import Step17 from "./Step17";
-import Step18 from "./Step18";
-import Step19 from "./Step19";
-import Step20 from "./Step20";
-import Step21 from "./Step21";
-import Step22 from "./Step22";
-import Step23 from "./Step23";
-import Step24 from "./Step24";
+import Step12 from "../5-EmploymentStatus(Sole)/Step12";
+import Step13 from "../5-EmploymentStatus(Sole)/Step13";
+import Step14 from "../5-EmploymentStatus(Sole)/Step14";
+import Step15 from "../5-EmploymentStatus(Sole)/Step15";
+import Step16 from "../5-EmploymentStatus(Sole)/Step16";
+import Step17 from "../5-EmploymentStatus(Sole)/Step17";
+import Step18 from "../5-EmploymentStatus(Sole)/Step18";
+import Step19 from "../5-EmploymentStatus(Sole)/Step19";
+import Step20 from "../5-EmploymentStatus(Sole)/Step20";
+import Step21 from "../5-EmploymentStatus(Sole)/Step21";
+import Step22 from "../5-EmploymentStatus(Sole)/Step22";
+import Step23 from "../5-EmploymentStatus(Sole)/Step23";
+import Step24 from "../5-EmploymentStatus(Sole)/Step24";
 
 export const types = {
   1: "Sole Applicant",
   2: "Joint Applicant",
 };
 
-const EmploymentStatusSole = () => {
+const EmploymentStatusJoint = () => {
   const jointApplicationStatus =
     localStorage.getItem("loan2jointApplicationStatus") || "";
   let listMenuStep5 = localStorage.getItem("listMenuStep5")
@@ -209,7 +209,7 @@ const EmploymentStatusSole = () => {
 
   return (
     <LifeInsurance
-      activeStep={5}
+      activeStep={5.1}
       numberScroll={1200}
       listMenuStep5={dataListMenuStep5}
       jointApplicationStatus={jointApplicationStatus}
@@ -237,4 +237,4 @@ const EmploymentStatusSole = () => {
   );
 };
 
-export default EmploymentStatusSole;
+export default EmploymentStatusJoint;

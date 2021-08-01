@@ -9,6 +9,8 @@ import useOnClickOutside from "../../hooks/useClickOutSide";
 import imgMenuClose from "../../images/closemenu.png";
 import imgNote from "../../images/note.png";
 import imgArrowNote from "../../images/arrow-white.svg";
+import imgAller from "../../images/aler.png";
+
 import UserDetail from "./menu/UserDetail";
 import LoanInformation from "./menu/LoanInformation";
 import ApplicantDetails from "./menu/ApplicantDetails";
@@ -21,6 +23,11 @@ import ResidentialInformation from "./menu/ResidentialInformation";
 
 import Modal from "../Modal/ModalSubmit";
 
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 const HomeLoan = ({
   children,
   className = "",
@@ -29,9 +36,11 @@ const HomeLoan = ({
   listMenuStep1 = [],
   listMenuStep2 = [],
   listMenuStep3 = [],
+  listMenuStep5 = [],
   listMenuStep7 = [],
   listMenuStep8 = [],
   listMenuStep9 = [],
+  jointApplicationStatus = "",
 }) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
@@ -58,6 +67,9 @@ const HomeLoan = ({
   let dataListMenuStep3 = localStorage.getItem("listMenuStep3")
     ? JSON.parse(localStorage.getItem("listMenuStep3"))
     : [];
+  let dataListMenuStep5 = localStorage.getItem("listMenuStep5")
+    ? JSON.parse(localStorage.getItem("listMenuStep5"))
+    : [];
   let dataListMenuStep7 = localStorage.getItem("listMenuStep7")
     ? JSON.parse(localStorage.getItem("listMenuStep7"))
     : [];
@@ -76,6 +88,8 @@ const HomeLoan = ({
     localStorage.getItem("contentNoteVale") || ""
   );
   const [isShowNoteVale, setIsShowNoteVale] = useState(false);
+  const [isShowMessSole, setIsShowMessSole] = useState(false);
+  const [isShowMessJoint, setIsShowMessJoint] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
   useOnClickOutside(wrapperInfoRef, () => {
@@ -104,6 +118,23 @@ const HomeLoan = ({
 
   const handleTogglesAddNote = () => {
     setIsShowNoteVale(!isShowNoteVale);
+  };
+
+  const handleShowMessSole = () => {
+    setIsShowMessJoint(false);
+    if (jointApplicationStatus !== types[1]) {
+      setIsShowMessSole(true);
+    } else {
+      setIsShowMessSole(false);
+    }
+  };
+  const handleShowMessJoint = () => {
+    setIsShowMessSole(false);
+    if (jointApplicationStatus !== types[2]) {
+      setIsShowMessJoint(true);
+    } else {
+      setIsShowMessJoint(false);
+    }
   };
 
   const handleSubmitData = () => {
@@ -228,31 +259,41 @@ const HomeLoan = ({
                 </ul>
               </KidsOrDependents>
 
-              <EmploymentStatusSole stepActive={activeStep}>
+              <EmploymentStatusSole
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep5?.length > 0
+                    ? listMenuStep5[0]
+                    : dataListMenuStep5[0]
+                }
+                jointApplicationStatus={jointApplicationStatus}
+                handleShowMess={handleShowMessSole}
+              >
                 <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
+                  {renderMenu(
+                    listMenuStep5?.length > 0
+                      ? listMenuStep5
+                      : dataListMenuStep5
+                  )}
                 </ul>
               </EmploymentStatusSole>
 
-              <EmploymentStatusJoint stepActive={activeStep}>
+              <EmploymentStatusJoint
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep5?.length > 0
+                    ? listMenuStep5[0]
+                    : dataListMenuStep5[0]
+                }
+                jointApplicationStatus={jointApplicationStatus}
+                handleShowMess={handleShowMessJoint}
+              >
                 <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
+                  {renderMenu(
+                    listMenuStep5?.length > 0
+                      ? listMenuStep5
+                      : dataListMenuStep5
+                  )}
                 </ul>
               </EmploymentStatusJoint>
               <Liabilities
@@ -309,7 +350,22 @@ const HomeLoan = ({
           <div className="nav-right">{children}</div>
         </main>
       </div>
-
+      {isShowMessSole ? (
+        <div className="messagesSole">
+          <img src={imgAller} alt="" className="mr-3" /> This category is only
+          accessible when you are the Sole applicant
+        </div>
+      ) : (
+        ""
+      )}
+      {isShowMessJoint ? (
+        <div className="messagesSole">
+          <img src={imgAller} alt="" className="mr-3" /> This category is only
+          accessible when you are the Joint applicant
+        </div>
+      ) : (
+        ""
+      )}
       <div className={`addNote ${isShowNoteVale ? "show" : ""}`}>
         <div className="addHeader" onClick={handleTogglesAddNote}>
           <img src={imgNote} alt="" className="icon-note" />

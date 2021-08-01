@@ -13,11 +13,11 @@ export const types = {
   5: "Unemployed",
 };
 
-const Step17 = () => {
+const Step17 = ({ handleGetLoan2value }) => {
   const typeOfBusinessRef = useRef(null);
   // const employmentStatus = localStorage.getItem("employmentWorkingStatus");
   const [typeOfBusiness, setTypeOfBusiness] = useState(
-    localStorage.getItem("typeOfBusinessOther") || ""
+    localStorage.getItem("loan2typeOfBusinessOther") || ""
   );
   const [typeOfBusinessValid, setTypeOfBusinessValid] = useState(
     valid.NON_VALID
@@ -35,10 +35,11 @@ const Step17 = () => {
 
   const handleBlur = () => {
     checkTypeOfBusinessStatus(typeOfBusiness);
+    handleGetLoan2value("typeOfBusinessOther", typeOfBusiness);
   };
 
   useMemo(() => {
-    window.localStorage.setItem("typeOfBusinessOther", typeOfBusiness);
+    window.localStorage.setItem("loan2typeOfBusinessOther", typeOfBusiness);
   }, [typeOfBusiness]);
 
   return (

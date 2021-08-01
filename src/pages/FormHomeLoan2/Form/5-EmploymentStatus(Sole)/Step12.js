@@ -9,15 +9,16 @@ export const types = {
   2: "NO",
 };
 
-const Step12 = () => {
-  const employmentStatus = localStorage.getItem("employmentStatus");
+const Step12 = ({ handleGetLoan2value }) => {
+  const employmentStatus = localStorage.getItem("loan2employmentStatus");
   const [workingStatus, setWorkingStatus] = useState(
-    localStorage.getItem("workingStatus") || ""
+    localStorage.getItem("loan2workingStatus") || ""
   );
 
   const onCheck = (option) => {
     setWorkingStatus(option);
-    window.localStorage.setItem("workingStatus", option);
+    window.localStorage.setItem("loan2workingStatus", option);
+    handleGetLoan2value("workingStatus", option);
   };
 
   return (

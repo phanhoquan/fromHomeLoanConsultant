@@ -6,14 +6,29 @@ import { useHistory } from "react-router-dom";
 import imgEmployment from "../../../images/menu/employment.png";
 import imgEmploymentBlue from "../../../images/menu/employment-blue.png";
 
-const EmploymentStatusJoint = ({ children, stepActive, answerActive }) => {
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
+const EmploymentStatusJoint = ({
+  children,
+  stepActive,
+  answerActive,
+  jointApplicationStatus,
+  handleShowMess,
+}) => {
   const history = useHistory();
   return (
     <li
-      className={`${stepActive === 5 ? "active" : ""} ${
+      className={`${stepActive === 5.1 ? "active" : ""} ${
         answerActive && answerActive?.question ? "answerActive" : ""
       }`}
-      onClick={() => history.push("/refinance-fact-find-2/EmploymentStatus")}
+      onClick={() =>
+        jointApplicationStatus === types[1]
+          ? history.push("/refinance-fact-find-2/EmploymentStatusJoint")
+          : handleShowMess()
+      }
       role="button"
     >
       <LazyLoadImage

@@ -8,12 +8,12 @@ import { getDataListOccupationOptions } from "../../../../utils/quoteOccupations
 import originArray from "../../../../utils/quoteOccupations";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
-const Step15 = () => {
+const Step15 = ({ handleGetLoan2value }) => {
   const occupationRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [isShowModal, setIsShowModal] = useState(false);
   const [occupation, setOccupation] = useState(
-    localStorage.getItem("occupation") || ""
+    localStorage.getItem("loan2occupation") || ""
   );
   const [dataListOccupations, setDataListOccupations] = useState(
     originArray || []
@@ -70,7 +70,8 @@ const Step15 = () => {
     setOccupation(name);
     checkOccupationStatus(name);
     setIsShowModal(false);
-    window.localStorage.setItem("occupation", name);
+    window.localStorage.setItem("loan2occupation", name);
+    handleGetLoan2value("occupation", name);
   };
 
   const showClass =

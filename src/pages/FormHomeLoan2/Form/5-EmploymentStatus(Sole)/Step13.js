@@ -13,14 +13,15 @@ export const types = {
   6: "Maternal Leave",
 };
 
-const Step13 = () => {
+const Step13 = ({ handleGetLoan2value }) => {
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
-    localStorage.getItem("employmentWorkingStatus") || ""
+    localStorage.getItem("loan2employmentWorkingStatus") || ""
   );
 
   const onCheck = (option) => {
     setEmploymentWorkingStatus(option);
-    window.localStorage.setItem("employmentWorkingStatus", option);
+    window.localStorage.setItem("loan2employmentWorkingStatus", option);
+    handleGetLoan2value("employmentWorkingStatus", option);
   };
 
   return (

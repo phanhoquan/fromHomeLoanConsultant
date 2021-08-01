@@ -20,13 +20,13 @@ const listNumberYearWorking = [
   "5+ years",
 ];
 
-const Step16 = () => {
+const Step16 = ({ handleGetLoan2value }) => {
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
   // const employmentStatus = localStorage.getItem("employmentStatus");
 
   const [numberYearWorking, setNumberYearWorking] = useState(
-    localStorage.getItem("numberYearWorking") || ""
+    localStorage.getItem("loan2numberYearWorking") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -37,7 +37,8 @@ const Step16 = () => {
   const onClickSelect = (value) => {
     setNumberYearWorking(value);
     setIsShowModal(false);
-    window.localStorage.setItem("numberYearWorking", value);
+    window.localStorage.setItem("loan2numberYearWorking", value);
+    handleGetLoan2value("numberYearWorking", value);
   };
 
   return (

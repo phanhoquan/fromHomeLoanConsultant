@@ -119,7 +119,11 @@ const ApplicantDetails = () => {
   ]);
 
   return (
-    <LifeInsurance activeStep={3} listMenuStep3={dataListMenuStep3}>
+    <LifeInsurance
+      activeStep={3}
+      listMenuStep3={dataListMenuStep3}
+      jointApplicationStatus={applicationStatus}
+    >
       <Step04 handelGetApplicationStatus={handelGetApplicationStatus} />
       <Step05
         applicationStatus={applicationStatus}

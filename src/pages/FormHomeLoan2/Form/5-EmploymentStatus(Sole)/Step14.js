@@ -14,11 +14,11 @@ const listNumberPartnerReturn = [
   "Not returning to work",
 ];
 
-const Step14 = () => {
+const Step14 = ({ handleGetLoan2value }) => {
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [numberPartnerReturn, setNumberPartnerReturn] = useState(
-    localStorage.getItem("numberPartnerReturn16") || ""
+    localStorage.getItem("loan2numberPartnerReturn16") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -29,7 +29,8 @@ const Step14 = () => {
   const onClickSelect = (value) => {
     setNumberPartnerReturn(value);
     setIsShowModal(false);
-    window.localStorage.setItem("numberPartnerReturn16", value);
+    window.localStorage.setItem("loan2numberPartnerReturn16", value);
+    handleGetLoan2value("numberPartnerReturn16", value);
   };
 
   return (

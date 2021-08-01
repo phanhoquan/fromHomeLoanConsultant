@@ -20,13 +20,13 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step23 = () => {
+const Step23 = ({ handleGetLoan2value }) => {
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
 
   const [numberPartnerReturn, setNumberPartnerReturn] = useState(
-    localStorage.getItem("numberPartnerReturn") || ""
+    localStorage.getItem("loan2numberPartnerReturn") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
   const [numberPartnerReturnValid, setNumberPartnerReturnValid] = useState(
@@ -49,7 +49,8 @@ const Step23 = () => {
     setNumberPartnerReturnValid(valid.NON_VALID);
     setIsShowModal(false);
     checkNumberPartnerReturnStatus(value);
-    window.localStorage.setItem("numberPartnerReturn", value);
+    window.localStorage.setItem("loan2numberPartnerReturn", value);
+    handleGetLoan2value("numberPartnerReturn", value);
   };
 
   return (
@@ -82,7 +83,7 @@ const Step23 = () => {
                     onChange={() => () => {}}
                     label="Select when your partner return to work"
                     value={numberPartnerReturn}
-                    id="numberPartnerReturn"
+                    id="numberPartnerReturn2"
                     customClassLabel={numberPartnerReturn ? "active" : ""}
                     iconArrow
                     customClassWrap="email five"

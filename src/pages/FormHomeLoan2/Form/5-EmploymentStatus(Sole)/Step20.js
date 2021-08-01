@@ -10,19 +10,19 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step20 = () => {
+const Step20 = ({ handleGetLoan2value }) => {
   const priceTax2019Ref = useRef(null);
   const priceTax2020Ref = useRef(null);
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
 
   const [priceTax2019, setPriceTax2019] = useState(
-    localStorage.getItem("priceTax2019") || ""
+    localStorage.getItem("loan2priceTax2019") || ""
   );
 
   const [priceTax2019Valid, setPriceTax2019Valid] = useState(valid.NON_VALID);
 
   const [priceTax2020, setPriceTax2020] = useState(
-    localStorage.getItem("priceTax2020") || ""
+    localStorage.getItem("loan2priceTax2020") || ""
   );
   const [priceTax2020Valid, setPriceTax2020Valid] = useState(valid.NON_VALID);
 
@@ -53,14 +53,14 @@ const Step20 = () => {
 
   useMemo(() => {
     window.localStorage.setItem(
-      "priceTax2019",
+      "loan2priceTax2019",
       priceTax2019 && parseInt(priceTax2019.replace(/,/g, ""), 10)
     );
   }, [priceTax2019]);
 
   useMemo(() => {
     window.localStorage.setItem(
-      "priceTax2020",
+      "loan2priceTax2020",
       priceTax2020 && parseInt(priceTax2020.replace(/,/g, ""), 10)
     );
   }, [priceTax2020]);
@@ -94,7 +94,10 @@ const Step20 = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={priceTax2019Ref}
-                    onBlur={() => checkPriceTax2019Status(priceTax2019)}
+                    onBlur={() => {
+                      checkPriceTax2019Status(priceTax2019);
+                      handleGetLoan2value("priceTax2019", priceTax2019);
+                    }}
                   />
                 </Col>
               </Row>
@@ -129,7 +132,10 @@ const Step20 = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={priceTax2020Ref}
-                    onBlur={() => checkPriceTax2020Status(priceTax2020)}
+                    onBlur={() => {
+                      checkPriceTax2020Status(priceTax2020);
+                      handleGetLoan2value("priceTax2020", priceTax2020);
+                    }}
                   />
                 </Col>
               </Row>
