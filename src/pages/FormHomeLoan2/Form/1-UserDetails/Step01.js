@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
@@ -19,19 +19,23 @@ export const types = {
 const First = () => {
   const firstNameRef = useRef(null);
   const history = useHistory();
+
+  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
+    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+    : [];
+
   const [firstName, setFirstName] = useState(
-    localStorage.getItem("firstName") || ""
+    localStorage.getItem("loan2firstName") || ""
   );
   const [lastName, setLastName] = useState(
-    localStorage.getItem("lastName") || ""
+    localStorage.getItem("loan2lastName") || ""
   );
   const [firstNameValid, setFirstNameValid] = useState(valid.NON_VALID);
   const [lastNameValid, setLastNameValid] = useState(valid.NON_VALID);
-  window.localStorage.setItem("questionStep1", "Are you currently employed?");
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [emailValid, setEmailValid] = useState(valid.NON_VALID);
   const [employmentStatus, setEmploymentStatus] = useState(
-    localStorage.getItem("employmentStatus") || ""
+    localStorage.getItem("loan2employmentStatus") || ""
   );
 
   const checkEmailStatus = (value) => {
@@ -83,20 +87,63 @@ const First = () => {
     switch (name) {
       case "lastName":
         checkLastNameStatus(lastName);
-        window.localStorage.setItem("lastName", lastName);
+
         break;
       case "firstName":
         checkFirstNameStatus(firstName);
-        window.localStorage.setItem("firstName", firstName);
+
         break;
       case "email":
         checkEmailStatus(email);
-        window.localStorage.setItem("email", email);
         break;
       default:
         break;
     }
   };
+
+  const step1 = {
+    id: 1,
+    question: "1. Are you currently employed?",
+  };
+
+  const finDataStep1 = listDataSubmit.find((item) => item.id === 1);
+  const finDataStep1Remove = listDataSubmit.find((item) => item.id !== 1);
+  const updateDataStep1 = listDataSubmit.map((item) =>
+    item.id === 1 ? step1 : item
+  );
+  useMemo(() => {
+    window.localStorage.setItem("loan2lastName", lastName);
+    window.localStorage.setItem("loan2firstName", firstName);
+    window.localStorage.setItem("loan2email", email);
+    window.localStorage.setItem("loan2employmentStatus", employmentStatus);
+    if (
+      lastName.trim() ||
+      firstName.trim() ||
+      email.trim() ||
+      employmentStatus
+    ) {
+      if (finDataStep1) {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify(updateDataStep1)
+        );
+      } else {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify([...listDataSubmit, step1])
+        );
+      }
+    } else {
+      window.localStorage.setItem(
+        "loan2listDataSubmit",
+        finDataStep1Remove
+          ? JSON.stringify(finDataStep1Remove)
+          : JSON.stringify([])
+      );
+    }
+
+    // eslint-disable-next-line
+  }, [lastName, firstName, email, employmentStatus]);
 
   return (
     <LifeInsurance activeStep={1} className="page-main">

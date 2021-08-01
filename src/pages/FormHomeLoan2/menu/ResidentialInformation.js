@@ -2,14 +2,20 @@
 
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useHistory } from "react-router-dom";
 import imgInfo from "../../../images/menu/info.png";
 import imgInfoBlue from "../../../images/menu/info-blue.png";
 
-const ResidentialInformation = ({ children, stepActive }) => {
+const ResidentialInformation = ({ children, stepActive, answerActive }) => {
+  const history = useHistory();
   return (
     <li
-      className={`${stepActive === 8 ? "active answerActive" : ""} `}
-      onClick={() => {}}
+      className={`${stepActive === 8 ? "active" : ""} ${
+        answerActive ? "answerActive" : ""
+      }`}
+      onClick={() =>
+        history.push("/refinance-fact-find-2/ResidentialInformation")
+      }
       role="button"
     >
       <LazyLoadImage

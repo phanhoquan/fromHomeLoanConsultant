@@ -75,7 +75,7 @@ const Form = () => {
           component={UserDetails}
         />
         <Route
-          path="/refinance-fact-find-2/loanIn-formation"
+          path="/refinance-fact-find-2/loanInformation"
           component={LoanInformation}
         />
         <Route
@@ -102,10 +102,7 @@ const Form = () => {
           path="/refinance-fact-find-2/ResidentialInformation"
           component={ResidentialInformation}
         />
-        <Route
-          path="/refinance-fact-find-2"
-          component={ResidentialInformation}
-        />
+        <Route path="/refinance-fact-find-2" component={LoanInformation} />
       </Switch>
     </section>
   );

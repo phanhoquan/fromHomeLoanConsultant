@@ -12,12 +12,12 @@ export const types = {
 
 const Step02 = () => {
   const [currentLoanStatus, setCurrentLoanStatus] = useState(
-    localStorage.getItem("currentLoanStatus") || ""
+    localStorage.getItem("loan2currentLoanStatus") || ""
   );
 
   const onCheck = (option) => {
     setCurrentLoanStatus(option);
-    window.localStorage.setItem("currentLoanStatus", option);
+    window.localStorage.setItem("loan2currentLoanStatus", option);
   };
 
   return (

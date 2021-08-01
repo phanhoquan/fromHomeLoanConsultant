@@ -9,6 +9,7 @@ import Step03B from "./Step03-2";
 import Step03C from "./Step03-3";
 
 const LoanInformation = () => {
+  console.log(localStorage.getItem("loan2currentLoanStatus"), "sssssss");
   return (
     <LifeInsurance activeStep={2}>
       <Step02 />

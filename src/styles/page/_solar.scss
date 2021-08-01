@@ -347,9 +347,11 @@ footer.position-relative {
   &.style2 {
     >li {
       padding-left: 0;
+      margin-bottom: 25px;
 
       &:hover,
-      &.answerActive {
+      &.answerActive,
+      &.active {
         .blue {
           display: inline-block;
         }

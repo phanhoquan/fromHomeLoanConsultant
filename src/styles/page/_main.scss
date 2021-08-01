@@ -1698,4 +1698,16 @@ div.tooltip2 {
     max-width: 340px;
     width: 340px;
   }
+
+  &::after {
+    position: fixed;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 90px;
+    background-color: #ffffff;
+    z-index: -1;
+    width: calc(100% - 360px);
+  }
 }
