@@ -253,6 +253,21 @@ html.fonts100 {
         }
       }
 
+      &.text-center {
+        .input-change {
+          text-align: center;
+        }
+
+        .input__label {
+          left: 0 !important;
+          width: 100% !important;
+
+          &.active {
+            left: 13% !important;
+          }
+        }
+      }
+
       .check-phone {
         right: pxToRem(10);
         left: auto;
@@ -1710,5 +1725,18 @@ div.tooltip2 {
     background-color: #ffffff;
     z-index: -1;
     width: calc(100% - 360px);
+  }
+}
+
+.group-action {
+  position: absolute;
+  right: -60px;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+
+  .btn-plus {
+    max-width: 25px;
+    cursor: pointer;
   }
 }

@@ -19,8 +19,13 @@ const KidsOrDependents = () => {
 
   const [loan2value, setLoan2value] = useState({
     kidsOrDependant: localStorage.getItem("loan2kidsOrDependant") || "",
-    currentlyRenting: localStorage.getItem("loan2currentlyRenting") || "",
+    chillApplicantAge: localStorage.getItem("loan2chillApplicantAge")
+      ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
+      : null,
     otherDependents: localStorage.getItem("loan2otherDependents") || "",
+    otherChillApplicantAge: localStorage.getItem("loan2otherChillApplicantAge")
+      ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
+      : null,
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -29,7 +34,12 @@ const KidsOrDependents = () => {
       [name]: value,
     });
   };
-  const { kidsOrDependant, currentlyRenting, otherDependents } = loan2value;
+  const {
+    kidsOrDependant,
+    chillApplicantAge,
+    otherDependents,
+    otherChillApplicantAge,
+  } = loan2value;
   const step4 = [
     {
       id: 1,
@@ -40,7 +50,11 @@ const KidsOrDependents = () => {
     {
       id: 2,
       question: `${
-        currentlyRenting ? "9. What are the age of these kidsdependants?" : ""
+        chillApplicantAge &&
+        chillApplicantAge !== null &&
+        chillApplicantAge !== "null"
+          ? "9. What are the age of these kidsdependants?"
+          : ""
       }`,
     },
     {
@@ -49,15 +63,35 @@ const KidsOrDependents = () => {
         otherDependents ? "10. Do you have any other dependants?" : ""
       }`,
     },
+    {
+      id: 11,
+      question: `${
+        otherChillApplicantAge &&
+        otherChillApplicantAge !== null &&
+        otherChillApplicantAge !== "null"
+          ? "11. What are the age of these other dependants?"
+          : ""
+      }`,
+    },
   ];
 
   useMemo(() => {
-    if (kidsOrDependant || currentlyRenting || otherDependents) {
+    if (
+      kidsOrDependant ||
+      chillApplicantAge ||
+      otherDependents ||
+      otherChillApplicantAge
+    ) {
       setDataListMenuStep4(step4);
     }
     window.localStorage.setItem("listMenuStep4", JSON.stringify(step4));
     // eslint-disable-next-line
-  }, [kidsOrDependant, currentlyRenting, otherDependents]);
+  }, [
+    kidsOrDependant,
+    chillApplicantAge,
+    otherDependents,
+    otherChillApplicantAge,
+  ]);
 
   return (
     <LifeInsurance activeStep={4} listMenuStep4={dataListMenuStep4}>

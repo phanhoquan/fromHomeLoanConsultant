@@ -1,22 +1,23 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import formatCurrency from "../../../../utils/formatCurrency";
 import ChillApplicantAge from "../Components/ChillApplicantAge";
+import iconPlus from "../../../../images/iconPlus.png";
+import iconClose from "../../../../images/closemenu.png";
 
-const Step11 = () => {
+const Step11 = ({ handleGetLoan2value }) => {
   const [otherChillApplicantAge, setOtherChillApplicantAge] = useState(
-    localStorage.getItem("otherChillApplicantAge")
-      ? JSON.parse(localStorage.getItem("otherChillApplicantAge"))
-      : {}
+    localStorage.getItem("loan2otherChillApplicantAge")
+      ? JSON.parse(localStorage.getItem("loan2otherChillApplicantAge"))
+      : null
   );
-  const otherChildrenNumber = localStorage.getItem("otherChildrenNumber") || 4;
+  const [childrenNumber, setChildrenNumber] = useState(2);
 
   const [otherChillApplicantAgeValid, setOtherChillApplicantAgeValid] =
     useState({});
-
   const [validMessage, setValidMessage] = useState({});
 
   const checkOtherChillApplicantAgeStatus = (amount, name) => {
@@ -63,31 +64,31 @@ const Step11 = () => {
       [name]: valueConverted,
     });
   };
+
   const finAgeValid =
     otherChillApplicantAge && Object.values(otherChillApplicantAge);
-
   const onBlur = (e, name) => {
     checkOtherChillApplicantAgeStatus(e?.target?.value || "", name);
     window.localStorage.setItem(
-      "otherChillApplicantAge",
+      "loan2otherChillApplicantAge",
       JSON.stringify(otherChillApplicantAge)
     );
     if (finAgeValid?.length === 0) {
       setValidMessage({
         ...validMessage,
-        name1: "This field is required",
-        name2: "This field is required",
-        name3: "This field is required",
-        name4: "This field is required",
-        name5: "This field is required",
+        otherName1: "This field is required",
+        otherName2: "This field is required",
+        otherName3: "This field is required",
+        otherName4: "This field is required",
+        otherName5: "This field is required",
       });
       setOtherChillApplicantAgeValid({
         ...otherChillApplicantAgeValid,
-        name1: valid.INVALID,
-        name2: valid.INVALID,
-        name3: valid.INVALID,
-        name4: valid.INVALID,
-        name5: valid.INVALID,
+        otherName1: valid.INVALID,
+        otherName2: valid.INVALID,
+        otherName3: valid.INVALID,
+        otherName4: valid.INVALID,
+        otherName5: valid.INVALID,
       });
     }
   };
@@ -97,30 +98,84 @@ const Step11 = () => {
       ...otherChillApplicantAgeValid,
       [name]: valid.NON_VALID,
     });
+    setValidMessage({
+      ...validMessage,
+      childrenNumber: "",
+    });
   };
 
-  const renderlistOtherChillApplicantAge = () => {
+  const renderListOtherChillApplicantAge = () => {
     const listOtherChillApplicantAge = [];
-    for (let i = 1; i <= parseInt(otherChildrenNumber, 10); i += 1) {
+    for (let i = 1; i <= parseInt(childrenNumber, 10); i += 1) {
       listOtherChillApplicantAge.push(
         <ChillApplicantAge
           key={i}
           numberKey={i}
-          onKeyUp={(e) => onKeyUp(e, `name${i}`)}
-          onBlur={(e) => onBlur(e, `name${i}`)}
-          onFocus={() => onFocus(`name${i}`)}
-          chillApplicantAgeValid={otherChillApplicantAgeValid[`name${i}`]}
-          validMessage={validMessage[`name${i}`]}
-          valueItem={otherChillApplicantAge[`name${i}`]}
-          id={`name${i}`}
+          onKeyUp={(e) => onKeyUp(e, `otherName${i}`)}
+          onBlur={(e) => onBlur(e, `otherName${i}`)}
+          onFocus={() => onFocus(`otherName${i}`)}
+          otherChillApplicantAgeValid={
+            otherChillApplicantAgeValid[`otherName${i}`]
+          }
+          validMessage={validMessage[`otherName${i}`]}
+          valueItem={
+            otherChillApplicantAge && otherChillApplicantAge[`otherName${i}`]
+          }
+          id={`otherName${i}`}
         />
       );
     }
     return listOtherChillApplicantAge;
   };
 
+  const handlePlusItem = () => {
+    if (childrenNumber <= 4) {
+      setChildrenNumber(childrenNumber + 1);
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
+    } else {
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "Value must be less than or equal to 10",
+      });
+    }
+  };
+
+  const handleRemoveItem = () => {
+    if (childrenNumber >= 2) {
+      setChildrenNumber(childrenNumber - 1);
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
+      setOtherChillApplicantAge({
+        ...otherChillApplicantAge,
+        [`otherName${childrenNumber}`]: "",
+      });
+    } else {
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "Value must be greater than or equal to 1",
+      });
+    }
+  };
+
+  useMemo(() => {
+    window.localStorage.setItem(
+      "loan2otherChillApplicantAge",
+      JSON.stringify(otherChillApplicantAge)
+    );
+    handleGetLoan2value(
+      "otherChillApplicantAge",
+      JSON.stringify(otherChillApplicantAge)
+    );
+    // eslint-disable-next-line
+  }, [otherChillApplicantAge]);
+
   return (
-    <section className="formContent-step-first pb-5">
+    <section className="formContent-step-first mb-5 pb-5">
       <Container>
         <div>
           <Row>
@@ -129,9 +184,40 @@ const Step11 = () => {
                 11. What are the age of these other dependants?
               </h2>
             </Col>
-            <Row className="info-customer">
-              {renderlistOtherChillApplicantAge()}
+            <Row className="info-customer position-relative w-100">
+              {renderListOtherChillApplicantAge()}
+              <div className="group-action">
+                <div
+                  className="btn-plus mr-1"
+                  onClick={() => handlePlusItem()}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <img src={iconPlus} alt="" title="Add" />
+                </div>
+                {childrenNumber > 1 ? (
+                  <div
+                    className="btn-plus ml-1"
+                    onClick={() => handleRemoveItem()}
+                    role="button"
+                    tabIndex="0"
+                  >
+                    <img src={iconClose} alt="" title="Remove" />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </Row>
+            <Col xs={12} className="text-center">
+              {validMessage?.childrenNumber ? (
+                <div className="text-error">
+                  <p>{validMessage?.childrenNumber}</p>
+                </div>
+              ) : (
+                ""
+              )}
+            </Col>
           </Row>
         </div>
       </Container>

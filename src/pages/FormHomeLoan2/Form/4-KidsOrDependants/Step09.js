@@ -1,19 +1,21 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import formatCurrency from "../../../../utils/formatCurrency";
 import ChillApplicantAge from "../Components/ChillApplicantAge";
+import iconPlus from "../../../../images/iconPlus.png";
+import iconClose from "../../../../images/closemenu.png";
 
-const Step09 = () => {
+const Step09 = ({ handleGetLoan2value }) => {
   const [chillApplicantAge, setChillApplicantAge] = useState(
-    localStorage.getItem("chillApplicantAge")
-      ? JSON.parse(localStorage.getItem("chillApplicantAge"))
-      : {}
+    localStorage.getItem("loan2chillApplicantAge")
+      ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
+      : null
   );
+  const [childrenNumber, setChildrenNumber] = useState(2);
 
-  const childrenNumber = localStorage.getItem("childrenNumber") || 2;
   const [chillApplicantAgeValid, setChillApplicantAgeValid] = useState({});
   const [validMessage, setValidMessage] = useState({});
 
@@ -61,9 +63,14 @@ const Step09 = () => {
       [name]: valueConverted,
     });
   };
+
   const finAgeValid = chillApplicantAge && Object.values(chillApplicantAge);
   const onBlur = (e, name) => {
     checkChillApplicantAgeStatus(e?.target?.value || "", name);
+    window.localStorage.setItem(
+      "loan2chillApplicantAge",
+      JSON.stringify(chillApplicantAge)
+    );
     if (finAgeValid?.length === 0) {
       setValidMessage({
         ...validMessage,
@@ -99,6 +106,10 @@ const Step09 = () => {
       ...chillApplicantAgeValid,
       [name]: valid.NON_VALID,
     });
+    setValidMessage({
+      ...validMessage,
+      childrenNumber: "",
+    });
   };
 
   const renderListChillApplicantAge = () => {
@@ -113,13 +124,56 @@ const Step09 = () => {
           onFocus={() => onFocus(`name${i}`)}
           chillApplicantAgeValid={chillApplicantAgeValid[`name${i}`]}
           validMessage={validMessage[`name${i}`]}
-          valueItem={chillApplicantAge[`name${i}`]}
+          valueItem={chillApplicantAge && chillApplicantAge[`name${i}`]}
           id={`name${i}`}
         />
       );
     }
     return listChillApplicantAge;
   };
+
+  const handlePlusItem = () => {
+    if (childrenNumber <= 9) {
+      setChildrenNumber(childrenNumber + 1);
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
+    } else {
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "Value must be less than or equal to 10",
+      });
+    }
+  };
+
+  const handleRemoveItem = () => {
+    if (childrenNumber >= 2) {
+      setChildrenNumber(childrenNumber - 1);
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
+      setChillApplicantAge({
+        ...chillApplicantAge,
+        [`name${childrenNumber}`]: "",
+      });
+    } else {
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "Value must be greater than or equal to 1",
+      });
+    }
+  };
+
+  useMemo(() => {
+    window.localStorage.setItem(
+      "loan2chillApplicantAge",
+      JSON.stringify(chillApplicantAge)
+    );
+    handleGetLoan2value("chillApplicantAge", JSON.stringify(chillApplicantAge));
+    // eslint-disable-next-line
+  }, [chillApplicantAge]);
 
   return (
     <section className="formContent-step-first">
@@ -131,7 +185,40 @@ const Step09 = () => {
                 9. What are the age of these kids\dependants?
               </h2>
             </Col>
-            <Row className="info-customer">{renderListChillApplicantAge()}</Row>
+            <Row className="info-customer position-relative w-100">
+              {renderListChillApplicantAge()}
+              <div className="group-action">
+                <div
+                  className="btn-plus mr-1"
+                  onClick={() => handlePlusItem()}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <img src={iconPlus} alt="" title="Add" />
+                </div>
+                {childrenNumber > 1 ? (
+                  <div
+                    className="btn-plus ml-1"
+                    onClick={() => handleRemoveItem()}
+                    role="button"
+                    tabIndex="0"
+                  >
+                    <img src={iconClose} alt="" title="Remove" />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </Row>
+            <Col xs={12} className="text-center">
+              {validMessage?.childrenNumber ? (
+                <div className="text-error">
+                  <p>{validMessage?.childrenNumber}</p>
+                </div>
+              ) : (
+                ""
+              )}
+            </Col>
           </Row>
         </div>
       </Container>
