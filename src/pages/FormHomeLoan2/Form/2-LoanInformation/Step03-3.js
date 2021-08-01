@@ -17,7 +17,7 @@ const Step03 = ({ loan2currentLoanStatus }) => {
     ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
     : [];
   const [valueInterestRate, setValueInterestRate] = useState(
-    localStorage.getItem("valueInterestRate") || ""
+    localStorage.getItem("loan2valueInterestRateSplit") || ""
   );
 
   const [valueInterestRateValid, setValueInterestRateValid] = useState(
@@ -25,7 +25,7 @@ const Step03 = ({ loan2currentLoanStatus }) => {
   );
 
   const [valueInterestRate2, setValueInterestRate2] = useState(
-    localStorage.getItem("valueInterestRate2") || ""
+    localStorage.getItem("loan2valueInterestRate2Split") || ""
   );
 
   const [valueInterestRateValid2, setValueInterestRateValid2] = useState(
@@ -85,8 +85,6 @@ const Step03 = ({ loan2currentLoanStatus }) => {
   useMemo(() => {
     setValueInterestRateValid2(valid.NON_VALID);
     setValueInterestRateValid(valid.NON_VALID);
-    setValueInterestRate("");
-    setValueInterestRate2("");
     // eslint-disable-next-line
   }, [loan2currentLoanStatus]);
 
@@ -128,8 +126,8 @@ const Step03 = ({ loan2currentLoanStatus }) => {
   );
 
   useMemo(() => {
-    localStorage.setItem("valueInterestRate", valueInterestRate);
-    localStorage.setItem("valueInterestRate2", valueInterestRate2);
+    localStorage.setItem("loan2valueInterestRateSplit", valueInterestRate);
+    localStorage.setItem("loan2valueInterestRate2Split", valueInterestRate2);
     if (valueInterestRate || valueInterestRate2) {
       if (finDataStep3) {
         window.localStorage.setItem(

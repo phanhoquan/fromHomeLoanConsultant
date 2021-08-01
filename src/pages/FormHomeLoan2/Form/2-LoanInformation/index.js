@@ -12,9 +12,12 @@ const LoanInformation = () => {
   const [loan2currentLoanStatus, setLoan2currentLoanStatus] = useState(
     localStorage.getItem("loan2currentLoanStatus") || ""
   );
-
   const handelGetLoan2currentLoanStatus = (option) => {
     setLoan2currentLoanStatus(option);
+    localStorage.setItem("loan2valueInterestRate", "");
+    localStorage.setItem("loan2valueInterestRate2Variable", "");
+    localStorage.setItem("loan2valueInterestRateSplit", "");
+    localStorage.setItem("loan2valueInterestRate2Split", "");
   };
 
   return (

@@ -102,7 +102,7 @@ const Form = () => {
           path="/refinance-fact-find-2/ResidentialInformation"
           component={ResidentialInformation}
         />
-        <Route path="/refinance-fact-find-2" component={LoanInformation} />
+        <Route path="/refinance-fact-find-2/" component={UserDetails} />
       </Switch>
     </section>
   );

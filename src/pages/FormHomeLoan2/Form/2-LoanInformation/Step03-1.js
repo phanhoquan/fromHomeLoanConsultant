@@ -18,7 +18,7 @@ const Step03A = ({ loan2currentLoanStatus }) => {
     : [];
 
   const [valueInterestRate, setValueInterestRate] = useState(
-    localStorage.getItem("valueInterestRate") || ""
+    localStorage.getItem("loan2valueInterestRate") || ""
   );
 
   const [valueInterestRateValid, setValueInterestRateValid] = useState(
@@ -69,7 +69,7 @@ const Step03A = ({ loan2currentLoanStatus }) => {
   );
 
   useMemo(() => {
-    localStorage.setItem("valueInterestRate", valueInterestRate);
+    localStorage.setItem("loan2valueInterestRate", valueInterestRate);
     if (valueInterestRate) {
       if (finDataStep3) {
         window.localStorage.setItem(
@@ -96,7 +96,7 @@ const Step03A = ({ loan2currentLoanStatus }) => {
 
   useMemo(() => {
     setValueInterestRateValid(valid.NON_VALID);
-    setValueInterestRate("");
+    setValueInterestRate(localStorage.getItem("loan2valueInterestRate") || "");
     // eslint-disable-next-line
   }, [loan2currentLoanStatus]);
 

@@ -26,6 +26,7 @@ const HomeLoan = ({
   className = "",
   activeStep,
   numberScroll = 10,
+  // handleGetValue = [],
 }) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
@@ -42,6 +43,10 @@ const HomeLoan = ({
     listDataSubmit.sort(function (a, b) {
       return a.id - b.id;
     });
+
+  // const [loan2listDataSubmit, setLoan2listDataSubmit] = useState(
+  //   listDataSubmit || []
+  // );
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowMess, setIsIsShowMess] = useState(false);
@@ -65,8 +70,6 @@ const HomeLoan = ({
       top: numberScroll,
     });
   };
-
-  console.log(listDataSubmit, "handleGetValueDataSubmit");
 
   useEffect(() => {
     scrollToBottom();
@@ -102,8 +105,6 @@ const HomeLoan = ({
   const finDataStep2 = listDataSubmit?.filter(
     (item) => item.id >= 2 && item.id <= 3
   );
-
-  console.log(finDataStep2, "sssssss");
 
   const renderMenu = (listMenu) => {
     return listMenu.map((item) => {

@@ -30,7 +30,7 @@ const First = () => {
   );
   const [firstNameValid, setFirstNameValid] = useState(valid.NON_VALID);
   const [lastNameValid, setLastNameValid] = useState(valid.NON_VALID);
-  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [email, setEmail] = useState(localStorage.getItem("loan2email") || "");
   const [emailValid, setEmailValid] = useState(valid.NON_VALID);
   const [employmentStatus, setEmploymentStatus] = useState(
     localStorage.getItem("loan2employmentStatus") || ""
@@ -109,7 +109,6 @@ const First = () => {
   const updateDataStep1 = listDataSubmit?.map((item) =>
     item.id === 1 ? step1 : item
   );
-
   useMemo(() => {
     window.localStorage.setItem("loan2lastName", lastName);
     window.localStorage.setItem("loan2firstName", firstName);
