@@ -351,6 +351,13 @@ footer.position-relative {
       margin-bottom: 20px;
 
       &:hover,
+      &.active {
+        .arrowBlue {
+          opacity: 1;
+        }
+      }
+
+      &:hover,
       &.answerActive,
       &.active {
         .blue {
@@ -365,7 +372,6 @@ footer.position-relative {
           font-weight: 700;
           color: #42adff;
         }
-
       }
 
       .question {
@@ -380,6 +386,16 @@ footer.position-relative {
 
       .blue {
         display: none;
+      }
+
+      .arrowBlue {
+        width: 30px;
+        height: 65px;
+        position: absolute;
+        left: -38px;
+        top: -18px;
+        opacity: 0;
+        transition: all 0.3s;
       }
 
       &::before {
@@ -601,7 +617,7 @@ textarea {
   bottom: 20px;
   left: 400px;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 500;
   color: #ef0e0e;
   z-index: 99;
   display: flex;

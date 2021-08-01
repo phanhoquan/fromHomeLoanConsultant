@@ -5,6 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from "react-router-dom";
 import imgInfo from "../../../images/menu/info.png";
 import imgInfoBlue from "../../../images/menu/info-blue.png";
+import imgArrowBlue from "../../../images/Rounded-Rectangle.png";
 
 const ResidentialInformation = ({ children, stepActive, answerActive }) => {
   const history = useHistory();
@@ -18,6 +19,7 @@ const ResidentialInformation = ({ children, stepActive, answerActive }) => {
       }
       role="button"
     >
+      <LazyLoadImage src={imgArrowBlue} alt="" className="arrowBlue" />
       <LazyLoadImage
         src={imgInfo}
         alt=""

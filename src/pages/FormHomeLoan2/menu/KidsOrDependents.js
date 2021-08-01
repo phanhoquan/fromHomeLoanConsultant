@@ -5,6 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from "react-router-dom";
 import imgKids from "../../../images/menu/kids.png";
 import imgKidsBlue from "../../../images/menu/kids-blue.png";
+import imgArrowBlue from "../../../images/Rounded-Rectangle.png";
 
 const KidsOrDependents = ({ children, stepActive, answerActive }) => {
   const history = useHistory();
@@ -16,6 +17,7 @@ const KidsOrDependents = ({ children, stepActive, answerActive }) => {
       onClick={() => history.push("/refinance-fact-find-2/KidsOrDependants")}
       role="button"
     >
+      <LazyLoadImage src={imgArrowBlue} alt="" className="arrowBlue" />
       <LazyLoadImage
         src={imgKids}
         alt=""

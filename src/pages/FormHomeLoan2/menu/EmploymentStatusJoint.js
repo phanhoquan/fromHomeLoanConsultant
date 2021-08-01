@@ -5,6 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from "react-router-dom";
 import imgEmployment from "../../../images/menu/employment.png";
 import imgEmploymentBlue from "../../../images/menu/employment-blue.png";
+import imgArrowBlue from "../../../images/Rounded-Rectangle.png";
 
 export const types = {
   1: "Sole Applicant",
@@ -31,6 +32,7 @@ const EmploymentStatusJoint = ({
       }
       role="button"
     >
+      <LazyLoadImage src={imgArrowBlue} alt="" className="arrowBlue" />
       <LazyLoadImage
         src={imgEmployment}
         alt=""
