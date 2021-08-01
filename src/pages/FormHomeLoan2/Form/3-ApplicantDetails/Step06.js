@@ -11,10 +11,11 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step06 = ({ applicationStatus, loan2firstNameOther }) => {
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
-    : [];
+const Step06 = ({
+  applicationStatus,
+  loan2firstNameOther,
+  handleGetLoan2value,
+}) => {
   const relationshipYourRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [relationshipYour, setRelationshipYour] = useState(
@@ -30,32 +31,11 @@ const Step06 = ({ applicationStatus, loan2firstNameOther }) => {
     setRelationshipYour(value);
     setIsShowModal(false);
     localStorage.setItem("loan2relationshipYour", value);
+    handleGetLoan2value("relationshipYour", value);
   };
-
-  const step6 = {
-    id: 6,
-    question: `6. What is your relationship with ${loan2firstNameOther}?`,
-  };
-  const finDataStep6 = listDataSubmit?.find((item) => item.id === 6);
-  const updateDataStep6 = listDataSubmit?.map((item) =>
-    item.id === 6 ? step6 : item
-  );
 
   useMemo(() => {
     setRelationshipYour(localStorage.getItem("loan2relationshipYour"));
-    if (relationshipYour) {
-      if (finDataStep6) {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify(updateDataStep6)
-        );
-      } else {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify([...listDataSubmit, step6])
-        );
-      }
-    }
 
     // eslint-disable-next-line
   }, [relationshipYour, loan2firstNameOther]);

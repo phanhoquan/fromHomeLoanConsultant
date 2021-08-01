@@ -28,6 +28,7 @@ const HomeLoan = ({
   numberScroll = 10,
   listMenuStep1 = [],
   listMenuStep2 = [],
+  listMenuStep3 = [],
 }) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
@@ -50,6 +51,9 @@ const HomeLoan = ({
     : [];
   let dataListMenuStep2 = localStorage.getItem("listMenuStep2")
     ? JSON.parse(localStorage.getItem("listMenuStep2"))
+    : [];
+  let dataListMenuStep3 = localStorage.getItem("listMenuStep3")
+    ? JSON.parse(localStorage.getItem("listMenuStep3"))
     : [];
 
   const [isShowModal, setIsShowModal] = useState(false);
@@ -104,10 +108,6 @@ const HomeLoan = ({
   useMemo(() => {
     window.localStorage.setItem("contentNoteVale", contentNoteVale);
   }, [contentNoteVale]);
-
-  const finDataStep3 = listDataSubmit?.filter(
-    (item) => item.id >= 4 && item.id <= 7
-  );
 
   const renderMenu = (listMenu) => {
     return listMenu.map((item) => {
@@ -179,9 +179,17 @@ const HomeLoan = ({
 
               <ApplicantDetails
                 stepActive={activeStep}
-                answerActive={finDataStep3}
+                answerActive={
+                  listMenuStep3?.length > 0 ? listMenuStep3 : dataListMenuStep3
+                }
               >
-                <ul className="sub-question">{renderMenu(finDataStep3)}</ul>
+                <ul className="sub-question">
+                  {renderMenu(
+                    listMenuStep3?.length > 0
+                      ? listMenuStep3
+                      : dataListMenuStep3
+                  )}
+                </ul>
               </ApplicantDetails>
 
               <KidsOrDependents stepActive={activeStep}>

@@ -11,10 +11,11 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step07B = ({ applicationStatus, loan2firstNameOther }) => {
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
-    : [];
+const Step07B = ({
+  applicationStatus,
+  loan2firstNameOther,
+  handleGetLoan2value,
+}) => {
   const [jointApplicantAge, setJointApplicantAge] = useState(
     localStorage.getItem("loan2jointApplicantAge") || ""
   );
@@ -55,40 +56,14 @@ const Step07B = ({ applicationStatus, loan2firstNameOther }) => {
   const onBlur = (e) => {
     checkJointApplicantAgeStatus2(e.target.value);
     checkJointApplicantAgeStatus2(jointApplicantAge);
+    handleGetLoan2value("jointApplicantAge", jointApplicantAge);
   };
 
   const firstName = localStorage.getItem("firstName") || "";
   const title = `7. What are the ages of both ${firstName} & ${loan2firstNameOther}?`;
 
-  const step7 = {
-    id: 7,
-    question: `${
-      applicationStatus === types[2]
-        ? title
-        : "7. What is the age of the applicant?"
-    }`,
-  };
-
-  const finDataStep7 = listDataSubmit?.find((item) => item.id === 7);
-  const updateDataStep7 = listDataSubmit?.map((item) =>
-    item.id === 7 ? step7 : item
-  );
-
   useMemo(() => {
     localStorage.setItem("loan2jointApplicantAge", jointApplicantAge);
-    if (jointApplicantAge) {
-      if (finDataStep7) {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify(updateDataStep7)
-        );
-      } else {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify([...listDataSubmit, step7])
-        );
-      }
-    }
     // eslint-disable-next-line
   }, [jointApplicantAge, loan2firstNameOther]);
 

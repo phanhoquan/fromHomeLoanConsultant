@@ -10,11 +10,11 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const First = ({ applicationStatus, handleGetLoan2firstNameOther }) => {
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
-    : [];
-
+const First = ({
+  applicationStatus,
+  handleGetLoan2firstNameOther,
+  handleGetLoan2value,
+}) => {
   const firstNameRef = useRef(null);
   const [firstName, setFirstName] = useState(
     localStorage.getItem("loan2firstNameOther") || ""
@@ -54,41 +54,21 @@ const First = ({ applicationStatus, handleGetLoan2firstNameOther }) => {
     switch (name) {
       case "lastName":
         checkLastNameStatus(lastName);
+        handleGetLoan2value("lastNameOther", lastName);
         break;
       case "firstName":
         checkFirstNameStatus(firstName);
         handleGetLoan2firstNameOther(firstName);
+        handleGetLoan2value("firstNameOther", firstName);
         break;
       default:
         break;
     }
   };
 
-  const step5 = {
-    id: 5,
-    question: "5. What is the other name of the applicant?",
-  };
-  const finDataStep5 = listDataSubmit?.find((item) => item.id === 5);
-  const updateDataStep5 = listDataSubmit?.map((item) =>
-    item.id === 5 ? step5 : item
-  );
-
   useMemo(() => {
     localStorage.setItem("loan2firstNameOther", firstName);
     localStorage.setItem("loan2lastNameOther", lastName);
-    if (firstName || lastName) {
-      if (finDataStep5) {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify(updateDataStep5)
-        );
-      } else {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify([...listDataSubmit, step5])
-        );
-      }
-    }
     // eslint-disable-next-line
   }, [firstName, lastName]);
 
