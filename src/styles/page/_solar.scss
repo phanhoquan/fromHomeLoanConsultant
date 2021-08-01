@@ -241,6 +241,7 @@ footer.position-relative {
     top: 0;
     height: 100vh;
     max-height: 100vh;
+    padding-top: pxToRem(130);
   }
 
   &::-webkit-scrollbar-track {
@@ -343,7 +344,55 @@ footer.position-relative {
   padding-top: 20px;
   padding-bottom: 100px;
 
-  li {
+  &.style2 {
+    >li {
+      padding-left: 0;
+
+      &:hover,
+      &.answerActive {
+        .blue {
+          display: inline-block;
+        }
+
+        .light {
+          display: none;
+        }
+      }
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .blue {
+        display: none;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: auto;
+        top: 6px;
+        right: 3px;
+      }
+
+      .sub-question * {
+        color: #212121 !important;
+        font-weight: 500;
+        cursor: text;
+      }
+
+      .sub-question {
+        margin-top: 15px;
+
+        li {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  >li {
     display: flex;
     margin-bottom: 10px;
     cursor: pointer;

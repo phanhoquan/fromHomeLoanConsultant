@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
@@ -9,6 +9,16 @@ import useOnClickOutside from "../../hooks/useClickOutSide";
 import imgMenuClose from "../../images/closemenu.png";
 import imgNote from "../../images/note.png";
 import imgArrowNote from "../../images/arrow-white.svg";
+import UserDetail from "./menu/UserDetail";
+import LoanInformation from "./menu/LoanInformation";
+import ApplicantDetails from "./menu/ApplicantDetails";
+import KidsOrDependents from "./menu/KidsOrDependents";
+import EmploymentStatusSole from "./menu/EmploymentStatusSole";
+import EmploymentStatusJoint from "./menu/EmploymentStatusJoint";
+import Liabilities from "./menu/Liabilities";
+import CreditCards from "./menu/CreditCards";
+import ResidentialInformation from "./menu/ResidentialInformation";
+
 import Modal from "../Modal/ModalSubmit";
 
 const HomeLoan = ({
@@ -29,7 +39,9 @@ const HomeLoan = ({
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowMess, setIsIsShowMess] = useState(false);
-  const [contentNoteVale, setContentNoteVale] = useState("");
+  const [contentNoteVale, setContentNoteVale] = useState(
+    localStorage.getItem("contentNoteVale") || ""
+  );
 
   const [isShowNoteVale, setIsShowNoteVale] = useState(false);
 
@@ -39,6 +51,7 @@ const HomeLoan = ({
     });
 
   const [isShowMenu, setIsShowMenu] = useState(false);
+
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowMenu(false);
   });
@@ -225,6 +238,10 @@ const HomeLoan = ({
     }
   };
 
+  useMemo(() => {
+    window.localStorage.setItem("contentNoteVale", contentNoteVale);
+  }, [contentNoteVale]);
+
   return (
     <React.Fragment>
       <Helmet>
@@ -257,7 +274,130 @@ const HomeLoan = ({
                 <img src={imgMenuClose} alt="CLOSE MENU" />
               </div>
             </div>
-            <ul className="listAnswer">{renderListQuestion}</ul>
+            <ul className="listAnswer style2">
+              <UserDetail>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </UserDetail>
+              <LoanInformation>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </LoanInformation>
+
+              <ApplicantDetails>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </ApplicantDetails>
+
+              <KidsOrDependents>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </KidsOrDependents>
+
+              <EmploymentStatusSole>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </EmploymentStatusSole>
+
+              <EmploymentStatusJoint>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </EmploymentStatusJoint>
+              <Liabilities>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </Liabilities>
+
+              <CreditCards>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </CreditCards>
+              <ResidentialInformation>
+                <ul className="sub-question">
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                  <li>
+                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
+                  </li>
+                </ul>
+              </ResidentialInformation>
+            </ul>
           </div>
           <div className="nav-right">{children}</div>
         </main>

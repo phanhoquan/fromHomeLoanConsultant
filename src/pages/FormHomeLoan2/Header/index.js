@@ -25,7 +25,7 @@ const Header = ({ handleSubmit }) => {
   return (
     <>
       <header
-        className="header header-wrap home-loan border-bottom-0"
+        className="header header-wrap home-loan border-bottom-0 ovl-header"
         id="header"
         style={{ backgroundColor: "transparent" }}
       >
