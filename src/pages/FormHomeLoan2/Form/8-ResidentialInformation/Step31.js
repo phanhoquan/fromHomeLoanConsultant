@@ -94,8 +94,10 @@ const Step31 = ({ handleGetLoan2value }) => {
   };
 
   useMemo(() => {
-    getZipCodeWithAddress(fullAddressRef?.current?.value, onUpdateState);
-    nextStep();
+    if (fullAddress) {
+      getZipCodeWithAddress(fullAddressRef?.current?.value, onUpdateState);
+      nextStep();
+    }
     // eslint-disable-next-line
   }, [fullAddress]);
 

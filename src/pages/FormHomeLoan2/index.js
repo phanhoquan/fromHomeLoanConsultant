@@ -161,7 +161,9 @@ const HomeLoan = ({
               <UserDetail
                 stepActive={activeStep}
                 answerActive={
-                  listMenuStep1?.length > 0 ? listMenuStep1 : dataListMenuStep1
+                  listMenuStep1?.length > 0
+                    ? listMenuStep1[0]
+                    : dataListMenuStep1[0]
                 }
               >
                 <ul className="sub-question">
@@ -175,7 +177,9 @@ const HomeLoan = ({
               <LoanInformation
                 stepActive={activeStep}
                 answerActive={
-                  listMenuStep2?.length > 0 ? listMenuStep2 : dataListMenuStep2
+                  listMenuStep2?.length > 0
+                    ? listMenuStep2[0]
+                    : dataListMenuStep2[0]
                 }
               >
                 <ul className="sub-question">
@@ -190,7 +194,9 @@ const HomeLoan = ({
               <ApplicantDetails
                 stepActive={activeStep}
                 answerActive={
-                  listMenuStep3?.length > 0 ? listMenuStep3 : dataListMenuStep3
+                  listMenuStep3?.length > 0
+                    ? listMenuStep3[0]
+                    : dataListMenuStep3[0]
                 }
               >
                 <ul className="sub-question">
@@ -260,7 +266,9 @@ const HomeLoan = ({
               <CreditCards
                 stepActive={activeStep}
                 answerActive={
-                  listMenuStep8?.length > 0 ? listMenuStep8 : dataListMenuStep8
+                  listMenuStep8?.length > 0
+                    ? listMenuStep8[0]
+                    : dataListMenuStep8[0]
                 }
               >
                 <ul className="sub-question">
@@ -274,7 +282,9 @@ const HomeLoan = ({
               <ResidentialInformation
                 stepActive={activeStep}
                 answerActive={
-                  listMenuStep9?.length > 0 ? listMenuStep9 : dataListMenuStep9
+                  listMenuStep9?.length > 0
+                    ? listMenuStep9[0]
+                    : dataListMenuStep9[0]
                 }
               >
                 <ul className="sub-question">

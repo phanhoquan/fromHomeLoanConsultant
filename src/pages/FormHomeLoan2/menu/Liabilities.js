@@ -11,7 +11,7 @@ const Liabilities = ({ children, stepActive, answerActive }) => {
   return (
     <li
       className={`${stepActive === 6 ? "active" : ""} ${
-        answerActive ? "answerActive" : ""
+        answerActive && answerActive?.question ? "answerActive" : ""
       }`}
       onClick={() => history.push("/refinance-fact-find-2/Liabilities")}
       role="button"

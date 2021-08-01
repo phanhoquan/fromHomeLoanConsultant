@@ -61,6 +61,7 @@ const Step03 = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
 
   useMemo(() => {
     setValueInterestRateValid2(valid.NON_VALID);
+
     // eslint-disable-next-line
   }, [loan2currentLoanStatus]);
 

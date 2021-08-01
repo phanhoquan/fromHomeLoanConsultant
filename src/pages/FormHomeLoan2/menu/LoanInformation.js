@@ -11,7 +11,7 @@ const LoanInformation = ({ children, stepActive, answerActive }) => {
   return (
     <li
       className={`${stepActive === 2 ? "active" : ""} ${
-        answerActive?.length > 0 ? "answerActive" : ""
+        answerActive && answerActive?.question ? "answerActive" : ""
       }`}
       onClick={() => history.push("/refinance-fact-find-2/loanInformation")}
       role="button"

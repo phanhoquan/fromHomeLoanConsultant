@@ -11,7 +11,7 @@ const EmploymentStatusJoint = ({ children, stepActive, answerActive }) => {
   return (
     <li
       className={`${stepActive === 5 ? "active" : ""} ${
-        answerActive ? "answerActive" : ""
+        answerActive && answerActive?.question ? "answerActive" : ""
       }`}
       onClick={() => history.push("/refinance-fact-find-2/EmploymentStatus")}
       role="button"

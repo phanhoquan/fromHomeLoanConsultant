@@ -11,7 +11,7 @@ const KidsOrDependents = ({ children, stepActive, answerActive }) => {
   return (
     <li
       className={`${stepActive === 4 ? "active" : ""} ${
-        answerActive ? "answerActive" : ""
+        answerActive && answerActive?.question ? "answerActive" : ""
       }`}
       onClick={() => history.push("/refinance-fact-find-2/KidsOrDependants")}
       role="button"
