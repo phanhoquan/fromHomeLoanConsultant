@@ -10,7 +10,7 @@ import UserDetails from "./1-UserDetails/Step01";
 import LoanInformation from "./2-LoanInformation";
 import ApplicantDetails from "./3-ApplicantDetails";
 import KidsOrDependants from "./4-KidsOrDependants";
-import EmploymentStatus from "./5-EmploymentStatus";
+import EmploymentStatus from "./5-EmploymentStatus(Sole)";
 import Liabilities from "./6-Liabilities";
 import CreditCards from "./7-CreditCards";
 import ResidentialInformation from "./8-ResidentialInformation";
