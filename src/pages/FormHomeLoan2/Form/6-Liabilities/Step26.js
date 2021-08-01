@@ -11,10 +11,10 @@ export const types = {
   4: "None of the above",
 };
 
-const Step26 = () => {
+const Step26 = ({ handleGetLoan2value }) => {
   const [personalLoansStatus, setPersonalLoansStatus] = useState(
-    localStorage.getItem("personalLoansStatus")
-      ? localStorage.getItem("personalLoansStatus").split(",")
+    localStorage.getItem("loan2personalLoansStatus")
+      ? localStorage.getItem("loan2personalLoansStatus").split(",")
       : []
   );
 
@@ -39,7 +39,11 @@ const Step26 = () => {
   };
 
   useMemo(() => {
-    window.localStorage.setItem("personalLoansStatus", personalLoansStatus);
+    window.localStorage.setItem(
+      "loan2personalLoansStatus",
+      personalLoansStatus
+    );
+    handleGetLoan2value("personalLoansStatus", personalLoansStatus);
     // eslint-disable-next-line
   }, [personalLoansStatus, personalLoansStatus.length]);
 
@@ -58,7 +62,7 @@ const Step26 = () => {
               </p>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-2 w-600">
+              <Row className="info-customer mt-4 w-600">
                 <Col xs={12} sm={6} className="wForm-input">
                   <CheckboxButton
                     handleToggleCheckbox={() => onCheck(types[1])}

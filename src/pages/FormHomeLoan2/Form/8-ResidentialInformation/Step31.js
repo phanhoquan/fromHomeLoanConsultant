@@ -95,7 +95,7 @@ const Step31 = ({ handleGetLoan2value }) => {
 
   useMemo(() => {
     if (fullAddress) {
-      getZipCodeWithAddress(fullAddressRef?.current?.value, onUpdateState);
+      getZipCodeWithAddress(fullAddress, onUpdateState);
       nextStep();
     }
     // eslint-disable-next-line

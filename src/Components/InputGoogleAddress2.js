@@ -50,7 +50,6 @@ const InputGoogleAddress = ({
             customClassWrap="email"
             onFocus={(e) => onFocus(e)}
             onKeyDown={onKeyDown}
-            autoFocus
             innerRef={innerRef}
             onBlur={onBlur}
           />

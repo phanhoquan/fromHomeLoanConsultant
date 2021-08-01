@@ -29,6 +29,7 @@ const HomeLoan = ({
   listMenuStep1 = [],
   listMenuStep2 = [],
   listMenuStep3 = [],
+  listMenuStep7 = [],
   listMenuStep8 = [],
   listMenuStep9 = [],
 }) => {
@@ -56,6 +57,9 @@ const HomeLoan = ({
     : [];
   let dataListMenuStep3 = localStorage.getItem("listMenuStep3")
     ? JSON.parse(localStorage.getItem("listMenuStep3"))
+    : [];
+  let dataListMenuStep7 = localStorage.getItem("listMenuStep7")
+    ? JSON.parse(localStorage.getItem("listMenuStep7"))
     : [];
 
   let dataListMenuStep8 = localStorage.getItem("listMenuStep8")
@@ -121,7 +125,9 @@ const HomeLoan = ({
 
   const renderMenu = (listMenu) => {
     return listMenu.map((item) => {
-      return <li key={item?.id}>{item?.question}</li>;
+      return (
+        <>{item?.question ? <li key={item?.id}>{item?.question}</li> : ""}</>
+      );
     });
   };
 
@@ -249,17 +255,20 @@ const HomeLoan = ({
                   </li>
                 </ul>
               </EmploymentStatusJoint>
-              <Liabilities stepActive={activeStep}>
+              <Liabilities
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep7?.length > 0
+                    ? listMenuStep7[0]
+                    : dataListMenuStep7[0]
+                }
+              >
                 <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
+                  {renderMenu(
+                    listMenuStep7?.length > 0
+                      ? listMenuStep7
+                      : dataListMenuStep7
+                  )}
                 </ul>
               </Liabilities>
 

@@ -6,14 +6,23 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step27B = () => {
+export const types = {
+  1: "Personal Loans",
+  2: "Car Loans",
+  3: "HECS debt",
+  4: "None of the above",
+};
+
+const Step27B = ({ handleGetLoan2value, personalLoansStatus }) => {
   const carLoanRef = useRef(null);
   const carLoanAmountRef = useRef(null);
-  const [carLoan, setCarLoan] = useState(localStorage.getItem("carLoan") || "");
+  const [carLoan, setCarLoan] = useState(
+    localStorage.getItem("loan2carLoan") || ""
+  );
   const [carLoanValid, setCarLoanValid] = useState(valid.NON_VALID);
 
   const [carLoanAmount, setCarLoanAmount] = useState(
-    localStorage.getItem("carLoanAmount") || ""
+    localStorage.getItem("loan2carLoanAmount") || ""
   );
   const [carLoanAmountValid, setCarLoanAmountValid] = useState(valid.NON_VALID);
 
@@ -41,18 +50,30 @@ const Step27B = () => {
   };
 
   useMemo(() => {
-    window.localStorage.setItem("carLoan", carLoan);
+    window.localStorage.setItem("loan2carLoan", carLoan);
   }, [carLoan]);
 
   useMemo(() => {
     window.localStorage.setItem(
-      "carLoanAmount",
+      "loan2carLoanAmount",
       carLoanAmount && parseInt(carLoanAmount.replace(/,/g, ""), 10)
     );
   }, [carLoanAmount]);
 
+  useMemo(() => {
+    setCarLoanValid(valid.NON_VALID);
+    setCarLoanAmountValid(valid.NON_VALID);
+    setCarLoan(localStorage.getItem("loan2carLoan"));
+    setCarLoanAmount(localStorage.getItem("loan2carLoanAmount"));
+    // eslint-disable-next-line
+  }, [personalLoansStatus]);
+
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-2">
+    <section
+      className={`formContent-step-second formContent-life-insurance mb-2 ${
+        !!personalLoansStatus?.includes(types[2]) ? "" : "opacity-03"
+      }`}
+    >
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>
@@ -75,7 +96,10 @@ const Step27B = () => {
                     customClassLabel={carLoan ? "active" : ""}
                     customClassWrap="email five"
                     innerRef={carLoanRef}
-                    onBlur={() => checkCarLoanStatus(carLoan)}
+                    onBlur={() => {
+                      checkCarLoanStatus(carLoan);
+                      handleGetLoan2value("carLoan", carLoan);
+                    }}
                   />
                 </Col>
               </Row>
@@ -114,7 +138,10 @@ const Step27B = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={carLoanAmountRef}
-                    onBlur={() => checkCarLoanAmountStatus(carLoanAmount)}
+                    onBlur={() => {
+                      checkCarLoanAmountStatus(carLoanAmount);
+                      handleGetLoan2value("carLoanAmount", carLoanAmount);
+                    }}
                   />
                 </Col>
               </Row>

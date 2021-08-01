@@ -6,17 +6,24 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step27A = () => {
+export const types = {
+  1: "Personal Loans",
+  2: "Car Loans",
+  3: "HECS debt",
+  4: "None of the above",
+};
+
+const Step27A = ({ handleGetLoan2value, personalLoansStatus }) => {
   const personalLoanRef = useRef(null);
   const personalLoanAmountRef = useRef(null);
 
   const [personalLoan, setPersonalLoan] = useState(
-    localStorage.getItem("personalLoan") || ""
+    localStorage.getItem("loan2personalLoan") || ""
   );
   const [personalLoanValid, setPersonalLoanValid] = useState(valid.NON_VALID);
 
   const [personalLoanAmount, setPersonalLoanAmount] = useState(
-    localStorage.getItem("personalLoanAmount") || ""
+    localStorage.getItem("loan2personalLoanAmount") || ""
   );
   const [personalLoanAmountValid, setPersonalLoanAmountValid] = useState(
     valid.NON_VALID
@@ -46,18 +53,30 @@ const Step27A = () => {
   };
 
   useMemo(() => {
-    window.localStorage.setItem("personalLoan", personalLoan);
+    window.localStorage.setItem("loan2personalLoan", personalLoan);
   }, [personalLoan]);
 
   useMemo(() => {
     window.localStorage.setItem(
-      "personalLoanAmount",
+      "loan2personalLoanAmount",
       personalLoanAmount && parseInt(personalLoanAmount.replace(/,/g, ""), 10)
     );
   }, [personalLoanAmount]);
 
+  useMemo(() => {
+    setPersonalLoanValid(valid.NON_VALID);
+    setPersonalLoanAmountValid(valid.NON_VALID);
+    setPersonalLoan(localStorage.getItem("loan2personalLoan"));
+    setPersonalLoanAmount(localStorage.getItem("loan2personalLoanAmount"));
+    // eslint-disable-next-line
+  }, [personalLoansStatus]);
+
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-2">
+    <section
+      className={`formContent-step-second formContent-life-insurance mb-2 ${
+        !!personalLoansStatus?.includes(types[1]) ? "" : "opacity-03"
+      }`}
+    >
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>
@@ -83,7 +102,10 @@ const Step27A = () => {
                     customClassLabel={personalLoan ? "active" : ""}
                     customClassWrap="email five"
                     innerRef={personalLoanRef}
-                    onBlur={(e) => checkPersonalLoanStatus(e.target.value)}
+                    onBlur={(e) => {
+                      checkPersonalLoanStatus(personalLoan);
+                      handleGetLoan2value("personalLoan", personalLoan);
+                    }}
                   />
                 </Col>
               </Row>
@@ -122,9 +144,13 @@ const Step27A = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={personalLoanAmountRef}
-                    onBlur={() =>
-                      checkPersonalLoanAmountStatus(personalLoanAmount)
-                    }
+                    onBlur={() => {
+                      checkPersonalLoanAmountStatus(personalLoanAmount);
+                      handleGetLoan2value(
+                        "personalLoanAmount",
+                        personalLoanAmount
+                      );
+                    }}
                   />
                 </Col>
               </Row>

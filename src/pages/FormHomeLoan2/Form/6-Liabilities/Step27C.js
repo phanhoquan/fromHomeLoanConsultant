@@ -6,17 +6,24 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step27C = () => {
+export const types = {
+  1: "Personal Loans",
+  2: "Car Loans",
+  3: "HECS debt",
+  4: "None of the above",
+};
+
+const Step27C = ({ handleGetLoan2value, personalLoansStatus }) => {
   const HECSDebtRef = useRef(null);
   const HECSDebtAmountRef = useRef(null);
 
   const [HECSDebt, setHECSDebt] = useState(
-    localStorage.getItem("HECSDebt") || ""
+    localStorage.getItem("loan2HECSDebt") || ""
   );
   const [HECSDebtValid, setHECSDebtValid] = useState(valid.NON_VALID);
 
   const [HECSDebtAmount, setHECSDebtAmount] = useState(
-    localStorage.getItem("HECSDebtAmount") || ""
+    localStorage.getItem("loan2HECSDebtAmount") || ""
   );
   const [HECSDebtAmountValid, setHECSDebtAmountValid] = useState(
     valid.NON_VALID
@@ -46,18 +53,30 @@ const Step27C = () => {
   };
 
   useMemo(() => {
-    window.localStorage.setItem("HECSDebt", HECSDebt);
+    window.localStorage.setItem("loan2HECSDebt", HECSDebt);
   }, [HECSDebt]);
 
   useMemo(() => {
     window.localStorage.setItem(
-      "HECSDebtAmount",
+      "loan2HECSDebtAmount",
       HECSDebtAmount && parseInt(HECSDebtAmount.replace(/,/g, ""), 10)
     );
   }, [HECSDebtAmount]);
 
+  useMemo(() => {
+    setHECSDebtValid(valid.NON_VALID);
+    setHECSDebtAmountValid(valid.NON_VALID);
+    setHECSDebt(localStorage.getItem("loan2HECSDebt"));
+    setHECSDebtAmount(localStorage.getItem("loan2HECSDebtAmount"));
+    // eslint-disable-next-line
+  }, [personalLoansStatus]);
+
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-5">
+    <section
+      className={`formContent-step-second formContent-life-insurance mb-5 ${
+        !!personalLoansStatus?.includes(types[3]) ? "" : "opacity-03"
+      }`}
+    >
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>
@@ -80,7 +99,10 @@ const Step27C = () => {
                     customClassLabel={HECSDebt ? "active" : ""}
                     customClassWrap="email five"
                     innerRef={HECSDebtRef}
-                    onBlur={() => checkHECSDebtStatus(HECSDebt)}
+                    onBlur={() => {
+                      checkHECSDebtStatus(HECSDebt);
+                      handleGetLoan2value("HECSDebt", HECSDebt);
+                    }}
                   />
                 </Col>
               </Row>
@@ -119,7 +141,10 @@ const Step27C = () => {
                     iconPrice
                     customClassWrap="email five"
                     innerRef={HECSDebtAmountRef}
-                    onBlur={() => checkHECSDebtAmountStatus(HECSDebtAmount)}
+                    onBlur={() => {
+                      checkHECSDebtAmountStatus(HECSDebtAmount);
+                      handleGetLoan2value("HECSDebtAmount", HECSDebtAmount);
+                    }}
                   />
                 </Col>
               </Row>

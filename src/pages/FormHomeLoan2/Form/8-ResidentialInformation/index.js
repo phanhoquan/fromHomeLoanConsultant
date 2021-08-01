@@ -27,7 +27,6 @@ const ResidentialInformation = () => {
     });
   };
   const { fullAddress, currentlyRenting } = loan2value;
-  console.log(fullAddress, "fullAddress");
   const step9 = [
     {
       id: 1,
