@@ -18,9 +18,13 @@ export const types = {
 const First = () => {
   const firstNameRef = useRef(null);
 
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+  let listMenuStep1 = localStorage.getItem("listMenuStep1")
+    ? JSON.parse(localStorage.getItem("listMenuStep1"))
     : [];
+
+  const [dataListMenuStep1, setDataListMenuStep1] = useState(
+    listMenuStep1 || []
+  );
 
   const [firstName, setFirstName] = useState(
     localStorage.getItem("loan2firstName") || ""
@@ -99,17 +103,21 @@ const First = () => {
     }
   };
 
-  const step1 = {
-    id: 1,
-    question: "1. Please enter your name",
-    question2: `${email ? "1. What’s your email address?" : ""}`,
-    question3: `${employmentStatus ? "1. Are you currently employed?" : ""}`,
-  };
+  const step1 = [
+    {
+      id: 1,
+      question: `${lastName && firstName ? "1. Please enter your name" : ""}`,
+    },
+    {
+      id: 2,
+      question: `${email ? "1. What’s your email address?" : ""}`,
+    },
+    {
+      id: 3,
+      question: `${employmentStatus ? "1. Are you currently employed?" : ""}`,
+    },
+  ];
 
-  const finDataStep1 = listDataSubmit?.find((item) => item.id === 1);
-  const updateDataStep1 = listDataSubmit?.map((item) =>
-    item.id === 1 ? step1 : item
-  );
   useMemo(() => {
     localStorage.setItem("loan2lastName", lastName);
     localStorage.setItem("loan2firstName", firstName);
@@ -121,24 +129,18 @@ const First = () => {
       email.trim() ||
       employmentStatus
     ) {
-      if (finDataStep1) {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify(updateDataStep1)
-        );
-      } else {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify([...listDataSubmit, step1])
-        );
-      }
+      setDataListMenuStep1(step1);
     }
-
+    window.localStorage.setItem("listMenuStep1", JSON.stringify(step1));
     // eslint-disable-next-line
   }, [lastName, firstName, email, employmentStatus]);
 
   return (
-    <LifeInsurance activeStep={1} className="page-main">
+    <LifeInsurance
+      activeStep={1}
+      className="page-main"
+      listMenuStep1={dataListMenuStep1}
+    >
       <section className="formContent-step-first pb-5">
         <Container>
           <div>

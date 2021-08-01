@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
 
@@ -11,44 +11,15 @@ export const types = {
 };
 
 const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
-    : [];
-
   const [currentLoanStatus, setCurrentLoanStatus] = useState(
     localStorage.getItem("loan2currentLoanStatus") || ""
   );
 
-  const step2 = {
-    id: 2,
-    question: "2. Is the loan you currently have Fixed, Variable or Split?",
-  };
-  const finDataStep2 = listDataSubmit?.find((item) => item.id === 2);
-  const updateDataStep2 = listDataSubmit?.map((item) =>
-    item.id === 2 ? step2 : item
-  );
   const onCheck = (option) => {
     setCurrentLoanStatus(option);
     window.localStorage.setItem("loan2currentLoanStatus", option);
     handelGetLoan2currentLoanStatus(option);
   };
-
-  useMemo(() => {
-    if (currentLoanStatus) {
-      if (finDataStep2) {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify(updateDataStep2)
-        );
-      } else {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify([...listDataSubmit, step2])
-        );
-      }
-    }
-    // eslint-disable-next-line
-  }, [currentLoanStatus]);
 
   return (
     <section className="formContent-step-first">

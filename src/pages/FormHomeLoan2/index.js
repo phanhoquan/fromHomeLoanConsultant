@@ -26,7 +26,8 @@ const HomeLoan = ({
   className = "",
   activeStep,
   numberScroll = 10,
-  // handleGetValue = [],
+  listMenuStep1 = [],
+  listMenuStep2 = [],
 }) => {
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
@@ -44,9 +45,12 @@ const HomeLoan = ({
       return a.id - b.id;
     });
 
-  // const [loan2listDataSubmit, setLoan2listDataSubmit] = useState(
-  //   listDataSubmit || []
-  // );
+  let dataListMenuStep1 = localStorage.getItem("listMenuStep1")
+    ? JSON.parse(localStorage.getItem("listMenuStep1"))
+    : [];
+  let dataListMenuStep2 = localStorage.getItem("listMenuStep2")
+    ? JSON.parse(localStorage.getItem("listMenuStep2"))
+    : [];
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowMess, setIsIsShowMess] = useState(false);
@@ -101,32 +105,13 @@ const HomeLoan = ({
     window.localStorage.setItem("contentNoteVale", contentNoteVale);
   }, [contentNoteVale]);
 
-  const finDataStep1 = listDataSubmit?.filter((item) => item.id === 1);
-  const finDataStep2 = listDataSubmit?.filter(
-    (item) => item.id >= 2 && item.id <= 3
-  );
-
   const finDataStep3 = listDataSubmit?.filter(
     (item) => item.id >= 4 && item.id <= 7
   );
 
   const renderMenu = (listMenu) => {
     return listMenu.map((item) => {
-      return (
-        <>
-          <li key={item?.id}>{item?.question}</li>
-          {item?.id === 1 && item?.question2 ? (
-            <li key={item?.id}>{item?.question2}</li>
-          ) : (
-            ""
-          )}
-          {item?.id === 1 && item?.question3 ? (
-            <li key={item?.id}>{item?.question3}</li>
-          ) : (
-            ""
-          )}
-        </>
-      );
+      return <li key={item?.id}>{item?.question}</li>;
     });
   };
 
@@ -163,14 +148,33 @@ const HomeLoan = ({
               </div>
             </div>
             <ul className="listAnswer style2">
-              <UserDetail stepActive={activeStep} answerActive={finDataStep1}>
-                <ul className="sub-question"> {renderMenu(finDataStep1)}</ul>
+              <UserDetail
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep1?.length > 0 ? listMenuStep1 : dataListMenuStep1
+                }
+              >
+                <ul className="sub-question">
+                  {renderMenu(
+                    listMenuStep1?.length > 0
+                      ? listMenuStep1
+                      : dataListMenuStep1
+                  )}
+                </ul>
               </UserDetail>
               <LoanInformation
                 stepActive={activeStep}
-                answerActive={finDataStep2}
+                answerActive={
+                  listMenuStep2?.length > 0 ? listMenuStep2 : dataListMenuStep2
+                }
               >
-                <ul className="sub-question">{renderMenu(finDataStep2)}</ul>
+                <ul className="sub-question">
+                  {renderMenu(
+                    listMenuStep2?.length > 0
+                      ? listMenuStep2
+                      : dataListMenuStep2
+                  )}
+                </ul>
               </LoanInformation>
 
               <ApplicantDetails

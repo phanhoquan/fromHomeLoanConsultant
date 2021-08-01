@@ -12,11 +12,7 @@ export const types = {
   3: "Split",
 };
 
-const Step03A = ({ loan2currentLoanStatus }) => {
-  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
-    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
-    : [];
-
+const Step03A = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
   const [valueInterestRate, setValueInterestRate] = useState(
     localStorage.getItem("loan2valueInterestRate") || ""
   );
@@ -51,47 +47,15 @@ const Step03A = ({ loan2currentLoanStatus }) => {
 
   const onBlur = (e) => {
     checkValueInterestRateStatus(e.target.value);
+    handleGetLoan2value("interestRate", e.target.value);
   };
 
   const onFocus = () => {
     setValueInterestRateValid(valid.NON_VALID);
   };
 
-  const step3 = {
-    id: 3,
-    question:
-      " 3. What is the current interest rate you are paying on your loan?",
-  };
-  const finDataStep3 = listDataSubmit?.find((item) => item.id === 3);
-  // const finDataStep3Remove = listDataSubmit?.filter((item) => item.id !== 3);
-  const updateDataStep3 = listDataSubmit?.map((item) =>
-    item.id === 3 ? step3 : item
-  );
-
   useMemo(() => {
     localStorage.setItem("loan2valueInterestRate", valueInterestRate);
-    if (valueInterestRate) {
-      if (finDataStep3) {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify(updateDataStep3)
-        );
-      } else {
-        window.localStorage.setItem(
-          "loan2listDataSubmit",
-          JSON.stringify([...listDataSubmit, step3])
-        );
-      }
-    }
-    // else {
-    //   window.localStorage.setItem(
-    //     "loan2listDataSubmit",
-    //     finDataStep3Remove
-    //       ? JSON.stringify(finDataStep3Remove)
-    //       : JSON.stringify([])
-    //   );
-    // }
-    // eslint-disable-next-line
   }, [valueInterestRate]);
 
   useMemo(() => {
