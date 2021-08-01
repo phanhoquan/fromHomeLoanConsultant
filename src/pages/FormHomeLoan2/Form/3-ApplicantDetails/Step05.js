@@ -5,13 +5,22 @@ import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 
-const First = () => {
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
+const First = ({ applicationStatus, handleGetLoan2firstNameOther }) => {
+  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
+    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+    : [];
+
   const firstNameRef = useRef(null);
   const [firstName, setFirstName] = useState(
-    localStorage.getItem("firstNameOther") || ""
+    localStorage.getItem("loan2firstNameOther") || ""
   );
   const [lastName, setLastName] = useState(
-    localStorage.getItem("lastNameOther") || ""
+    localStorage.getItem("loan2lastNameOther") || ""
   );
   const [firstNameValid, setFirstNameValid] = useState(valid.NON_VALID);
   const [lastNameValid, setLastNameValid] = useState(valid.NON_VALID);
@@ -48,22 +57,55 @@ const First = () => {
         break;
       case "firstName":
         checkFirstNameStatus(firstName);
+        handleGetLoan2firstNameOther(firstName);
         break;
       default:
         break;
     }
   };
 
-  useMemo(() => {
-    window.localStorage.setItem("firstNameOther", firstName);
-  }, [firstName]);
+  const step5 = {
+    id: 5,
+    question: "5. What is the other name of the applicant?",
+  };
+  const finDataStep5 = listDataSubmit?.find((item) => item.id === 5);
+  const updateDataStep5 = listDataSubmit?.map((item) =>
+    item.id === 5 ? step5 : item
+  );
 
   useMemo(() => {
-    window.localStorage.setItem("lastNameOther", lastName);
-  }, [lastName]);
+    localStorage.setItem("loan2firstNameOther", firstName);
+    localStorage.setItem("loan2lastNameOther", lastName);
+    if (firstName || lastName) {
+      if (finDataStep5) {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify(updateDataStep5)
+        );
+      } else {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify([...listDataSubmit, step5])
+        );
+      }
+    }
+    // eslint-disable-next-line
+  }, [firstName, lastName]);
+
+  useMemo(() => {
+    setFirstNameValid(valid.NON_VALID);
+    setLastNameValid(valid.NON_VALID);
+    setFirstName(localStorage.getItem("loan2firstNameOther"));
+    setLastName(localStorage.getItem("loan2lastNameOther"));
+    // eslint-disable-next-line
+  }, [applicationStatus]);
 
   return (
-    <section className="formContent-step-first">
+    <section
+      className={`formContent-step-first mb-3 ${
+        applicationStatus !== types[2] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

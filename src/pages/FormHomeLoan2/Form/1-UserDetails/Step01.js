@@ -101,19 +101,20 @@ const First = () => {
 
   const step1 = {
     id: 1,
-    question: "1. Are you currently employed?",
+    question: "1. Please enter your name",
+    question2: `${email ? "1. What’s your email address?" : ""}`,
+    question3: `${employmentStatus ? "1. Are you currently employed?" : ""}`,
   };
 
   const finDataStep1 = listDataSubmit?.find((item) => item.id === 1);
-  // const finDataStep1Remove = listDataSubmit?.find((item) => item.id !== 1);
   const updateDataStep1 = listDataSubmit?.map((item) =>
     item.id === 1 ? step1 : item
   );
   useMemo(() => {
-    window.localStorage.setItem("loan2lastName", lastName);
-    window.localStorage.setItem("loan2firstName", firstName);
-    window.localStorage.setItem("loan2email", email);
-    window.localStorage.setItem("loan2employmentStatus", employmentStatus);
+    localStorage.setItem("loan2lastName", lastName);
+    localStorage.setItem("loan2firstName", firstName);
+    localStorage.setItem("loan2email", email);
+    localStorage.setItem("loan2employmentStatus", employmentStatus);
     if (
       lastName.trim() ||
       firstName.trim() ||
@@ -132,14 +133,6 @@ const First = () => {
         );
       }
     }
-    // else {
-    //   window.localStorage.setItem(
-    //     "loan2listDataSubmit",
-    //     finDataStep1Remove
-    //       ? JSON.stringify(finDataStep1Remove)
-    //       : JSON.stringify([])
-    //   );
-    // }
 
     // eslint-disable-next-line
   }, [lastName, firstName, email, employmentStatus]);

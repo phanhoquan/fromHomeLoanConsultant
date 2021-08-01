@@ -19,20 +19,19 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
     localStorage.getItem("loan2currentLoanStatus") || ""
   );
 
-  const onCheck = (option) => {
-    setCurrentLoanStatus(option);
-    window.localStorage.setItem("loan2currentLoanStatus", option);
-    handelGetLoan2currentLoanStatus(option);
-  };
   const step2 = {
     id: 2,
     question: "2. Is the loan you currently have Fixed, Variable or Split?",
   };
   const finDataStep2 = listDataSubmit?.find((item) => item.id === 2);
-  // const filterDataStep2Remove = listDataSubmit?.filter((item) => item.id !== 2);
   const updateDataStep2 = listDataSubmit?.map((item) =>
     item.id === 2 ? step2 : item
   );
+  const onCheck = (option) => {
+    setCurrentLoanStatus(option);
+    window.localStorage.setItem("loan2currentLoanStatus", option);
+    handelGetLoan2currentLoanStatus(option);
+  };
 
   useMemo(() => {
     if (currentLoanStatus) {
@@ -48,14 +47,6 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
         );
       }
     }
-    // else {
-    //   window.localStorage.setItem(
-    //     "loan2listDataSubmit",
-    //     filterDataStep2Remove
-    //       ? JSON.stringify(filterDataStep2Remove)
-    //       : JSON.stringify([])
-    //   );
-    // }
     // eslint-disable-next-line
   }, [currentLoanStatus]);
 

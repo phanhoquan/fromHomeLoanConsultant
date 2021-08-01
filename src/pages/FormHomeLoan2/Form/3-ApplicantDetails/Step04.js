@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { CheckboxButton } from "../../../../Components/CheckBox3";
@@ -10,15 +10,45 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step04 = () => {
+const Step04 = ({ handelGetApplicationStatus }) => {
+  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
+    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+    : [];
+
   const [jointApplicationStatus, setJointApplicationStatus] = useState(
-    localStorage.getItem("jointApplicationStatus") || ""
+    localStorage.getItem("loan2jointApplicationStatus") || ""
   );
 
   const onCheck = (option) => {
     setJointApplicationStatus(option);
-    window.localStorage.setItem("jointApplicationStatus", option);
+    localStorage.setItem("loan2jointApplicationStatus", option);
+    handelGetApplicationStatus(option);
   };
+  const step4 = {
+    id: 4,
+    question: "4. Are you the sole applicant or is this a joint application?",
+  };
+  const finDataStep4 = listDataSubmit?.find((item) => item.id === 4);
+  const updateDataStep4 = listDataSubmit?.map((item) =>
+    item.id === 4 ? step4 : item
+  );
+
+  useMemo(() => {
+    if (jointApplicationStatus) {
+      if (finDataStep4) {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify(updateDataStep4)
+        );
+      } else {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify([...listDataSubmit, step4])
+        );
+      }
+    }
+    // eslint-disable-next-line
+  }, [jointApplicationStatus]);
 
   return (
     <section className="formContent-step-first">

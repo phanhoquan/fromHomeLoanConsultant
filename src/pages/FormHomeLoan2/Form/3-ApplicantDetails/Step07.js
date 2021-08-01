@@ -11,11 +11,13 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step07A = () => {
-  const typesApplication =
-    localStorage.getItem("jointApplicationStatus") || "Sole Applicant";
+const Step07A = ({ applicationStatus, loan2firstNameOther }) => {
+  let listDataSubmit = localStorage.getItem("loan2listDataSubmit")
+    ? JSON.parse(localStorage.getItem("loan2listDataSubmit"))
+    : [];
+
   const [soleApplicantAge, setSoleApplicantAge] = useState(
-    localStorage.getItem("soleApplicantAge") || ""
+    localStorage.getItem("loan2soleApplicantAge") || ""
   );
 
   const [soleApplicantAgeValid, setSoleApplicantAgeValid] = useState(
@@ -44,7 +46,7 @@ const Step07A = () => {
     return true;
   };
 
-  const onKeyUp = (e, name) => {
+  const onKeyUp = (e) => {
     const valueConverted = formatCurrency(e.target.value);
     e.target.value = valueConverted;
     setSoleApplicantAge(valueConverted);
@@ -56,21 +58,57 @@ const Step07A = () => {
   };
 
   const firstName = localStorage.getItem("firstName") || "";
-  const firstNameOther = localStorage.getItem("firstNameOther") || "";
-  const title = `7. What are the ages of both ${firstName} & ${firstNameOther}?`;
+  const title = `7. What are the ages of both ${firstName} & ${loan2firstNameOther}?`;
+  const step7 = {
+    id: 7,
+    question: `${
+      applicationStatus === types[2]
+        ? title
+        : "7. What is the age of the applicant?"
+    }`,
+  };
+
+  const finDataStep7 = listDataSubmit?.find((item) => item.id === 7);
+  const updateDataStep7 = listDataSubmit?.map((item) =>
+    item.id === 7 ? step7 : item
+  );
 
   useMemo(() => {
-    localStorage.setItem("soleApplicantAge", soleApplicantAge);
-  }, [soleApplicantAge]);
+    localStorage.setItem("loan2soleApplicantAge", soleApplicantAge);
+    if (soleApplicantAge) {
+      if (finDataStep7) {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify(updateDataStep7)
+        );
+      } else {
+        window.localStorage.setItem(
+          "loan2listDataSubmit",
+          JSON.stringify([...listDataSubmit, step7])
+        );
+      }
+    }
+    // eslint-disable-next-line
+  }, [soleApplicantAge, loan2firstNameOther]);
+
+  useMemo(() => {
+    setSoleApplicantAgeValid(valid.NON_VALID);
+    setSoleApplicantAge(localStorage.getItem("loan2soleApplicantAge"));
+    // eslint-disable-next-line
+  }, [applicationStatus]);
 
   return (
-    <section className="formContent-step-first">
+    <section
+      className={`formContent-step-first ${
+        applicationStatus === "" ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                {typesApplication === types[2]
+                {applicationStatus === types[2]
                   ? title
                   : "7. What is the age of the applicant?"}
               </h2>
@@ -84,7 +122,7 @@ const Step07A = () => {
                     label="Sole Applicant Age"
                     value={soleApplicantAge}
                     type="text"
-                    id="email-input"
+                    id="soleApplicantAge"
                     customClassLabel={soleApplicantAge ? "active" : ""}
                     maxLength="3"
                     customClassWrap="email"

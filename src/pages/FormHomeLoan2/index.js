@@ -101,14 +101,32 @@ const HomeLoan = ({
     window.localStorage.setItem("contentNoteVale", contentNoteVale);
   }, [contentNoteVale]);
 
-  const finDataStep1 = listDataSubmit?.find((item) => item.id === 1);
+  const finDataStep1 = listDataSubmit?.filter((item) => item.id === 1);
   const finDataStep2 = listDataSubmit?.filter(
     (item) => item.id >= 2 && item.id <= 3
   );
 
+  const finDataStep3 = listDataSubmit?.filter(
+    (item) => item.id >= 4 && item.id <= 7
+  );
+
   const renderMenu = (listMenu) => {
     return listMenu.map((item) => {
-      return <li key={item?.id}>{item?.question}</li>;
+      return (
+        <>
+          <li key={item?.id}>{item?.question}</li>
+          {item?.id === 1 && item?.question2 ? (
+            <li key={item?.id}>{item?.question2}</li>
+          ) : (
+            ""
+          )}
+          {item?.id === 1 && item?.question3 ? (
+            <li key={item?.id}>{item?.question3}</li>
+          ) : (
+            ""
+          )}
+        </>
+      );
     });
   };
 
@@ -145,7 +163,9 @@ const HomeLoan = ({
               </div>
             </div>
             <ul className="listAnswer style2">
-              <UserDetail stepActive={activeStep} answerActive={finDataStep1} />
+              <UserDetail stepActive={activeStep} answerActive={finDataStep1}>
+                <ul className="sub-question"> {renderMenu(finDataStep1)}</ul>
+              </UserDetail>
               <LoanInformation
                 stepActive={activeStep}
                 answerActive={finDataStep2}
@@ -153,18 +173,11 @@ const HomeLoan = ({
                 <ul className="sub-question">{renderMenu(finDataStep2)}</ul>
               </LoanInformation>
 
-              <ApplicantDetails stepActive={activeStep}>
-                <ul className="sub-question">
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                  <li>
-                    2. Is the loan you currently have Fixed, Variable or Split?{" "}
-                  </li>
-                </ul>
+              <ApplicantDetails
+                stepActive={activeStep}
+                answerActive={finDataStep3}
+              >
+                <ul className="sub-question">{renderMenu(finDataStep3)}</ul>
               </ApplicantDetails>
 
               <KidsOrDependents stepActive={activeStep}>
