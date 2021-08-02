@@ -60,7 +60,7 @@ const Step07B = ({
   };
 
   // const firstName = localStorage.getItem("loan2firstName") || "";
-  const title = `7. What are the ages of both ${loan2firstNameOther}?`;
+  const title = `7. What are the ages of ${loan2firstNameOther}?`;
 
   useMemo(() => {
     localStorage.setItem("loan2jointApplicantAge", jointApplicantAge);
