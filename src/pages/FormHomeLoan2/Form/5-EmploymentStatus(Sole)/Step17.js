@@ -16,9 +16,11 @@ export const types = {
 
 const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const typeOfBusinessRef = useRef(null);
-  // const employmentStatus = localStorage.getItem("employmentWorkingStatus");
   const [typeOfBusiness, setTypeOfBusiness] = useState(
     localStorage.getItem("loan2typeOfBusinessOther") || ""
+  );
+  const [isShowStep, setIsShowStep] = useState(
+    localStorage.getItem("loan2employmentStatus") || ""
   );
   const [typeOfBusinessValid, setTypeOfBusinessValid] = useState(
     valid.NON_VALID
@@ -46,6 +48,7 @@ const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   useMemo(() => {
     if (employmentWorkingStatus) {
       setTypeOfBusiness(localStorage.getItem("loan2typeOfBusinessOther") || "");
+      setIsShowStep(employmentWorkingStatus);
     }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
@@ -53,12 +56,7 @@ const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   return (
     <section
       className={`formContent-step-first mb-3 ${
-        employmentWorkingStatus === types[1] ||
-        employmentWorkingStatus === types[2] ||
-        employmentWorkingStatus === types[3] ||
-        employmentWorkingStatus === types[5]
-          ? "opacity-03"
-          : ""
+        isShowStep !== types[4] && isShowStep !== types[6] ? "opacity-03" : ""
       }`}
     >
       <Container>

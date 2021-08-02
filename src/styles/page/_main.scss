@@ -10,33 +10,6 @@ html.fonts90 {
   font-size: 90%;
 }
 
-
-.ico-look {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: pxToRem(30);
-
-  img {
-    width: pxToRem(13);
-    height: pxToRem(15);
-    margin-right: pxToRem(5);
-  }
-
-  span {
-    font-family: $fontLato;
-    font-size: pxToRem(14);
-    font-weight: 700 !important;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 2;
-    letter-spacing: normal;
-    text-align: center;
-    color: #212121;
-  }
-}
-
 .life-insurance {
   &__MainCt {
     padding-top: pxToRem(140);
@@ -80,52 +53,6 @@ html.fonts90 {
         width: pxToRem(22);
         height: pxToRem(26);
       }
-    }
-  }
-
-  .welcomeLifeInsurance {
-    margin-top: pxToRem(70);
-
-    .logo {
-      margin-bottom: pxToRem(120);
-      width: pxToRem(140);
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    h1 {
-      color: $black-active;
-      text-align: center;
-      font-size: pxToRem(40);
-      font-weight: $medium;
-      font-family: $fontRobotoSlab;
-      margin-bottom: pxToRem(25) !important;
-      line-height: 1.13;
-      letter-spacing: normal;
-      text-align: center;
-
-      &.mb-1 {
-        margin-bottom: pxToRem(10) !important;
-      }
-
-      span {
-        font-weight: $medium;
-        font-family: $fontRobotoSlab;
-        font-size: inherit;
-      }
-    }
-
-    p {
-      font-family: $fontLato;
-      font-size: pxToRem(23);
-      font-weight: $regular;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.96;
-      letter-spacing: normal;
-      text-align: center;
-      color: #212121;
     }
   }
 
@@ -418,36 +345,6 @@ html.fonts90 {
     }
   }
 
-  //  FOOTER
-  footer.footer-life-insurance {
-    text-align: center;
-    background-color: $white;
-    padding-bottom: 0;
-    padding-top: pxToRem(60);
-
-    @media screen and (min-width: 2000px) {
-      position: fixed;
-      width: 100%;
-      bottom: pxToRem(30);
-    }
-
-    .container {
-      max-width: pxToRem(825);
-    }
-
-    p {
-      font-size: pxToRem(12);
-      font-weight: 200;
-      line-height: pxToRem(15);
-      font-family: $fontLato;
-      color: #a6a6a6;
-      margin-bottom: pxToRem(15);
-      letter-spacing: pxToRem(-0.45);
-      text-align: justify;
-      text-align-last: center;
-    }
-  }
-
   .formContent-step-third {
     .info-customer {
       max-width: pxToRem(300);
@@ -483,99 +380,6 @@ html.fonts90 {
       .showValid {
         .group-gender {
           margin-bottom: pxToRem(30);
-        }
-      }
-    }
-
-    .group-birth {
-      display: flex;
-      align-items: center;
-      border: pxToRem(2) solid $color-enquiry-action;
-      border-radius: pxToRem(6);
-      -webkit-transition: all 0.15s ease-out;
-      -moz-transition: all 0.15s ease-out;
-      -o-transition: all 0.15s ease-out;
-      transition: all 0.15s ease-out;
-
-      &:focus,
-      &:hover {
-        border-color: #2e9fe9;
-      }
-
-      .birth-label {
-        white-space: nowrap;
-        border: pxToRem(1) solid $color-enquiry-action;
-        padding: pxToRem(5) pxToRem(27);
-        text-align: center;
-        font-family: $fontLato;
-        font-weight: 700;
-        color: $black-light-2;
-        font-size: pxToRem(17);
-        height: pxToRem(60);
-        display: flex;
-        align-items: center;
-        background-color: $color-progress1;
-        border-top-left-radius: pxToRem(6);
-        border-bottom-left-radius: pxToRem(6);
-        border-left: 0;
-        border-top: 0;
-        border-bottom: 0;
-      }
-
-      .input {
-        width: pxToRem(84);
-
-        .input-change {
-          text-align: center;
-          border-radius: 0;
-          height: pxToRem(60);
-          border-top: 0;
-          border-bottom: 0;
-
-          &:focus {
-            border-color: $color-enquiry-action;
-          }
-        }
-
-        .dateDay {
-          &.input-change {
-            border-right: 0;
-            border-left: 0;
-          }
-        }
-
-        &:last-child {
-          width: pxToRem(94);
-
-          .input-change {
-            text-align: center;
-            border-top-right-radius: pxToRem(6);
-            border-bottom-right-radius: pxToRem(6);
-            border-left: 0;
-            border-right: 0;
-          }
-        }
-
-        .input__label {
-          left: 50%;
-          transform: translate(-50%, 12px);
-
-          &.active {
-            top: pxToRem(-6);
-          }
-        }
-      }
-    }
-
-    .group-gender {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: pxToRem(38) 0;
-
-      .checkbox {
-        &:first-child {
-          margin-right: pxToRem(50);
         }
       }
     }
@@ -643,15 +447,6 @@ html.fonts90 {
     }
   }
 
-  .page-nine {
-    &.mb-10 {
-      margin-bottom: 10%;
-    }
-
-    .list-occupation {
-      width: pxToRem(510);
-    }
-  }
 
   .step-sever {
     .info-customer {
@@ -660,56 +455,6 @@ html.fonts90 {
       .wForm-input {
         padding-left: pxToRem(15);
         padding-right: pxToRem(15);
-      }
-    }
-  }
-
-  .progressBar-page {
-
-    .info-customer {
-      max-width: pxToRem(600);
-    }
-  }
-
-  .progressBar-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: pxToRem(40);
-
-    .label {
-      font-family: $fontLato;
-      font-size: pxToRem(18);
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 2.5;
-      letter-spacing: normal;
-      text-align: left;
-      color: #212121;
-    }
-
-    img {
-      width: pxToRem(20);
-      cursor: pointer;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .reset {
-      opacity: 0.6;
-    }
-
-    .progress {
-      width: pxToRem(230);
-      height: pxToRem(7);
-
-      .progress-bar {
-        border-radius: 3.5px;
-        background-color: #2e9fe9;
       }
     }
   }
@@ -899,8 +644,6 @@ html.fonts90 {
         color: $white;
       }
     }
-
-    .btnPrimary {}
   }
 }
 
@@ -918,21 +661,6 @@ html.fonts90 {
   }
 }
 
-.server-statement {
-  display: none;
-
-  p {
-    text-align: center;
-
-    span {
-      color: #cdcdcd !important;
-      font-size: pxToRem(14) !important;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
-}
-
 .modal-popup-footer {
   p {
     text-align: left !important;
@@ -941,24 +669,6 @@ html.fonts90 {
 
 // Mobile
 .life-insurance {
-  @media screen and (max-width: 1200px) {
-    .welcomeLifeInsurance {
-      margin-top: pxToRem(50);
-
-      .logo {
-        margin-bottom: pxToRem(100);
-      }
-
-      h1 {
-        font-size: pxToRem(30);
-        margin-bottom: pxToRem(20) !important;
-      }
-
-      p {
-        font-size: pxToRem(20);
-      }
-    }
-  }
 
   @media screen and (max-width: 640px) {
     .footer-life-insurance {
@@ -974,24 +684,6 @@ html.fonts90 {
 
       &.page-main {
         padding-top: pxToRem(100);
-      }
-    }
-
-    .welcomeLifeInsurance {
-
-      .logo {
-        margin-bottom: pxToRem(60);
-      }
-
-      h1 {
-        font-size: pxToRem(25);
-        line-height: 1.2;
-      }
-
-      p {
-        font-size: pxToRem(16);
-        line-height: 1.2;
-        padding: 0 pxToRem(10);
       }
     }
 
@@ -1127,31 +819,6 @@ html.fonts90 {
     .formContent-step-four {
       .info-customer {
         margin-top: pxToRem(10) !important;
-
-        .group-birth {
-          .birth-label {
-            padding: pxToRem(5) pxToRem(15);
-            font-size: pxToRem(15);
-            height: pxToRem(50);
-          }
-
-          .input {
-            width: pxToRem(84);
-
-            .input__label {
-              left: 50%;
-              transform: translate(-50%, 9px);
-
-              &.active {
-                top: pxToRem(-6);
-              }
-            }
-
-            .input-change {
-              height: pxToRem(50);
-            }
-          }
-        }
       }
     }
 
@@ -1171,20 +838,6 @@ html.fonts90 {
       li {
         padding: pxToRem(10) pxToRem(10) pxToRem(10) pxToRem(43);
         line-height: 1.4;
-      }
-    }
-
-    .progressBar-group {
-      display: block;
-      margin-bottom: pxToRem(15);
-
-      .progress {
-        width: 100%;
-      }
-
-      img {
-        margin-top: pxToRem(-6);
-        top: 100%;
       }
     }
 
@@ -1211,13 +864,6 @@ html.fonts90 {
   text-decoration: underline;
   cursor: pointer;
 
-  &:hover {
-    +.tooltip-price {
-      visibility: visible;
-      opacity: 1;
-    }
-  }
-
   img {
     display: inline-block;
     vertical-align: middle;
@@ -1228,122 +874,7 @@ html.fonts90 {
   }
 }
 
-.dot-tooltip {
-  display: inline-block;
-
-  .w-400 {
-    &.tooltip-price {
-      max-width: pxToRem(415) !important;
-
-      .tooltip-desc {
-        max-width: pxToRem(415) !important;
-      }
-    }
-  }
-}
-
-div.tooltip2 {
-  .tooltip-price {
-    max-width: pxToRem(510);
-
-    .tooltip-desc {
-      max-width: pxToRem(510);
-
-      &:before,
-      &::after {
-        left: 50%;
-      }
-    }
-  }
-}
-
-.tooltip-price {
-  position: absolute;
-  top: pxToRem(50);
-  max-width: pxToRem(760);
-  left: 50%;
-  right: 0;
-  width: 100%;
-  visibility: hidden;
-  opacity: 0;
-  z-index: 9;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  @include transform-translate(-50%, 0);
-
-  .tooltip-desc {
-    padding: pxToRem(20);
-    margin-bottom: pxToRem(50);
-    background-color: #fff;
-    border-radius: pxToRem(10);
-    border: 2px solid #9aa2a8;
-    border-radius: 7px;
-
-    &:before,
-    &::after {
-      bottom: 100%;
-      left: 68%;
-      border: solid transparent;
-      content: "";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-    }
-
-    &:before {
-      border-color: rgba(194, 225, 245, 0);
-      border-bottom-color: #9aa2a8;
-      border-width: 10px;
-    }
-
-    &::after {
-      border-color: rgba(136, 183, 213, 0);
-      border-bottom-color: #fff;
-      border-width: 10px;
-      margin-bottom: -3px;
-    }
-
-    p {
-      color: #001d30;
-      font-size: pxToRem(13);
-      line-height: pxToRem(20);
-      text-align: left;
-      font-weight: 600;
-      margin-bottom: 0;
-
-      span {
-        font-weight: 600;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      &.font-italic {
-        font-style: italic;
-        font-size: 12px;
-      }
-    }
-
-    .text-red {
-      color: #ee1111;
-    }
-  }
-}
-
 @media screen and (max-width: 640px) {
-  .page-nine {
-    padding-bottom: pxToRem(60);
-    position: relative;
-    top: pxToRem(-40);
-  }
-
-  .server-statement {
-    display: block;
-  }
 
   .modal-dialog {
     min-height: auto;
@@ -1424,23 +955,6 @@ div.tooltip2 {
       }
     }
   }
-
-  .tooltip-price {
-    display: none;
-
-    .tooltip-desc {
-      padding: pxToRem(15);
-    }
-  }
-
-  .sub {
-
-    &:hover {
-      .tooltip-price {
-        display: block;
-      }
-    }
-  }
 }
 
 @-webkit-keyframes spinner-border {
@@ -1455,51 +969,6 @@ div.tooltip2 {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
-
-@keyframes spinner {
-  0% {
-    transform: translate3d(-50%, -50%, 0) rotate(360deg);
-  }
-
-  100% {
-    transform: translate3d(-50%, -50%, 0) rotate(00deg);
-  }
-}
-
-.progressBar-group {
-  img.reset {
-    animation: 1.5s linear infinite spinner;
-    animation-play-state: inherit;
-    right: pxToRem(-10);
-  }
-}
-
-.server-policy {
-  p {
-    line-height: 1.4 !important;
-    font-size: pxToRem(12) !important;
-    text-align: center;
-    font-family: $fontLato;
-    font-weight: $regular;
-    font-style: normal;
-
-    span {
-      color: $btn-bg;
-      cursor: pointer;
-      transition: all 0.3s;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-  }
-}
-
-.server-policy {
-  max-width: pxToRem(615);
-  margin: auto;
 }
 
 .text-select {
@@ -1679,26 +1148,6 @@ div.tooltip2 {
 
 
   @media screen and (max-width: 640px) {
-    .welcomeLifeInsurance {
-      .logo {
-        margin-bottom: pxToRem(50);
-      }
-
-      p {
-        font-family: $fontLato;
-        font-weight: bold;
-        font-size: pxToRem(16);
-      }
-
-      ul.list-dot {
-        li {
-          font-size: pxToRem(14);
-          line-height: 1.4;
-          padding: 0;
-        }
-      }
-    }
-
     .google-places-autocomplete__suggestions-container {
       >div {
         font-size: pxToRem(15);

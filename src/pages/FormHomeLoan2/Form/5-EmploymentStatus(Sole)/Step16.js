@@ -32,7 +32,9 @@ const listNumberYearWorking = [
 const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
-
+  const [isShowStep, setIsShowStep] = useState(
+    localStorage.getItem("loan2employmentStatus") || ""
+  );
   const [numberYearWorking, setNumberYearWorking] = useState(
     localStorage.getItem("loan2numberYearWorking") || ""
   );
@@ -52,6 +54,7 @@ const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   useMemo(() => {
     if (employmentWorkingStatus) {
       setNumberYearWorking(localStorage.getItem("loan2numberYearWorking"));
+      setIsShowStep(employmentWorkingStatus);
     }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
@@ -61,10 +64,7 @@ const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-3"
       } ${
-        employmentWorkingStatus === types2[4] ||
-        employmentWorkingStatus === types2[5]
-          ? "opacity-03"
-          : ""
+        isShowStep === types[4] || isShowStep === types[5] ? "opacity-03" : ""
       }`}
     >
       <Container>

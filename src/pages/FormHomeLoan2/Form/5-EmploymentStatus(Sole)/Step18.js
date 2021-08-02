@@ -30,8 +30,11 @@ const Step18 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const [businessBeenRegistered, setBusinessBeenRegistered] = useState(
     localStorage.getItem("loan2businessBeenRegistered") || ""
   );
-  const [isShowModal, setIsShowModal] = useState(false);
 
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [isShowStep, setIsShowStep] = useState(
+    localStorage.getItem("loan2employmentStatus") || ""
+  );
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowModal(false);
   });
@@ -48,6 +51,7 @@ const Step18 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
       setBusinessBeenRegistered(
         localStorage.getItem("loan2businessBeenRegistered") || ""
       );
+      setIsShowStep(employmentWorkingStatus);
     }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
@@ -56,7 +60,7 @@ const Step18 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-0"
-      } ${employmentWorkingStatus === types[5] ? "opacity-03" : ""}`}
+      } ${isShowStep === types[5] ? "opacity-03" : ""}`}
     >
       <Container>
         <div>
