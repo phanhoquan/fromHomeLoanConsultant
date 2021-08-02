@@ -17,7 +17,7 @@ const ChillApplicantAge = ({
   onKeyPress,
 }) => {
   return (
-    <Col xs={12} md={6} className="mb-3">
+    <Col xs={6} className="mb-3">
       <InputCustom2
         onChange={onKeyUp}
         label={`Dependant Age ${numberKey || 1}`}

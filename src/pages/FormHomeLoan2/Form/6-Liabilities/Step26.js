@@ -62,7 +62,7 @@ const Step26 = ({ handleGetLoan2value }) => {
               </p>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-4 w-600">
+              <Row className="info-customer mt-4 w-500">
                 <Col xs={12} sm={6} className="wForm-input">
                   <CheckboxButton
                     handleToggleCheckbox={() => onCheck(types[1])}

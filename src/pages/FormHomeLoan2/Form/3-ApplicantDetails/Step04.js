@@ -33,7 +33,7 @@ const Step04 = ({ handelGetApplicationStatus }) => {
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer w-650">
+              <Row className="info-customer w-500">
                 <Col xs={12} sm={6} className="wForm-input">
                   <CheckboxButton
                     checkBox={jointApplicationStatus === types[1]}

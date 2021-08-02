@@ -49,7 +49,7 @@ const HomeLoan = ({
   const wrapperInfoRefSole = useRef();
   const wrapperInfoRefJoint = useRef();
   if (document.body) {
-    root.setAttribute("class", "fonts100");
+    root.setAttribute("class", "fonts90");
   }
   const history = useHistory();
 

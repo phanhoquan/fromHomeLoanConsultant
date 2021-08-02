@@ -290,14 +290,14 @@ footer.position-relative {
   padding-left: 15px;
 
   .sub-iconMenu {
-    max-width: 50px;
+    max-width: pxToRem(50);
   }
 
 }
 
 .iconMenuClose {
   position: absolute;
-  max-width: 40px;
+  max-width: pxToRem(40);
   right: 0;
   top: 0;
   display: none !important;
@@ -336,12 +336,12 @@ footer.position-relative {
     }
 
     .iconMenuClose {
-      top: 120px;
+      top: pxToRem(120);
       right: auto;
     }
 
     .iconMenu {
-      top: 65px;
+      top: pxToRem(65);
     }
 
     .nav-left.open {
@@ -377,12 +377,12 @@ footer.position-relative {
 @media screen and (max-width: 767px) {
   .fromHomeLoan2 {
     .iconMenuClose {
-      top: 65px;
+      top: pxToRem(65);
       right: auto;
     }
 
     .iconMenu {
-      top: 45px;
+      top: pxToRem(45);
     }
 
     .nav-left.open {
@@ -599,11 +599,12 @@ textarea {
 
     .icon-note {
       padding-right: 15px;
+      max-width: pxToRem(40);
     }
 
     .arrow-note {
       max-width: 15px;
-      max-width: 20px;
+      max-width: 15px;
       position: absolute;
       right: 20px;
       transform: rotate(-180deg);
@@ -679,4 +680,9 @@ textarea {
   img {
     max-width: 20px;
   }
+}
+
+.min-h-50 {
+  min-height: pxToRem(50) !important;
+  height: pxToRem(50) !important;
 }

@@ -2,6 +2,9 @@ html.fonts100 {
   font-size: 100%;
 }
 
+html.fonts90 {
+  font-size: 90%;
+}
 
 
 .ico-look {
@@ -1738,5 +1741,11 @@ div.tooltip2 {
   .btn-plus {
     max-width: 25px;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 640px) {
+    right: 15px;
+    top: -40px;
+    bottom: auto;
   }
 }

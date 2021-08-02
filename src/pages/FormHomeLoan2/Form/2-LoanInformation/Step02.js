@@ -33,7 +33,7 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer w-650">
+              <Row className="info-customer w-500">
                 <Col xs={12} sm={4} className="wForm-input">
                   <CheckboxButton
                     checkBox={currentLoanStatus === types[1]}

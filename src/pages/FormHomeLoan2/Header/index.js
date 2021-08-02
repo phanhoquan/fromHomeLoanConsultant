@@ -36,7 +36,7 @@ const Header = ({ handleSubmit }) => {
         </div>
         <div className="btn-reset" style={{ opacity: "1" }}>
           <Button
-            className="btnPrimary life min-150 mt-0 w-auto"
+            className="btnPrimary life min-150 mt-0 w-auto min-h-50"
             onClick={handleSubmit}
           >
             SUBMIT
