@@ -719,8 +719,9 @@ textarea {
   }
 
   .checkbox-button .checkbox .checkbox__label span,
-  .list-occupation li {
-    font-weight: 500;
+  .list-occupation li,
+  .google-places-autocomplete__suggestions-container>div {
+    font-weight: 500 !important;
   }
 
   .input__box {

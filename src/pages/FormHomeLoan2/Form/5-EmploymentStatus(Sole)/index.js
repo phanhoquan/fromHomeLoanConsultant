@@ -226,7 +226,7 @@ const EmploymentStatusSoleJoint = () => {
     ) {
       setDataListMenuStep5(step5);
     }
-    window.localStorage.setItem("listMenuStep6", JSON.stringify(step5));
+    window.localStorage.setItem("listMenuStep5", JSON.stringify(step5));
     // eslint-disable-next-line
   }, [
     workingStatus,
