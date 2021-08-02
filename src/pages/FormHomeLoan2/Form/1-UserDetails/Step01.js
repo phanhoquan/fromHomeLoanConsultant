@@ -229,28 +229,28 @@ const First = () => {
               </Col>
               <Col xs={12}>
                 <Row className="info-customer">
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       checkBox={employmentStatus === types[1]}
                       onClick={() => onCheck(types[1])}
                       name={types[1]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[2])}
                       checkBox={employmentStatus === types[2]}
                       name={types[2]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[3])}
                       checkBox={employmentStatus === types[3]}
                       name={types[3]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[4])}
                       checkBox={employmentStatus === types[4]}

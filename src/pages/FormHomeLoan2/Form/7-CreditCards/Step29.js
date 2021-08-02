@@ -29,7 +29,7 @@ const Step29 = ({ handleGetLoan2value }) => {
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-3">
-                <Col xs={12} sm={6} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     checkBox={creditCard === types[1]}
                     onClick={() => onCheck(types[1])}
@@ -37,7 +37,7 @@ const Step29 = ({ handleGetLoan2value }) => {
                     classContainer="radius"
                   />
                 </Col>
-                <Col xs={12} sm={6} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     onClick={() => onCheck(types[2])}
                     checkBox={creditCard === types[2]}
