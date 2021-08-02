@@ -73,10 +73,12 @@ const First = ({
   }, [firstName, lastName]);
 
   useMemo(() => {
-    setFirstNameValid(valid.NON_VALID);
-    setLastNameValid(valid.NON_VALID);
-    setFirstName(localStorage.getItem("loan2firstNameOther"));
-    setLastName(localStorage.getItem("loan2lastNameOther"));
+    if (applicationStatus) {
+      setFirstNameValid(valid.NON_VALID);
+      setLastNameValid(valid.NON_VALID);
+      setFirstName(localStorage.getItem("loan2firstNameOther"));
+      setLastName(localStorage.getItem("loan2lastNameOther"));
+    }
     // eslint-disable-next-line
   }, [applicationStatus]);
 

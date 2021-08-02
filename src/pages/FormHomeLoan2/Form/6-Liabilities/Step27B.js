@@ -61,10 +61,12 @@ const Step27B = ({ handleGetLoan2value, personalLoansStatus }) => {
   }, [carLoanAmount]);
 
   useMemo(() => {
-    setCarLoanValid(valid.NON_VALID);
-    setCarLoanAmountValid(valid.NON_VALID);
-    setCarLoan(localStorage.getItem("loan2carLoan"));
-    setCarLoanAmount(localStorage.getItem("loan2carLoanAmount"));
+    if (personalLoansStatus) {
+      setCarLoanValid(valid.NON_VALID);
+      setCarLoanAmountValid(valid.NON_VALID);
+      setCarLoan(localStorage.getItem("loan2carLoan"));
+      setCarLoanAmount(localStorage.getItem("loan2carLoanAmount"));
+    }
     // eslint-disable-next-line
   }, [personalLoansStatus]);
 

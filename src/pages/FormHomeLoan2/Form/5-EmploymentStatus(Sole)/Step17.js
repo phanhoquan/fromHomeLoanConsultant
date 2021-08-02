@@ -43,7 +43,9 @@ const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   }, [typeOfBusiness]);
 
   useMemo(() => {
-    setTypeOfBusiness(localStorage.getItem("loan2typeOfBusinessOther") || "");
+    if (employmentWorkingStatus) {
+      setTypeOfBusiness(localStorage.getItem("loan2typeOfBusinessOther") || "");
+    }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
 

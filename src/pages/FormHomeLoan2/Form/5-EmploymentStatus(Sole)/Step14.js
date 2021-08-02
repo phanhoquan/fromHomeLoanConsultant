@@ -43,7 +43,11 @@ const Step14 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   };
 
   useMemo(() => {
-    setNumberPartnerReturn(localStorage.getItem("loan2numberPartnerReturn16"));
+    if (employmentWorkingStatus) {
+      setNumberPartnerReturn(
+        localStorage.getItem("loan2numberPartnerReturn16")
+      );
+    }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
 

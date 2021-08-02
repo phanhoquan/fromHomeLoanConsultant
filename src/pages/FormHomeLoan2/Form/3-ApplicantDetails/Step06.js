@@ -41,7 +41,9 @@ const Step06 = ({
   }, [relationshipYour, loan2firstNameOther]);
 
   useMemo(() => {
-    setRelationshipYour(localStorage.getItem("loan2relationshipYour"));
+    if (applicationStatus) {
+      setRelationshipYour(localStorage.getItem("loan2relationshipYour"));
+    }
     // eslint-disable-next-line
   }, [applicationStatus]);
 

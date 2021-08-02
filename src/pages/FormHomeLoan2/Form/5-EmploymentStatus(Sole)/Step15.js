@@ -89,7 +89,9 @@ const Step15 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
       : "d-none";
 
   useMemo(() => {
-    setOccupation(localStorage.getItem("loan2occupation"));
+    if (employmentWorkingStatus) {
+      setOccupation(localStorage.getItem("loan2occupation"));
+    }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
 

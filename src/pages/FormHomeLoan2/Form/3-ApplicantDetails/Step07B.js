@@ -68,8 +68,10 @@ const Step07B = ({
   }, [jointApplicantAge, loan2firstNameOther]);
 
   useMemo(() => {
-    setJointApplicantAgeValid(valid.NON_VALID);
-    setJointApplicantAge(localStorage.getItem("loan2jointApplicantAge"));
+    if (applicationStatus) {
+      setJointApplicantAgeValid(valid.NON_VALID);
+      setJointApplicantAge(localStorage.getItem("loan2jointApplicantAge"));
+    }
     // eslint-disable-next-line
   }, [applicationStatus]);
 

@@ -30,9 +30,11 @@ const Step13 = ({ handleGetLoan2value, workingStatus }) => {
   };
 
   useMemo(() => {
-    setEmploymentWorkingStatus(
-      localStorage.getItem("loan2employmentWorkingStatus")
-    );
+    if (workingStatus) {
+      setEmploymentWorkingStatus(
+        localStorage.getItem("loan2employmentWorkingStatus")
+      );
+    }
     // eslint-disable-next-line
   }, [workingStatus]);
 

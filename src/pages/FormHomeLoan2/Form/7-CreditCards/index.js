@@ -26,6 +26,10 @@ const CreditCards = () => {
       ...loan2value,
       [name]: value,
     });
+    if (name === "loan2creditCard") {
+      window.localStorage.setItem("loan2valueCreditCard", "");
+      window.localStorage.setItem("loan2valueCreditCardAmount", "");
+    }
   };
   const { loan2creditCard, valueCreditCard, creditCardAmount } = loan2value;
   const step8 = [
@@ -62,7 +66,10 @@ const CreditCards = () => {
       numberScroll={2000}
     >
       <Step29 handleGetLoan2value={handleGetLoan2value} />
-      <Step30 handleGetLoan2value={handleGetLoan2value} />
+      <Step30
+        handleGetLoan2value={handleGetLoan2value}
+        loan2creditCard={loan2creditCard}
+      />
     </LifeInsurance>
   );
 };

@@ -86,7 +86,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   };
 
   useMemo(() => {
-    if (jointApplicationStatus !== types[2]) {
+    if (jointApplicationStatus && jointApplicationStatus !== types[2]) {
       setPartnersOccupation("");
       setIsShowModal(false);
       window.localStorage.setItem("loan2partnersOccupation", "");

@@ -50,7 +50,9 @@ const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   };
 
   useMemo(() => {
-    setNumberYearWorking(localStorage.getItem("loan2numberYearWorking"));
+    if (employmentWorkingStatus) {
+      setNumberYearWorking(localStorage.getItem("loan2numberYearWorking"));
+    }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
 

@@ -64,10 +64,12 @@ const Step27A = ({ handleGetLoan2value, personalLoansStatus }) => {
   }, [personalLoanAmount]);
 
   useMemo(() => {
-    setPersonalLoanValid(valid.NON_VALID);
-    setPersonalLoanAmountValid(valid.NON_VALID);
-    setPersonalLoan(localStorage.getItem("loan2personalLoan"));
-    setPersonalLoanAmount(localStorage.getItem("loan2personalLoanAmount"));
+    if (personalLoansStatus) {
+      setPersonalLoanValid(valid.NON_VALID);
+      setPersonalLoanAmountValid(valid.NON_VALID);
+      setPersonalLoan(localStorage.getItem("loan2personalLoan"));
+      setPersonalLoanAmount(localStorage.getItem("loan2personalLoanAmount"));
+    }
     // eslint-disable-next-line
   }, [personalLoansStatus]);
 

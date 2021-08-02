@@ -39,7 +39,7 @@ const Step24 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   }, [partnersSalary]);
 
   useMemo(() => {
-    if (jointApplicationStatus !== types[2]) {
+    if (jointApplicationStatus && jointApplicationStatus !== types[2]) {
       window.localStorage.setItem("loan2partnersSalary", "");
       setPartnersSalary("");
       handleGetLoan2value("partnersSalary", "");

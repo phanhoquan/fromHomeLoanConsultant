@@ -180,22 +180,24 @@ const Step11 = ({ handleGetLoan2value, otherDependents }) => {
   }, [otherChillApplicantAge]);
 
   useMemo(() => {
-    setOtherChillApplicantAgeValid({
-      ...otherChillApplicantAgeValid,
-      otherName1: valid.NON_VALID,
-      otherName2: valid.NON_VALID,
-      otherName3: valid.NON_VALID,
-      otherName4: valid.NON_VALID,
-      otherName5: valid.NON_VALID,
-    });
-    window.localStorage.setItem(
-      "loan2otherChillApplicantAge",
-      JSON.stringify({})
-    );
-    window.localStorage.setItem("loan2otherChildrenNumber", 0);
-    handleGetLoan2value("otherChillApplicantAge", []);
-    setOtherChillApplicantAge({});
-    setChildrenNumber(2);
+    if (otherDependents) {
+      setOtherChillApplicantAgeValid({
+        ...otherChillApplicantAgeValid,
+        otherName1: valid.NON_VALID,
+        otherName2: valid.NON_VALID,
+        otherName3: valid.NON_VALID,
+        otherName4: valid.NON_VALID,
+        otherName5: valid.NON_VALID,
+      });
+      window.localStorage.setItem(
+        "loan2otherChillApplicantAge",
+        JSON.stringify({})
+      );
+      window.localStorage.setItem("loan2otherChildrenNumber", 0);
+      handleGetLoan2value("otherChillApplicantAge", []);
+      setOtherChillApplicantAge({});
+      setChildrenNumber(2);
+    }
     // eslint-disable-next-line
   }, [otherDependents]);
 

@@ -76,7 +76,10 @@ const Step23 = ({
   }, [jointApplicationStatus]);
 
   useMemo(() => {
-    if (employmentPartnersWorkingStatus !== types3[6]) {
+    if (
+      employmentPartnersWorkingStatus &&
+      employmentPartnersWorkingStatus !== types3[6]
+    ) {
       window.localStorage.setItem("loan2numberPartnerReturn", "");
       setNumberPartnerReturn("");
       handleGetLoan2value("numberPartnerReturn", "");

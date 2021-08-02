@@ -64,10 +64,12 @@ const Step27C = ({ handleGetLoan2value, personalLoansStatus }) => {
   }, [HECSDebtAmount]);
 
   useMemo(() => {
-    setHECSDebtValid(valid.NON_VALID);
-    setHECSDebtAmountValid(valid.NON_VALID);
-    setHECSDebt(localStorage.getItem("loan2HECSDebt"));
-    setHECSDebtAmount(localStorage.getItem("loan2HECSDebtAmount"));
+    if (personalLoansStatus) {
+      setHECSDebtValid(valid.NON_VALID);
+      setHECSDebtAmountValid(valid.NON_VALID);
+      setHECSDebt(localStorage.getItem("loan2HECSDebt"));
+      setHECSDebtAmount(localStorage.getItem("loan2HECSDebtAmount"));
+    }
     // eslint-disable-next-line
   }, [personalLoansStatus]);
 

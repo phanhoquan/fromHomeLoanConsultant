@@ -30,7 +30,7 @@ const Step22 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   };
 
   useMemo(() => {
-    if (jointApplicationStatus !== types[2]) {
+    if (jointApplicationStatus && jointApplicationStatus !== types[2]) {
       setEmploymentWorkingStatus("");
       window.localStorage.setItem("loan2employmentPartnersWorkingStatus", "");
       handleGetLoan2value("employmentPartnersWorkingStatus", "");

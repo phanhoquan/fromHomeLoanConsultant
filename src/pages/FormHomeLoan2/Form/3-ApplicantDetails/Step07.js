@@ -67,8 +67,10 @@ const Step07A = ({
   }, [soleApplicantAge, loan2firstNameOther]);
 
   useMemo(() => {
-    setSoleApplicantAgeValid(valid.NON_VALID);
-    setSoleApplicantAge(localStorage.getItem("loan2soleApplicantAge"));
+    if (applicationStatus) {
+      setSoleApplicantAgeValid(valid.NON_VALID);
+      setSoleApplicantAge(localStorage.getItem("loan2soleApplicantAge"));
+    }
     // eslint-disable-next-line
   }, [applicationStatus]);
 

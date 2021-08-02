@@ -182,24 +182,26 @@ const Step09 = ({ handleGetLoan2value, kidsOrDependant }) => {
   }, [chillApplicantAge]);
 
   useMemo(() => {
-    window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
-    window.localStorage.setItem("loan2childrenNumber", 0);
-    handleGetLoan2value("chillApplicantAge", []);
-    setChillApplicantAge({});
-    setChillApplicantAgeValid({
-      ...chillApplicantAgeValid,
-      name1: valid.NON_VALID,
-      name2: valid.NON_VALID,
-      name3: valid.NON_VALID,
-      name4: valid.NON_VALID,
-      name5: valid.NON_VALID,
-      name6: valid.NON_VALID,
-      name7: valid.NON_VALID,
-      name8: valid.NON_VALID,
-      name9: valid.NON_VALID,
-      name10: valid.NON_VALID,
-    });
-    setChildrenNumber(2);
+    if (kidsOrDependant) {
+      window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
+      window.localStorage.setItem("loan2childrenNumber", 0);
+      handleGetLoan2value("chillApplicantAge", []);
+      setChillApplicantAge({});
+      setChillApplicantAgeValid({
+        ...chillApplicantAgeValid,
+        name1: valid.NON_VALID,
+        name2: valid.NON_VALID,
+        name3: valid.NON_VALID,
+        name4: valid.NON_VALID,
+        name5: valid.NON_VALID,
+        name6: valid.NON_VALID,
+        name7: valid.NON_VALID,
+        name8: valid.NON_VALID,
+        name9: valid.NON_VALID,
+        name10: valid.NON_VALID,
+      });
+      setChildrenNumber(2);
+    }
     // eslint-disable-next-line
   }, [kidsOrDependant]);
 
