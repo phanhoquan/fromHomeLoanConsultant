@@ -17,7 +17,11 @@ export const types = {
   6: "Maternal Leave",
 };
 
-const Step15 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
+const Step15 = ({
+  handleGetLoan2value,
+  employmentWorkingStatus,
+  workingStatus,
+}) => {
   const occupationRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [isShowModal, setIsShowModal] = useState(false);
@@ -99,6 +103,14 @@ const Step15 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
     }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
+
+  useMemo(() => {
+    if (workingStatus) {
+      setOccupation(localStorage.getItem("loan2occupation"));
+      setIsShowStep(localStorage.getItem("loan2employmentStatus") || "");
+    }
+    // eslint-disable-next-line
+  }, [workingStatus]);
 
   return (
     <section

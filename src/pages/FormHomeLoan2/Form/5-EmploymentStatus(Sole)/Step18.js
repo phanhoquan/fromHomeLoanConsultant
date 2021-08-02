@@ -24,7 +24,11 @@ export const types = {
   6: "Maternal Leave",
 };
 
-const Step18 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
+const Step18 = ({
+  handleGetLoan2value,
+  employmentWorkingStatus,
+  workingStatus,
+}) => {
   const businessBeenRegisteredRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [businessBeenRegistered, setBusinessBeenRegistered] = useState(
@@ -54,7 +58,17 @@ const Step18 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
       setIsShowStep(employmentWorkingStatus);
     }
     // eslint-disable-next-line
-  }, [employmentWorkingStatus]);
+  }, [employmentWorkingStatus, workingStatus]);
+
+  useMemo(() => {
+    if (workingStatus) {
+      setBusinessBeenRegistered(
+        localStorage.getItem("loan2businessBeenRegistered") || ""
+      );
+      setIsShowStep(localStorage.getItem("loan2employmentStatus") || "");
+    }
+    // eslint-disable-next-line
+  }, [workingStatus]);
 
   return (
     <section

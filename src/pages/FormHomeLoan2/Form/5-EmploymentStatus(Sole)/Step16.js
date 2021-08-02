@@ -29,7 +29,11 @@ const listNumberYearWorking = [
   "5+ years",
 ];
 
-const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
+const Step16 = ({
+  handleGetLoan2value,
+  employmentWorkingStatus,
+  workingStatus,
+}) => {
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [isShowStep, setIsShowStep] = useState(
@@ -58,6 +62,14 @@ const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
     }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
+
+  useMemo(() => {
+    if (workingStatus) {
+      setNumberYearWorking(localStorage.getItem("loan2numberYearWorking"));
+      setIsShowStep(localStorage.getItem("loan2employmentStatus") || "");
+    }
+    // eslint-disable-next-line
+  }, [workingStatus]);
 
   return (
     <section

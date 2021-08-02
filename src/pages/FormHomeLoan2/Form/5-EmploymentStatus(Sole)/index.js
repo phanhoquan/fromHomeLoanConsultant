@@ -282,18 +282,22 @@ const EmploymentStatusSoleJoint = () => {
       <Step15
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
+        workingStatus={workingStatus}
       />
       <Step16
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
+        workingStatus={workingStatus}
       />
       <Step17
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
+        workingStatus={workingStatus}
       />
       <Step18
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
+        workingStatus={workingStatus}
       />
       <Step19 handleGetLoan2value={handleGetLoan2value} />
       <Step20 handleGetLoan2value={handleGetLoan2value} />
