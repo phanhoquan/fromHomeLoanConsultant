@@ -147,7 +147,7 @@ const Step11 = () => {
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4">
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       checkBox={otherDependents === types[1]}
                       onClick={() => onCheck(types[1])}
@@ -155,7 +155,7 @@ const Step11 = () => {
                       classContainer="radius"
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[2])}
                       checkBox={otherDependents === types[2]}

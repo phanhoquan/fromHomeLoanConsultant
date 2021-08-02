@@ -164,42 +164,42 @@ const Step15 = () => {
               </Col>
               <Col xs={12}>
                 <Row className="info-customer mt-4">
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       checkBox={employmentWorkingStatus === types[1]}
                       onClick={() => onCheck(types[1])}
                       name={types[1]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[2])}
                       checkBox={employmentWorkingStatus === types[2]}
                       name={types[2]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       checkBox={employmentWorkingStatus === types[3]}
                       onClick={() => onCheck(types[3])}
                       name={types[3]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[4])}
                       checkBox={employmentWorkingStatus === types[4]}
                       name={types[4]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[5])}
                       checkBox={employmentWorkingStatus === types[5]}
                       name={types[5]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[6])}
                       checkBox={employmentWorkingStatus === types[6]}

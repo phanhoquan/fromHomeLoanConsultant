@@ -145,14 +145,14 @@ const Step04 = () => {
               </Col>
               <Col xs={12}>
                 <Row className="info-customer w-650">
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       checkBox={jointApplicationStatus === types[1]}
                       onClick={() => onCheck(types[1])}
                       name={types[1]}
                     />
                   </Col>
-                  <Col xs={12} sm={6} className="wForm-input">
+                  <Col xs={6} className="wForm-input">
                     <CheckboxButton
                       onClick={() => onCheck(types[2])}
                       checkBox={jointApplicationStatus === types[2]}
