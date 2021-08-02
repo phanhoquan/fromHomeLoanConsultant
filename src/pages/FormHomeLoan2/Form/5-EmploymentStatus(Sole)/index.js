@@ -3,23 +3,27 @@
 import React, { useMemo, useState } from "react";
 import LifeInsurance from "../../index";
 
-import Step12 from "./Step12";
-import Step13 from "./Step13";
-import Step14 from "./Step14";
-import Step15 from "./Step15";
-import Step16 from "./Step16";
-import Step17 from "./Step17";
-import Step18 from "./Step18";
-import Step19 from "./Step19";
-import Step20 from "./Step20";
-import Step21 from "./Step21";
+import Step12 from "../5-EmploymentStatus(Sole)/Step12";
+import Step13 from "../5-EmploymentStatus(Sole)/Step13";
+import Step14 from "../5-EmploymentStatus(Sole)/Step14";
+import Step15 from "../5-EmploymentStatus(Sole)/Step15";
+import Step16 from "../5-EmploymentStatus(Sole)/Step16";
+import Step17 from "../5-EmploymentStatus(Sole)/Step17";
+import Step18 from "../5-EmploymentStatus(Sole)/Step18";
+import Step19 from "../5-EmploymentStatus(Sole)/Step19";
+import Step20 from "../5-EmploymentStatus(Sole)/Step20";
+
+import Step21 from "../5-EmploymentStatus(Sole)/Step21";
+import Step22 from "../5-EmploymentStatus(Sole)/Step22";
+import Step23 from "../5-EmploymentStatus(Sole)/Step23";
+import Step24 from "../5-EmploymentStatus(Sole)/Step24";
 
 export const types = {
   1: "Sole Applicant",
   2: "Joint Applicant",
 };
 
-const EmploymentStatusSole = () => {
+const EmploymentStatusSoleJoint = () => {
   const jointApplicationStatus =
     localStorage.getItem("loan2jointApplicationStatus") || "";
   let listMenuStep5 = localStorage.getItem("listMenuStep5")
@@ -45,6 +49,10 @@ const EmploymentStatusSole = () => {
     priceTax2019: localStorage.getItem("loan2priceTax2019") || "",
     priceTax2020: localStorage.getItem("loan2priceTax2020") || "",
     partnersOccupation: localStorage.getItem("loan2partnersOccupation") || "",
+    employmentPartnersWorkingStatus:
+      localStorage.getItem("loan2employmentPartnersWorkingStatus") || "",
+    numberPartnerReturn: localStorage.getItem("loan2numberPartnerReturn") || "",
+    partnersSalary: localStorage.getItem("loan2partnersSalary") || "",
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -68,8 +76,10 @@ const EmploymentStatusSole = () => {
     priceTax2019,
     priceTax2020,
     partnersOccupation,
+    employmentPartnersWorkingStatus,
+    numberPartnerReturn,
+    partnersSalary,
   } = loan2value;
-
   const titleStep12 = `12. You mentioned that you are working ‘${employmentStatus}’ Is that correct?`;
   const step5 = [
     {
@@ -139,7 +149,33 @@ const EmploymentStatusSole = () => {
     {
       id: 11,
       question: `${
-        partnersOccupation ? "22. What is your partners occupation?" : ""
+        partnersOccupation && jointApplicationStatus === types[2]
+          ? "22. What is your partners occupation?"
+          : ""
+      }`,
+    },
+    {
+      id: 12,
+      question: `${
+        employmentPartnersWorkingStatus && jointApplicationStatus === types[2]
+          ? "23. What is your partners employment status?"
+          : ""
+      }`,
+    },
+    {
+      id: 13,
+      question: `${
+        numberPartnerReturn && jointApplicationStatus === types[2]
+          ? "24. When is your partner expected to return to work?"
+          : ""
+      }`,
+    },
+    {
+      id: 14,
+      question: `${
+        partnersSalary && jointApplicationStatus === types[2]
+          ? "25. What is your partners salary?"
+          : ""
       }`,
     },
   ];
@@ -156,11 +192,14 @@ const EmploymentStatusSole = () => {
       taxReturns ||
       priceTax2019 ||
       priceTax2020 ||
-      partnersOccupation
+      partnersOccupation ||
+      employmentPartnersWorkingStatus ||
+      numberPartnerReturn ||
+      partnersSalary
     ) {
       setDataListMenuStep5(step5);
     }
-    window.localStorage.setItem("listMenuStep5", JSON.stringify(step5));
+    window.localStorage.setItem("listMenuStep6", JSON.stringify(step5));
     // eslint-disable-next-line
   }, [
     workingStatus,
@@ -170,11 +209,15 @@ const EmploymentStatusSole = () => {
     numberYearWorking,
     typeOfBusinessOther,
     businessBeenRegistered,
+    taxReturns,
     priceTax2019,
     priceTax2020,
     partnersOccupation,
-    taxReturns,
+    employmentPartnersWorkingStatus,
+    numberPartnerReturn,
+    partnersSalary,
   ]);
+
   return (
     <LifeInsurance
       activeStep={5}
@@ -194,9 +237,25 @@ const EmploymentStatusSole = () => {
       <Step18 handleGetLoan2value={handleGetLoan2value} />
       <Step19 handleGetLoan2value={handleGetLoan2value} />
       <Step20 handleGetLoan2value={handleGetLoan2value} />
-      <Step21 handleGetLoan2value={handleGetLoan2value} />
+
+      <Step21
+        handleGetLoan2value={handleGetLoan2value}
+        jointApplicationStatus={jointApplicationStatus}
+      />
+      <Step22
+        handleGetLoan2value={handleGetLoan2value}
+        jointApplicationStatus={jointApplicationStatus}
+      />
+      <Step23
+        handleGetLoan2value={handleGetLoan2value}
+        jointApplicationStatus={jointApplicationStatus}
+      />
+      <Step24
+        handleGetLoan2value={handleGetLoan2value}
+        jointApplicationStatus={jointApplicationStatus}
+      />
     </LifeInsurance>
   );
 };
 
-export default EmploymentStatusSole;
+export default EmploymentStatusSoleJoint;

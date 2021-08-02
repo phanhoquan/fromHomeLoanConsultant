@@ -38,11 +38,11 @@
         }
 
         &::after {
-          left: 5.5px;
-          top: 11px;
+          left: pxToRem(5.5);
+          top: pxToRem(11);
           background-color: #2e9fe9;
-          width: 15px;
-          height: 15px;
+          width: pxToRem(15);
+          height: pxToRem(15);
           border: 0;
           border-radius: 50%;
 

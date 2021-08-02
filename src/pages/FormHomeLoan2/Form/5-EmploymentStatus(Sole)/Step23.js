@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
@@ -20,7 +20,7 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step23 = ({ handleGetLoan2value }) => {
+const Step23 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
@@ -53,11 +53,20 @@ const Step23 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("numberPartnerReturn", value);
   };
 
+  useMemo(() => {
+    if (jointApplicationStatus !== types[2]) {
+      window.localStorage.setItem("loan2numberPartnerReturn", "");
+      setNumberPartnerReturn("");
+      handleGetLoan2value("numberPartnerReturn", "");
+    }
+    // eslint-disable-next-line
+  }, [jointApplicationStatus]);
+
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-3"
-      }`}
+      } ${jointApplicationStatus !== types[2] ? "opacity-03" : ""}`}
     >
       <Container>
         <div>

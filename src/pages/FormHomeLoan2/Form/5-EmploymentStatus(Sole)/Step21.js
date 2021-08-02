@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
@@ -13,7 +13,7 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step21 = ({ handleGetLoan2value }) => {
+const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   const partnersOccupationRef = useRef(null);
 
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
@@ -85,6 +85,16 @@ const Step21 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("partnersOccupation", name);
   };
 
+  useMemo(() => {
+    if (jointApplicationStatus !== types[2]) {
+      setPartnersOccupation("");
+      setIsShowModal(false);
+      window.localStorage.setItem("loan2partnersOccupation", "");
+      handleGetLoan2value("partnersOccupation", "");
+    }
+    // eslint-disable-next-line
+  }, [jointApplicationStatus]);
+
   const showClass =
     isShowModal &&
     partnersOccupation?.length >= 2 &&
@@ -93,7 +103,11 @@ const Step21 = ({ handleGetLoan2value }) => {
       : "d-none";
 
   return (
-    <section className="formContent-step-second form-six formContent-life-insurance mb-3">
+    <section
+      className={`formContent-step-second form-six formContent-life-insurance mb-3 ${
+        jointApplicationStatus !== types[2] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

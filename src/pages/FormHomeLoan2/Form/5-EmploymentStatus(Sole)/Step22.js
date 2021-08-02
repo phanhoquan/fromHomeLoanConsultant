@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
 
@@ -10,17 +10,15 @@ export const types2 = {
 };
 
 export const types = {
-  1: "Full Time",
-  2: "Part Time",
-  3: "Casual",
-  4: "Self Employed",
-  5: "Unemployed",
-  6: "Maternal Leave",
+  1: "Full Time ",
+  2: "Part Time ",
+  3: "Casual ",
+  4: "Self Employed ",
+  5: "Unemployed ",
+  6: "Maternal Leave ",
 };
 
-const Step22 = ({ handleGetLoan2value }) => {
-  // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
-
+const Step22 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
     localStorage.getItem("loan2employmentPartnersWorkingStatus") || ""
   );
@@ -31,8 +29,21 @@ const Step22 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("employmentPartnersWorkingStatus", option);
   };
 
+  useMemo(() => {
+    if (jointApplicationStatus !== types[2]) {
+      setEmploymentWorkingStatus("");
+      window.localStorage.setItem("loan2employmentPartnersWorkingStatus", "");
+      handleGetLoan2value("employmentPartnersWorkingStatus", "");
+    }
+    // eslint-disable-next-line
+  }, [jointApplicationStatus]);
+
   return (
-    <section className="formContent-step-first">
+    <section
+      className={`formContent-step-first ${
+        jointApplicationStatus !== types2[2] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

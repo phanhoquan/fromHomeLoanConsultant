@@ -58,8 +58,8 @@ const Step07A = ({
     handleGetLoan2value("soleApplicantAge", soleApplicantAge);
   };
 
-  const firstName = localStorage.getItem("firstName") || "";
-  const title = `7. What are the ages of both ${firstName} & ${loan2firstNameOther}?`;
+  const firstName = localStorage.getItem("loan2firstName") || "";
+  const title = `7. What are the ages of both ${firstName}?`;
 
   useMemo(() => {
     localStorage.setItem("loan2soleApplicantAge", soleApplicantAge);

@@ -5,7 +5,12 @@ import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step24 = ({ handleGetLoan2value }) => {
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
+const Step24 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   const partnersSalaryRef = useRef(null);
   const [partnersSalary, setPartnersSalary] = useState(
     localStorage.getItem("loan2partnersSalary") || ""
@@ -33,8 +38,21 @@ const Step24 = ({ handleGetLoan2value }) => {
     );
   }, [partnersSalary]);
 
+  useMemo(() => {
+    if (jointApplicationStatus !== types[2]) {
+      window.localStorage.setItem("loan2partnersSalary", "");
+      setPartnersSalary("");
+      handleGetLoan2value("partnersSalary", "");
+    }
+    // eslint-disable-next-line
+  }, [jointApplicationStatus]);
+
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-5">
+    <section
+      className={`formContent-step-second formContent-life-insurance mb-5 ${
+        jointApplicationStatus !== types[2] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>

@@ -26,8 +26,8 @@ const EmploymentStatusSole = ({
         answerActive && answerActive?.question ? "answerActive" : ""
       }`}
       onClick={() =>
-        jointApplicationStatus === types[1]
-          ? history.push("/refinance-fact-find-2/EmploymentStatusSole")
+        jointApplicationStatus
+          ? history.push("/refinance-fact-find-2/EmploymentStatus")
           : handleShowMess()
       }
       role="button"
@@ -48,7 +48,7 @@ const EmploymentStatusSole = ({
         className="blue"
       />
       <div className="wrap-question ml-3 mt-1">
-        <p className="question">Employment Status (Sole)</p>
+        <p className="question">Employment Status Sole/Joint</p>
         {children}
       </div>
     </li>

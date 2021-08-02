@@ -16,7 +16,6 @@ import LoanInformation from "./menu/LoanInformation";
 import ApplicantDetails from "./menu/ApplicantDetails";
 import KidsOrDependents from "./menu/KidsOrDependents";
 import EmploymentStatusSole from "./menu/EmploymentStatusSole";
-import EmploymentStatusJoint from "./menu/EmploymentStatusJoint";
 import Liabilities from "./menu/Liabilities";
 import CreditCards from "./menu/CreditCards";
 import ResidentialInformation from "./menu/ResidentialInformation";
@@ -38,7 +37,6 @@ const HomeLoan = ({
   listMenuStep3 = [],
   listMenuStep4 = [],
   listMenuStep5 = [],
-  listMenuStep6 = [],
   listMenuStep7 = [],
   listMenuStep8 = [],
   listMenuStep9 = [],
@@ -47,7 +45,6 @@ const HomeLoan = ({
   var root = document.getElementsByTagName("html")[0];
   const wrapperInfoRef = useRef();
   const wrapperInfoRefSole = useRef();
-  const wrapperInfoRefJoint = useRef();
   if (document.body) {
     root.setAttribute("class", "fonts90");
   }
@@ -68,9 +65,6 @@ const HomeLoan = ({
   let dataListMenuStep5 = localStorage.getItem("listMenuStep5")
     ? JSON.parse(localStorage.getItem("listMenuStep5"))
     : [];
-  let dataListMenuStep6 = localStorage.getItem("listMenuStep6")
-    ? JSON.parse(localStorage.getItem("listMenuStep6"))
-    : [];
   let dataListMenuStep7 = localStorage.getItem("listMenuStep7")
     ? JSON.parse(localStorage.getItem("listMenuStep7"))
     : [];
@@ -90,7 +84,6 @@ const HomeLoan = ({
   );
   const [isShowNoteVale, setIsShowNoteVale] = useState(false);
   const [isShowMessSole, setIsShowMessSole] = useState(false);
-  const [isShowMessJoint, setIsShowMessJoint] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
   useOnClickOutside(wrapperInfoRef, () => {
@@ -99,9 +92,7 @@ const HomeLoan = ({
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowMessSole(false);
   });
-  useOnClickOutside(wrapperInfoRef, () => {
-    setIsShowMessJoint(false);
-  });
+
   const handleShowMenu = () => {
     setIsShowMenu(!isShowMenu);
   };
@@ -131,19 +122,10 @@ const HomeLoan = ({
   };
 
   const handleShowMessSole = () => {
-    setIsShowMessJoint(false);
-    if (jointApplicationStatus !== types[1]) {
-      setIsShowMessSole(true);
-    } else {
+    if (jointApplicationStatus) {
       setIsShowMessSole(false);
-    }
-  };
-  const handleShowMessJoint = () => {
-    setIsShowMessSole(false);
-    if (jointApplicationStatus !== types[2]) {
-      setIsShowMessJoint(true);
     } else {
-      setIsShowMessJoint(false);
+      setIsShowMessSole(true);
     }
   };
 
@@ -293,28 +275,6 @@ const HomeLoan = ({
                   )}
                 </ul>
               </EmploymentStatusSole>
-
-              <EmploymentStatusJoint
-                stepActive={activeStep}
-                answerActive={
-                  listMenuStep6?.length > 0
-                    ? listMenuStep6[0]
-                    : dataListMenuStep6[0]
-                }
-                jointApplicationStatus={
-                  jointApplicationStatus ||
-                  localStorage.getItem("loan2jointApplicationStatus")
-                }
-                handleShowMess={handleShowMessJoint}
-              >
-                <ul className="sub-question">
-                  {renderMenu(
-                    listMenuStep6?.length > 0
-                      ? listMenuStep6
-                      : dataListMenuStep6
-                  )}
-                </ul>
-              </EmploymentStatusJoint>
               <Liabilities
                 stepActive={activeStep}
                 answerActive={
@@ -372,19 +332,12 @@ const HomeLoan = ({
       {isShowMessSole ? (
         <div className="messagesSole" ref={wrapperInfoRefSole}>
           <img src={imgAller} alt="" className="mr-3" /> This category is only
-          accessible when you are the Sole applicant
+          accessible <br /> when you are the Sole applicant/Joint applicant
         </div>
       ) : (
         ""
       )}
-      {isShowMessJoint ? (
-        <div className="messagesSole" ref={wrapperInfoRefJoint}>
-          <img src={imgAller} alt="" className="mr-3" /> This category is only
-          accessible when you are the Joint applicant
-        </div>
-      ) : (
-        ""
-      )}
+
       <div className={`addNote ${isShowNoteVale ? "show" : ""}`}>
         <div className="addHeader" onClick={handleTogglesAddNote}>
           <img src={imgNote} alt="" className="icon-note" />

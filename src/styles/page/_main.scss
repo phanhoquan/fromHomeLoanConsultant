@@ -1737,8 +1737,9 @@ div.tooltip2 {
 
 .group-action {
   position: absolute;
-  right: -60px;
-  bottom: 25px;
+  right: -90px;
+  bottom: auto;
+  top: pxToRem(15);
   display: flex;
   align-items: center;
 
@@ -1752,4 +1753,9 @@ div.tooltip2 {
     top: -40px;
     bottom: auto;
   }
+}
+
+.opacity-03 {
+  opacity: 0.3;
+  pointer-events: none !important;
 }

@@ -24,7 +24,7 @@ const KidsOrDependents = () => {
       : null,
     otherDependents: localStorage.getItem("loan2otherDependents") || "",
     otherChillApplicantAge: localStorage.getItem("loan2otherChillApplicantAge")
-      ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
+      ? JSON.parse(localStorage.getItem("loan2otherChillApplicantAge"))
       : null,
   });
 
@@ -33,6 +33,20 @@ const KidsOrDependents = () => {
       ...loan2value,
       [name]: value,
     });
+    if (name === "kidsOrDependant") {
+      window.localStorage.setItem(
+        "loan2chillApplicantAge",
+        JSON.stringify(chillApplicantAge)
+      );
+      window.localStorage.setItem("loan2childrenNumber", 0);
+    }
+    if (name === "otherDependents") {
+      window.localStorage.setItem(
+        "loan2otherChillApplicantAge",
+        JSON.stringify(otherChillApplicantAge)
+      );
+      window.localStorage.setItem("loan2otherChildrenNumber", 0);
+    }
   };
   const {
     kidsOrDependant,
@@ -98,9 +112,16 @@ const KidsOrDependents = () => {
       numberScroll={800}
     >
       <Step08 handleGetLoan2value={handleGetLoan2value} />
-      <Step09 handleGetLoan2value={handleGetLoan2value} />
+
+      <Step09
+        handleGetLoan2value={handleGetLoan2value}
+        kidsOrDependant={kidsOrDependant}
+      />
       <Step10 handleGetLoan2value={handleGetLoan2value} />
-      <Step11 handleGetLoan2value={handleGetLoan2value} />
+      <Step11
+        handleGetLoan2value={handleGetLoan2value}
+        otherDependents={otherDependents}
+      />
     </LifeInsurance>
   );
 };

@@ -6,9 +6,14 @@ import { valid } from "../../../../utils/constant";
 import formatCurrency from "../../../../utils/formatCurrency";
 import ChillApplicantAge from "../Components/ChillApplicantAge";
 import iconPlus from "../../../../images/iconPlus.png";
-import iconClose from "../../../../images/closemenu.png";
+import iconClose from "../../../../images/minus.png";
 
-const Step09 = ({ handleGetLoan2value }) => {
+export const types = {
+  1: "YES",
+  2: "NO",
+};
+
+const Step09 = ({ handleGetLoan2value, kidsOrDependant }) => {
   const [chillApplicantAge, setChillApplicantAge] = useState(
     localStorage.getItem("loan2chillApplicantAge")
       ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
@@ -176,8 +181,34 @@ const Step09 = ({ handleGetLoan2value }) => {
     // eslint-disable-next-line
   }, [chillApplicantAge]);
 
+  useMemo(() => {
+    window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
+    window.localStorage.setItem("loan2childrenNumber", 0);
+    handleGetLoan2value("chillApplicantAge", []);
+    setChillApplicantAge({});
+    setChillApplicantAgeValid({
+      ...chillApplicantAgeValid,
+      name1: valid.NON_VALID,
+      name2: valid.NON_VALID,
+      name3: valid.NON_VALID,
+      name4: valid.NON_VALID,
+      name5: valid.NON_VALID,
+      name6: valid.NON_VALID,
+      name7: valid.NON_VALID,
+      name8: valid.NON_VALID,
+      name9: valid.NON_VALID,
+      name10: valid.NON_VALID,
+    });
+    setChildrenNumber(2);
+    // eslint-disable-next-line
+  }, [kidsOrDependant]);
+
   return (
-    <section className="formContent-step-first">
+    <section
+      className={`formContent-step-first ${
+        kidsOrDependant !== types[1] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>
@@ -190,25 +221,23 @@ const Step09 = ({ handleGetLoan2value }) => {
               {renderListChillApplicantAge()}
               <div className="group-action">
                 <div
-                  className="btn-plus mr-1"
+                  className="btn-plus mr-2"
                   onClick={() => handlePlusItem()}
                   role="button"
                   tabIndex="0"
                 >
                   <img src={iconPlus} alt="" title="Add" />
                 </div>
-                {childrenNumber > 1 ? (
-                  <div
-                    className="btn-plus ml-1"
-                    onClick={() => handleRemoveItem()}
-                    role="button"
-                    tabIndex="0"
-                  >
-                    <img src={iconClose} alt="" title="Remove" />
-                  </div>
-                ) : (
-                  ""
-                )}
+                <div
+                  className={`btn-plus ml-3 ${
+                    childrenNumber <= 1 ? "opacity-03" : ""
+                  }`}
+                  onClick={() => handleRemoveItem()}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <img src={iconClose} alt="" title="Remove" />
+                </div>
               </div>
             </Row>
             <Col xs={12} className="text-center">

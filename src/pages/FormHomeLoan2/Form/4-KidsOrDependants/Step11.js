@@ -6,9 +6,14 @@ import { valid } from "../../../../utils/constant";
 import formatCurrency from "../../../../utils/formatCurrency";
 import ChillApplicantAge from "../Components/ChillApplicantAge";
 import iconPlus from "../../../../images/iconPlus.png";
-import iconClose from "../../../../images/closemenu.png";
+import iconClose from "../../../../images/minus.png";
 
-const Step11 = ({ handleGetLoan2value }) => {
+export const types = {
+  1: "YES",
+  2: "NO",
+};
+
+const Step11 = ({ handleGetLoan2value, otherDependents }) => {
   const [otherChillApplicantAge, setOtherChillApplicantAge] = useState(
     localStorage.getItem("loan2otherChillApplicantAge")
       ? JSON.parse(localStorage.getItem("loan2otherChillApplicantAge"))
@@ -114,9 +119,7 @@ const Step11 = ({ handleGetLoan2value }) => {
           onKeyUp={(e) => onKeyUp(e, `otherName${i}`)}
           onBlur={(e) => onBlur(e, `otherName${i}`)}
           onFocus={() => onFocus(`otherName${i}`)}
-          otherChillApplicantAgeValid={
-            otherChillApplicantAgeValid[`otherName${i}`]
-          }
+          chillApplicantAgeValid={otherChillApplicantAgeValid[`otherName${i}`]}
           validMessage={validMessage[`otherName${i}`]}
           valueItem={
             otherChillApplicantAge && otherChillApplicantAge[`otherName${i}`]
@@ -176,8 +179,32 @@ const Step11 = ({ handleGetLoan2value }) => {
     // eslint-disable-next-line
   }, [otherChillApplicantAge]);
 
+  useMemo(() => {
+    setOtherChillApplicantAgeValid({
+      ...otherChillApplicantAgeValid,
+      otherName1: valid.NON_VALID,
+      otherName2: valid.NON_VALID,
+      otherName3: valid.NON_VALID,
+      otherName4: valid.NON_VALID,
+      otherName5: valid.NON_VALID,
+    });
+    window.localStorage.setItem(
+      "loan2otherChillApplicantAge",
+      JSON.stringify({})
+    );
+    window.localStorage.setItem("loan2otherChildrenNumber", 0);
+    handleGetLoan2value("otherChillApplicantAge", []);
+    setOtherChillApplicantAge({});
+    setChildrenNumber(2);
+    // eslint-disable-next-line
+  }, [otherDependents]);
+
   return (
-    <section className="formContent-step-first mb-5 pb-5">
+    <section
+      className={`formContent-step-first mb-5 pb-5 ${
+        otherDependents !== types[1] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>
@@ -190,25 +217,24 @@ const Step11 = ({ handleGetLoan2value }) => {
               {renderListOtherChillApplicantAge()}
               <div className="group-action">
                 <div
-                  className="btn-plus mr-1"
+                  className="btn-plus mr-2"
                   onClick={() => handlePlusItem()}
                   role="button"
                   tabIndex="0"
                 >
                   <img src={iconPlus} alt="" title="Add" />
                 </div>
-                {childrenNumber > 1 ? (
-                  <div
-                    className="btn-plus ml-1"
-                    onClick={() => handleRemoveItem()}
-                    role="button"
-                    tabIndex="0"
-                  >
-                    <img src={iconClose} alt="" title="Remove" />
-                  </div>
-                ) : (
-                  ""
-                )}
+
+                <div
+                  className={`btn-plus ml-3 ${
+                    childrenNumber <= 1 ? "opacity-03" : ""
+                  }`}
+                  onClick={() => handleRemoveItem()}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <img src={iconClose} alt="" title="Remove" />
+                </div>
               </div>
             </Row>
             <Col xs={12} className="text-center">
