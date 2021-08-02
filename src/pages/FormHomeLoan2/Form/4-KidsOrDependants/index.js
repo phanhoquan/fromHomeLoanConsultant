@@ -50,9 +50,7 @@ const KidsOrDependents = () => {
     {
       id: 2,
       question: `${
-        chillApplicantAge &&
-        chillApplicantAge !== null &&
-        chillApplicantAge !== "null"
+        chillApplicantAge?.length > 0
           ? "9. What are the age of these kidsdependants?"
           : ""
       }`,
@@ -66,9 +64,7 @@ const KidsOrDependents = () => {
     {
       id: 11,
       question: `${
-        otherChillApplicantAge &&
-        otherChillApplicantAge !== null &&
-        otherChillApplicantAge !== "null"
+        otherChillApplicantAge?.length > 0
           ? "11. What are the age of these other dependants?"
           : ""
       }`,
@@ -91,10 +87,16 @@ const KidsOrDependents = () => {
     chillApplicantAge,
     otherDependents,
     otherChillApplicantAge,
+    otherChillApplicantAge?.length,
+    chillApplicantAge?.length,
   ]);
 
   return (
-    <LifeInsurance activeStep={4} listMenuStep4={dataListMenuStep4}>
+    <LifeInsurance
+      activeStep={4}
+      listMenuStep4={dataListMenuStep4}
+      numberScroll={800}
+    >
       <Step08 handleGetLoan2value={handleGetLoan2value} />
       <Step09 handleGetLoan2value={handleGetLoan2value} />
       <Step10 handleGetLoan2value={handleGetLoan2value} />

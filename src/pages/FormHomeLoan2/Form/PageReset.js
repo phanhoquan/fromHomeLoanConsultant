@@ -13,7 +13,7 @@ const PageReset = () => {
   }
 
   const onClickReset = () => {
-    redirectTo("/refinance-fact-find");
+    redirectTo("/refinance-fact-find-2/");
   };
 
   return (

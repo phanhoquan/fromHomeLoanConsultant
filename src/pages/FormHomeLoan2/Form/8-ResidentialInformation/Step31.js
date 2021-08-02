@@ -97,6 +97,10 @@ const Step31 = ({ handleGetLoan2value }) => {
     if (fullAddress) {
       getZipCodeWithAddress(fullAddress, onUpdateState);
       nextStep();
+      localStorage.setItem("loan2street", zipCodeState?.street);
+      localStorage.setItem("loan2city", zipCodeState?.city);
+      localStorage.setItem("loan2state", zipCodeState?.state);
+      localStorage.setItem("loan2postcode", zipCodeState?.postcode);
     }
     // eslint-disable-next-line
   }, [fullAddress]);

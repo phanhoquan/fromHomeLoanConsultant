@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
@@ -14,7 +14,16 @@ const listNumberPartnerReturn = [
   "Not returning to work",
 ];
 
-const Step14 = ({ handleGetLoan2value }) => {
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
+const Step14 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [numberPartnerReturn, setNumberPartnerReturn] = useState(
@@ -33,11 +42,16 @@ const Step14 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("numberPartnerReturn16", value);
   };
 
+  useMemo(() => {
+    setNumberPartnerReturn(localStorage.getItem("loan2numberPartnerReturn16"));
+    // eslint-disable-next-line
+  }, [employmentWorkingStatus]);
+
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-2"
-      }`}
+      } ${employmentWorkingStatus !== types[6] ? "opacity-03" : ""} `}
     >
       <Container>
         <div>

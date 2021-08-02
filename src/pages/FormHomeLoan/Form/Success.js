@@ -109,7 +109,7 @@ export default function Success() {
 
       f_1589_age_of_kid_dependant_1: chillApplicantAge?.name1 || "",
       f_1590_age_of_kid_dependant_2: chillApplicantAge?.name2 || "",
-      f_1591_age_of_kid_dependant_3: chillApplicantAge?.name31 || "",
+      f_1591_age_of_kid_dependant_3: chillApplicantAge?.name3 || "",
       f_1592_age_of_kid_dependant_4: chillApplicantAge?.name4 || "",
       f_1593_age_of_kid_dependant_5: chillApplicantAge?.name5 || "",
       f_1594_age_of_kid_dependant_6: chillApplicantAge?.name6 || "",

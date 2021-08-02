@@ -15,7 +15,8 @@ import EmploymentStatusJoint from "./5-EmploymentStatus(Joint)";
 import Liabilities from "./6-Liabilities";
 import CreditCards from "./7-CreditCards";
 import ResidentialInformation from "./8-ResidentialInformation";
-// import Success from "./Success";
+import Success from "./Success";
+import StepReset from "./PageReset";
 
 const Form = () => {
   const history = useHistory();
@@ -107,7 +108,9 @@ const Form = () => {
           path="/refinance-fact-find-2/ResidentialInformation"
           component={ResidentialInformation}
         />
-        <Route path="/refinance-fact-find-2/" component={KidsOrDependants} />
+        <Route path="/refinance-fact-find-2/step-success" component={Success} />
+        <Route path="/refinance-fact-find-2/step-reset" component={StepReset} />
+        <Route path="/refinance-fact-find-2/" component={UserDetails} />
       </Switch>
     </section>
   );

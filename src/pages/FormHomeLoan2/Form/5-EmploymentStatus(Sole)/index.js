@@ -52,6 +52,9 @@ const EmploymentStatusSole = () => {
       ...loan2value,
       [name]: value,
     });
+    if (name === "employmentWorkingStatus") {
+      window.localStorage.setItem("loan2numberPartnerReturn16", "");
+    }
   };
   const {
     workingStatus,
@@ -172,7 +175,6 @@ const EmploymentStatusSole = () => {
     partnersOccupation,
     taxReturns,
   ]);
-
   return (
     <LifeInsurance
       activeStep={5}
@@ -182,7 +184,10 @@ const EmploymentStatusSole = () => {
     >
       <Step12 handleGetLoan2value={handleGetLoan2value} />
       <Step13 handleGetLoan2value={handleGetLoan2value} />
-      <Step14 handleGetLoan2value={handleGetLoan2value} />
+      <Step14
+        handleGetLoan2value={handleGetLoan2value}
+        employmentWorkingStatus={employmentWorkingStatus}
+      />
       <Step15 handleGetLoan2value={handleGetLoan2value} />
       <Step16 handleGetLoan2value={handleGetLoan2value} />
       <Step17 handleGetLoan2value={handleGetLoan2value} />

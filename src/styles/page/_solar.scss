@@ -329,7 +329,23 @@ footer.position-relative {
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 992px) {
+  .fromHomeLoan2 {
+    .nav-left {
+      padding-left: 20px;
+    }
+
+    .iconMenuClose {
+      top: 65px;
+      right: auto;
+    }
+
+    .nav-right {
+      // padding-top: pxToRem(60) !important;
+      padding-bottom: pxToRem(50);
+    }
+  }
+
   .nav-left {
     max-height: 100%;
     height: 100%;
@@ -338,6 +354,15 @@ footer.position-relative {
 
   .nav-right {
     margin-left: 0;
+  }
+
+  .ovl-header {
+    background-color: #fff !important;
+
+    &::before,
+    &::after {
+      display: none;
+    }
   }
 }
 

@@ -21,7 +21,7 @@ const ChillApplicantAge = ({
       <InputCustom2
         onChange={onKeyUp}
         label={`Dependant Age ${numberKey || 1}`}
-        value={valueItem}
+        value={valueItem || ""}
         type="text"
         customClassLabel={valueItem ? "active" : ""}
         maxLength="3"

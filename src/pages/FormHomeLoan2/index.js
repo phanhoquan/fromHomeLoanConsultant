@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
 import imgMenu from "../../images/menu.png";
@@ -51,6 +51,7 @@ const HomeLoan = ({
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
+  const history = useHistory();
 
   let dataListMenuStep1 = localStorage.getItem("listMenuStep1")
     ? JSON.parse(localStorage.getItem("listMenuStep1"))
@@ -83,7 +84,7 @@ const HomeLoan = ({
     : [];
 
   const [isShowModal, setIsShowModal] = useState(false);
-  const [isShowMess, setIsIsShowMess] = useState(false);
+  const [isShowMess, setIsShowMess] = useState(false);
   const [contentNoteVale, setContentNoteVale] = useState(
     localStorage.getItem("contentNoteVale") || ""
   );
@@ -144,14 +145,14 @@ const HomeLoan = ({
 
   const handleSubmitData = () => {
     if (
-      !localStorage.getItem("firstName") ||
-      !localStorage.getItem("lastName") ||
-      !localStorage.getItem("email")
+      !localStorage.getItem("loan2lastName") ||
+      !localStorage.getItem("loan2lastName") ||
+      !localStorage.getItem("loan2email")
     ) {
-      setIsIsShowMess(true);
+      setIsShowMess(true);
       return;
     } else {
-      console.log("SUBMIT FORM");
+      history.push("/refinance-fact-find-2/step-success");
     }
   };
 
@@ -172,7 +173,7 @@ const HomeLoan = ({
       <Helmet>
         <title>Home Loan Consultant 2</title>
       </Helmet>
-      <div className="wrapper life-insurance fromHomeLoan">
+      <div className="wrapper life-insurance fromHomeLoan fromHomeLoan2">
         <Header handleSubmit={handleSubmit} />
         <div className="iconMenu">
           <div
@@ -397,7 +398,10 @@ const HomeLoan = ({
       </div>
       <Modal
         isShow={isShowModal}
-        handleClose={() => setIsShowModal(false)}
+        handleClose={() => {
+          setIsShowMess(false);
+          setIsShowModal(false);
+        }}
         isShowMess={isShowMess}
         handleSubmit={() => handleSubmitData()}
       />
