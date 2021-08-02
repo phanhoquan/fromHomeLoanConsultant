@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 const PageReset = () => {
   var root = document.getElementsByTagName("html")[0];
   if (document.body) {
-    root.setAttribute("class", "fonts100");
+    root.setAttribute("class", "fonts90");
   }
 
   const onClickReset = () => {
@@ -21,8 +21,8 @@ const PageReset = () => {
       <Helmet>
         <title>Thank you for your submission!</title>
       </Helmet>
-      <div className="wrapper life-insurance fromHomeLoan">
-        <Header />
+      <div className="wrapper life-insurance fromHomeLoan fromHomeLoan2">
+        <Header hiddenAction />
 
         <main className="life-insurance__MainCt">
           <div style={{ marginTop: "12%" }}>

@@ -11,7 +11,7 @@ import imgAuthor from "../../../images/booking.png";
 import imgAuthorWhite from "../../../images/booking-white.png";
 import Modal from "../../Modal/Modal";
 
-const Header = ({ handleSubmit }) => {
+const Header = ({ handleSubmit, hiddenAction = false }) => {
   // custom header sticky
   const [isShowModal, setIsShowModal] = useState(false);
   useEffect(() => {
@@ -45,42 +45,51 @@ const Header = ({ handleSubmit }) => {
             <LazyLoadImage src={imgLogo} alt="logo" width="100%" height="66" />
           </a>
         </div>
-        <div className="btn-reset d-flex " style={{ opacity: "1" }}>
-          <Button
-            className="btnPrimary life min-300 mt-0 w-auto min-h-50 btn-white btnResetWhite color-black"
-            onClick={() => {}}
-          >
-            <img src={imgAuthor} alt="" className="imgResetBlue mr-3" />
-            <img src={imgAuthorWhite} alt="" className="imgResetWhite mr-3" />
-            BOOK MEETING
-            <a
-              className="authorName"
-              target="_blank"
-              rel="noreferrer"
-              href="https://meetings.hubspot.com/neha-puri/first-initial-broker-phone-call-neha-puri"
+        {!hiddenAction ? (
+          <div className="btn-reset d-flex " style={{ opacity: "1" }}>
+            <Button
+              className="btnPrimary life min-300 mt-0 w-auto min-h-50 btn-white btnResetWhite color-black"
+              onClick={() => {}}
             >
-              <p>NEHA PURI</p>
-            </a>
-          </Button>
-          <Button
-            className="btnPrimary life min-150 mt-0 w-auto min-h-50"
-            onClick={handleSubmit}
-          >
-            SUBMIT
-          </Button>
-          <Button
-            className="btnPrimary life width-50 mt-0 w-auto min-h-50 btn-white btnResetWhite"
-            onClick={() => setIsShowModal(true)}
-          >
-            <img src={imgReset} title="Reset" alt="" className="imgResetBlue" />
-            <img
-              src={imgResetWhite}
-              title="Reset"
-              alt=""
-              className="imgResetWhite"
-            />
-          </Button>
-        </div>
+              <img src={imgAuthor} alt="" className="imgResetBlue mr-3" />
+              <img src={imgAuthorWhite} alt="" className="imgResetWhite mr-3" />
+              BOOK MEETING
+              <a
+                className="authorName"
+                target="_blank"
+                rel="noreferrer"
+                href="https://meetings.hubspot.com/neha-puri/first-initial-broker-phone-call-neha-puri"
+              >
+                <p>NEHA PURI</p>
+              </a>
+            </Button>
+            <Button
+              className="btnPrimary life min-150 mt-0 w-auto min-h-50"
+              onClick={handleSubmit}
+            >
+              SUBMIT
+            </Button>
+            <Button
+              className="btnPrimary life width-50 mt-0 w-auto min-h-50 btn-white btnResetWhite"
+              onClick={() => setIsShowModal(true)}
+            >
+              <img
+                src={imgReset}
+                title="Reset"
+                alt=""
+                className="imgResetBlue"
+              />
+              <img
+                src={imgResetWhite}
+                title="Reset"
+                alt=""
+                className="imgResetWhite"
+              />
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
       </header>
       <Modal
         isShow={isShowModal}
