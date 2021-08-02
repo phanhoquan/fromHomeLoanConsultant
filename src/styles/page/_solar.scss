@@ -381,12 +381,12 @@ footer.position-relative {
     }
 
     .iconMenuClose {
-      top: pxToRem(160);
+      top: pxToRem(140);
       right: auto;
     }
 
     .iconMenu {
-      top: pxToRem(125);
+      top: pxToRem(100);
     }
 
     .nav-left.open {
@@ -739,11 +739,20 @@ textarea {
 
   @media screen and (max-width: 640px) {
     &.life-insurance .header-wrap {
-      height: pxToRem(155);
+      height: pxToRem(130);
+
+      .btn-reset {
+        top: auto;
+        bottom: pxToRem(10);
+      }
     }
 
     .life-insurance__MainCt.page-main {
-      padding-top: pxToRem(170);
+      padding-top: pxToRem(180);
+    }
+
+    .life-insurance__MainCt {
+      padding-top: pxToRem(220);
     }
 
     .min-150 {

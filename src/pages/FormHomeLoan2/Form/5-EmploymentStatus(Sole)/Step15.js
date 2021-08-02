@@ -98,7 +98,10 @@ const Step15 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   return (
     <section
       className={`formContent-step-second form-six formContent-life-insurance mb-3 ${
-        employmentWorkingStatus === types[5] ? "opacity-03" : ""
+        employmentWorkingStatus === types[4] ||
+        employmentWorkingStatus === types[5]
+          ? "opacity-03"
+          : ""
       }`}
     >
       <Container>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
@@ -15,7 +15,16 @@ const listBusinessBeenRegistered = [
   "15+ years",
 ];
 
-const Step18 = ({ handleGetLoan2value }) => {
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
+const Step18 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const businessBeenRegisteredRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [businessBeenRegistered, setBusinessBeenRegistered] = useState(
@@ -34,11 +43,20 @@ const Step18 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("businessBeenRegistered", value);
   };
 
+  useMemo(() => {
+    if (employmentWorkingStatus) {
+      setBusinessBeenRegistered(
+        localStorage.getItem("loan2businessBeenRegistered") || ""
+      );
+    }
+    // eslint-disable-next-line
+  }, [employmentWorkingStatus]);
+
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-0"
-      }`}
+      } ${employmentWorkingStatus === types[5] ? "opacity-03" : ""}`}
     >
       <Container>
         <div>

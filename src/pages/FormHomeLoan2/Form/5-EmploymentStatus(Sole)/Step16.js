@@ -60,7 +60,12 @@ const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-3"
-      } ${employmentWorkingStatus === types2[5] ? "opacity-03" : ""}`}
+      } ${
+        employmentWorkingStatus === types2[4] ||
+        employmentWorkingStatus === types2[5]
+          ? "opacity-03"
+          : ""
+      }`}
     >
       <Container>
         <div>

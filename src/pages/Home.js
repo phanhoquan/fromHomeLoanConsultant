@@ -68,13 +68,13 @@ const Dashboard = () => {
               onClick={() => history.push("./refinance-fact-find-2")}
             >
               <div className="item-content ">
-                <div className="img2 mr-4 mr-md-5" />
+                <div className="img2 mr-3 pr-1" />
                 <div className="info">
-                  <p>Lead Funnel 02</p>
+                  <p>Refinance Home Loan Consultant 2</p>
                   <div className="group-date">
-                    Create by: David
+                    Create date: 29/07/2021
                     <br />
-                    30/05/2021
+                    Last update: 31/07/2021
                   </div>
                 </div>
               </div>

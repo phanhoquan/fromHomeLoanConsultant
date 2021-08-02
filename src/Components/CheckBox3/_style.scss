@@ -47,8 +47,10 @@
           border-radius: 50%;
 
           @media screen and (max-width: 640px) {
-            left: 3px;
-            top: 8px;
+            left: pxToRem(3.5);
+            top: pxToRem(10);
+            width: pxToRem(12);
+            height: pxToRem(12);
           }
         }
       }
@@ -173,6 +175,21 @@
 
       .checkbox__label span {
         font-size: 14px;
+      }
+    }
+  }
+}
+
+.fromHomeLoan2 {
+  .checkbox-button {
+    &.radius {
+      .checkbox {
+        .checkbox__label {
+          &::after {
+            left: pxToRem(5.2);
+            top: pxToRem(11.8);
+          }
+        }
       }
     }
   }

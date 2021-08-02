@@ -77,13 +77,31 @@ const EmploymentStatusSoleJoint = () => {
       ...loan2value,
       [name]: value,
     });
-    if (name === "employmentWorkingStatus" && value === types2[5]) {
-      window.localStorage.setItem("loan2numberPartnerReturn16", "");
-      window.localStorage.setItem("loan2occupation", "");
-      window.localStorage.setItem("loan2numberYearWorking", "");
-    } else if (name === "employmentWorkingStatus") {
-      window.localStorage.setItem("loan2typeOfBusinessOther", "");
+    if (name === "employmentWorkingStatus") {
+      switch (value.trim()) {
+        case types2[1]:
+        case types2[2]:
+        case types2[3]:
+          window.localStorage.setItem("loan2numberPartnerReturn16", "");
+          window.localStorage.setItem("loan2typeOfBusinessOther", "");
+          break;
+        case types2[4]:
+          window.localStorage.setItem("loan2numberPartnerReturn16", "");
+          window.localStorage.setItem("loan2occupation", "");
+          window.localStorage.setItem("loan2numberYearWorking", "");
+          break;
+        case types2[5]:
+          window.localStorage.setItem("loan2numberPartnerReturn16", "");
+          window.localStorage.setItem("loan2occupation", "");
+          window.localStorage.setItem("loan2numberYearWorking", "");
+          window.localStorage.setItem("loan2typeOfBusinessOther", "");
+          window.localStorage.setItem("loan2businessBeenRegistered", "");
+          break;
+        default:
+          break;
+      }
     }
+
     if ((name = "workingStatus")) {
       window.localStorage.setItem("loan2employmentWorkingStatus", "");
     }
@@ -273,7 +291,10 @@ const EmploymentStatusSoleJoint = () => {
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
       />
-      <Step18 handleGetLoan2value={handleGetLoan2value} />
+      <Step18
+        handleGetLoan2value={handleGetLoan2value}
+        employmentWorkingStatus={employmentWorkingStatus}
+      />
       <Step19 handleGetLoan2value={handleGetLoan2value} />
       <Step20 handleGetLoan2value={handleGetLoan2value} />
 

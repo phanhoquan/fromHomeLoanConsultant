@@ -97,7 +97,7 @@ const First = ({
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-4">
+              <Row className="info-customer mt-2">
                 <Col xs={6} className="wForm-input pl-0">
                   <InputCustom2
                     onFocus={() => setFirstNameValid(valid.NON_VALID)}

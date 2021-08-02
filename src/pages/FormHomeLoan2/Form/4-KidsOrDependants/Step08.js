@@ -29,7 +29,7 @@ const Step08 = ({ handleGetLoan2value }) => {
               <h2 className="mb-4">8. Do you have any kids or dependants?</h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-4">
+              <Row className="info-customer mt-2 mb-2">
                 <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     checkBox={kidsOrDependant === types[1]}

@@ -62,7 +62,7 @@ const Step06 = ({
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-4 pt-2">
+              <Row className="info-customer mt-2 mb-2">
                 <Col
                   xs={12}
                   className="wForm-input pl-0 bankProviders"

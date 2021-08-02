@@ -65,7 +65,7 @@ const ApplicantDetails = () => {
   } = loan2value;
 
   const firstName = localStorage.getItem("loan2firstName") || "";
-  const title = `7. What are the ages of both ${firstName}?`;
+  const title = `7. What are the ages of ${firstName}?`;
   const title2 = `7. What are the ages of ${loan2firstNameOther}?`;
   const titleRelationshipYour = `6. What is your relationship with ${loan2firstNameOther}?`;
   const step3 = [

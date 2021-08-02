@@ -63,28 +63,28 @@ const Step26 = ({ handleGetLoan2value }) => {
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-4 w-500">
-                <Col xs={12} sm={6} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     handleToggleCheckbox={() => onCheck(types[1])}
                     checkBox={!!personalLoansStatus?.includes(types[1])}
                     name={types[1]}
                   />
                 </Col>
-                <Col xs={12} sm={6} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     handleToggleCheckbox={() => onCheck(types[2])}
                     checkBox={!!personalLoansStatus?.includes(types[2])}
                     name={types[2]}
                   />
                 </Col>
-                <Col xs={12} sm={6} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     handleToggleCheckbox={() => onCheck(types[3])}
                     checkBox={!!personalLoansStatus?.includes(types[3])}
                     name={types[3]}
                   />
                 </Col>
-                <Col xs={12} sm={6} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     name={types[4]}
                     handleToggleCheckbox={() => onCheck(types[4])}

@@ -219,7 +219,7 @@ const Step09 = ({ handleGetLoan2value, kidsOrDependant }) => {
                 9. What are the age of these kids\dependants?
               </h2>
             </Col>
-            <Row className="info-customer position-relative w-100">
+            <Row className="info-customer position-relative w-100 mb-2">
               {renderListChillApplicantAge()}
               <div className="group-action">
                 <div

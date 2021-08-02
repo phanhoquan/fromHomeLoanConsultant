@@ -11,6 +11,7 @@ export const types = {
   3: "Casual",
   4: "Self Employed",
   5: "Unemployed",
+  6: "Maternal Leave",
 };
 
 const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
@@ -52,7 +53,12 @@ const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   return (
     <section
       className={`formContent-step-first mb-3 ${
-        employmentWorkingStatus ? "opacity-03" : ""
+        employmentWorkingStatus === types[1] ||
+        employmentWorkingStatus === types[2] ||
+        employmentWorkingStatus === types[3] ||
+        employmentWorkingStatus === types[5]
+          ? "opacity-03"
+          : ""
       }`}
     >
       <Container>

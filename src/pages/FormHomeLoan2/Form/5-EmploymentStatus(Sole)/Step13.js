@@ -41,7 +41,7 @@ const Step13 = ({ handleGetLoan2value, workingStatus }) => {
   return (
     <section
       className={`formContent-step-first ${
-        workingStatus !== types2[1] ? "opacity-03" : ""
+        workingStatus !== types2[2] ? "opacity-03" : ""
       }`}
     >
       <Container>
