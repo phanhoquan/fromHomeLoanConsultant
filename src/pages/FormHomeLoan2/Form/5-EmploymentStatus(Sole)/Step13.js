@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
 
@@ -13,7 +13,12 @@ export const types = {
   6: "Maternal Leave",
 };
 
-const Step13 = ({ handleGetLoan2value }) => {
+export const types2 = {
+  1: "YES",
+  2: "NO",
+};
+
+const Step13 = ({ handleGetLoan2value, workingStatus }) => {
   const [employmentWorkingStatus, setEmploymentWorkingStatus] = useState(
     localStorage.getItem("loan2employmentWorkingStatus") || ""
   );
@@ -24,8 +29,19 @@ const Step13 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("employmentWorkingStatus", option);
   };
 
+  useMemo(() => {
+    setEmploymentWorkingStatus(
+      localStorage.getItem("loan2employmentWorkingStatus")
+    );
+    // eslint-disable-next-line
+  }, [workingStatus]);
+
   return (
-    <section className="formContent-step-first">
+    <section
+      className={`formContent-step-first ${
+        workingStatus !== types2[1] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

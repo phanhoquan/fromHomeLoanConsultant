@@ -22,6 +22,23 @@ export const types = {
   1: "Sole Applicant",
   2: "Joint Applicant",
 };
+export const types2 = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
+export const types3 = {
+  1: "Full Time ",
+  2: "Part Time ",
+  3: "Casual ",
+  4: "Self Employed ",
+  5: "Unemployed ",
+  6: "Maternal Leave ",
+};
 
 const EmploymentStatusSoleJoint = () => {
   const jointApplicationStatus =
@@ -60,8 +77,18 @@ const EmploymentStatusSoleJoint = () => {
       ...loan2value,
       [name]: value,
     });
-    if (name === "employmentWorkingStatus") {
+    if (name === "employmentWorkingStatus" && value === types2[5]) {
       window.localStorage.setItem("loan2numberPartnerReturn16", "");
+      window.localStorage.setItem("loan2occupation", "");
+      window.localStorage.setItem("loan2numberYearWorking", "");
+    } else if (name === "employmentWorkingStatus") {
+      window.localStorage.setItem("loan2typeOfBusinessOther", "");
+    }
+    if ((name = "workingStatus")) {
+      window.localStorage.setItem("loan2employmentWorkingStatus", "");
+    }
+    if (name === "employmentPartnersWorkingStatus" && value !== types3[6]) {
+      window.localStorage.setItem("loan2numberPartnerReturn", "");
     }
   };
   const {
@@ -226,14 +253,26 @@ const EmploymentStatusSoleJoint = () => {
       jointApplicationStatus={jointApplicationStatus}
     >
       <Step12 handleGetLoan2value={handleGetLoan2value} />
-      <Step13 handleGetLoan2value={handleGetLoan2value} />
+      <Step13
+        handleGetLoan2value={handleGetLoan2value}
+        workingStatus={workingStatus}
+      />
       <Step14
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
       />
-      <Step15 handleGetLoan2value={handleGetLoan2value} />
-      <Step16 handleGetLoan2value={handleGetLoan2value} />
-      <Step17 handleGetLoan2value={handleGetLoan2value} />
+      <Step15
+        handleGetLoan2value={handleGetLoan2value}
+        employmentWorkingStatus={employmentWorkingStatus}
+      />
+      <Step16
+        handleGetLoan2value={handleGetLoan2value}
+        employmentWorkingStatus={employmentWorkingStatus}
+      />
+      <Step17
+        handleGetLoan2value={handleGetLoan2value}
+        employmentWorkingStatus={employmentWorkingStatus}
+      />
       <Step18 handleGetLoan2value={handleGetLoan2value} />
       <Step19 handleGetLoan2value={handleGetLoan2value} />
       <Step20 handleGetLoan2value={handleGetLoan2value} />
@@ -249,6 +288,7 @@ const EmploymentStatusSoleJoint = () => {
       <Step23
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
+        employmentPartnersWorkingStatus={employmentPartnersWorkingStatus}
       />
       <Step24
         handleGetLoan2value={handleGetLoan2value}

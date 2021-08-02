@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
@@ -8,7 +8,16 @@ import { getDataListOccupationOptions } from "../../../../utils/quoteOccupations
 import originArray from "../../../../utils/quoteOccupations";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
-const Step15 = ({ handleGetLoan2value }) => {
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
+const Step15 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const occupationRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [isShowModal, setIsShowModal] = useState(false);
@@ -79,8 +88,17 @@ const Step15 = ({ handleGetLoan2value }) => {
       ? "d-block"
       : "d-none";
 
+  useMemo(() => {
+    setOccupation(localStorage.getItem("loan2occupation"));
+    // eslint-disable-next-line
+  }, [employmentWorkingStatus]);
+
   return (
-    <section className="formContent-step-second form-six formContent-life-insurance mb-3">
+    <section
+      className={`formContent-step-second form-six formContent-life-insurance mb-3 ${
+        employmentWorkingStatus === types[5] ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

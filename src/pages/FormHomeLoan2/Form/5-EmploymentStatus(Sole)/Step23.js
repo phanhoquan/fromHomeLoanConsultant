@@ -20,7 +20,20 @@ export const types = {
   2: "Joint Applicant",
 };
 
-const Step23 = ({ handleGetLoan2value, jointApplicationStatus }) => {
+export const types3 = {
+  1: "Full Time ",
+  2: "Part Time ",
+  3: "Casual ",
+  4: "Self Employed ",
+  5: "Unemployed ",
+  6: "Maternal Leave ",
+};
+
+const Step23 = ({
+  handleGetLoan2value,
+  jointApplicationStatus,
+  employmentPartnersWorkingStatus,
+}) => {
   const numberPartnerReturnRef = useRef(null);
   const wrapperInfoRef = useRef();
   // const jointApplicationStatus = localStorage.getItem("jointApplicationStatus");
@@ -62,11 +75,25 @@ const Step23 = ({ handleGetLoan2value, jointApplicationStatus }) => {
     // eslint-disable-next-line
   }, [jointApplicationStatus]);
 
+  useMemo(() => {
+    if (employmentPartnersWorkingStatus !== types3[6]) {
+      window.localStorage.setItem("loan2numberPartnerReturn", "");
+      setNumberPartnerReturn("");
+      handleGetLoan2value("numberPartnerReturn", "");
+    }
+    // eslint-disable-next-line
+  }, [employmentPartnersWorkingStatus]);
+
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-3"
-      } ${jointApplicationStatus !== types[2] ? "opacity-03" : ""}`}
+      } ${
+        jointApplicationStatus !== types[2] ||
+        employmentPartnersWorkingStatus !== types3[6]
+          ? "opacity-03"
+          : ""
+      }`}
     >
       <Container>
         <div>

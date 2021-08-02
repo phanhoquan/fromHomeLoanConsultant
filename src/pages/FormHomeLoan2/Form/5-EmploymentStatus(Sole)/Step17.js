@@ -13,7 +13,7 @@ export const types = {
   5: "Unemployed",
 };
 
-const Step17 = ({ handleGetLoan2value }) => {
+const Step17 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const typeOfBusinessRef = useRef(null);
   // const employmentStatus = localStorage.getItem("employmentWorkingStatus");
   const [typeOfBusiness, setTypeOfBusiness] = useState(
@@ -42,8 +42,17 @@ const Step17 = ({ handleGetLoan2value }) => {
     window.localStorage.setItem("loan2typeOfBusinessOther", typeOfBusiness);
   }, [typeOfBusiness]);
 
+  useMemo(() => {
+    setTypeOfBusiness(localStorage.getItem("loan2typeOfBusinessOther") || "");
+    // eslint-disable-next-line
+  }, [employmentWorkingStatus]);
+
   return (
-    <section className="formContent-step-first mb-3">
+    <section
+      className={`formContent-step-first mb-3 ${
+        employmentWorkingStatus ? "opacity-03" : ""
+      }`}
+    >
       <Container>
         <div>
           <Row>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
@@ -12,6 +12,15 @@ export const types = {
   4: "Unemployed",
 };
 
+export const types2 = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
 const listNumberYearWorking = [
   "1 year",
   "2 years",
@@ -20,10 +29,9 @@ const listNumberYearWorking = [
   "5+ years",
 ];
 
-const Step16 = ({ handleGetLoan2value }) => {
+const Step16 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
-  // const employmentStatus = localStorage.getItem("employmentStatus");
 
   const [numberYearWorking, setNumberYearWorking] = useState(
     localStorage.getItem("loan2numberYearWorking") || ""
@@ -41,11 +49,16 @@ const Step16 = ({ handleGetLoan2value }) => {
     handleGetLoan2value("numberYearWorking", value);
   };
 
+  useMemo(() => {
+    setNumberYearWorking(localStorage.getItem("loan2numberYearWorking"));
+    // eslint-disable-next-line
+  }, [employmentWorkingStatus]);
+
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-3"
-      }`}
+      } ${employmentWorkingStatus === types2[5] ? "opacity-03" : ""}`}
     >
       <Container>
         <div>
