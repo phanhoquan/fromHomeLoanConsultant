@@ -141,7 +141,7 @@ const First = () => {
       className="page-main"
       listMenuStep1={dataListMenuStep1}
     >
-      <section className="formContent-step-first pb-5 mt-5 mt-md-0">
+      <section className="formContent-step-first pb-5 mt-5 mt-md-3 lg-mt-0">
         <Container>
           <div>
             <Row>

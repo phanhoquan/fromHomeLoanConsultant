@@ -115,6 +115,10 @@ const HomeLoan = ({
 
   useEffect(() => {
     scrollToBottom();
+    window.scrollTo({
+      block: "top",
+      top: 0,
+    });
     // eslint-disable-next-line
   }, []);
 

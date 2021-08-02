@@ -336,13 +336,21 @@ footer.position-relative {
     }
 
     .iconMenuClose {
-      top: 65px;
+      top: 120px;
       right: auto;
     }
 
+    .iconMenu {
+      top: 65px;
+    }
+
+    .nav-left.open {
+      left: 0;
+      padding-top: pxToRem(180);
+    }
+
     .nav-right {
-      // padding-top: pxToRem(60) !important;
-      padding-bottom: pxToRem(50);
+      padding-bottom: pxToRem(80);
     }
   }
 
@@ -362,6 +370,24 @@ footer.position-relative {
     &::before,
     &::after {
       display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .fromHomeLoan2 {
+    .iconMenuClose {
+      top: 65px;
+      right: auto;
+    }
+
+    .iconMenu {
+      top: 45px;
+    }
+
+    .nav-left.open {
+      left: 0;
+      padding-top: pxToRem(120);
     }
   }
 }
@@ -546,7 +572,7 @@ textarea {
 .addNote {
   position: fixed;
   right: 15px;
-  bottom: 0;
+  bottom: -20px;
   width: pxToRem(400);
   background-color: #599bff;
   border-top-right-radius: 6px;
@@ -607,6 +633,8 @@ textarea {
   }
 
   &.show {
+    bottom: 0;
+
     .content-note {
       height: auto;
     }
