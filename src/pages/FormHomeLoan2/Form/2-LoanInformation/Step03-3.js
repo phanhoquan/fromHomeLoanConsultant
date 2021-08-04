@@ -1,18 +1,12 @@
 /** @format */
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import formatCurrency from "../../../../utils/formatCurrency";
 
-export const types = {
-  1: "Fixed",
-  2: "Variable",
-  3: "Split",
-};
-
-const Step03 = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
+const Step03 = ({ handleGetLoan2value }) => {
   const [valueInterestRate, setValueInterestRate] = useState(
     localStorage.getItem("loan2valueInterestRateSplit") || ""
   );
@@ -79,12 +73,6 @@ const Step03 = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
     }
   };
 
-  useMemo(() => {
-    setValueInterestRateValid2(valid.NON_VALID);
-    setValueInterestRateValid(valid.NON_VALID);
-    // eslint-disable-next-line
-  }, [loan2currentLoanStatus]);
-
   const onBlur = (e, name) => {
     switch (name) {
       case "interestRate1":
@@ -113,18 +101,8 @@ const Step03 = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
     }
   };
 
-  useMemo(() => {
-    localStorage.setItem("loan2valueInterestRateSplit", valueInterestRate);
-    localStorage.setItem("loan2valueInterestRate2Split", valueInterestRate2);
-    // eslint-disable-next-line
-  }, [valueInterestRate, valueInterestRate2]);
-
   return (
-    <section
-      className={`formContent-step-first pb-5 ${
-        loan2currentLoanStatus !== types[3] ? "opacity-03" : ""
-      }`}
-    >
+    <section className="formContent-step-first">
       <Container>
         <div>
           <Row>

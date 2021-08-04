@@ -1,12 +1,13 @@
 /** @format */
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import LifeInsurance from "../../index";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import checkEmail from "../../../../utils/checkEmail";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
+import { useHistory } from "react-router-dom";
 
 export const types = {
   1: "Full Time",
@@ -17,7 +18,7 @@ export const types = {
 
 const First = () => {
   const firstNameRef = useRef(null);
-
+  const history = useHistory();
   let listMenuStep1 = localStorage.getItem("listMenuStep1")
     ? JSON.parse(localStorage.getItem("listMenuStep1"))
     : [];
@@ -134,6 +135,10 @@ const First = () => {
     window.localStorage.setItem("listMenuStep1", JSON.stringify(step1));
     // eslint-disable-next-line
   }, [lastName, firstName, email, employmentStatus]);
+
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/loanInformation");
+  };
 
   return (
     <LifeInsurance
@@ -260,6 +265,15 @@ const First = () => {
                 </Row>
               </Col>
             </Row>
+            <div className="group-btn-footer col d-flex justify-content-center">
+              <Button
+                className="btnPrimary life wow fadeInUp mt-0 in-progress"
+                type="next"
+                onClick={onClickNext}
+              >
+                NEXT
+              </Button>
+            </div>
           </div>
         </Container>
       </section>

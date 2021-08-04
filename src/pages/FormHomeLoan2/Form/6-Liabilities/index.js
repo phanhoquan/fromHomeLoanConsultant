@@ -96,7 +96,9 @@ const Liabilities = () => {
     {
       id: 7,
       question: `${
-        HECSDebtAmount ? "32. What is the limit on the HECS Debt amount?" : ""
+        HECSDebtAmount
+          ? "32. What is the amount left owing on your HECS debt amount?"
+          : ""
       }`,
     },
   ];

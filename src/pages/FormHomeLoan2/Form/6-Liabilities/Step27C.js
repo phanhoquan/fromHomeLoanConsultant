@@ -117,7 +117,7 @@ const Step27C = ({ handleGetLoan2value, personalLoansStatus }) => {
 
             <Col xs={12} className="text-center mt-4">
               <h2 className="mb-3">
-                32. What is the limit on the HECS Debt amount?
+                32. What is the amount left owing on your HECS debt amount?
               </h2>
             </Col>
             <Col xs={12}>

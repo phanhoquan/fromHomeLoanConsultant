@@ -22,7 +22,7 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
   };
 
   return (
-    <section className="formContent-step-first">
+    <section className="formContent-step-first mb-4">
       <Container>
         <div>
           <Row>

@@ -6,13 +6,7 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import formatCurrency from "../../../../utils/formatCurrency";
 
-export const types = {
-  1: "Fixed",
-  2: "Variable",
-  3: "Split",
-};
-
-const Step03 = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
+const Step03 = ({ handleGetLoan2value }) => {
   const [valueInterestRate2, setValueInterestRate2] = useState(
     localStorage.getItem("loan2valueInterestRate2Variable") || ""
   );
@@ -59,18 +53,8 @@ const Step03 = ({ loan2currentLoanStatus, handleGetLoan2value }) => {
     // eslint-disable-next-line
   }, [valueInterestRate2]);
 
-  useMemo(() => {
-    setValueInterestRateValid2(valid.NON_VALID);
-
-    // eslint-disable-next-line
-  }, [loan2currentLoanStatus]);
-
   return (
-    <section
-      className={`formContent-step-first ${
-        loan2currentLoanStatus !== types[2] ? "opacity-03" : ""
-      }`}
-    >
+    <section className="formContent-step-first">
       <Container>
         <div>
           <Row>

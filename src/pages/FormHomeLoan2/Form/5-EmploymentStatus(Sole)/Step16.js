@@ -22,6 +22,7 @@ export const types2 = {
 };
 
 const listNumberYearWorking = [
+  "Less than 12 months",
   "1 year",
   "2 years",
   "3 years",

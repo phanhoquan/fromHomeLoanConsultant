@@ -1,6 +1,8 @@
 /** @format */
 
 import React, { useState, useMemo } from "react";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step02 from "./Step02";
@@ -8,7 +10,14 @@ import Step03A from "./Step03-1";
 import Step03B from "./Step03-2";
 import Step03C from "./Step03-3";
 
+export const types = {
+  1: "Fixed",
+  2: "Variable",
+  3: "Split",
+};
+
 const LoanInformation = () => {
+  const history = useHistory();
   const [loan2currentLoanStatus, setLoan2currentLoanStatus] = useState(
     localStorage.getItem("loan2currentLoanStatus") || ""
   );
@@ -35,6 +44,14 @@ const LoanInformation = () => {
     localStorage.setItem("loan2valueInterestRate2Variable", "");
     localStorage.setItem("loan2valueInterestRateSplit", "");
     localStorage.setItem("loan2valueInterestRate2Split", "");
+    if (option !== loan2currentLoanStatus) {
+      setLoan2value({
+        interestRate: "",
+        interestRate2Variable: "",
+        interestRateSplit: "",
+        interestRate2Split: "",
+      });
+    }
   };
 
   const handleGetLoan2value = (name, value) => {
@@ -86,23 +103,39 @@ const LoanInformation = () => {
     interestRate2Split,
   ]);
 
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/ApplicantDetails");
+  };
+
   return (
     <LifeInsurance activeStep={2} listMenuStep2={dataListMenuStep2}>
       <Step02
         handelGetLoan2currentLoanStatus={handelGetLoan2currentLoanStatus}
       />
-      <Step03A
-        loan2currentLoanStatus={loan2currentLoanStatus}
-        handleGetLoan2value={handleGetLoan2value}
-      />
-      <Step03B
-        loan2currentLoanStatus={loan2currentLoanStatus}
-        handleGetLoan2value={handleGetLoan2value}
-      />
-      <Step03C
-        loan2currentLoanStatus={loan2currentLoanStatus}
-        handleGetLoan2value={handleGetLoan2value}
-      />
+      {loan2currentLoanStatus === types[1] ? (
+        <Step03A handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      {loan2currentLoanStatus === types[2] ? (
+        <Step03B handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      {loan2currentLoanStatus === types[3] ? (
+        <Step03C handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };
