@@ -89,7 +89,7 @@ const HomeLoan = ({
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowMenu(false);
   });
-  useOnClickOutside(wrapperInfoRef, () => {
+  useOnClickOutside(wrapperInfoRefSole, () => {
     setIsShowMessSole(false);
   });
 

@@ -13,7 +13,7 @@ export const types = {
   2: "NO",
 };
 
-const Step11 = () => {
+const Step11 = ({ handleGetLoan2value, otherDependents }) => {
   const [otherChillApplicantAge, setOtherChillApplicantAge] = useState(
     localStorage.getItem("loan2otherChillApplicantAge")
       ? JSON.parse(localStorage.getItem("loan2otherChillApplicantAge"))
@@ -164,6 +164,20 @@ const Step11 = () => {
       });
     }
   };
+
+  useMemo(() => {
+    window.localStorage.setItem(
+      "loan2otherChillApplicantAge",
+      JSON.stringify(otherChillApplicantAge)
+    );
+    window.localStorage.setItem(
+      "loan2otherChildrenNumber",
+      finAgeValid?.length
+    );
+
+    handleGetLoan2value("otherChillApplicantAge", finAgeValid);
+    // eslint-disable-next-line
+  }, [otherChillApplicantAge]);
 
   return (
     <section className="formContent-step-first mb-3">

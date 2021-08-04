@@ -1,8 +1,9 @@
 /** @format */
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import imgAller from "../../../../images/aler.png";
 import LifeInsurance from "../../index";
 
 import Step08 from "./Step08";
@@ -16,11 +17,15 @@ export const types = {
 };
 
 const KidsOrDependents = () => {
+  const wrapperInfoRefSole = useRef();
+  const loan2jointApplicationStatus = localStorage.getItem(
+    "loan2jointApplicationStatus"
+  );
   const history = useHistory();
   let listMenuStep4 = localStorage.getItem("listMenuStep4")
     ? JSON.parse(localStorage.getItem("listMenuStep4"))
     : [];
-
+  const [isShowMessSole, setIsShowMessSole] = useState(false);
   const [dataListMenuStep4, setDataListMenuStep4] = useState(
     listMenuStep4 || []
   );
@@ -41,26 +46,33 @@ const KidsOrDependents = () => {
       ...loan2value,
       [name]: value,
     });
-    if (name === "kidsOrDependant") {
+    if (name === "kidsOrDependant" && value?.trim() === types[2]) {
       window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
       window.localStorage.setItem("loan2childrenNumber", 0);
-    }
-    if (name === "otherDependents") {
       window.localStorage.setItem(
         "loan2otherChillApplicantAge",
         JSON.stringify({})
       );
       window.localStorage.setItem("loan2otherChildrenNumber", 0);
+      setLoan2value({
+        ...loan2value,
+        kidsOrDependant: value,
+        chillApplicantAge: [],
+        otherChillApplicantAge: [],
+      });
+    }
+    if (name === "otherDependents") {
       if (value === types[2]) {
         window.localStorage.setItem(
-          "loan2chillApplicantAge",
+          "loan2otherChillApplicantAge",
           JSON.stringify({})
         );
-        window.localStorage.setItem("loan2childrenNumber", 0);
+        window.localStorage.setItem("loan2otherChildrenNumber", 0);
+
         setLoan2value({
           ...loan2value,
           [name]: value,
-          chillApplicantAge: [],
+          otherChillApplicantAge: [],
         });
       }
     }
@@ -125,6 +137,10 @@ const KidsOrDependents = () => {
   ]);
 
   const onClickNext = () => {
+    if (!loan2jointApplicationStatus) {
+      setIsShowMessSole(true);
+      return;
+    }
     history.push("/refinance-fact-find-2/EmploymentStatus");
   };
 
@@ -135,10 +151,26 @@ const KidsOrDependents = () => {
       numberScroll={800}
     >
       <Step08 handleGetLoan2value={handleGetLoan2value} />
-
-      <Step09 handleGetLoan2value={handleGetLoan2value} />
+      {kidsOrDependant?.trim() === types[1] ? (
+        <Step09 handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
       <Step10 handleGetLoan2value={handleGetLoan2value} />
-      <Step11 handleGetLoan2value={handleGetLoan2value} />
+
+      {otherDependents === types[1] && kidsOrDependant?.trim() === types[1] ? (
+        <Step11 handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      {isShowMessSole ? (
+        <div className="col d-flex justify-content-center mb-3 text-error">
+          <img src={imgAller} alt="" className="mr-3" /> This category is only
+          accessible when you are the Sole applicant/Joint applicant
+        </div>
+      ) : (
+        ""
+      )}
 
       <div className="group-btn-footer col d-flex justify-content-center mb-5">
         <Button

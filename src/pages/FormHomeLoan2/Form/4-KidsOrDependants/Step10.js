@@ -21,7 +21,7 @@ const Step10 = ({ handleGetLoan2value }) => {
   };
 
   return (
-    <section className="formContent-step-first">
+    <section className="formContent-step-first mb-3">
       <Container>
         <div>
           <Row>
