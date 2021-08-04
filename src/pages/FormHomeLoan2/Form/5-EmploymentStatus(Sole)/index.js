@@ -1,6 +1,8 @@
 /** @format */
 
 import React, { useMemo, useState } from "react";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step12 from "../5-EmploymentStatus(Sole)/Step12";
@@ -41,6 +43,7 @@ export const types3 = {
 };
 
 const EmploymentStatusSoleJoint = () => {
+  const history = useHistory();
   const jointApplicationStatus =
     localStorage.getItem("loan2jointApplicationStatus") || "";
   let listMenuStep5 = localStorage.getItem("listMenuStep5")

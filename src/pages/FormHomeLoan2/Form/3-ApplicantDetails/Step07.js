@@ -66,20 +66,8 @@ const Step07A = ({
     // eslint-disable-next-line
   }, [soleApplicantAge, loan2firstNameOther]);
 
-  useMemo(() => {
-    if (applicationStatus) {
-      setSoleApplicantAgeValid(valid.NON_VALID);
-      setSoleApplicantAge(localStorage.getItem("loan2soleApplicantAge"));
-    }
-    // eslint-disable-next-line
-  }, [applicationStatus]);
-
   return (
-    <section
-      className={`formContent-step-first ${
-        applicationStatus === "" ? "opacity-03" : ""
-      }`}
-    >
+    <section className="formContent-step-first ">
       <Container>
         <div>
           <Row>

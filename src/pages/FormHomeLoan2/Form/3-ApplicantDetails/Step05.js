@@ -5,16 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 
-export const types = {
-  1: "Sole Applicant",
-  2: "Joint Applicant",
-};
-
-const First = ({
-  applicationStatus,
-  handleGetLoan2firstNameOther,
-  handleGetLoan2value,
-}) => {
+const First = ({ handleGetLoan2firstNameOther, handleGetLoan2value }) => {
   const firstNameRef = useRef(null);
   const [firstName, setFirstName] = useState(
     localStorage.getItem("loan2firstNameOther") || ""
@@ -72,22 +63,8 @@ const First = ({
     // eslint-disable-next-line
   }, [firstName, lastName]);
 
-  useMemo(() => {
-    if (applicationStatus) {
-      setFirstNameValid(valid.NON_VALID);
-      setLastNameValid(valid.NON_VALID);
-      setFirstName(localStorage.getItem("loan2firstNameOther"));
-      setLastName(localStorage.getItem("loan2lastNameOther"));
-    }
-    // eslint-disable-next-line
-  }, [applicationStatus]);
-
   return (
-    <section
-      className={`formContent-step-first mb-3 ${
-        applicationStatus !== types[2] ? "opacity-03" : ""
-      }`}
-    >
+    <section className="formContent-step-first mb-3">
       <Container>
         <div>
           <Row>

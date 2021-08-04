@@ -1,12 +1,15 @@
 /** @format */
 
 import React, { useState, useMemo } from "react";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step29 from "./Step29";
 import Step30 from "./Step30";
 
 const CreditCards = () => {
+  const history = useHistory();
   let listMenuStep8 = localStorage.getItem("listMenuStep8")
     ? JSON.parse(localStorage.getItem("listMenuStep8"))
     : [];

@@ -1,6 +1,8 @@
 /** @format */
 
 import React, { useState, useMemo } from "react";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step04 from "./Step04";
@@ -15,6 +17,7 @@ export const types = {
 };
 
 const ApplicantDetails = () => {
+  const history = useHistory();
   let listMenuStep3 = localStorage.getItem("listMenuStep3")
     ? JSON.parse(localStorage.getItem("listMenuStep3"))
     : [];
@@ -44,6 +47,15 @@ const ApplicantDetails = () => {
     localStorage.setItem("loan2relationshipYour", "");
     localStorage.setItem("loan2soleApplicantAge", "");
     localStorage.setItem("loan2jointApplicantAge", "");
+    if (applicationStatus !== option) {
+      setLoan2value({
+        firstNameOther: "",
+        lastNameOther: "",
+        relationshipYour: "",
+        soleApplicantAge: "",
+        jointApplicantAge: "",
+      });
+    }
   };
 
   const handleGetLoan2value = (name, value) => {
@@ -124,6 +136,10 @@ const ApplicantDetails = () => {
     jointApplicantAge,
   ]);
 
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/KidsOrDependants");
+  };
+
   return (
     <LifeInsurance
       activeStep={3}
@@ -131,26 +147,48 @@ const ApplicantDetails = () => {
       jointApplicationStatus={applicationStatus}
     >
       <Step04 handelGetApplicationStatus={handelGetApplicationStatus} />
-      <Step05
-        applicationStatus={applicationStatus}
-        handleGetLoan2firstNameOther={handleGetLoan2firstNameOther}
-        handleGetLoan2value={handleGetLoan2value}
-      />
-      <Step06
-        applicationStatus={applicationStatus}
-        loan2firstNameOther={loan2firstNameOther}
-        handleGetLoan2value={handleGetLoan2value}
-      />
-      <Step07
-        applicationStatus={applicationStatus}
-        loan2firstNameOther={loan2firstNameOther}
-        handleGetLoan2value={handleGetLoan2value}
-      />
-      <Step07B
-        applicationStatus={applicationStatus}
-        loan2firstNameOther={loan2firstNameOther}
-        handleGetLoan2value={handleGetLoan2value}
-      />
+      {applicationStatus === types[2] ? (
+        <>
+          <Step05
+            handleGetLoan2firstNameOther={handleGetLoan2firstNameOther}
+            handleGetLoan2value={handleGetLoan2value}
+          />
+          <Step06
+            loan2firstNameOther={loan2firstNameOther}
+            handleGetLoan2value={handleGetLoan2value}
+          />
+        </>
+      ) : (
+        ""
+      )}
+      {applicationStatus === types[1] ? (
+        <Step07
+          applicationStatus={applicationStatus}
+          loan2firstNameOther={loan2firstNameOther}
+          handleGetLoan2value={handleGetLoan2value}
+        />
+      ) : (
+        ""
+      )}
+      {applicationStatus === types[2] ? (
+        <Step07B
+          applicationStatus={applicationStatus}
+          loan2firstNameOther={loan2firstNameOther}
+          handleGetLoan2value={handleGetLoan2value}
+        />
+      ) : (
+        ""
+      )}
+
+      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };

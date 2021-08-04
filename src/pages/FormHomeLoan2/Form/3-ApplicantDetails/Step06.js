@@ -6,16 +6,8 @@ import InputCustom2 from "../../../../Components/InputCustom2";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
 const listHomeLoan = ["Spouse", "Defacto", "Sibling", "Parent", "Offspring"];
-export const types = {
-  1: "Sole Applicant",
-  2: "Joint Applicant",
-};
 
-const Step06 = ({
-  applicationStatus,
-  loan2firstNameOther,
-  handleGetLoan2value,
-}) => {
+const Step06 = ({ loan2firstNameOther, handleGetLoan2value }) => {
   const relationshipYourRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [relationshipYour, setRelationshipYour] = useState(
@@ -40,18 +32,11 @@ const Step06 = ({
     // eslint-disable-next-line
   }, [relationshipYour, loan2firstNameOther]);
 
-  useMemo(() => {
-    if (applicationStatus) {
-      setRelationshipYour(localStorage.getItem("loan2relationshipYour"));
-    }
-    // eslint-disable-next-line
-  }, [applicationStatus]);
-
   return (
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-2"
-      } ${applicationStatus !== types[2] ? "opacity-03" : ""}`}
+      }`}
     >
       <Container>
         <div>

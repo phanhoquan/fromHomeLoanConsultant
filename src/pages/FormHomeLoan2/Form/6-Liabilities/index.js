@@ -1,6 +1,8 @@
 /** @format */
 
 import React, { useState, useMemo } from "react";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step26 from "./Step26";
@@ -9,6 +11,7 @@ import Step27B from "./Step27B";
 import Step27C from "./Step27C";
 
 const Liabilities = () => {
+  const history = useHistory();
   let listMenuStep7 = localStorage.getItem("listMenuStep7")
     ? JSON.parse(localStorage.getItem("listMenuStep7"))
     : [];
