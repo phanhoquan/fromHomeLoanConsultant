@@ -105,9 +105,10 @@ const EmploymentStatusSoleJoint = () => {
       }
     }
 
-    if ((name = "workingStatus")) {
+    if (name === "workingStatus") {
       window.localStorage.setItem("loan2employmentWorkingStatus", "");
     }
+
     if (name === "employmentPartnersWorkingStatus" && value !== types3[6]) {
       window.localStorage.setItem("loan2numberPartnerReturn", "");
     }
@@ -265,6 +266,9 @@ const EmploymentStatusSoleJoint = () => {
     numberPartnerReturn,
     partnersSalary,
   ]);
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/Liabilities");
+  };
 
   return (
     <LifeInsurance
@@ -322,6 +326,16 @@ const EmploymentStatusSoleJoint = () => {
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
       />
+
+      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };

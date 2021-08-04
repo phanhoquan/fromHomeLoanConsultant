@@ -74,7 +74,7 @@ const Step18 = ({
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-0"
-      } ${isShowStep === types[5] ? "opacity-03" : ""}`}
+      } ${isShowStep !== "Self Employed" ? "opacity-03" : ""}`}
     >
       <Container>
         <div>

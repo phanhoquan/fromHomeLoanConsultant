@@ -49,7 +49,7 @@ const Step24 = ({ handleGetLoan2value, jointApplicationStatus }) => {
 
   return (
     <section
-      className={`formContent-step-second formContent-life-insurance mb-5 ${
+      className={`formContent-step-second formContent-life-insurance mb-3 ${
         jointApplicationStatus !== types[2] ? "opacity-03" : ""
       }`}
     >

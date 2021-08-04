@@ -30,7 +30,7 @@ const Step14 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
     localStorage.getItem("loan2numberPartnerReturn16") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
-  const loan2employmentStatus = localStorage.getItem("loan2employmentStatus"); // Step1
+  // const loan2employmentStatus = localStorage.getItem("loan2employmentStatus"); // Step1
   useOnClickOutside(wrapperInfoRef, () => {
     setIsShowModal(false);
   });
@@ -55,11 +55,7 @@ const Step14 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
     <section
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-2"
-      } ${
-        loan2employmentStatus && employmentWorkingStatus !== types[6]
-          ? "opacity-03"
-          : ""
-      } `}
+      } ${employmentWorkingStatus === types[6] ? "" : "opacity-03"} `}
     >
       <Container>
         <div>

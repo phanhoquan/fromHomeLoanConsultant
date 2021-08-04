@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo } from "react";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import imgAller from "../../../../images/aler.png";
@@ -17,7 +17,6 @@ export const types = {
 };
 
 const KidsOrDependents = () => {
-  const wrapperInfoRefSole = useRef();
   const loan2jointApplicationStatus = localStorage.getItem(
     "loan2jointApplicationStatus"
   );
