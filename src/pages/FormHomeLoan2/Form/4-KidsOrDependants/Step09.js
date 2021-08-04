@@ -13,14 +13,20 @@ export const types = {
   2: "NO",
 };
 
-const Step09 = ({ handleGetLoan2value, kidsOrDependant }) => {
+const Step09 = ({
+  handleGetLoan2value,
+  kidsOrDependant,
+  valueOtherDependents,
+}) => {
   const [chillApplicantAge, setChillApplicantAge] = useState(
     localStorage.getItem("loan2chillApplicantAge")
       ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
       : null
   );
   const [childrenNumber, setChildrenNumber] = useState(2);
-
+  const [isShowStep, setIsShowStep] = useState(
+    localStorage.getItem("loan2kidsOrDependant") || ""
+  );
   const [chillApplicantAgeValid, setChillApplicantAgeValid] = useState({});
   const [validMessage, setValidMessage] = useState({});
 
@@ -182,7 +188,34 @@ const Step09 = ({ handleGetLoan2value, kidsOrDependant }) => {
   }, [chillApplicantAge]);
 
   useMemo(() => {
-    if (kidsOrDependant) {
+    if (valueOtherDependents?.trim() === types[2]) {
+      setIsShowStep(valueOtherDependents?.trim());
+    } else {
+      setIsShowStep(kidsOrDependant?.trim());
+    }
+
+    if (kidsOrDependant?.trim() === types[2]) {
+      window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
+      window.localStorage.setItem("loan2childrenNumber", 0);
+      handleGetLoan2value("chillApplicantAge", []);
+      setChillApplicantAge({});
+      setChillApplicantAgeValid({
+        ...chillApplicantAgeValid,
+        name1: valid.NON_VALID,
+        name2: valid.NON_VALID,
+        name3: valid.NON_VALID,
+        name4: valid.NON_VALID,
+        name5: valid.NON_VALID,
+        name6: valid.NON_VALID,
+        name7: valid.NON_VALID,
+        name8: valid.NON_VALID,
+        name9: valid.NON_VALID,
+        name10: valid.NON_VALID,
+      });
+      setChildrenNumber(2);
+    }
+    if (valueOtherDependents?.trim() === types[2]) {
+      setIsShowStep(valueOtherDependents?.trim());
       window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
       window.localStorage.setItem("loan2childrenNumber", 0);
       handleGetLoan2value("chillApplicantAge", []);
@@ -203,12 +236,12 @@ const Step09 = ({ handleGetLoan2value, kidsOrDependant }) => {
       setChildrenNumber(2);
     }
     // eslint-disable-next-line
-  }, [kidsOrDependant]);
+  }, [kidsOrDependant, valueOtherDependents]);
 
   return (
     <section
       className={`formContent-step-first ${
-        kidsOrDependant !== types[1] ? "opacity-03" : ""
+        isShowStep?.trim() !== types[1] ? "opacity-03" : ""
       }`}
     >
       <Container>

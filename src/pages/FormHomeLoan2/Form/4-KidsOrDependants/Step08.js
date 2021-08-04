@@ -5,8 +5,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
 
 export const types = {
-  1: "YES",
-  2: "NO",
+  1: "YES ",
+  2: "NO ",
 };
 
 const Step08 = ({ handleGetLoan2value }) => {

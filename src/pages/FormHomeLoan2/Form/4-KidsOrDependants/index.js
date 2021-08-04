@@ -8,6 +8,11 @@ import Step09 from "./Step09";
 import Step10 from "./Step10";
 import Step11 from "./Step11";
 
+export const types = {
+  1: "YES",
+  2: "NO",
+};
+
 const KidsOrDependents = () => {
   let listMenuStep4 = localStorage.getItem("listMenuStep4")
     ? JSON.parse(localStorage.getItem("listMenuStep4"))
@@ -34,26 +39,37 @@ const KidsOrDependents = () => {
       [name]: value,
     });
     if (name === "kidsOrDependant") {
-      window.localStorage.setItem(
-        "loan2chillApplicantAge",
-        JSON.stringify(chillApplicantAge)
-      );
+      window.localStorage.setItem("loan2chillApplicantAge", JSON.stringify({}));
       window.localStorage.setItem("loan2childrenNumber", 0);
     }
     if (name === "otherDependents") {
       window.localStorage.setItem(
         "loan2otherChillApplicantAge",
-        JSON.stringify(otherChillApplicantAge)
+        JSON.stringify({})
       );
       window.localStorage.setItem("loan2otherChildrenNumber", 0);
+      if (value === types[2]) {
+        window.localStorage.setItem(
+          "loan2chillApplicantAge",
+          JSON.stringify({})
+        );
+        window.localStorage.setItem("loan2childrenNumber", 0);
+        setLoan2value({
+          ...loan2value,
+          [name]: value,
+          chillApplicantAge: [],
+        });
+      }
     }
   };
+
   const {
     kidsOrDependant,
     chillApplicantAge,
     otherDependents,
     otherChillApplicantAge,
   } = loan2value;
+
   const step4 = [
     {
       id: 1,
@@ -116,6 +132,7 @@ const KidsOrDependents = () => {
       <Step09
         handleGetLoan2value={handleGetLoan2value}
         kidsOrDependant={kidsOrDependant}
+        valueOtherDependents={otherDependents}
       />
       <Step10 handleGetLoan2value={handleGetLoan2value} />
       <Step11
