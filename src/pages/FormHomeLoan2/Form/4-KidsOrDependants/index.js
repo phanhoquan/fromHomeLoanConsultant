@@ -124,6 +124,10 @@ const KidsOrDependents = () => {
     chillApplicantAge?.length,
   ]);
 
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/EmploymentStatus");
+  };
+
   return (
     <LifeInsurance
       activeStep={4}
@@ -132,16 +136,19 @@ const KidsOrDependents = () => {
     >
       <Step08 handleGetLoan2value={handleGetLoan2value} />
 
-      <Step09
-        handleGetLoan2value={handleGetLoan2value}
-        kidsOrDependant={kidsOrDependant}
-        valueOtherDependents={otherDependents}
-      />
+      <Step09 handleGetLoan2value={handleGetLoan2value} />
       <Step10 handleGetLoan2value={handleGetLoan2value} />
-      <Step11
-        handleGetLoan2value={handleGetLoan2value}
-        otherDependents={otherDependents}
-      />
+      <Step11 handleGetLoan2value={handleGetLoan2value} />
+
+      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };

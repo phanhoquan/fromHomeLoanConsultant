@@ -8,6 +8,11 @@ import LifeInsurance from "../../index";
 import Step29 from "./Step29";
 import Step30 from "./Step30";
 
+export const types = {
+  1: "YES",
+  2: "NO",
+};
+
 const CreditCards = () => {
   const history = useHistory();
   let listMenuStep8 = localStorage.getItem("listMenuStep8")
@@ -29,11 +34,19 @@ const CreditCards = () => {
       ...loan2value,
       [name]: value,
     });
-    if (name === "loan2creditCard") {
+
+    if (name === "loan2creditCard" && value === types[2]) {
       window.localStorage.setItem("loan2valueCreditCard", "");
       window.localStorage.setItem("loan2valueCreditCardAmount", "");
+      setLoan2value({
+        ...loan2value,
+        loan2creditCard: value,
+        valueCreditCard: "",
+        creditCardAmount: "",
+      });
     }
   };
+
   const { loan2creditCard, valueCreditCard, creditCardAmount } = loan2value;
   const step8 = [
     {
@@ -62,6 +75,10 @@ const CreditCards = () => {
     // eslint-disable-next-line
   }, [loan2creditCard, valueCreditCard, creditCardAmount]);
 
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/ResidentialInformation");
+  };
+
   return (
     <LifeInsurance
       activeStep={7}
@@ -69,10 +86,23 @@ const CreditCards = () => {
       numberScroll={2000}
     >
       <Step29 handleGetLoan2value={handleGetLoan2value} />
-      <Step30
-        handleGetLoan2value={handleGetLoan2value}
-        loan2creditCard={loan2creditCard}
-      />
+      {loan2creditCard === types[1] ? (
+        <Step30
+          handleGetLoan2value={handleGetLoan2value}
+          loan2creditCard={loan2creditCard}
+        />
+      ) : (
+        ""
+      )}
+      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };

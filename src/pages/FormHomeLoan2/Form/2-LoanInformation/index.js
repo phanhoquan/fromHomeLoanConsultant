@@ -40,11 +40,11 @@ const LoanInformation = () => {
 
   const handelGetLoan2currentLoanStatus = (option) => {
     setLoan2currentLoanStatus(option);
-    localStorage.setItem("loan2valueInterestRate", "");
-    localStorage.setItem("loan2valueInterestRate2Variable", "");
-    localStorage.setItem("loan2valueInterestRateSplit", "");
-    localStorage.setItem("loan2valueInterestRate2Split", "");
     if (option !== loan2currentLoanStatus) {
+      localStorage.setItem("loan2valueInterestRate", "");
+      localStorage.setItem("loan2valueInterestRate2Variable", "");
+      localStorage.setItem("loan2valueInterestRateSplit", "");
+      localStorage.setItem("loan2valueInterestRate2Split", "");
       setLoan2value({
         interestRate: "",
         interestRate2Variable: "",
@@ -127,7 +127,7 @@ const LoanInformation = () => {
       ) : (
         ""
       )}
-      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+      <div className="group-btn-footer col d-flex justify-content-center mb-5 mt-3">
         <Button
           className="btnPrimary life wow fadeInUp mt-0 in-progress"
           type="next"

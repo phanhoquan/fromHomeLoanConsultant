@@ -11,7 +11,7 @@ export const types = {
   2: "NO",
 };
 
-const Step30 = ({ handleGetLoan2value, loan2creditCard }) => {
+const Step30 = ({ handleGetLoan2value }) => {
   const valueCreditCardRef = useRef(null);
   const valueCreditCardAmountRef = useRef(null);
 
@@ -64,25 +64,8 @@ const Step30 = ({ handleGetLoan2value, loan2creditCard }) => {
     );
   }, [valueCreditCardAmount]);
 
-  useMemo(() => {
-    if (loan2creditCard) {
-      setValueCreditCard(localStorage.getItem("loan2valueCreditCard") || "");
-      setValueCreditCardAmount(
-        localStorage.getItem("loan2valueCreditCardAmount") || ""
-      );
-      handleGetLoan2value("valueCreditCard", "");
-      handleGetLoan2value("creditCardAmount", "");
-    }
-
-    // eslint-disable-next-line
-  }, [loan2creditCard]);
-
   return (
-    <section
-      className={`formContent-step-second formContent-life-insurance mb-2 ${
-        loan2creditCard !== types[1] ? "opacity-03" : ""
-      }`}
-    >
+    <section className="formContent-step-second formContent-life-insurance mb-2">
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>

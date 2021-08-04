@@ -6,14 +6,7 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-export const types = {
-  1: "Personal Loans",
-  2: "Car Loans",
-  3: "HECS debt",
-  4: "None of the above",
-};
-
-const Step27B = ({ handleGetLoan2value, personalLoansStatus }) => {
+const Step27B = ({ handleGetLoan2value }) => {
   const carLoanRef = useRef(null);
   const carLoanAmountRef = useRef(null);
   const [carLoan, setCarLoan] = useState(
@@ -60,22 +53,8 @@ const Step27B = ({ handleGetLoan2value, personalLoansStatus }) => {
     );
   }, [carLoanAmount]);
 
-  useMemo(() => {
-    if (personalLoansStatus) {
-      setCarLoanValid(valid.NON_VALID);
-      setCarLoanAmountValid(valid.NON_VALID);
-      setCarLoan(localStorage.getItem("loan2carLoan"));
-      setCarLoanAmount(localStorage.getItem("loan2carLoanAmount"));
-    }
-    // eslint-disable-next-line
-  }, [personalLoansStatus]);
-
   return (
-    <section
-      className={`formContent-step-second formContent-life-insurance mb-2 ${
-        !!personalLoansStatus?.includes(types[2]) ? "" : "opacity-03"
-      }`}
-    >
+    <section className="formContent-step-second formContent-life-insurance mb-2">
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>

@@ -10,6 +10,13 @@ import Step27A from "./Step27a";
 import Step27B from "./Step27B";
 import Step27C from "./Step27C";
 
+export const types = {
+  1: "Personal Loans",
+  2: "Car Loans",
+  3: "HECS debt",
+  4: "None of the above",
+};
+
 const Liabilities = () => {
   const history = useHistory();
   let listMenuStep7 = localStorage.getItem("listMenuStep7")
@@ -38,12 +45,60 @@ const Liabilities = () => {
       [name]: value,
     });
     if (name === "personalLoansStatus") {
-      window.localStorage.setItem("loan2personalLoan", "");
-      window.localStorage.setItem("loan2personalLoanAmount", "");
-      window.localStorage.setItem("loan2carLoan", "");
-      window.localStorage.setItem("loan2carLoanAmount", "");
-      window.localStorage.setItem("loan2HECSDebt", "");
-      window.localStorage.setItem("loan2HECSDebtAmount", "");
+      if (!value?.includes(types[1])) {
+        setLoan2value({
+          ...loan2value,
+          personalLoansStatus: value,
+          personalLoan: "",
+          personalLoanAmount: "",
+        });
+
+        window.localStorage.setItem("loan2personalLoan", "");
+        window.localStorage.setItem("loan2personalLoanAmount", "");
+      }
+
+      if (!value?.includes(types[2])) {
+        setLoan2value({
+          ...loan2value,
+          personalLoansStatus: value,
+          carLoanLoan: "",
+          personalLoanAmount: "",
+        });
+
+        window.localStorage.setItem("loan2carLoan", "");
+        window.localStorage.setItem("loan2carLoanAmount", "");
+      }
+
+      if (!value?.includes(types[3])) {
+        setLoan2value({
+          ...loan2value,
+          personalLoansStatus: value,
+          HECSDebt: "",
+          HECSDebtAmount: "",
+        });
+
+        window.localStorage.setItem("loan2HECSDebt", "");
+        window.localStorage.setItem("loan2HECSDebtAmount", "");
+      }
+
+      if (value?.includes(types[4])) {
+        window.localStorage.setItem("loan2HECSDebt", "");
+        window.localStorage.setItem("loan2HECSDebtAmount", "");
+        window.localStorage.setItem("loan2carLoan", "");
+        window.localStorage.setItem("loan2carLoanAmount", "");
+        window.localStorage.setItem("loan2personalLoan", "");
+        window.localStorage.setItem("loan2personalLoanAmount", "");
+        setLoan2value({
+          ...loan2value,
+          personalLoansStatus: value,
+          personalLoan: "",
+          personalLoanAmount: "",
+          carLoan: "",
+          carLoanAmount: "",
+          HECSDebt: "",
+          HECSDebtAmount: "",
+        });
+      }
     }
   };
   const {
@@ -55,6 +110,7 @@ const Liabilities = () => {
     HECSDebt,
     HECSDebtAmount,
   } = loan2value;
+
   const step7 = [
     {
       id: 1,
@@ -130,6 +186,10 @@ const Liabilities = () => {
     HECSDebtAmount,
   ]);
 
+  const onClickNext = () => {
+    history.push("/refinance-fact-find-2/CreditCards");
+  };
+
   return (
     <LifeInsurance
       activeStep={6}
@@ -137,18 +197,30 @@ const Liabilities = () => {
       numberScroll={1800}
     >
       <Step26 handleGetLoan2value={handleGetLoan2value} />
-      <Step27A
-        handleGetLoan2value={handleGetLoan2value}
-        personalLoansStatus={loan2value?.personalLoansStatus}
-      />
-      <Step27B
-        handleGetLoan2value={handleGetLoan2value}
-        personalLoansStatus={loan2value?.personalLoansStatus}
-      />
-      <Step27C
-        handleGetLoan2value={handleGetLoan2value}
-        personalLoansStatus={loan2value?.personalLoansStatus}
-      />
+      {!!personalLoansStatus?.includes(types[1]) ? (
+        <Step27A handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      {!!personalLoansStatus?.includes(types[2]) ? (
+        <Step27B handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      {!!personalLoansStatus?.includes(types[3]) ? (
+        <Step27C handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
+      <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };

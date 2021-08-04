@@ -42,12 +42,12 @@ const ApplicantDetails = () => {
 
   const handelGetApplicationStatus = (option) => {
     setApplicationStatus(option);
-    localStorage.setItem("loan2firstNameOther", "");
-    localStorage.setItem("loan2lastNameOther", "");
-    localStorage.setItem("loan2relationshipYour", "");
-    localStorage.setItem("loan2soleApplicantAge", "");
-    localStorage.setItem("loan2jointApplicantAge", "");
     if (applicationStatus !== option) {
+      localStorage.setItem("loan2firstNameOther", "");
+      localStorage.setItem("loan2lastNameOther", "");
+      localStorage.setItem("loan2relationshipYour", "");
+      localStorage.setItem("loan2soleApplicantAge", "");
+      localStorage.setItem("loan2jointApplicantAge", "");
       setLoan2value({
         firstNameOther: "",
         lastNameOther: "",

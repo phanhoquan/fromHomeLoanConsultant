@@ -13,7 +13,7 @@ export const types = {
   2: "NO",
 };
 
-const Step11 = ({ handleGetLoan2value, otherDependents }) => {
+const Step11 = () => {
   const [otherChillApplicantAge, setOtherChillApplicantAge] = useState(
     localStorage.getItem("loan2otherChillApplicantAge")
       ? JSON.parse(localStorage.getItem("loan2otherChillApplicantAge"))
@@ -165,48 +165,8 @@ const Step11 = ({ handleGetLoan2value, otherDependents }) => {
     }
   };
 
-  useMemo(() => {
-    window.localStorage.setItem(
-      "loan2otherChillApplicantAge",
-      JSON.stringify(otherChillApplicantAge)
-    );
-    window.localStorage.setItem(
-      "loan2otherChildrenNumber",
-      finAgeValid?.length
-    );
-
-    handleGetLoan2value("otherChillApplicantAge", finAgeValid);
-    // eslint-disable-next-line
-  }, [otherChillApplicantAge]);
-
-  useMemo(() => {
-    if (otherDependents) {
-      setOtherChillApplicantAgeValid({
-        ...otherChillApplicantAgeValid,
-        otherName1: valid.NON_VALID,
-        otherName2: valid.NON_VALID,
-        otherName3: valid.NON_VALID,
-        otherName4: valid.NON_VALID,
-        otherName5: valid.NON_VALID,
-      });
-      window.localStorage.setItem(
-        "loan2otherChillApplicantAge",
-        JSON.stringify({})
-      );
-      window.localStorage.setItem("loan2otherChildrenNumber", 0);
-      handleGetLoan2value("otherChillApplicantAge", []);
-      setOtherChillApplicantAge({});
-      setChildrenNumber(2);
-    }
-    // eslint-disable-next-line
-  }, [otherDependents]);
-
   return (
-    <section
-      className={`formContent-step-first mb-5 pb-5 ${
-        otherDependents !== types[1] ? "opacity-03" : ""
-      }`}
-    >
+    <section className="formContent-step-first mb-3">
       <Container>
         <div>
           <Row>

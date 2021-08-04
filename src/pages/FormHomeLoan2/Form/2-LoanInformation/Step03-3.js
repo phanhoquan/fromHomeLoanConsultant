@@ -78,10 +78,19 @@ const Step03 = ({ handleGetLoan2value }) => {
       case "interestRate1":
         checkValueInterestRateStatus(e.target.value);
         handleGetLoan2value("interestRateSplit", e.target.value);
+        localStorage.setItem(
+          "loan2valueInterestRateSplit",
+          e.target.value || ""
+        );
+
         break;
       case "interestRate2":
         checkValueInterestRateStatus2(e.target.value);
         handleGetLoan2value("interestRate2Split", e.target.value);
+        localStorage.setItem(
+          "loan2valueInterestRate2Split",
+          e.target.value || ""
+        );
         break;
       default:
         break;

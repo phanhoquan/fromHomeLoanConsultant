@@ -6,14 +6,7 @@ import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 
-export const types = {
-  1: "Personal Loans",
-  2: "Car Loans",
-  3: "HECS debt",
-  4: "None of the above",
-};
-
-const Step27C = ({ handleGetLoan2value, personalLoansStatus }) => {
+const Step27C = ({ handleGetLoan2value }) => {
   const HECSDebtRef = useRef(null);
   const HECSDebtAmountRef = useRef(null);
 
@@ -63,22 +56,8 @@ const Step27C = ({ handleGetLoan2value, personalLoansStatus }) => {
     );
   }, [HECSDebtAmount]);
 
-  useMemo(() => {
-    if (personalLoansStatus) {
-      setHECSDebtValid(valid.NON_VALID);
-      setHECSDebtAmountValid(valid.NON_VALID);
-      setHECSDebt(localStorage.getItem("loan2HECSDebt"));
-      setHECSDebtAmount(localStorage.getItem("loan2HECSDebtAmount"));
-    }
-    // eslint-disable-next-line
-  }, [personalLoansStatus]);
-
   return (
-    <section
-      className={`formContent-step-second formContent-life-insurance mb-5 ${
-        !!personalLoansStatus?.includes(types[3]) ? "" : "opacity-03"
-      }`}
-    >
+    <section className="formContent-step-second formContent-life-insurance mb-3">
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>
