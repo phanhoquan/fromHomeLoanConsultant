@@ -161,7 +161,7 @@ const ApplicantDetails = () => {
       ) : (
         ""
       )}
-      {applicationStatus === types[1] ? (
+      {applicationStatus === types[1] || applicationStatus === types[2] ? (
         <Step07
           applicationStatus={applicationStatus}
           loan2firstNameOther={loan2firstNameOther}
