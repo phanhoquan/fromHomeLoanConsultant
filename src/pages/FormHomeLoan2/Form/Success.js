@@ -208,6 +208,7 @@ export default function Success() {
           ? "Investment"
           : "Owner Occupied" || "", //32,
       f_1633_additional_notes: localStorage.getItem("contentNoteVale") || "", //33
+      f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //34
 
       cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/refinance-fact-find-2",

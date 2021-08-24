@@ -5,6 +5,7 @@ import LifeInsurance from "../../index";
 
 import Step31 from "./Step31";
 import Step32 from "./Step32";
+import Step33 from "./Step33";
 
 const ResidentialInformation = () => {
   let listMenuStep9 = localStorage.getItem("listMenuStep9")
@@ -18,6 +19,7 @@ const ResidentialInformation = () => {
   const [loan2value, setLoan2value] = useState({
     fullAddress: localStorage.getItem("loan2fullAddress") || "",
     currentlyRenting: localStorage.getItem("loan2currentlyRenting") || "",
+    timeRefinancing: localStorage.getItem("loan2timeRefinancing") || ""
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -26,7 +28,7 @@ const ResidentialInformation = () => {
       [name]: value,
     });
   };
-  const { fullAddress, currentlyRenting } = loan2value;
+  const { fullAddress, currentlyRenting,timeRefinancing } = loan2value;
   const step9 = [
     {
       id: 1,
@@ -44,6 +46,14 @@ const ResidentialInformation = () => {
           : ""
       }`,
     },
+    {
+      id: 3,
+      question: `${
+        timeRefinancing
+          ? "38. What kind of time frame are you thinking of refinancing?"
+          : ""
+      }`,
+    },
   ];
 
   useMemo(() => {
@@ -52,7 +62,7 @@ const ResidentialInformation = () => {
     }
     window.localStorage.setItem("listMenuStep9", JSON.stringify(step9));
     // eslint-disable-next-line
-  }, [fullAddress, currentlyRenting]);
+  }, [fullAddress, currentlyRenting,timeRefinancing]);
 
   return (
     <LifeInsurance
@@ -62,6 +72,7 @@ const ResidentialInformation = () => {
     >
       <Step31 handleGetLoan2value={handleGetLoan2value} />
       <Step32 handleGetLoan2value={handleGetLoan2value} />
+      <Step33 handleGetLoan2value={handleGetLoan2value} />
     </LifeInsurance>
   );
 };
