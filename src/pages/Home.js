@@ -45,7 +45,7 @@ const Dashboard = () => {
           <div className="Dashboard">
             <h2>Welcome!</h2>
             <p>Please select the form below to Get Started</p>
-            <div
+            {/* <div
               className="item"
               role="button"
               onClick={() => history.push("./refinance-fact-find")}
@@ -61,7 +61,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div
               className="item "
               role="button"
