@@ -63,7 +63,7 @@ const Step27C = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                31. Which institution is the HECS debt with?
+                33. Which institution is the HECS debt with?
               </h2>
             </Col>
             <Col xs={12}>
@@ -96,7 +96,7 @@ const Step27C = ({ handleGetLoan2value }) => {
 
             <Col xs={12} className="text-center mt-4">
               <h2 className="mb-3">
-                32. What is the amount left owing on your HECS debt amount?
+                34. What is the amount left owing on your HECS debt amount?
               </h2>
             </Col>
             <Col xs={12}>

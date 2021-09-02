@@ -90,7 +90,13 @@ const LoanInformation = () => {
   ];
 
   useMemo(() => {
-    if (loan2currentLoanStatus) {
+    if (
+      loan2currentLoanStatus ||
+      interestRate ||
+      interestRate2Variable ||
+      interestRateSplit ||
+      interestRate2Split
+    ) {
       setDataListMenuStep2(step2);
     }
     window.localStorage.setItem("listMenuStep2", JSON.stringify(step2));

@@ -62,7 +62,7 @@ const Step14 = ({ handleGetLoan2value, employmentWorkingStatus }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                14. When are you expected to return to work?
+                15. When are you expected to return to work?
               </h2>
             </Col>
             <Col xs={12}>

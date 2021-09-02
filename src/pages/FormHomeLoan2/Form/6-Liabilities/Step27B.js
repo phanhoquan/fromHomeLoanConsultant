@@ -60,7 +60,7 @@ const Step27B = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                29. Which institution is the car loan with?
+                31. Which institution is the car loan with?
               </h2>
             </Col>
             <Col xs={12}>
@@ -93,7 +93,7 @@ const Step27B = ({ handleGetLoan2value }) => {
 
             <Col xs={12} className="text-center mt-4">
               <h2 className="mb-3">
-                30. What is the limit on the car loan amount?
+                32. What is the limit on the car loan amount?
               </h2>
             </Col>
             <Col xs={12}>

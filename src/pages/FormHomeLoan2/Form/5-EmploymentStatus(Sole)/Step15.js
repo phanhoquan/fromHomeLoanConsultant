@@ -122,7 +122,7 @@ const Step15 = ({
         <div>
           <Row>
             <Col xs={12} className="text-center">
-              <h2>15. What is your occupation?</h2>
+              <h2>16. What is your occupation?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

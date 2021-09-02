@@ -87,7 +87,7 @@ const ResidentialInformation = () => {
   ];
 
   useMemo(() => {
-    if (fullAddress || currentlyRenting) {
+    if (fullAddress || currentlyRenting || rentalPropertyIncome) {
       setDataListMenuStep9(step9);
     }
     window.localStorage.setItem("listMenuStep9", JSON.stringify(step9));

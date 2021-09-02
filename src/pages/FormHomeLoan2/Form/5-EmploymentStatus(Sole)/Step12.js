@@ -28,7 +28,7 @@ const Step12 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                12. You mentioned that you are working{" "}
+                13. You mentioned that you are working{" "}
                 <br className="d-block" />‘{employmentStatus}’ Is that correct?
               </h2>
             </Col>

@@ -75,7 +75,7 @@ const Step17 = ({
         <div>
           <Row>
             <Col xs={12} className="text-center">
-              <h2 className="mb-4">17. What type of business is this?</h2>
+              <h2 className="mb-4">19. What type of business is this?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

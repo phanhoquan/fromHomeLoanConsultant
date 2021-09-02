@@ -133,7 +133,15 @@ const ApplicantDetails = () => {
   ];
 
   useMemo(() => {
-    if (applicationStatus) {
+    if (
+      applicationStatus ||
+      firstNameOther ||
+      lastNameOther ||
+      relationshipYour ||
+      soleApplicantAge ||
+      jointApplicantAge ||
+      loan2emailApplicants
+    ) {
       setDataListMenuStep3(step3);
     }
     window.localStorage.setItem("listMenuStep3", JSON.stringify(step3));

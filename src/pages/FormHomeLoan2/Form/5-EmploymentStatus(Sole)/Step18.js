@@ -81,7 +81,7 @@ const Step18 = ({
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                18. How many years has the ABN for this <br />
+                20. How many years has the ABN for this <br />
                 business been registered for?
               </h2>
             </Col>

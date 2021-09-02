@@ -110,6 +110,8 @@ export default function Success() {
 
       f_1584_joint_applicant_relationship_status:
         localStorage.getItem("loan2relationshipYour") || "", // 6
+      f_1711_partners_email_address:
+        localStorage.getItem("loan2emailApplicants") || "", // 6
 
       f_1585_age_sole_applicant:
         localStorage.getItem("loan2soleApplicantAge") || "", //7
@@ -148,7 +150,8 @@ export default function Success() {
         localStorage.getItem("loan2employmentWorkingStatus") || "", //15
       f_1608_job_role_sole_applicant:
         localStorage.getItem("loan2occupation") || "", //16
-
+      f_1713_sole_applicants_salary:
+        localStorage.getItem("loan2yourSalary") || "", //16B
       f_1609_job_duration_sole_applicant:
         localStorage.getItem("loan2numberYearWorking") || "", //17
 
@@ -209,7 +212,8 @@ export default function Success() {
           : "Owner Occupied" || "", //32,
       f_1633_additional_notes: localStorage.getItem("contentNoteVale") || "", //33
       f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //34
-
+      f_1712_rental_property_income:
+        localStorage.getItem("rentalPropertyIncome") || "",
       cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/refinance-fact-find-2",
     });

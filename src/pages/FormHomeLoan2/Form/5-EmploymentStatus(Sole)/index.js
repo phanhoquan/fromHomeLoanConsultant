@@ -5,20 +5,21 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
-import Step12 from "../5-EmploymentStatus(Sole)/Step12";
-import Step13 from "../5-EmploymentStatus(Sole)/Step13";
-import Step14 from "../5-EmploymentStatus(Sole)/Step14";
-import Step15 from "../5-EmploymentStatus(Sole)/Step15";
-import Step16 from "../5-EmploymentStatus(Sole)/Step16";
-import Step17 from "../5-EmploymentStatus(Sole)/Step17";
-import Step18 from "../5-EmploymentStatus(Sole)/Step18";
-import Step19 from "../5-EmploymentStatus(Sole)/Step19";
-import Step20 from "../5-EmploymentStatus(Sole)/Step20";
+import Step12 from "./Step12";
+import Step13 from "./Step13";
+import Step14 from "./Step14";
+import Step15 from "./Step15";
+import Step16 from "./Step16";
+import Step16B from "./Step16B";
+import Step17 from "./Step17";
+import Step18 from "./Step18";
+import Step19 from "./Step19";
+import Step20 from "./Step20";
 
-import Step21 from "../5-EmploymentStatus(Sole)/Step21";
-import Step22 from "../5-EmploymentStatus(Sole)/Step22";
-import Step23 from "../5-EmploymentStatus(Sole)/Step23";
-import Step24 from "../5-EmploymentStatus(Sole)/Step24";
+import Step21 from "./Step21";
+import Step22 from "./Step22";
+import Step23 from "./Step23";
+import Step24 from "./Step24";
 
 export const types = {
   1: "Sole Applicant",
@@ -41,6 +42,10 @@ export const types3 = {
   5: "Unemployed ",
   6: "Maternal Leave ",
 };
+export const types4 = {
+  1: "YES ",
+  2: "NO ",
+};
 
 const EmploymentStatusSoleJoint = () => {
   const history = useHistory();
@@ -50,6 +55,9 @@ const EmploymentStatusSoleJoint = () => {
     ? JSON.parse(localStorage.getItem("listMenuStep5"))
     : [];
   const employmentStatus = localStorage.getItem("loan2employmentStatus");
+  const [employmentStatusStep, setEmploymentStatusStep] =
+    useState(employmentStatus);
+
   const [dataListMenuStep5, setDataListMenuStep5] = useState(
     listMenuStep5 || []
   );
@@ -73,6 +81,7 @@ const EmploymentStatusSoleJoint = () => {
       localStorage.getItem("loan2employmentPartnersWorkingStatus") || "",
     numberPartnerReturn: localStorage.getItem("loan2numberPartnerReturn") || "",
     partnersSalary: localStorage.getItem("loan2partnersSalary") || "",
+    loan2yourSalary: localStorage.getItem("loan2yourSalary") || "",
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -81,17 +90,39 @@ const EmploymentStatusSoleJoint = () => {
       [name]: value,
     });
     if (name === "employmentWorkingStatus") {
+      setEmploymentStatusStep(value);
       switch (value.trim()) {
         case types2[1]:
         case types2[2]:
         case types2[3]:
           window.localStorage.setItem("loan2numberPartnerReturn16", "");
           window.localStorage.setItem("loan2typeOfBusinessOther", "");
+          window.localStorage.setItem("loan2taxReturns", "");
+          window.localStorage.setItem("loan2priceTax2019", "");
+          window.localStorage.setItem("loan2priceTax2020", "");
+          setLoan2value({
+            ...loan2value,
+            employmentWorkingStatus: value,
+            numberPartnerReturn16: "",
+            typeOfBusinessOther: "",
+            taxReturns: "",
+            priceTax2019: "",
+            priceTax2020: "",
+          });
           break;
         case types2[4]:
           window.localStorage.setItem("loan2numberPartnerReturn16", "");
           window.localStorage.setItem("loan2occupation", "");
           window.localStorage.setItem("loan2numberYearWorking", "");
+          window.localStorage.setItem("loan2yourSalary", "");
+          setLoan2value({
+            ...loan2value,
+            employmentWorkingStatus: value,
+            numberPartnerReturn16: "",
+            loan2yourSalary: "",
+            occupation: "",
+            numberYearWorking: "",
+          });
           break;
         case types2[5]:
           window.localStorage.setItem("loan2numberPartnerReturn16", "");
@@ -99,6 +130,23 @@ const EmploymentStatusSoleJoint = () => {
           window.localStorage.setItem("loan2numberYearWorking", "");
           window.localStorage.setItem("loan2typeOfBusinessOther", "");
           window.localStorage.setItem("loan2businessBeenRegistered", "");
+          window.localStorage.setItem("loan2taxReturns", "");
+          window.localStorage.setItem("loan2priceTax2019", "");
+          window.localStorage.setItem("loan2priceTax2020", "");
+          window.localStorage.setItem("loan2yourSalary", "");
+
+          setLoan2value({
+            ...loan2value,
+            employmentWorkingStatus: value,
+            numberPartnerReturn16: "",
+            loan2yourSalary: "",
+            occupation: "",
+            numberYearWorking: "",
+            typeOfBusinessOther: "",
+            priceTax2019: "",
+            priceTax2020: "",
+          });
+
           break;
         default:
           break;
@@ -111,6 +159,16 @@ const EmploymentStatusSoleJoint = () => {
 
     if (name === "employmentPartnersWorkingStatus" && value !== types3[6]) {
       window.localStorage.setItem("loan2numberPartnerReturn", "");
+    }
+    if (name === "taxReturns" && value === types4[2]) {
+      window.localStorage.setItem("loan2priceTax2019", "");
+      window.localStorage.setItem("loan2priceTax2020", "");
+      setLoan2value({
+        ...loan2value,
+        taxReturns: value,
+        priceTax2019: "",
+        priceTax2020: "",
+      });
     }
   };
   const {
@@ -128,8 +186,10 @@ const EmploymentStatusSoleJoint = () => {
     employmentPartnersWorkingStatus,
     numberPartnerReturn,
     partnersSalary,
+    loan2yourSalary,
   } = loan2value;
-  const titleStep12 = `12. You mentioned that you are working ‘${employmentStatus}’ Is that correct?`;
+
+  const titleStep12 = `13. You mentioned that you are working ‘${employmentStatus}’ Is that correct?`;
   const step5 = [
     {
       id: 1,
@@ -138,92 +198,96 @@ const EmploymentStatusSoleJoint = () => {
     {
       id: 2,
       question: `${
-        employmentWorkingStatus ? "13. What is your employment status?" : ""
+        employmentWorkingStatus ? "14. What is your employment status?" : ""
       }`,
     },
     {
       id: 3,
       question: `${
         numberPartnerReturn16
-          ? "14. When are you expected to return to work?"
+          ? "15. When are you expected to return to work?"
           : ""
       }`,
     },
     {
       id: 4,
-      question: `${occupation ? "15. What is your occupation?" : ""}`,
+      question: `${occupation ? "16. What is your occupation?" : ""}`,
     },
     {
       id: 5,
       question: `${
         numberYearWorking
-          ? "16. How long have you been working at this job for?"
+          ? "17. How long have you been working at this job for?"
           : ""
       }`,
     },
     {
       id: 6,
-      question: `${
-        typeOfBusinessOther ? "17. What type of business is this?" : ""
-      }`,
+      question: `${loan2yourSalary ? "18. What is your salary?" : ""}`,
     },
     {
       id: 7,
       question: `${
-        businessBeenRegistered
-          ? "18. How many years has the ABN for this business been registered for?"
-          : ""
+        typeOfBusinessOther ? "19. What type of business is this?" : ""
       }`,
     },
     {
       id: 8,
       question: `${
-        taxReturns
-          ? "19. Have the tax returns for 2019/2020 been completed?"
+        businessBeenRegistered
+          ? "20. How many years has the ABN for this business been registered for?"
           : ""
       }`,
     },
     {
       id: 9,
       question: `${
-        priceTax2019 ? "20. What was your 2019 taxable income?" : ""
+        taxReturns
+          ? "21. Have the tax returns for 2019/2020 been completed?"
+          : ""
       }`,
     },
     {
       id: 10,
       question: `${
-        priceTax2020 ? "21. What was your 2020 taxable income?" : ""
+        priceTax2019 ? "22. What was your 2019 taxable income?" : ""
       }`,
     },
     {
       id: 11,
       question: `${
-        partnersOccupation && jointApplicationStatus === types[2]
-          ? "22. What is your partners occupation?"
-          : ""
+        priceTax2020 ? "23. What was your 2020 taxable income?" : ""
       }`,
     },
     {
       id: 12,
       question: `${
-        employmentPartnersWorkingStatus && jointApplicationStatus === types[2]
-          ? "23. What is your partners employment status?"
+        partnersOccupation && jointApplicationStatus === types[2]
+          ? "24. What is your partners occupation?"
           : ""
       }`,
     },
     {
       id: 13,
       question: `${
-        numberPartnerReturn && jointApplicationStatus === types[2]
-          ? "24. When is your partner expected to return to work?"
+        employmentPartnersWorkingStatus && jointApplicationStatus === types[2]
+          ? "25. What is your partners employment status?"
           : ""
       }`,
     },
     {
       id: 14,
       question: `${
+        numberPartnerReturn && jointApplicationStatus === types[2]
+          ? "26. When is your partner expected to return to work?"
+          : ""
+      }`,
+    },
+    {
+      id: 15,
+      question: `${
         partnersSalary && jointApplicationStatus === types[2]
-          ? "25. What is your partners salary?"
+          ? "27. What is your partners salary?"
           : ""
       }`,
     },
@@ -244,7 +308,8 @@ const EmploymentStatusSoleJoint = () => {
       partnersOccupation ||
       employmentPartnersWorkingStatus ||
       numberPartnerReturn ||
-      partnersSalary
+      partnersSalary ||
+      loan2yourSalary
     ) {
       setDataListMenuStep5(step5);
     }
@@ -265,6 +330,7 @@ const EmploymentStatusSoleJoint = () => {
     employmentPartnersWorkingStatus,
     numberPartnerReturn,
     partnersSalary,
+    loan2yourSalary,
   ]);
   const onClickNext = () => {
     history.push("/refinance-fact-find-2/Liabilities");
@@ -296,6 +362,12 @@ const EmploymentStatusSoleJoint = () => {
         employmentWorkingStatus={employmentWorkingStatus}
         workingStatus={workingStatus}
       />
+      {employmentStatusStep.trim() !== types2[4] &&
+      employmentStatusStep.trim() !== types2[5] ? (
+        <Step16B handleGetLoan2value={handleGetLoan2value} />
+      ) : (
+        ""
+      )}
       <Step17
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
@@ -306,9 +378,18 @@ const EmploymentStatusSoleJoint = () => {
         employmentWorkingStatus={employmentWorkingStatus}
         workingStatus={workingStatus}
       />
-      <Step19 handleGetLoan2value={handleGetLoan2value} />
-      <Step20 handleGetLoan2value={handleGetLoan2value} />
-
+      {employmentStatusStep.trim() === types2[4] ? (
+        <>
+          <Step19 handleGetLoan2value={handleGetLoan2value} />
+          {taxReturns === types4[1] ? (
+            <Step20 handleGetLoan2value={handleGetLoan2value} />
+          ) : (
+            ""
+          )}
+        </>
+      ) : (
+        ""
+      )}
       <Step21
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}

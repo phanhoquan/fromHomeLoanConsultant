@@ -48,7 +48,7 @@ const Step13 = ({ handleGetLoan2value, workingStatus }) => {
         <div>
           <Row>
             <Col xs={12} className="text-center mt-3">
-              <h2 className="mb-4">13. What is your employment status?</h2>
+              <h2 className="mb-4">14. What is your employment status?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

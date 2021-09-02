@@ -63,7 +63,7 @@ const Step27A = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                27. Which institution is the personal loan with?
+                29. Which institution is the personal loan with?
               </h2>
             </Col>
             <Col xs={12}>
@@ -99,7 +99,7 @@ const Step27A = ({ handleGetLoan2value }) => {
 
             <Col xs={12} className="text-center mt-4">
               <h2 className="mb-3">
-                28. What is the limit on the personal loan amount?
+                30. What is the limit on the personal loan amount?
               </h2>
             </Col>
             <Col xs={12}>

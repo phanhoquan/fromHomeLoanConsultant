@@ -71,7 +71,7 @@ const Step30 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                34. Which institution is the credit card with?
+                36. Which institution is the credit card with?
               </h2>
             </Col>
             <Col xs={12}>
@@ -108,7 +108,7 @@ const Step30 = ({ handleGetLoan2value }) => {
 
             <Col xs={12} className="text-center mt-4">
               <h2 className="mb-3">
-                35. What is the limit on the credit card?
+                37. What is the limit on the credit card?
               </h2>
             </Col>
             <Col xs={12}>

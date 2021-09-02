@@ -116,47 +116,47 @@ const Liabilities = () => {
       id: 1,
       question: `${
         personalLoansStatus?.length > 0
-          ? "26. Are you currently paying off any personal loans, car loans or HECS debt?"
+          ? "28. Are you currently paying off any personal loans, car loans or HECS debt?"
           : ""
       }`,
     },
     {
       id: 2,
       question: `${
-        personalLoan ? "27. Which institution is the personal loan with?" : ""
+        personalLoan ? "29. Which institution is the personal loan with?" : ""
       }`,
     },
     {
       id: 3,
       question: `${
         personalLoanAmount
-          ? "28. What is the limit on the personal loan amount?"
+          ? "30. What is the limit on the personal loan amount?"
           : ""
       }`,
     },
     {
       id: 4,
       question: `${
-        carLoan ? "29. Which institution is the car loan with?" : ""
+        carLoan ? "31. Which institution is the car loan with?" : ""
       }`,
     },
     {
       id: 5,
       question: `${
-        carLoanAmount ? "30. What is the limit on the car loan amount?" : ""
+        carLoanAmount ? "32. What is the limit on the car loan amount?" : ""
       }`,
     },
     {
       id: 6,
       question: `${
-        HECSDebt ? "31. Which institution is the HECS debt with?" : ""
+        HECSDebt ? "33. Which institution is the HECS debt with?" : ""
       }`,
     },
     {
       id: 7,
       question: `${
         HECSDebtAmount
-          ? "32. What is the amount left owing on your HECS debt amount?"
+          ? "34. What is the amount left owing on your HECS debt amount?"
           : ""
       }`,
     },

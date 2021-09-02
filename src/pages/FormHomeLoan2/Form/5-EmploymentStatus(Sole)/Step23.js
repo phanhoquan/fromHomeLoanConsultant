@@ -103,7 +103,7 @@ const Step23 = ({
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                24. When is your partner expected <br />
+                26. When is your partner expected <br />
                 to return to work?
               </h2>
             </Col>
