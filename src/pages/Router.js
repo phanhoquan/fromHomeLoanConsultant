@@ -5,6 +5,7 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 
 import HomePage from "./Home";
+import App from "../_app/App";
 const HomeLoan = lazy(() => import("./FormHomeLoan/Form"));
 const HomeLoan2 = lazy(() => import("./FormHomeLoan2/Form"));
 const Login = lazy(() => import("./Login"));
@@ -64,6 +65,9 @@ const Router = () => {
       />
       <Route path="/login">
         <Login handleGetIsLogin={handleGetIsLogin} />
+      </Route>
+      <Route path="/app">
+        <App />
       </Route>
     </Switch>
   );
