@@ -9,7 +9,7 @@ export const types = {
   2: "NO",
 };
 
-const Step32 = ({ handleGetLoan2value }) => {
+const Step39 = ({ handleGetLoan2value }) => {
   const [currentlyRenting, setCurrentlyRenting] = useState(
     localStorage.getItem("loan2currentlyRenting") || ""
   );
@@ -21,13 +21,13 @@ const Step32 = ({ handleGetLoan2value }) => {
   };
 
   return (
-    <section className="formContent-step-first pb-4">
+    <section className="formContent-step-first pb-0">
       <Container>
         <div>
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                37. So with that property, are you <br />
+                39. So with that property, are you <br />
                 currently renting it out?
               </h2>
             </Col>
@@ -58,4 +58,4 @@ const Step32 = ({ handleGetLoan2value }) => {
   );
 };
 
-export default Step32;
+export default Step39;

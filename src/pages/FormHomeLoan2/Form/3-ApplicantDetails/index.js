@@ -104,7 +104,9 @@ const ApplicantDetails = () => {
     },
     {
       id: 3,
-      question: `6. What is the joint applicants email address?`,
+      question: loan2emailApplicants
+        ? `6. What is the joint applicants email address?`
+        : "",
     },
     {
       id: 4,

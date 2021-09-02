@@ -5,9 +5,15 @@ import { Container, Row, Col } from "react-bootstrap";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
-const listHomeLoan = ["As soon as possible", "Within the next week", "Within the next month", "Within 6 Months", "6 months or more"];
+const listHomeLoan = [
+  "As soon as possible",
+  "Within the next week",
+  "Within the next month",
+  "Within 6 Months",
+  "6 months or more",
+];
 
-const Step33 = ({ handleGetLoan2value }) => {
+const Step41 = ({ handleGetLoan2value }) => {
   const timeRefinancingRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [timeRefinancing, setTimeRefinancing] = useState(
@@ -43,7 +49,7 @@ const Step33 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                38. What kind of time frame are you thinking of refinancing?
+                41. What kind of time frame are you thinking of refinancing?
               </h2>
             </Col>
             <Col xs={12}>
@@ -93,4 +99,4 @@ const Step33 = ({ handleGetLoan2value }) => {
   );
 };
 
-export default Step33;
+export default Step41;

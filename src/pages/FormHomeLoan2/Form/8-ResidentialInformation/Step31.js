@@ -6,7 +6,7 @@ import { valid } from "../../../../utils/constant";
 import { getZipCodeWithAddress } from "../../../../utils/googleApi";
 import InputGoogleAddress from "../../../../Components/InputGoogleAddress2";
 
-const Step31 = ({ handleGetLoan2value }) => {
+const Step38 = ({ handleGetLoan2value }) => {
   const fullAddressRef = useRef(null);
   const [zipCodeState, setZipCodeState] = useState({
     street: localStorage.getItem("loan2street") || "",
@@ -112,7 +112,7 @@ const Step31 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                36. What is the full residential address <br />
+                38. What is the full residential address <br />
                 of your current property?
               </h2>
             </Col>
@@ -144,4 +144,4 @@ const Step31 = ({ handleGetLoan2value }) => {
   );
 };
 
-export default Step31;
+export default Step38;
