@@ -1,12 +1,12 @@
-import { Badge } from "@material-ui/core";
-import { AccountCircle } from "@material-ui/icons";
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { links } from "../../config/links";
-import { theme } from "../../theme";
-import { ButtonRegular } from "../buttons/ButtonRegular";
-import { TextSmall } from "../texts/TextSmall";
+import { Badge } from "@material-ui/core"
+import { AccountCircle } from "@material-ui/icons"
+import React from "react"
+import { NavLink } from "react-router-dom"
+import styled from "styled-components"
+import { links } from "../../config/links"
+import { theme } from "../../theme"
+import { ButtonRegular } from "../buttons/ButtonRegular"
+import { TextSmall } from "../texts/TextSmall"
 
 export const Header = () => {
   return (
@@ -25,27 +25,26 @@ export const Header = () => {
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "right",
-          }}
-        >
+          }}>
           <AccountCircle color="primary" />
         </CustomBadge>
         <TextSmall>Hi Adam!</TextSmall>
       </UerInfo>
     </Root>
-  );
-};
+  )
+}
 
 const UerInfo = styled.div`
   display: flex;
   gap: 5px;
   align-items: center;
   cursor: pointer;
-`;
+`
 const CustomBadge = styled(Badge)`
   .MuiBadge-dot {
     background-color: ${theme.color.green2};
   }
-`;
+`
 
 const Root = styled.div`
   display: flex;
@@ -58,4 +57,4 @@ const Root = styled.div`
     width: 2em;
     height: 2em;
   }
-`;
+`

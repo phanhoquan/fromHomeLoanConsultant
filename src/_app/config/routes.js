@@ -1,5 +1,5 @@
-import { FilesRequest } from "../pages/filesRequest/FilesRequest";
-import { links } from "./links";
+import { FilesRequest } from "../pages/filesRequest/FilesRequest"
+import { links } from "./links"
 
 export const routes = [
   {
@@ -7,4 +7,4 @@ export const routes = [
     component: FilesRequest,
     extract: true,
   },
-];
+]

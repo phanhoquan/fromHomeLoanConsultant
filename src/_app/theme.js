@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles"
 
 // generate color accents: http://scg.ar-ch.org/
 const palette = {
@@ -17,7 +17,7 @@ const palette = {
 
   grey: "#989898",
   grey1: "#e5e5e5",
-};
+}
 
 // custom colors
 const color = {
@@ -28,7 +28,7 @@ const color = {
   error: palette.red2,
   warning: palette.yellow2,
   success: palette.green2,
-};
+}
 
 // custom spacings margins and paddings
 const spacing = {
@@ -39,19 +39,19 @@ const spacing = {
   l: "16px",
   xl: "32px",
   xxl: "64px",
-};
+}
 
 const deviceWidth = {
   mobile: "425px",
   tablet: "768px",
   laptop: "1024px",
   desktop: "2560px",
-};
+}
 
 const font = {
   regular: "Rubik Regular",
   bold: "Rubik Bold",
-};
+}
 
 const fontSize = {
   xxl: "28px",
@@ -60,7 +60,7 @@ const fontSize = {
   m: "16px",
   s: "12px",
   xs: "10px",
-};
+}
 
 // Material UI theme
 const mui = createTheme({
@@ -108,7 +108,7 @@ const mui = createTheme({
   shape: {
     borderRadius: 1,
   },
-});
+})
 
 // combine all theme objects into one, make sure there are no name conflicts
 // with the Material UI theme properties, since they all share the same object
@@ -119,4 +119,4 @@ export const theme = {
   font,
   fontSize,
   mui,
-};
+}

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { TextField } from "@material-ui/core";
+import styled from "styled-components"
+import { TextField } from "@material-ui/core"
 
 export const MUITextField = styled(TextField).attrs((props) => ({
   variant: "outlined",
@@ -10,4 +10,4 @@ export const MUITextField = styled(TextField).attrs((props) => ({
     font-size: 14px;
     height: 14px;
   }
-`;
+`

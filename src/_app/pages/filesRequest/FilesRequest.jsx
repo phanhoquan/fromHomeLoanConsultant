@@ -1,12 +1,12 @@
-import { TextField } from "@material-ui/core";
-import React from "react";
-import styled from "styled-components";
-import { ButtonRegular } from "../../components/buttons/ButtonRegular";
-import { LeftLayout } from "../../components/layouts/LeftLayout";
-import { RightLayout } from "../../components/layouts/RightLayout";
-import { MUITextField } from "../../components/TextFields/MUITextField";
-import { TextRegular } from "../../components/texts/TextRegular";
-import { theme } from "../../theme";
+import { TextField } from "@material-ui/core"
+import React from "react"
+import styled from "styled-components"
+import { ButtonRegular } from "../../components/buttons/ButtonRegular"
+import { LeftLayout } from "../../components/layouts/LeftLayout"
+import { RightLayout } from "../../components/layouts/RightLayout"
+import { MUITextField } from "../../components/TextFields/MUITextField"
+import { TextRegular } from "../../components/texts/TextRegular"
+import { theme } from "../../theme"
 
 export const FilesRequest = () => {
   return (
@@ -26,8 +26,8 @@ export const FilesRequest = () => {
       </LeftLayout>
       <RightLayout>Right</RightLayout>
     </>
-  );
-};
+  )
+}
 
 const Item = styled.div`
   display: flex;
@@ -37,10 +37,10 @@ const Item = styled.div`
   &.MuiInputBase-root.Mui-focused fieldset {
     border-color: red !important;
   }
-`;
+`
 
 const FieldItems = styled.div`
   display: flex;
   gap: ${theme.spacing.l};
   align-items: flex-end;
-`;
+`

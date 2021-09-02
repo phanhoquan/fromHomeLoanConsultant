@@ -9,4 +9,4 @@ export const links = {
   teamMemberManagement: {
     index: () => "/app/document-request",
   },
-};
+}

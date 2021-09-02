@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.1.8",
     "bootstrap": "^4.5.0",
     "cleave.js": "^1.5.10",
+    "prettier": "^2.3.2",
     "qs": "^6.9.4",
     "react": "^17.0.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
@@ -33,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write src/_app/."
   },
   "eslintConfig": {
     "extends": "react-app"
