@@ -59,7 +59,7 @@ const Step07A = ({
   };
 
   const firstName = localStorage.getItem("loan2firstName") || "";
-  const title = `7. What are the ages of ${firstName}?`;
+  const title = `8. What are the ages of ${firstName}?`;
 
   useMemo(() => {
     localStorage.setItem("loan2soleApplicantAge", soleApplicantAge);
@@ -75,7 +75,7 @@ const Step07A = ({
               <h2 className="mb-4">
                 {applicationStatus === types[2]
                   ? title
-                  : "7. What is the age of the applicant?"}
+                  : "8. What is the age of the applicant?"}
               </h2>
             </Col>
 

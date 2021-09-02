@@ -43,7 +43,7 @@ const Step06 = ({ loan2firstNameOther, handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                6. What is your relationship with {loan2firstNameOther}?
+                7. What is your relationship with {loan2firstNameOther}?
               </h2>
             </Col>
             <Col xs={12}>

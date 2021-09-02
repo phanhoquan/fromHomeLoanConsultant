@@ -26,7 +26,7 @@ const Step10 = ({ handleGetLoan2value }) => {
         <div>
           <Row>
             <Col xs={12} className="text-center mt-3">
-              <h2 className="mb-4">10. Do you have any other dependants?</h2>
+              <h2 className="mb-4">11. Do you have any other dependants?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2 mb-2">

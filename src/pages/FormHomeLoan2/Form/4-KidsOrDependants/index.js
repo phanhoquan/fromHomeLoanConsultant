@@ -88,28 +88,28 @@ const KidsOrDependents = () => {
     {
       id: 1,
       question: `${
-        kidsOrDependant ? "8. Do you have any kids or dependants?" : ""
+        kidsOrDependant ? "9. Do you have any kids or dependants?" : ""
       }`,
     },
     {
       id: 2,
       question: `${
         chillApplicantAge?.length > 0
-          ? "9. What are the age of these kidsdependants?"
+          ? "10. What are the age of these kidsdependants?"
           : ""
       }`,
     },
     {
       id: 10,
       question: `${
-        otherDependents ? "10. Do you have any other dependants?" : ""
+        otherDependents ? "11. Do you have any other dependants?" : ""
       }`,
     },
     {
       id: 11,
       question: `${
         otherChillApplicantAge?.length > 0
-          ? "11. What are the age of these other dependants?"
+          ? "12. What are the age of these other dependants?"
           : ""
       }`,
     },

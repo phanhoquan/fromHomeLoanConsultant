@@ -7,6 +7,7 @@ import LifeInsurance from "../../index";
 
 import Step04 from "./Step04";
 import Step05 from "./Step05";
+import Step05B from "./Step05B";
 import Step06 from "./Step06";
 import Step07 from "./Step07";
 import Step07B from "./Step07B";
@@ -38,6 +39,7 @@ const ApplicantDetails = () => {
     relationshipYour: localStorage.getItem("loan2relationshipYour") || "",
     soleApplicantAge: localStorage.getItem("loan2soleApplicantAge") || "",
     jointApplicantAge: localStorage.getItem("loan2jointApplicantAge") || "",
+    loan2emailApplicants: localStorage.getItem("loan2emailApplicants") || "",
   });
 
   const handelGetApplicationStatus = (option) => {
@@ -48,12 +50,14 @@ const ApplicantDetails = () => {
       localStorage.setItem("loan2relationshipYour", "");
       localStorage.setItem("loan2soleApplicantAge", "");
       localStorage.setItem("loan2jointApplicantAge", "");
+      localStorage.setItem("loan2emailApplicants", "");
       setLoan2value({
         firstNameOther: "",
         lastNameOther: "",
         relationshipYour: "",
         soleApplicantAge: "",
         jointApplicantAge: "",
+        loan2emailApplicants: "",
       });
     }
   };
@@ -74,12 +78,13 @@ const ApplicantDetails = () => {
     relationshipYour,
     soleApplicantAge,
     jointApplicantAge,
+    loan2emailApplicants,
   } = loan2value;
 
   const firstName = localStorage.getItem("loan2firstName") || "";
-  const title = `7. What are the ages of ${firstName}?`;
-  const title2 = `7. What are the ages of ${loan2firstNameOther}?`;
-  const titleRelationshipYour = `6. What is your relationship with ${loan2firstNameOther}?`;
+  const title = `8. What are the ages of ${firstName}?`;
+  const title2 = `8. What are the ages of ${loan2firstNameOther}?`;
+  const titleRelationshipYour = `7. What is your relationship with ${loan2firstNameOther}?`;
   const step3 = [
     {
       id: 1,
@@ -99,10 +104,14 @@ const ApplicantDetails = () => {
     },
     {
       id: 3,
-      question: `${relationshipYour ? titleRelationshipYour : ""}`,
+      question: `6. What is the joint applicants email address?`,
     },
     {
       id: 4,
+      question: `${relationshipYour ? titleRelationshipYour : ""}`,
+    },
+    {
+      id: 5,
       question: `${
         soleApplicantAge && applicationStatus === types[2]
           ? title
@@ -114,7 +123,7 @@ const ApplicantDetails = () => {
       }`,
     },
     {
-      id: 5,
+      id: 6,
       question: `${
         jointApplicantAge && applicationStatus === types[2] ? title2 : ""
       }`,
@@ -134,6 +143,7 @@ const ApplicantDetails = () => {
     relationshipYour,
     soleApplicantAge,
     jointApplicantAge,
+    loan2emailApplicants,
   ]);
 
   const onClickNext = () => {
@@ -153,6 +163,7 @@ const ApplicantDetails = () => {
             handleGetLoan2firstNameOther={handleGetLoan2firstNameOther}
             handleGetLoan2value={handleGetLoan2value}
           />
+          <Step05B handleGetLoan2value={handleGetLoan2value} />
           <Step06
             loan2firstNameOther={loan2firstNameOther}
             handleGetLoan2value={handleGetLoan2value}

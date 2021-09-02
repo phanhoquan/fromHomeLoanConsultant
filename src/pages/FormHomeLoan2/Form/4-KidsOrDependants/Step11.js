@@ -186,7 +186,7 @@ const Step11 = ({ handleGetLoan2value, otherDependents }) => {
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-5">
-                11. What are the age of these other dependants?
+                12. What are the age of these other dependants?
               </h2>
             </Col>
             <Row className="info-customer position-relative w-100">
