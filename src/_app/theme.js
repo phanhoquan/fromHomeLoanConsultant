@@ -108,6 +108,37 @@ const mui = createTheme({
   shape: {
     borderRadius: 1,
   },
+  overrides: {
+    MuiOutlinedInput: {
+      input: {
+        height: 0,
+        fontSize: fontSize.m,
+        backgroundColor: color.white,
+      },
+      adornedEnd: {
+        backgroundColor: color.white,
+      },
+    },
+    MuiSelect: {
+      selectMenu: {
+        height: 0,
+        display: "flex",
+        alignItems: "center",
+        minHeight: 0,
+      },
+    },
+    MuiSvgIcon: {
+      root: {
+        height: "1.5em",
+        width: "1.5em",
+      },
+    },
+    MuiPaper: {
+      root: {
+        marginBottom: spacing.l,
+      },
+    },
+  },
 })
 
 // combine all theme objects into one, make sure there are no name conflicts
