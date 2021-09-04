@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { theme } from "../../theme"
 
 export const MainLayout = (props) => {
   const { children } = props
@@ -9,5 +10,8 @@ export const MainLayout = (props) => {
 const Root = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+
+  ${theme.mui.breakpoints.up(1500)} {
+    height: 100%;
+  }
 `

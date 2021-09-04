@@ -7,7 +7,7 @@ import { theme } from "../../../theme"
 export const ListDocuments = () => {
   return (
     <CustomList>
-      {new Array(10).fill(null).map((_, index) => (
+      {new Array(4).fill(null).map((_, index) => (
         <Paper key={index} variant="outlined">
           <ListItem button>
             <CustomListItemText
@@ -17,7 +17,7 @@ export const ListDocuments = () => {
             />
             <CustomListItemSecondaryAction>
               <IconButton edge="end">
-                <LogoutIcon />
+                <LogoutIcon width={20} height={20} />
               </IconButton>
             </CustomListItemSecondaryAction>
           </ListItem>
@@ -29,7 +29,7 @@ export const ListDocuments = () => {
 
 const CustomList = styled(List)`
   overflow-y: auto;
-  max-height: calc(100% - 300px);
+  max-height: 500px;
   min-height: 200px;
 `
 

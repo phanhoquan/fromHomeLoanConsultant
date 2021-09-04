@@ -4,6 +4,7 @@ import { createTheme } from "@material-ui/core/styles"
 const palette = {
   blue: "#ecf2fb", // default blue
   blue1: "#0065ff",
+  blue2: "#ebf3ff",
 
   black1: "#212121", // default black
 
@@ -57,8 +58,8 @@ const fontSize = {
   xxl: "28px",
   xl: "20px",
   l: "18px",
-  m: "16px",
-  s: "12px",
+  m: "13px",
+  s: "10px",
   xs: "10px",
 }
 
@@ -70,13 +71,14 @@ const mui = createTheme({
     body1: {
       fontSize: fontSize.m,
       lineHeight: "24px",
+      fontWeight: 600,
     },
     body2: {
       fontSize: fontSize.s,
       lineHeight: "16px",
     },
     button: {
-      fontSize: fontSize.s,
+      fontSize: fontSize.m,
     },
   },
   palette: {
@@ -126,9 +128,7 @@ const mui = createTheme({
         alignItems: "center",
         minHeight: 0,
       },
-    },
-    MuiSvgIcon: {
-      root: {
+      iconOutlined: {
         height: "1.5em",
         width: "1.5em",
       },

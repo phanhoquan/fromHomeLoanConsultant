@@ -20,4 +20,9 @@ const Root = styled.div`
   padding: ${theme.spacing.l} ${theme.spacing.xl};
   background-color: ${theme.color.blue};
   gap: ${theme.spacing.l};
+  max-width: 600px;
+
+  ${theme.mui.breakpoints.up(1500)} {
+    height: 100%;
+  }
 `
