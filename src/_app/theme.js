@@ -57,7 +57,7 @@ const font = {
 const fontSize = {
   xxl: "28px",
   xl: "20px",
-  l: "18px",
+  l: "15px",
   m: "13px",
   s: "10px",
   xs: "10px",
@@ -68,10 +68,12 @@ const mui = createTheme({
   typography: {
     fontFamily: font.regular,
     htmlFontSize: parseInt(fontSize.m),
+    h6: {
+      fontSize: fontSize.l,
+    },
     body1: {
       fontSize: fontSize.m,
       lineHeight: "24px",
-      fontWeight: 600,
     },
     body2: {
       fontSize: fontSize.s,
@@ -119,6 +121,9 @@ const mui = createTheme({
       },
       adornedEnd: {
         backgroundColor: color.white,
+      },
+      root: {
+        width: "100%",
       },
     },
     MuiSelect: {

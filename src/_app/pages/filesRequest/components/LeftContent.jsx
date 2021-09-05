@@ -1,18 +1,22 @@
 import { Button, MenuItem, OutlinedInput, Select } from "@material-ui/core"
 import React from "react"
 import styled from "styled-components"
-import { IndentAll } from "../../assets/icons"
-import { ButtonRegular } from "../../components/buttons/ButtonRegular"
-import { LeftLayout } from "../../components/layouts/LeftLayout"
-import { PageSearch } from "../../components/PageSearch/PageSearch"
-import { usePageSearch } from "../../components/PageSearch/usePageSearch"
-import { TextRegular } from "../../components/texts/TextRegular"
-import { TextSmall } from "../../components/texts/TextSmall"
-import { theme } from "../../theme"
-import { ListDocuments } from "./components/ListDocuments"
+import { IndentAll } from "../../../assets/icons"
+import { ButtonRegular } from "../../../components/buttons/ButtonRegular"
+import { LeftLayout } from "../../../components/layouts/LeftLayout"
+import { PageSearch } from "../../../components/PageSearch/PageSearch"
+import { usePageSearch } from "../../../components/PageSearch/usePageSearch"
+import { TextRegular } from "../../../components/texts/TextRegular"
+import { TextSmall } from "../../../components/texts/TextSmall"
+import { links } from "../../../config/links"
+import { useNavigator } from "../../../hooks/useNavigator"
+import { theme } from "../../../theme"
+import { ListDocuments } from "./ListDocuments"
 
 export const LeftContent = () => {
   const search = usePageSearch()
+  const navigator = useNavigator()
+
   return (
     <LeftLayout>
       <FieldItems>
@@ -34,7 +38,7 @@ export const LeftContent = () => {
             </CustomMenuItem>
           </Select>
         </Item>
-        <ButtonRegular>New templete</ButtonRegular>
+        <ButtonRegular onClick={() => navigator.goTo(links.filesRequest.createTemplate())}>New templete</ButtonRegular>
       </FieldItems>
       <FieldItems>
         <Item>

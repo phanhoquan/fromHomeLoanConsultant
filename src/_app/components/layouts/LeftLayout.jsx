@@ -22,7 +22,7 @@ const Root = styled.div`
   gap: ${theme.spacing.l};
   max-width: 600px;
 
-  ${theme.mui.breakpoints.up(1500)} {
+  ${theme.mui.breakpoints.up("md")} {
     height: 100%;
   }
 `

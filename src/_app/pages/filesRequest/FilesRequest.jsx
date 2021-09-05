@@ -1,6 +1,6 @@
 import React from "react"
-import { LeftContent } from "./LeftContent"
-import { RightContent } from "./RightContent"
+import { LeftContent } from "./components/LeftContent"
+import { RightContent } from "./components/RightContent"
 
 export const FilesRequest = () => {
   return (

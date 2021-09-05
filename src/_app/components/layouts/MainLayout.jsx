@@ -11,7 +11,7 @@ const Root = styled.div`
   display: flex;
   width: 100%;
 
-  ${theme.mui.breakpoints.up(1500)} {
+  ${theme.mui.breakpoints.up("md")} {
     height: 100%;
   }
 `
