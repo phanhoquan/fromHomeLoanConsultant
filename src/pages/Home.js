@@ -79,6 +79,24 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+            <div
+              className="item "
+              role="button"
+              onClick={() => history.push("./refinance-fact-find-3")}
+            >
+              <div className="item-content ">
+                <div className="img2 mr-3 pr-1" />
+                <div className="info">
+                  <p>Refinance Home Loan Consultant 3</p>
+                  <div className="group-date">
+                    Create date: 09/09/2021
+                    <br />
+                    Last update: 10/09/2021
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="btn-logout" role="button" onClick={handleLogOut}>
               Logout
             </div>
