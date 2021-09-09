@@ -629,6 +629,7 @@ const First = () => {
                           customClassLabel={priceBuy ? "active" : ""}
                           iconPrice
                           customClassWrap="email five"
+                          onBlur={() => handleBlur("priceBuy")}
                         />
                       </Col>
                     </Row>
