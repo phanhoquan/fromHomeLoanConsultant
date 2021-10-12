@@ -87,7 +87,7 @@ const Dashboard = () => {
               <div className="item-content ">
                 <div className="img2 mr-3 pr-1" />
                 <div className="info">
-                  <p>Refinance Home Loan Consultant 3</p>
+                  <p>Zabee Refinance HLC</p>
                   <div className="group-date">
                     Create date: 09/09/2021
                     <br />

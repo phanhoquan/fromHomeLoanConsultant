@@ -49,6 +49,10 @@ const Step38 = ({ handleGetLoan2value }) => {
     }
     if (zipCode.street && zipCode.city && zipCode.state && zipCode.postcode) {
       setFullAddressValid(valid.VALID);
+      localStorage.setItem("loan2street", zipCode?.street);
+      localStorage.setItem("loan2city", zipCode?.city);
+      localStorage.setItem("loan2state", zipCode?.state);
+      localStorage.setItem("loan2postcode", zipCode?.postcode);
       return valid.VALID;
     }
     setFullAddressValid(valid.INVALID);

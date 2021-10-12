@@ -89,7 +89,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
     if (jointApplicationStatus && jointApplicationStatus !== types[2]) {
       setPartnersOccupation("");
       setIsShowModal(false);
-      window.localStorage.setItem("loan2partnersOccupation", "");
+      // window.localStorage.setItem("loan2partnersOccupation", "");
       handleGetLoan2value("partnersOccupation", "");
     }
     // eslint-disable-next-line
