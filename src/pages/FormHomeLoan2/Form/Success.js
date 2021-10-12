@@ -189,7 +189,8 @@ export default function Success() {
         localStorage.getItem("loan2personalLoan") || "", //27a,
       f_1621_car_loan_amount:
         localStorage.getItem("loan2personalLoanAmount") || "", // 27a,
-
+      f_1619_joint_applicant_salary:
+        localStorage.getItem("loan2partnersSalary") || "",
       f_1624_personal_loan_institution:
         localStorage.getItem("loan2carLoan") || "", //27b
       f_1625_personal_loan_amount:
