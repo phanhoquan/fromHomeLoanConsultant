@@ -40,7 +40,7 @@ const Step15 = ({
   const checkOccupationStatus = (value) => {
     setIsShowModal(false);
     let test = originArray.includes(value);
-    let testValid = /^([a-zA-Z\s]{2,})$/.test(value);
+    let testValid = value && value.length >= 2;
     if (!test) {
       setOccupationValid(Number(testValid));
       return testValid;
@@ -65,9 +65,11 @@ const Step15 = ({
 
   const onKeyUpHandle = (name, value) => {
     if (name === "occupation") {
-      setOccupation(value.replace(/[0-9]/g, ""));
+      setOccupation(value);
       if (value?.length >= 2) {
         setIsShowModal(true);
+        window.localStorage.setItem("loan2occupation", value);
+        handleGetLoan2value("occupation", value);
       } else {
         setIsShowModal(false);
       }

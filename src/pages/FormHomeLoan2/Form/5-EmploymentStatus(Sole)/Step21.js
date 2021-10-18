@@ -33,7 +33,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   const checkPartnersOccupationStatus = (value) => {
     setIsShowModal(false);
     let test = originArray.includes(value);
-    let testValid = /^([a-zA-Z\s]{2,})$/.test(value);
+    let testValid = value && value.length >= 2;
     if (!test) {
       setPartnersOccupationValid(Number(testValid));
       return testValid;
@@ -67,9 +67,11 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
     }
   };
 
-  const handelOnFocus = (name) => {
+  const handelOnFocus = (name, value) => {
     if (name?.length >= 2) {
       setIsShowModal(true);
+      window.localStorage.setItem("loan2partnersOccupation", value);
+      handleGetLoan2value("partnersOccupation", value);
     } else {
       setIsShowModal(false);
     }
@@ -80,7 +82,6 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
     setPartnersOccupation(name);
     checkPartnersOccupationStatus(name);
     setIsShowModal(false);
-    checkPartnersOccupationStatus(partnersOccupation);
     window.localStorage.setItem("loan2partnersOccupation", name);
     handleGetLoan2value("partnersOccupation", name);
   };
