@@ -9,6 +9,7 @@ const HomeLoan = lazy(() => import("./FormHomeLoan/Form"));
 const HomeLoan2 = lazy(() => import("./FormHomeLoan2/Form"));
 const HomeLoan3 = lazy(() => import("./FormHomeLoan3/Form"));
 const Login = lazy(() => import("./Login"));
+const LivingExpenses = lazy(() => import("./livingExpenses/index"));
 
 const Router = () => {
   const { listen } = useHistory();
@@ -33,6 +34,9 @@ const Router = () => {
 
   return (
     <Switch>
+      <Route path="/living-expenses">
+        <LivingExpenses />
+      </Route>
       <PrivateRoute
         exact
         path="/refinance-fact-find/"

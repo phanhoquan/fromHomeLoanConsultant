@@ -1,0 +1,180 @@
+.livingExpenses {
+  padding-top: pxToRem(30);
+  padding-bottom: 50px;
+
+  * {
+    font-family: 'Rubik' !important;
+  }
+
+  .YourDetail {
+    padding-top: pxToRem(30);
+
+    .info-customer {
+      .wForm-input {
+        label {
+          font-weight: 500;
+          font-size: pxToRem(18);
+          color: #212121;
+        }
+
+        .input-change {
+          padding: pxToRem(10) pxToRem(15);
+          height: pxToRem(50);
+          border-radius: pxToRem(6);
+          outline: none;
+          border: 1px solid #00347b;
+          width: 100%;
+          font-weight: 400;
+          font-size: pxToRem(18);
+          color: #212121;
+
+          &.error {
+            background-color: #ffdede;
+            border-color: #ee4e4e;
+          }
+        }
+
+        .mess-error {
+          font-size: pxToRem(13);
+          margin-top: pxToRem(10);
+          color: #ee4e4e;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .title {
+    font-size: pxToRem(27);
+    color: #00347b;
+    font-weight: 500;
+    margin-bottom: pxToRem(15);
+  }
+
+  .step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .listAction {
+      margin-bottom: pxToRem(15);
+
+      button {
+        color: #212121;
+        font-size: pxToRem(14);
+        padding: pxToRem(5) pxToRem(20);
+        min-width: pxToRem(130);
+        outline: none;
+        text-align: center;
+        font-weight: 500;
+        background-color: #fff;
+        border: 1px solid #00347b;
+        transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+
+        &:hover {
+          background-color: #a9afb7;
+          border-color: #a9afb7;
+        }
+
+        &.active {
+          background-color: #00347b;
+          border-color: #00347b;
+          font-weight: bold;
+          color: #ffffff;
+        }
+
+        &:nth-child(1) {
+          border-top-left-radius: pxToRem(6);
+          border-bottom-left-radius: pxToRem(6);
+          border-right: 0;
+        }
+
+        &:nth-child(3) {
+          border-top-right-radius: pxToRem(6);
+          border-bottom-right-radius: pxToRem(6);
+          border-left: 0;
+        }
+      }
+    }
+  }
+
+  .accordion {
+    .card {
+      border-radius: 0;
+      border: 0 !important;
+      margin-bottom: 2px;
+    }
+
+    .card-header {
+      background-color: #4B5869;
+      border: none;
+      padding: pxToRem(10) pxToRem(0);
+      border-radius: 0 !important;
+
+      .btn-link {
+        padding: 0;
+        outline: none;
+        width: 100%;
+        box-shadow: none;
+        text-decoration: none !important;
+        padding: 0 pxToRem(70);
+
+        &:hover {
+          text-decoration: none !important;
+        }
+      }
+
+      .card-title {
+        display: flex;
+        margin: 0;
+        align-items: center;
+        justify-content: space-between;
+
+        .price {
+          text-transform: lowercase;
+        }
+
+        * {
+          font-size: pxToRem(21);
+          font-weight: 500;
+          color: #ffffff !important;
+        }
+      }
+    }
+
+    .card-body {
+      border: 0;
+      padding: 0;
+    }
+  }
+
+  .totalPrice {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: pxToRem(30) pxToRem(70);
+
+    .price {
+      text-transform: lowercase;
+    }
+
+    * {
+      font-size: pxToRem(25);
+      font-weight: 500;
+      color: #212121 !important;
+    }
+  }
+
+  .btn-primary {
+    color: #ffffff;
+    font-weight: 400;
+    background-color: #00347b;
+    border: 1px solid #00347b;
+    border-radius: 0;
+    min-width: pxToRem(200);
+    height: pxToRem(55);
+    font-size: pxToRem(21);
+  }
+}
