@@ -1,0 +1,73 @@
+.customer-select {
+  width: 100%;
+  max-width: pxToRem(180);
+  margin: auto;
+
+  .input__box {
+    width: 100%;
+
+    &.down {
+      .customSelect__indicator {
+        transform: rotate(-180deg);
+        -webkit-transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .customSelect__control {
+    border-color: #00347b !important;
+    outline: none;
+    box-shadow: none !important;
+    padding-left: pxToRem(10) !important;
+
+    * {
+      cursor: pointer;
+    }
+
+    .customSelect__value-container {
+      height: 100%;
+      padding: 0;
+    }
+
+    .customSelect__indicator-separator {
+      display: none;
+    }
+
+    .customSelect__indicator {
+      background-image: url("../../images/arrow-down-sign-to-navigate.png");
+      padding: 0;
+      background-size: pxToRem(14);
+      height: pxToRem(15);
+      width: pxToRem(14);
+      background-repeat: no-repeat;
+      margin-right: pxToRem(5);
+    }
+  }
+
+  .customSelect__menu {
+    // position: relative;
+    border: 1px solid #00347b !important;
+    padding: 0 !important;
+
+    .customSelect__menu-list {
+      padding: 0 !important;
+    }
+
+    * {
+      cursor: pointer;
+    }
+
+    .customSelect__option {
+      padding: 5px 15px;
+      line-height: 1.2;
+      text-align: left;
+
+      &:hover,
+      &.customSelect__option--is-focused,
+      &.customSelect__option--is-selected {
+        background-color: #00347b !important;
+        color: #ffffff;
+      }
+    }
+  }
+}
