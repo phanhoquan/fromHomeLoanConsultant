@@ -9,6 +9,7 @@ import YourDetail from "./Components/YourDetail";
 import checkEmail from "../../utils/checkEmail";
 import ItemCart from "./Components/ItemCart";
 import AccordionFixed from "./Components/AccordionFixed";
+import AccordionVariable from "./Components/AccordionVariable";
 
 const types = {
   weekly: "Weekly",
@@ -188,7 +189,22 @@ const LivingExpenses = () => {
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
-                  <Card.Body>Hello! I'm another body</Card.Body>
+                  <Card.Body>
+                    <div className="item header">
+                      <div className="titleName text-center" />
+                      <div className="amount text-center">Amount</div>
+                      <div className="frequency text-center">Frequency</div>
+                      <div className="totalAmount text-center">
+                        {types3[frequency]} Amount
+                      </div>
+                    </div>
+                    <AccordionVariable
+                      onChange={onKeyUpHandle}
+                      onBlurHandle={onBlurHandle}
+                      dataForm={dataForm}
+                      onChangeSelect={onChangeSelect}
+                    />
+                  </Card.Body>
                 </Accordion.Collapse>
               </Card>
               <Card>

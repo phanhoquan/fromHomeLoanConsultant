@@ -48,9 +48,31 @@
     // position: relative;
     border: 1px solid #00347b !important;
     padding: 0 !important;
+    z-index: 9;
+    margin-top: 2px !important;
 
     .customSelect__menu-list {
       padding: 0 !important;
+      max-height: 150px;
+
+      // For Google Chrome
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #000;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #000;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+      }
+
     }
 
     * {
@@ -58,12 +80,11 @@
     }
 
     .customSelect__option {
-      padding: 5px 15px;
+      padding: pxToRem(2) pxToRem(15);
       line-height: 1.2;
       text-align: left;
 
       &:hover,
-      &.customSelect__option--is-focused,
       &.customSelect__option--is-selected {
         background-color: #00347b !important;
         color: #ffffff;
