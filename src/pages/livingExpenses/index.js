@@ -7,9 +7,9 @@ import { Card, Accordion, Button } from "react-bootstrap";
 import imgLogo from "../../images/life/logo.svg";
 import YourDetail from "./Components/YourDetail";
 import checkEmail from "../../utils/checkEmail";
-import ItemCart from "./Components/ItemCart";
 import AccordionFixed from "./Components/AccordionFixed";
 import AccordionVariable from "./Components/AccordionVariable";
+import AccordionDiscretionary from "./Components/AccordionDiscretionary";
 
 const types = {
   weekly: "Weekly",
@@ -38,11 +38,13 @@ const LivingExpenses = () => {
     lastName: -1,
     email: -1,
   });
+
   const [dataDetail, setDataDetail] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
+
   const [dataForm, setDataForm] = useState({});
 
   const { firstName, lastName, email } = dataDetail;
@@ -83,6 +85,7 @@ const LivingExpenses = () => {
       [name]: amount > 10000000 ? 10000000 : value,
     });
   };
+
   const onChangeSelect = (option, name) => {
     setDataForm({
       ...dataForm,
@@ -223,20 +226,14 @@ const LivingExpenses = () => {
                       <div className="amount text-center">Amount</div>
                       <div className="frequency text-center">Frequency</div>
                       <div className="totalAmount text-center">
-                        {frequency} Amount
+                        {types3[frequency]} Amount
                       </div>
                     </div>
-                    <ItemCart
+                    <AccordionDiscretionary
                       onChange={onKeyUpHandle}
-                      title="Rent / Board"
-                      name="frequencyBoard"
                       onBlurHandle={onBlurHandle}
-                      totalAmount="$0.00"
-                      value={dataForm?.board}
-                      optionSelect={dataForm?.frequencyBoard}
+                      dataForm={dataForm}
                       onChangeSelect={onChangeSelect}
-                      isShowTooltip
-                      contentTooltip=""
                     />
                   </Card.Body>
                 </Accordion.Collapse>

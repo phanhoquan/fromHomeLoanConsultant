@@ -281,3 +281,8 @@
     }
   }
 }
+
+.tooltip-inner {
+  padding: pxToRem(15) !important;
+  text-align: left !important;
+}
