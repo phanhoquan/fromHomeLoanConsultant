@@ -109,14 +109,12 @@ const LivingExpenses = () => {
   //========Sử lý tính toán==========\\\
   const fourWeekly = 4;
   const fortnightly = 2;
-  const quarterly = 4;
-
+  const quarterly = 3;
+  const annually = 12;
   const amountQuarterly = 13.04; // trung bình Tuần/quý
-
-  var weekNumber = moment(new Date(), "MM-DD-YYYY").week();
   // 1 Số ngày trong tháng
   const numberMonthly = moment(new Date(), "YYYY-MM").daysInMonth();
-  const numberWeeklyOfYear = 52.08; // Trung bình tổng số tuần /1 năm
+  const numberWeeklyOfYear = 52.1429; // Trung bình tổng số tuần /1 năm
 
   //2 Lấy số tuần trong tháng
   const weekLy = numberMonthly / 7.133;
@@ -218,7 +216,7 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${amount.toLocaleString(
+              [nameTotalAmount]: `${(amount * weekLy).toLocaleString(
                 "en-US",
                 myObjCurrency
               )}`,
@@ -230,7 +228,7 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / weekLy).toLocaleString(
+              [nameTotalAmount]: `${amount.toLocaleString(
                 "en-US",
                 myObjCurrency
               )}`,
@@ -242,10 +240,10 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / fourWeekly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: `${(
+                amount *
+                (weekLy / fourWeekly)
+              ).toLocaleString("en-US", myObjCurrency)}`,
             });
             break;
           case "Fortnightly":
@@ -253,10 +251,10 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / fortnightly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: `${(
+                amount *
+                (weekLy / fortnightly)
+              ).toLocaleString("en-US", myObjCurrency)}`,
             });
             break;
           case "Quarterly":
@@ -264,7 +262,7 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / amountQuarterly).toLocaleString(
+              [nameTotalAmount]: `${(amount / quarterly).toLocaleString(
                 "en-US",
                 myObjCurrency
               )}`,
@@ -276,9 +274,10 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount / numberWeeklyOfYear
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: `${(amount / annually).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
             });
             break;
 
@@ -287,6 +286,83 @@ const LivingExpenses = () => {
         }
 
         break;
+      case types.annually:
+        switch (valueSelect) {
+          case "Weekly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(
+                amount * numberWeeklyOfYear
+              ).toLocaleString("en-US", myObjCurrency)}`,
+            });
+            break;
+
+          case "Monthly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount * annually).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "4Weekly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(
+                amount *
+                (numberWeeklyOfYear / fourWeekly)
+              ).toLocaleString("en-US", myObjCurrency)}`,
+            });
+            break;
+          case "Fortnightly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(
+                amount *
+                (numberWeeklyOfYear / fortnightly)
+              ).toLocaleString("en-US", myObjCurrency)}`,
+            });
+            break;
+          case "Quarterly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / fourWeekly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "Annually":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${amount.toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          default:
+            break;
+        }
+
+        break;
+
       default:
         break;
     }
