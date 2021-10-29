@@ -62,7 +62,15 @@ const ItemCart = ({
             onChange={(e) => onChange(e.target.value, name)}
             value={value || ""}
             label="$"
-            onBlur={(e) => onBlurHandle(e.target.value, name)}
+            onBlur={(e) =>
+              onBlurHandle(
+                e.target.value,
+                name,
+                optionSelect,
+                nameSelect,
+                `${name}TotalAmount`
+              )
+            }
             maxLength="10"
             placeholder="800"
           />
@@ -71,7 +79,16 @@ const ItemCart = ({
           <SelectDropdown
             placeholder=""
             listItem={listOption}
-            onChange={(option) => onChangeSelect(option, nameSelect)}
+            onChange={(option) => {
+              onChangeSelect(option, nameSelect);
+              onBlurHandle(
+                `${value}`,
+                name,
+                option,
+                nameSelect,
+                `${name}TotalAmount`
+              );
+            }}
             option={optionSelect || listOption[0]}
           />
           {isShowTooltip ? (

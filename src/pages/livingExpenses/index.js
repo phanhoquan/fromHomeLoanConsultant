@@ -1,38 +1,61 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Card, Accordion, Button } from "react-bootstrap";
-import imgLogo from "../../images/life/logo.svg";
-import YourDetail from "./Components/YourDetail";
+import moment from "moment";
+import { getAllTotalAmount } from "./helpers/index";
 import checkEmail from "../../utils/checkEmail";
-import AccordionFixed from "./Components/AccordionFixed";
-import AccordionVariable from "./Components/AccordionVariable";
-import AccordionDiscretionary from "./Components/AccordionDiscretionary";
+
+import FormIndex from "./Components/Form";
+
+const listOption = [
+  {
+    value: "Annually",
+    label: "Annually",
+  },
+  {
+    value: "Quarterly",
+    label: "Quarterly",
+  },
+  {
+    value: "Monthly",
+    label: "Monthly",
+  },
+  {
+    value: "4Weekly",
+    label: "4 Weekly",
+  },
+  {
+    value: "Fortnightly",
+    label: "Fortnightly",
+  },
+  {
+    value: "Weekly",
+    label: "Weekly",
+  },
+];
 
 const types = {
   weekly: "Weekly",
   monthly: "Monthly",
   annually: "Annually",
 };
-const types2 = {
-  Weekly: "week",
-  Monthly: "month",
-  Annually: "year",
-};
-const types3 = {
-  Weekly: "",
-  Monthly: "Monthly",
-  Annually: "Annual",
-};
+
 const LivingExpenses = () => {
   var root = document.getElementsByTagName("html")[0];
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
 
-  const [frequency, setFrequency] = useState("Monthly");
+  const [frequency, setFrequency] = useState(types.weekly);
+
+  const initDefault = {
+    frequencyBoard: listOption[5],
+    totalAmountLiving: 0,
+    totalVariable: 0,
+    totalDiscretionary: 0,
+  };
+
   const [statusDataDetail, setStatusDataDetail] = useState({
     firstName: -1,
     lastName: -1,
@@ -45,7 +68,7 @@ const LivingExpenses = () => {
     email: "",
   });
 
-  const [dataForm, setDataForm] = useState({});
+  const [dataForm, setDataForm] = useState(initDefault);
 
   const { firstName, lastName, email } = dataDetail;
   const checkEmailStatus = (value) => {
@@ -78,12 +101,195 @@ const LivingExpenses = () => {
     });
   };
 
-  const onBlurHandle = (value, name) => {
-    const amount = value ? parseInt(value.replace(/,/g, ""), 10) : 0;
-    setDataForm({
-      ...dataForm,
-      [name]: amount > 10000000 ? 10000000 : value,
-    });
+  const myObjCurrency = {
+    style: "currency",
+    currency: "USD",
+  };
+
+  //========Sử lý tính toán==========\\\
+  const fourWeekly = 4;
+  const fortnightly = 2;
+  const quarterly = 4;
+
+  const amountQuarterly = 13.04; // trung bình Tuần/quý
+
+  var weekNumber = moment(new Date(), "MM-DD-YYYY").week();
+  // 1 Số ngày trong tháng
+  const numberMonthly = moment(new Date(), "YYYY-MM").daysInMonth();
+  const numberWeeklyOfYear = 52.08; // Trung bình tổng số tuần /1 năm
+
+  //2 Lấy số tuần trong tháng
+  const weekLy = numberMonthly / 7.133;
+
+  const onBlurHandle = (
+    value,
+    name,
+    optionSelect,
+    nameSelect,
+    nameTotalAmount
+  ) => {
+    const valueSelect = optionSelect?.value;
+    let amount = value ? parseInt(value.replace(/,/g, ""), 10) : 0;
+    if (amount > 10000000) {
+      amount = 10000000;
+    }
+
+    switch (frequency) {
+      case types.weekly:
+        switch (valueSelect) {
+          case "Weekly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${amount.toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "Monthly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / weekLy).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "4Weekly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / fourWeekly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+          case "Fortnightly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / fortnightly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+          case "Quarterly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / amountQuarterly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "Annually":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(
+                amount / numberWeeklyOfYear
+              ).toLocaleString("en-US", myObjCurrency)}`,
+            });
+            break;
+
+          default:
+            break;
+        }
+
+        break;
+      case types.monthly:
+        switch (valueSelect) {
+          case "Weekly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${amount.toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "Monthly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / weekLy).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "4Weekly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / fourWeekly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+          case "Fortnightly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / fortnightly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+          case "Quarterly":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(amount / amountQuarterly).toLocaleString(
+                "en-US",
+                myObjCurrency
+              )}`,
+            });
+            break;
+
+          case "Annually":
+            setDataForm({
+              ...dataForm,
+              [nameSelect]: optionSelect,
+              [name]: amount,
+              [nameTotalAmount]: `${(
+                amount / numberWeeklyOfYear
+              ).toLocaleString("en-US", myObjCurrency)}`,
+            });
+            break;
+
+          default:
+            break;
+        }
+
+        break;
+      default:
+        break;
+    }
   };
 
   const onChangeSelect = (option, name) => {
@@ -115,140 +321,103 @@ const LivingExpenses = () => {
     }
   };
 
+  useEffect(() => {
+    setDataForm({
+      ...dataForm,
+      totalAmountLiving: getAllTotalAmount([
+        dataForm?.boardTotalAmount,
+        dataForm?.childcareCostsTotalAmount,
+        dataForm?.privateSchoolFeesTotalAmount,
+        dataForm?.maintenanceTotalAmount,
+        dataForm?.otherContractedExpensesTotalAmount,
+        dataForm?.ratesTotalAmount,
+        dataForm?.insuranceTotalAmount,
+        dataForm?.vehicleRegistrationTotalAmount,
+        dataForm?.phoneInternetTotalAmount,
+      ]),
+    });
+    // eslint-disable-next-line
+  }, [
+    dataForm?.boardTotalAmount,
+    dataForm?.childcareCostsTotalAmount,
+    dataForm?.privateSchoolFeesTotalAmount,
+    dataForm?.maintenanceTotalAmount,
+    dataForm?.otherContractedExpensesTotalAmount,
+    dataForm?.ratesTotalAmount,
+    dataForm?.insuranceTotalAmount,
+    dataForm?.vehicleRegistrationTotalAmount,
+    dataForm?.phoneInternetTotalAmount,
+  ]);
+
+  useEffect(() => {
+    setDataForm({
+      ...dataForm,
+      totalVariable: getAllTotalAmount([
+        dataForm?.utilitiesTotalAmount,
+        dataForm?.foodAndGroceriesTotalAmount,
+        dataForm?.motorVehicleAndTransportTotalAmount,
+        dataForm?.medicalTotalAmount,
+        dataForm?.otherVariableTotalAmount,
+      ]),
+    });
+    // eslint-disable-next-line
+  }, [
+    dataForm?.utilitiesTotalAmount,
+    dataForm?.foodAndGroceriesTotalAmount,
+    dataForm?.motorVehicleAndTransportTotalAmount,
+    dataForm?.medicalTotalAmount,
+    dataForm?.otherVariableTotalAmount,
+  ]);
+
+  useEffect(() => {
+    setDataForm({
+      ...dataForm,
+      totalDiscretionary: getAllTotalAmount([
+        dataForm?.entertainmentTotalAmount,
+        dataForm?.diningOutTotalAmount,
+        dataForm?.alcoholAndTobaccoTotalAmount,
+        dataForm?.schoolingTotalAmount,
+        dataForm?.clothingAndFootwearTotalAmount,
+        dataForm?.personalTotalAmount,
+        dataForm?.sportsAndRecreationTotalAmount,
+        dataForm?.otherDiscretionaryExpensesTotalAmount,
+      ]),
+    });
+    // eslint-disable-next-line
+  }, [
+    dataForm?.entertainmentTotalAmount,
+    dataForm?.diningOutTotalAmount,
+    dataForm?.alcoholAndTobaccoTotalAmount,
+    dataForm?.schoolingTotalAmount,
+    dataForm?.clothingAndFootwearTotalAmount,
+    dataForm?.personalTotalAmount,
+    dataForm?.sportsAndRecreationTotalAmount,
+    dataForm?.otherDiscretionaryExpensesTotalAmount,
+  ]);
+
+  const totalExpenses = getAllTotalAmount([
+    dataForm?.totalDiscretionary,
+    dataForm?.totalAmountLiving,
+    dataForm?.totalVariable,
+  ]);
+
   return (
     <React.Fragment>
       <Helmet>
         <title>Living Expenses</title>
       </Helmet>
-      <div className="livingExpenses">
-        <div className="logo text-center">
-          <LazyLoadImage src={imgLogo} alt="logo" width="100%" height="70" />
-        </div>
-        <div className="container">
-          <YourDetail
-            handleGetDataDetail={handleGetDataDetail}
-            statusDataDetail={statusDataDetail}
-          />
-          <div className="step-header mt-4">
-            <div className="title">Living Expenses</div>
-            <div className="listAction">
-              <button
-                className={frequency === types.weekly ? "active" : ""}
-                onClick={() => handleClickFrequency(types.weekly)}
-              >
-                Weekly
-              </button>
-              <button
-                className={frequency === types.monthly ? "active" : ""}
-                onClick={() => handleClickFrequency(types.monthly)}
-              >
-                Monthly
-              </button>
-              <button
-                className={frequency === types.annually ? "active" : ""}
-                onClick={() => handleClickFrequency(types.annually)}
-              >
-                Annually
-              </button>
-            </div>
-          </div>
-          <div className="contentCollapse">
-            <Accordion defaultActiveKey="0">
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    <div className="card-title">
-                      <h2>Fixed Expenses</h2>
-                      <div className="price">$0/{types2[frequency]}</div>
-                    </div>
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                  <Card.Body>
-                    <div className="item header">
-                      <div className="titleName text-center" />
-                      <div className="amount text-center">Amount</div>
-                      <div className="frequency text-center">Frequency</div>
-                      <div className="totalAmount text-center">
-                        {types3[frequency]} Amount
-                      </div>
-                    </div>
-                    <AccordionFixed
-                      onChange={onKeyUpHandle}
-                      onBlurHandle={onBlurHandle}
-                      dataForm={dataForm}
-                      onChangeSelect={onChangeSelect}
-                    />
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                    <div className="card-title">
-                      <h2>Variable Expenses</h2>
-                      <div className="price">$0/{types2[frequency]}</div>
-                    </div>
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="1">
-                  <Card.Body>
-                    <div className="item header">
-                      <div className="titleName text-center" />
-                      <div className="amount text-center">Amount</div>
-                      <div className="frequency text-center">Frequency</div>
-                      <div className="totalAmount text-center">
-                        {types3[frequency]} Amount
-                      </div>
-                    </div>
-                    <AccordionVariable
-                      onChange={onKeyUpHandle}
-                      onBlurHandle={onBlurHandle}
-                      dataForm={dataForm}
-                      onChangeSelect={onChangeSelect}
-                    />
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-              <Card>
-                <Card.Header>
-                  <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                    <div className="card-title">
-                      <h2>Discretionary Expenses</h2>
-                      <div className="price">$0/{types2[frequency]}</div>
-                    </div>
-                  </Accordion.Toggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="2">
-                  <Card.Body>
-                    <div className="item header">
-                      <div className="titleName text-center" />
-                      <div className="amount text-center">Amount</div>
-                      <div className="frequency text-center">Frequency</div>
-                      <div className="totalAmount text-center">
-                        {types3[frequency]} Amount
-                      </div>
-                    </div>
-                    <AccordionDiscretionary
-                      onChange={onKeyUpHandle}
-                      onBlurHandle={onBlurHandle}
-                      dataForm={dataForm}
-                      onChangeSelect={onChangeSelect}
-                    />
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-            <div className="totalPrice">
-              <h2>Total Expenses</h2>
-              <div className="price">$0/{types2[frequency]}</div>
-            </div>
-            <div className="text-center mt-4">
-              <Button onClick={() => handleSubmitForm()}>Submit</Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <FormIndex
+        frequency={frequency}
+        dataForm={dataForm}
+        onChangeSelect={onChangeSelect}
+        onBlurHandle={onBlurHandle}
+        handleGetDataDetail={handleGetDataDetail}
+        statusDataDetail={statusDataDetail}
+        handleClickFrequency={handleClickFrequency}
+        onKeyUpHandle={onKeyUpHandle}
+        totalExpenses={totalExpenses}
+        handleSubmitForm={handleSubmitForm}
+      />
     </React.Fragment>
   );
 };
