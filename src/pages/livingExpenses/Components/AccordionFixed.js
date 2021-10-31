@@ -120,6 +120,7 @@ const AccordionFixed = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including home, contents, car, life, health, boat and pet"
+        customClassSelect="position-top mobile"
       />
       <ItemCart
         onChange={onChange}
@@ -131,6 +132,7 @@ const AccordionFixed = ({
         value={dataForm?.vehicleRegistration}
         optionSelect={dataForm?.frequencyVehicleRegistration || listOption[0]}
         onChangeSelect={onChangeSelect}
+        customClassSelect="position-top"
       />
       <ItemCart
         onChange={onChange}
@@ -144,6 +146,7 @@ const AccordionFixed = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including home, mobile, internet"
+        customClassSelect="position-top"
       />
     </>
   );

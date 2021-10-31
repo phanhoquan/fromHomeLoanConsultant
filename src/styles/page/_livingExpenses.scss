@@ -97,6 +97,15 @@
         }
       }
     }
+
+    @media screen and (max-width: 992px) {
+      display: block;
+
+      .listAction {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
 
   .accordion {
@@ -119,6 +128,10 @@
         box-shadow: none;
         text-decoration: none !important;
         padding: 0 pxToRem(70);
+
+        @media screen and (max-width: 1200px) {
+          padding: 0 pxToRem(15);
+        }
 
         &:hover {
           text-decoration: none !important;
@@ -155,6 +168,10 @@
     align-items: center;
     justify-content: space-between;
     padding: pxToRem(30) pxToRem(70);
+
+    @media screen and (max-width: 992px) {
+      padding: pxToRem(30) 0;
+    }
 
     .price {
       text-transform: lowercase;
@@ -223,6 +240,10 @@
         color: #021211;
         font-weight: 400;
         padding-left: pxToRem(60);
+
+        @media screen and (max-width: 1200px) {
+          padding-left: pxToRem(15);
+        }
       }
 
       .amount,
@@ -261,6 +282,31 @@
         -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
         transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+        @media screen and (max-width: 1200px) {
+          max-width: pxToRem(140);
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        display: block;
+
+        .totalAmount {
+          text-align: right !important;
+        }
+
+        .amount,
+        .frequency,
+        .totalAmount {
+          display: inline-block;
+          width: 33%;
+        }
+
+        .titleName {
+          display: block;
+          width: 100%;
+          padding: 0;
+        }
       }
     }
   }
@@ -285,4 +331,25 @@
 .tooltip-inner {
   padding: pxToRem(15) !important;
   text-align: left !important;
+}
+
+html.body-living-expenses.fonts100 {
+  @media screen and (max-width: 992px) {
+    font-size: 80%
+  }
+
+  @media screen and (max-width: 767px) {
+    .logo.text-center {
+      img {
+        height: 50px !important;
+      }
+    }
+
+    font-size: 75%;
+
+    .tooltipWrap {
+      right: pxToRem(-20);
+      z-index: 1;
+    }
+  }
 }

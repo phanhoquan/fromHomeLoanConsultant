@@ -121,7 +121,7 @@ const YourDetail = ({ handleGetDataDetail, statusDataDetail }) => {
     <div className="YourDetail">
       <div className="title">Your details</div>
       <Row className="info-customer">
-        <Col xs={12} sm={4} className="wForm-input">
+        <Col xs={12} sm={4} className="wForm-input mb-3">
           <label>First name*</label>
           <InputCustom2
             onChange={(e) => onKeyUpHandle("firstName", e.target.value)}
@@ -138,8 +138,8 @@ const YourDetail = ({ handleGetDataDetail, statusDataDetail }) => {
           ) : (
             ""
           )}
-        </Col>
-        <Col xs={12} sm={4} className="wForm-input">
+        </Col> 
+        <Col xs={12} sm={4} className="wForm-input mb-3">
           <label>Last name*</label>
           <InputCustom2
             onChange={(e) => onKeyUpHandle("lastName", e.target.value)}
@@ -156,7 +156,7 @@ const YourDetail = ({ handleGetDataDetail, statusDataDetail }) => {
             ""
           )}
         </Col>
-        <Col xs={12} sm={4} className="wForm-input">
+        <Col xs={12} sm={4} className="wForm-input mb-3">
           <label>Email*</label>
           <InputCustom2
             onChange={(e) => onKeyUpHandle("email", e.target.value)}

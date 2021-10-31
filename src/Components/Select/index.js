@@ -42,8 +42,8 @@ const SelectDropdown = ({
           classNamePrefix="customSelect"
           value={option || null}
           onChange={onChange}
-          noOptionsMessage={noOptionsMessage}
           // menuIsOpen
+          noOptionsMessage={noOptionsMessage}
           options={
             noLabel
               ? listOptionString.map((item) => ({

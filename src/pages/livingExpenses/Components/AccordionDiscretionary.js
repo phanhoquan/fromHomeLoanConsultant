@@ -115,6 +115,7 @@ const AccordionDiscretionary = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including grooming, personal care, toiletries, cosmetics, hair cuts"
+        customClassSelect="position-top mobile"
       />
       <ItemCart
         onChange={onChange}
@@ -128,6 +129,7 @@ const AccordionDiscretionary = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including hobbies, kids sport, gym membership, personal training, yoga"
+        customClassSelect="position-top"
       />
       <ItemCart
         onChange={onChange}
@@ -143,6 +145,7 @@ const AccordionDiscretionary = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including holidays, celebrations, charity donations, lottery tickets"
+        customClassSelect="position-top"
       />
     </>
   );

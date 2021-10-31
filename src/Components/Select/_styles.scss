@@ -3,6 +3,27 @@
   max-width: pxToRem(180);
   margin: auto;
 
+  &.position-top {
+    .customSelect__menu {
+      top: auto;
+      bottom: 100%;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    position: relative;
+    top: 1px;
+
+    &.position-top {
+      &.mobile {
+        .customSelect__menu {
+          top: 100%;
+          bottom: auto;
+        }
+      }
+    }
+  }
+
   .input__box {
     width: 100%;
 
@@ -19,6 +40,7 @@
     outline: none;
     box-shadow: none !important;
     padding-left: pxToRem(10) !important;
+    min-height: auto !important;
 
     * {
       cursor: pointer;
@@ -50,6 +72,13 @@
     padding: 0 !important;
     z-index: 9;
     margin-top: 2px !important;
+
+    @media screen and (max-width: 1200px) {
+      max-width: pxToRem(140);
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+    }
 
     .customSelect__menu-list {
       padding: 0 !important;

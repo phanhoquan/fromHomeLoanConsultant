@@ -78,6 +78,7 @@ const AccordionVariable = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including fuel, public transport, parking, toll roads, tyres, maintenance"
+        customClassSelect="position-top mobile"
       />
       <ItemCart
         onChange={onChange}
@@ -91,6 +92,7 @@ const AccordionVariable = ({
         onChangeSelect={onChangeSelect}
         isShowTooltip
         contentTooltip="Including medicine, doctor, vet"
+        customClassSelect="position-top"
       />
       <ItemCart
         onChange={onChange}
@@ -102,6 +104,7 @@ const AccordionVariable = ({
         value={dataForm?.otherVariable}
         optionSelect={dataForm?.frequencyOtherVariable || listOption[2]}
         onChangeSelect={onChangeSelect}
+        customClassSelect="position-top"
       />
     </>
   );

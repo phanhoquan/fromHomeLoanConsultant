@@ -18,6 +18,7 @@ const ItemCart = ({
   contentTooltip,
   isShowTooltip,
   nameSelect,
+  customClassSelect,
 }: Props) => {
   const listOption = [
     {
@@ -78,6 +79,7 @@ const ItemCart = ({
         <div className="frequency text-center">
           <SelectDropdown
             placeholder=""
+            customClass={customClassSelect}
             listItem={listOption}
             onChange={(option) => {
               onChangeSelect(option, nameSelect);

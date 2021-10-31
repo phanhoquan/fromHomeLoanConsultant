@@ -44,7 +44,7 @@ const types = {
 const LivingExpenses = () => {
   var root = document.getElementsByTagName("html")[0];
   if (document.body) {
-    root.setAttribute("class", "fonts100");
+    root.setAttribute("class", "fonts100 body-living-expenses");
   }
 
   const [frequency, setFrequency] = useState(types.weekly);
