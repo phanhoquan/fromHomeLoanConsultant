@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import moment from "moment";
-import { getAllTotalAmount } from "./helpers/index";
+import { getAllTotalAmount, getTotalAmount } from "./helpers/index";
 import checkEmail from "../../utils/checkEmail";
 
 import FormIndex from "./Components/Form";
@@ -51,7 +51,6 @@ const LivingExpenses = () => {
 
   const initDefault = {
     frequencyBoard: listOption[5],
-    totalAmountLiving: 0,
     totalVariable: 0,
     totalDiscretionary: 0,
   };
@@ -84,10 +83,6 @@ const LivingExpenses = () => {
   const checkLastNameStatus = (value) => {
     let test = /^([A-Za-z'’＇`]{2,})$/.test(value);
     return test;
-  };
-
-  const handleClickFrequency = (name) => {
-    setFrequency(name);
   };
 
   const handleGetDataDetail = (data) => {
@@ -140,10 +135,9 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${amount.toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${amount.toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
 
@@ -152,10 +146,9 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / weekLy).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / weekLy).toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
 
@@ -164,10 +157,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / fourWeekly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / fourWeekly).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : `$0.00`,
             });
             break;
           case "Fortnightly":
@@ -175,10 +170,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / fortnightly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / fortnightly).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
           case "Quarterly":
@@ -186,10 +183,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / amountQuarterly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / amountQuarterly).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -198,9 +197,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount / numberWeeklyOfYear
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / numberWeeklyOfYear).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -216,10 +218,9 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount * weekLy).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount * weekLy).toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
 
@@ -228,10 +229,9 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${amount.toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${amount.toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
 
@@ -240,10 +240,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount *
-                (weekLy / fourWeekly)
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: amount
+                ? `${(amount * (weekLy / fourWeekly)).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
           case "Fortnightly":
@@ -251,10 +253,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount *
-                (weekLy / fortnightly)
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: amount
+                ? `${(amount * (weekLy / fortnightly)).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
           case "Quarterly":
@@ -262,10 +266,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / quarterly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / quarterly).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -274,10 +280,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / annually).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / annually).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -293,9 +301,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount * numberWeeklyOfYear
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: amount
+                ? `${(amount * numberWeeklyOfYear).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -304,10 +315,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount * annually).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount * annually).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -316,10 +329,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount *
-                (numberWeeklyOfYear / fourWeekly)
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: amount
+                ? `${(
+                    amount *
+                    (numberWeeklyOfYear / fourWeekly)
+                  ).toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
           case "Fortnightly":
@@ -327,10 +342,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(
-                amount *
-                (numberWeeklyOfYear / fortnightly)
-              ).toLocaleString("en-US", myObjCurrency)}`,
+              [nameTotalAmount]: amount
+                ? `${(
+                    amount *
+                    (numberWeeklyOfYear / fortnightly)
+                  ).toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
           case "Quarterly":
@@ -338,10 +355,12 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${(amount / fourWeekly).toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${(amount / fourWeekly).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
+                : "$0.00",
             });
             break;
 
@@ -350,10 +369,9 @@ const LivingExpenses = () => {
               ...dataForm,
               [nameSelect]: optionSelect,
               [name]: amount,
-              [nameTotalAmount]: `${amount.toLocaleString(
-                "en-US",
-                myObjCurrency
-              )}`,
+              [nameTotalAmount]: amount
+                ? `${amount.toLocaleString("en-US", myObjCurrency)}`
+                : "$0.00",
             });
             break;
 
@@ -375,6 +393,138 @@ const LivingExpenses = () => {
     });
   };
 
+  const handleClickFrequency = (name) => {
+    setFrequency(name);
+  };
+
+  useEffect(() => {
+    setDataForm({
+      ...dataForm,
+      boardTotalAmount: getTotalAmount(
+        dataForm?.board || 0,
+        frequency,
+        dataForm?.frequencyBoard || listOption[5]
+      ),
+      childcareCostsTotalAmount: getTotalAmount(
+        dataForm?.childcareCosts || 0,
+        frequency,
+        dataForm?.frequencyChildcareCosts || listOption[5]
+      ),
+      privateSchoolFeesTotalAmount: getTotalAmount(
+        dataForm?.privateSchoolFees || 0,
+        frequency,
+        dataForm?.frequencyPrivateSchoolFees || listOption[1]
+      ),
+
+      maintenanceTotalAmount: getTotalAmount(
+        dataForm?.maintenance || 0,
+        frequency,
+        dataForm?.frequencyMaintenance || listOption[2]
+      ),
+
+      otherContractedExpensesTotalAmount: getTotalAmount(
+        dataForm?.otherContractedExpenses || 0,
+        frequency,
+        dataForm?.frequencyOtherContractedExpenses || listOption[2]
+      ),
+
+      ratesTotalAmount: getTotalAmount(
+        dataForm?.rates || 0,
+        frequency,
+        dataForm?.frequencyRates || listOption[1]
+      ),
+
+      insuranceTotalAmount: getTotalAmount(
+        dataForm?.insurance || 0,
+        frequency,
+        dataForm?.frequencyInsurance || listOption[0]
+      ),
+
+      vehicleRegistrationTotalAmount: getTotalAmount(
+        dataForm?.vehicleRegistration || 0,
+        frequency,
+        dataForm?.frequencyVehicleRegistration || listOption[0]
+      ),
+
+      phoneInternetTotalAmount: getTotalAmount(
+        dataForm?.phoneInternet || 0,
+        frequency,
+        dataForm?.frequencyPhoneInternet || listOption[0]
+      ),
+
+      utilitiesTotalAmount: getTotalAmount(
+        dataForm?.utilities || 0,
+        frequency,
+        dataForm?.frequencyUtilities || listOption[1]
+      ),
+
+      foodAndGroceriesTotalAmount: getTotalAmount(
+        dataForm?.foodAndGroceries || 0,
+        frequency,
+        dataForm?.frequencyFoodAndGroceries || listOption[5]
+      ),
+
+      motorVehicleAndTransportTotalAmount: getTotalAmount(
+        dataForm?.motorVehicleAndTransport || 0,
+        frequency,
+        dataForm?.frequencyMotorVehicleAndTransport || listOption[5]
+      ),
+
+      medicalTotalAmount: getTotalAmount(
+        dataForm?.medical || 0,
+        frequency,
+        dataForm?.frequencyMedical || listOption[2]
+      ),
+      otherVariableTotalAmount: getTotalAmount(
+        dataForm?.otherVariable || 0,
+        frequency,
+        dataForm?.frequencyOtherVariable || listOption[2]
+      ),
+      entertainmentTotalAmount: getTotalAmount(
+        dataForm?.entertainment || 0,
+        frequency,
+        dataForm?.frequencyEntertainment || listOption[5]
+      ),
+
+      diningOutTotalAmount: getTotalAmount(
+        dataForm?.diningOut || 0,
+        frequency,
+        dataForm?.frequencyDiningOut || listOption[5]
+      ),
+
+      alcoholAndTobaccoTotalAmount: getTotalAmount(
+        dataForm?.alcoholAndTobacco || 0,
+        frequency,
+        dataForm?.frequencyAlcoholAndTobacco || listOption[5]
+      ),
+
+      clothingAndFootwearTotalAmount: getTotalAmount(
+        dataForm?.clothingAndFootwear || 0,
+        frequency,
+        dataForm?.frequencyClothingAndFootwear || listOption[1]
+      ),
+
+      personalTotalAmount: getTotalAmount(
+        dataForm?.personal || 0,
+        frequency,
+        dataForm?.frequencyPersonal || listOption[5]
+      ),
+
+      sportsAndRecreationTotalAmount: getTotalAmount(
+        dataForm?.sportsAndRecreation || 0,
+        frequency,
+        dataForm?.frequencySportsAndRecreation || listOption[2]
+      ),
+
+      otherDiscretionaryExpensesTotalAmount: getTotalAmount(
+        dataForm?.otherDiscretionaryExpenses || 0,
+        frequency,
+        dataForm?.frequencyOtherDiscretionaryExpenses || listOption[2]
+      ),
+    });
+    // eslint-disable-next-line
+  }, [frequency]);
+
   const handleSubmitForm = () => {
     setStatusDataDetail({
       email: checkEmailStatus(email),
@@ -386,95 +536,49 @@ const LivingExpenses = () => {
       checkFirstNameStatus(firstName) &&
       checkLastNameStatus(lastName)
     ) {
-      console.log(
-        checkEmailStatus(email),
-        "email",
-        checkFirstNameStatus(firstName),
-        "first",
-        checkLastNameStatus(lastName),
-        "sssss"
-      );
+      console.log(dataDetail, "dataForm", dataForm);
     }
   };
 
-  useEffect(() => {
-    setDataForm({
-      ...dataForm,
-      totalAmountLiving: getAllTotalAmount([
-        dataForm?.boardTotalAmount,
-        dataForm?.childcareCostsTotalAmount,
-        dataForm?.privateSchoolFeesTotalAmount,
-        dataForm?.maintenanceTotalAmount,
-        dataForm?.otherContractedExpensesTotalAmount,
-        dataForm?.ratesTotalAmount,
-        dataForm?.insuranceTotalAmount,
-        dataForm?.vehicleRegistrationTotalAmount,
-        dataForm?.phoneInternetTotalAmount,
-      ]),
-    });
-    // eslint-disable-next-line
-  }, [
-    dataForm?.boardTotalAmount,
-    dataForm?.childcareCostsTotalAmount,
-    dataForm?.privateSchoolFeesTotalAmount,
-    dataForm?.maintenanceTotalAmount,
-    dataForm?.otherContractedExpensesTotalAmount,
-    dataForm?.ratesTotalAmount,
-    dataForm?.insuranceTotalAmount,
-    dataForm?.vehicleRegistrationTotalAmount,
-    dataForm?.phoneInternetTotalAmount,
-  ]);
+  const totalAmountLiving =
+    getAllTotalAmount([
+      dataForm?.boardTotalAmount,
+      dataForm?.childcareCostsTotalAmount,
+      dataForm?.privateSchoolFeesTotalAmount,
+      dataForm?.maintenanceTotalAmount,
+      dataForm?.otherContractedExpensesTotalAmount,
+      dataForm?.ratesTotalAmount,
+      dataForm?.insuranceTotalAmount,
+      dataForm?.vehicleRegistrationTotalAmount,
+      dataForm?.phoneInternetTotalAmount,
+    ]) || "$0.00";
 
-  useEffect(() => {
-    setDataForm({
-      ...dataForm,
-      totalVariable: getAllTotalAmount([
-        dataForm?.utilitiesTotalAmount,
-        dataForm?.foodAndGroceriesTotalAmount,
-        dataForm?.motorVehicleAndTransportTotalAmount,
-        dataForm?.medicalTotalAmount,
-        dataForm?.otherVariableTotalAmount,
-      ]),
-    });
-    // eslint-disable-next-line
-  }, [
-    dataForm?.utilitiesTotalAmount,
-    dataForm?.foodAndGroceriesTotalAmount,
-    dataForm?.motorVehicleAndTransportTotalAmount,
-    dataForm?.medicalTotalAmount,
-    dataForm?.otherVariableTotalAmount,
-  ]);
+  const totalVariable =
+    getAllTotalAmount([
+      dataForm?.utilitiesTotalAmount,
+      dataForm?.foodAndGroceriesTotalAmount,
+      dataForm?.motorVehicleAndTransportTotalAmount,
+      dataForm?.medicalTotalAmount,
+      dataForm?.otherVariableTotalAmount,
+    ]) || "$0.00";
 
-  useEffect(() => {
-    setDataForm({
-      ...dataForm,
-      totalDiscretionary: getAllTotalAmount([
-        dataForm?.entertainmentTotalAmount,
-        dataForm?.diningOutTotalAmount,
-        dataForm?.alcoholAndTobaccoTotalAmount,
-        dataForm?.schoolingTotalAmount,
-        dataForm?.clothingAndFootwearTotalAmount,
-        dataForm?.personalTotalAmount,
-        dataForm?.sportsAndRecreationTotalAmount,
-        dataForm?.otherDiscretionaryExpensesTotalAmount,
-      ]),
-    });
-    // eslint-disable-next-line
-  }, [
-    dataForm?.entertainmentTotalAmount,
-    dataForm?.diningOutTotalAmount,
-    dataForm?.alcoholAndTobaccoTotalAmount,
-    dataForm?.schoolingTotalAmount,
-    dataForm?.clothingAndFootwearTotalAmount,
-    dataForm?.personalTotalAmount,
-    dataForm?.sportsAndRecreationTotalAmount,
-    dataForm?.otherDiscretionaryExpensesTotalAmount,
-  ]);
+  const totalDiscretionary =
+    getAllTotalAmount([
+      dataForm?.entertainmentTotalAmount,
+      dataForm?.diningOutTotalAmount,
+      dataForm?.alcoholAndTobaccoTotalAmount,
+      dataForm?.schoolingTotalAmount,
+      dataForm?.clothingAndFootwearTotalAmount,
+      dataForm?.personalTotalAmount,
+      dataForm?.sportsAndRecreationTotalAmount,
+      dataForm?.otherDiscretionaryExpensesTotalAmount,
+    ]) || "$0.00";
 
   const totalExpenses = getAllTotalAmount([
-    dataForm?.totalDiscretionary,
-    dataForm?.totalAmountLiving,
+    totalAmountLiving,
+    totalVariable,
     dataForm?.totalVariable,
+    totalDiscretionary,
   ]);
 
   return (
@@ -484,7 +588,12 @@ const LivingExpenses = () => {
       </Helmet>
       <FormIndex
         frequency={frequency}
-        dataForm={dataForm}
+        dataForm={{
+          ...dataForm,
+          totalAmountLiving,
+          totalVariable,
+          totalDiscretionary,
+        }}
         onChangeSelect={onChangeSelect}
         onBlurHandle={onBlurHandle}
         handleGetDataDetail={handleGetDataDetail}
