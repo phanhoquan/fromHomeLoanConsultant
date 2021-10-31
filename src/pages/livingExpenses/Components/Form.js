@@ -6,8 +6,8 @@ import { Card, Accordion, Button } from "react-bootstrap";
 import imgLogo from "../../../images/life/logo.svg";
 import YourDetail from "./YourDetail";
 import AccordionFixed from "./AccordionFixed";
-import AccordionVariable from "./AccordionVariable";
-import AccordionDiscretionary from "./AccordionDiscretionary";
+// import AccordionVariable from "./AccordionVariable";
+// import AccordionDiscretionary from "./AccordionDiscretionary";
 
 const types = {
   weekly: "Weekly",
@@ -125,12 +125,12 @@ const FormIndex = ({
                         {types3[frequency]} Amount
                       </div>
                     </div>
-                    <AccordionVariable
+                    {/* <AccordionVariable
                       onChange={onKeyUpHandle}
                       onBlurHandle={onBlurHandle}
                       dataForm={dataForm}
                       onChangeSelect={onChangeSelect}
-                    />
+                    /> */}
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
@@ -156,12 +156,12 @@ const FormIndex = ({
                         {types3[frequency]} Amount
                       </div>
                     </div>
-                    <AccordionDiscretionary
+                    {/* <AccordionDiscretionary
                       onChange={onKeyUpHandle}
                       onBlurHandle={onBlurHandle}
                       dataForm={dataForm}
                       onChangeSelect={onChangeSelect}
-                    />
+                    /> */}
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
