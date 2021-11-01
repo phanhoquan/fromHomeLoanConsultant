@@ -100,6 +100,7 @@ const YourDetail = ({ handleGetDataDetail, statusDataDetail }) => {
   };
 
   const handleBlur = (name) => {
+    handleGetDataDetail(dataDetail);
     switch (name) {
       case "lastName":
         checkLastNameStatus(lastName.trim());
@@ -138,7 +139,7 @@ const YourDetail = ({ handleGetDataDetail, statusDataDetail }) => {
           ) : (
             ""
           )}
-        </Col> 
+        </Col>
         <Col xs={12} sm={4} className="wForm-input mb-3">
           <label>Last name*</label>
           <InputCustom2

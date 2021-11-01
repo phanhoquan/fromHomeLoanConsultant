@@ -51,8 +51,6 @@ const LivingExpenses = () => {
 
   const initDefault = {
     frequencyBoard: listOption[5],
-    totalVariable: 0,
-    totalDiscretionary: 0,
   };
 
   const [statusDataDetail, setStatusDataDetail] = useState({
@@ -531,12 +529,12 @@ const LivingExpenses = () => {
       firstName: checkFirstNameStatus(firstName),
       lastName: checkLastNameStatus(lastName),
     });
+    console.log(dataDetail, "dataForm");
     if (
       checkEmailStatus(email) &&
       checkFirstNameStatus(firstName) &&
       checkLastNameStatus(lastName)
     ) {
-      console.log(dataDetail, "dataForm", dataForm);
     }
   };
 
@@ -580,7 +578,6 @@ const LivingExpenses = () => {
     dataForm?.totalVariable,
     totalDiscretionary,
   ]);
-
   return (
     <React.Fragment>
       <Helmet>
