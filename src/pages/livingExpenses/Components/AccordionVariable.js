@@ -93,6 +93,7 @@ const AccordionVariable = ({
         isShowTooltip
         contentTooltip="Including medicine, doctor, vet"
         customClassSelect="position-top"
+        placementClass="top41"
       />
       <ItemCart
         onChange={onChange}

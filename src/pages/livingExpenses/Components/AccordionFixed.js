@@ -106,6 +106,8 @@ const AccordionFixed = ({
         optionSelect={dataForm?.frequencyRates || listOption[1]}
         onChangeSelect={onChangeSelect}
         isShowTooltip
+        placement="right"
+        placementClass="top41"
         contentTooltip="Including body corporate"
       />
       <ItemCart
@@ -147,6 +149,7 @@ const AccordionFixed = ({
         isShowTooltip
         contentTooltip="Including home, mobile, internet"
         customClassSelect="position-top"
+        placementClass="top41"
       />
     </>
   );

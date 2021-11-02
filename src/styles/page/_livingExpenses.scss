@@ -313,7 +313,7 @@
 
   .tooltipWrap {
     position: absolute;
-    right: 0;
+    right: pxToRem(15);
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
@@ -321,16 +321,52 @@
     line-height: 1;
 
     img {
-      width: pxToRem(20);
-      height: pxToRem(20);
+      width: pxToRem(18);
+      height: pxToRem(18);
       cursor: pointer;
     }
   }
 }
 
+.tooltip {
+  opacity: 1 !important;
+  margin-top: pxToRem(10);
+
+  &.bs-tooltip-left.show {
+
+    inset: pxToRem(53) pxToRem(-15) auto auto !important;
+
+    &.top41 {
+      inset: pxToRem(41) pxToRem(-15) auto auto !important;
+    }
+  }
+
+  &.bs-tooltip-right.show {
+    inset: pxToRem(53) auto auto pxToRem(-15) !important;
+
+    &.top41 {
+      inset: pxToRem(41) auto auto pxToRem(-15) !important;
+    }
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
 .tooltip-inner {
-  padding: pxToRem(15) !important;
+  padding: pxToRem(16) !important;
   text-align: left !important;
+  background-color: #050607;
+  border: none;
+  -webkit-box-shadow: 0 0 5px #050607;
+  box-shadow: 0 0 5px #050607;
+  z-index: 9999;
+  max-width: 300px;
+
+  @media screen and (max-width: 767px) {
+    max-width: 200px;
+  }
 }
 
 html.body-living-expenses.fonts100 {

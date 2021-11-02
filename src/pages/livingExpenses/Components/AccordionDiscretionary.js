@@ -75,6 +75,7 @@ const AccordionDiscretionary = ({
         optionSelect={dataForm?.frequencyAlcoholAndTobacco || listOption[5]}
         onChangeSelect={onChangeSelect}
         isShowTooltip
+        placementClass="top41"
         contentTooltip="Including tobacco and bottle shops"
       />
       <ItemCart
@@ -101,6 +102,7 @@ const AccordionDiscretionary = ({
         optionSelect={dataForm?.frequencyClothingAndFootwear || listOption[2]}
         onChangeSelect={onChangeSelect}
         isShowTooltip
+        placementClass="top41"
         contentTooltip="Including footwear, jewellery, handbags"
       />
       <ItemCart

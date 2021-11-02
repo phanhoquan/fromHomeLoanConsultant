@@ -19,6 +19,8 @@ const ItemCart = ({
   isShowTooltip,
   nameSelect,
   customClassSelect,
+  placement = "left",
+  placementClass = "",
 }: Props) => {
   const listOption = [
     {
@@ -73,7 +75,7 @@ const ItemCart = ({
               )
             }
             maxLength="10"
-            placeholder="800"
+            placeholder="0"
           />
         </div>
         <div className="frequency text-center">
@@ -96,8 +98,12 @@ const ItemCart = ({
           {isShowTooltip ? (
             <div className="tooltipWrap">
               <OverlayTrigger
-                placement="left"
-                overlay={<Tooltip id={name}>{contentTooltip}</Tooltip>}
+                placement={placement}
+                overlay={
+                  <Tooltip className={placementClass} id={name}>
+                    {contentTooltip}
+                  </Tooltip>
+                }
               >
                 <span className="d-inline-block">
                   <img src={imageTooltip} alt="" />

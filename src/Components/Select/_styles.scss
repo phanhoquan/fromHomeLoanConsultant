@@ -113,11 +113,9 @@
       line-height: 1.2;
       text-align: left;
 
-      &:hover,
-      &.customSelect__option--is-selected {
-        background-color: #00347b !important;
-        color: #ffffff;
-      }
+      // &:hover {
+      //   color: #ffffff;
+      // }
     }
   }
 }
