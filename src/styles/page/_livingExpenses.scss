@@ -206,6 +206,29 @@
   }
 
   .contentCollapse {
+    .accordion {
+      .card:nth-child(1) .card-header {
+        background-image: url("../../images/Home.svg");
+        background-size: pxToRem(36);
+        background-repeat: no-repeat;
+        background-position: left pxToRem(15) center;
+      }
+
+      .card:nth-child(2) .card-header {
+        background-image: url("../../images/Cart.svg");
+        background-size: pxToRem(36);
+        background-repeat: no-repeat;
+        background-position: left pxToRem(15) center;
+      }
+
+      .card:nth-child(3) .card-header {
+        background-image: url("../../images/Ticket.svg");
+        background-size: pxToRem(30);
+        background-repeat: no-repeat;
+        background-position: left pxToRem(15) center;
+      }
+    }
+
     .item {
       background-color: #f9f9f9;
       display: flex;
