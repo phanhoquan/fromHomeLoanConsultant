@@ -351,6 +351,18 @@ html.fonts90 {
     }
   }
 
+  .formContent-step-four {
+    .info-customer {
+      max-width: pxToRem(400);
+
+      .showValid {
+        .group-gender {
+          margin-bottom: pxToRem(30);
+        }
+      }
+    }
+  }
+
   .in-progress {
     position: relative;
     visibility: visible;
@@ -370,18 +382,6 @@ html.fonts90 {
       border: pxToRem(0.4) solid rgba(255, 255, 255, 0.15);
       border-top-color: rgba(255, 255, 255, 1);
       left: 25px;
-    }
-  }
-
-  .formContent-step-four {
-    .info-customer {
-      max-width: pxToRem(400);
-
-      .showValid {
-        .group-gender {
-          margin-bottom: pxToRem(30);
-        }
-      }
     }
   }
 

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import moment from "moment";
 import { getAllTotalAmount, getTotalAmount } from "./helpers/index";
+import { sendDataFormLiving } from "../../utils/api";
 import checkEmail from "../../utils/checkEmail";
 import ModalSend from "../Modal/ModalSend";
 
@@ -36,6 +37,16 @@ const listOption = [
   },
 ];
 
+const types3 = {
+  Weekly: "",
+  Monthly: "Monthly",
+  Annually: "Annual",
+};
+const types2 = {
+  Weekly: "week",
+  Monthly: "month",
+  Annually: "year",
+};
 const types = {
   weekly: "Weekly",
   monthly: "Monthly",
@@ -47,6 +58,7 @@ const LivingExpenses = () => {
   if (document.body) {
     root.setAttribute("class", "fonts100 body-living-expenses");
   }
+  const [showLoading, setShowLoading] = useState(false);
   const [isShowSendSuccess, setIsShowSendSuccess] = useState(false);
   const [frequency, setFrequency] = useState(types.weekly);
 
@@ -524,33 +536,6 @@ const LivingExpenses = () => {
     // eslint-disable-next-line
   }, [frequency]);
 
-  const handleSubmitForm = () => {
-    setStatusDataDetail({
-      email: checkEmailStatus(email),
-      firstName: checkFirstNameStatus(firstName),
-      lastName: checkLastNameStatus(lastName),
-    });
-    if (
-      checkEmailStatus(email) &&
-      checkFirstNameStatus(firstName) &&
-      checkLastNameStatus(lastName)
-    ) {
-      console.log(dataDetail, "dataForm");
-      setIsShowSendSuccess(true);
-      setDataDetail({
-        firstName: "",
-        lastName: "",
-        email: "",
-      });
-      setDataForm(initDefault);
-    } else {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  };
-
   const totalAmountLiving =
     getAllTotalAmount([
       dataForm?.boardTotalAmount,
@@ -592,6 +577,177 @@ const LivingExpenses = () => {
     totalDiscretionary,
   ]);
 
+  const success = (data) => {
+    setIsShowSendSuccess(true);
+    setShowLoading(false);
+    setDataDetail({
+      firstName: "",
+      lastName: "",
+      email: "",
+    });
+    setDataForm(initDefault);
+  };
+
+  const dataFormSubmit = {
+    email: dataDetail?.email || "",
+    firstName: dataDetail?.firstName || "",
+    lastName: dataDetail?.lastName || "",
+    alcoholAndTobacco:
+      dataForm?.alcoholAndTobacco?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    alcoholAndTobaccoTotalAmount:
+      dataForm?.alcoholAndTobaccoTotalAmount || "$0.00",
+    board: dataForm?.board?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    boardTotalAmount: dataForm?.boardTotalAmount || "$0.00",
+    childcareCosts:
+      dataForm?.childcareCosts?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    childcareCostsTotalAmount: dataForm?.childcareCostsTotalAmount || "$0.00",
+    clothingAndFootwear:
+      dataForm?.clothingAndFootwear?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    clothingAndFootwearTotalAmount:
+      dataForm?.clothingAndFootwearTotalAmount || "$0.00",
+    diningOut:
+      dataForm?.diningOut?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    diningOutTotalAmount: dataForm?.diningOutTotalAmount || "$0.00",
+    entertainment:
+      dataForm?.entertainment?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    entertainmentTotalAmount: dataForm?.entertainmentTotalAmount || "$0.00",
+    foodAndGroceries:
+      dataForm?.foodAndGroceries?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    foodAndGroceriesTotalAmount:
+      dataForm?.foodAndGroceriesTotalAmount || "$0.00",
+    frequencyAlcoholAndTobacco:
+      dataForm?.frequencyAlcoholAndTobacco?.value || "Weekly",
+    frequencyBoard: dataForm?.frequencyBoard?.value || "Weekly",
+    frequencyChildcareCosts:
+      dataForm?.frequencyChildcareCosts?.value || "Weekly",
+    frequencyClothingAndFootwear:
+      dataForm?.frequencyClothingAndFootwear?.value || "Quarterly",
+    frequencyDiningOut: dataForm?.frequencyDiningOut?.value || "Weekly",
+    frequencyEntertainment: dataForm?.frequencyEntertainment?.value || "Weekly",
+    frequencyFoodAndGroceries:
+      dataForm?.frequencyFoodAndGroceries?.value || "Weekly",
+    frequencyInsurance: dataForm?.frequencyInsurance?.value || "Annually",
+    frequencyMaintenance: dataForm?.frequencyMaintenance?.value || "Quarterly",
+    frequencyMedical: dataForm?.frequencyMedical?.value || "Quarterly",
+    frequencyMotorVehicleAndTransport:
+      dataForm?.frequencyMotorVehicleAndTransport?.value || "Weekly",
+    frequencyOtherContractedExpenses:
+      dataForm?.frequencyOtherContractedExpenses?.value || "Quarterly",
+    frequencyOtherDiscretionaryExpenses:
+      dataForm?.frequencyOtherDiscretionaryExpenses?.value || "Quarterly",
+    frequencyOtherVariable:
+      dataForm?.frequencyOtherVariable?.value || "Quarterly",
+    frequencyPersonal: dataForm?.frequencyPersonal?.value || "Weekly",
+    frequencyPhoneInternet:
+      dataForm?.frequencyPhoneInternet?.value || "Annually",
+    frequencyPrivateSchoolFees:
+      dataForm?.frequencyPrivateSchoolFees?.value || "Quarterly",
+    frequencyRates: dataForm?.frequencyRates?.value || "Quarterly",
+    frequencySchooling: dataForm?.frequencySchooling?.value || "Quarterly",
+    frequencySportsAndRecreation:
+      dataForm?.frequencySportsAndRecreation?.value || "Quarterly",
+    frequencyUtilities: dataForm?.frequencyUtilities?.value || "Quarterly",
+    frequencyVehicleRegistration:
+      dataForm?.frequencyVehicleRegistration?.value || "Annually",
+    insurance:
+      dataForm?.insurance?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    insuranceTotalAmount: dataForm?.insuranceTotalAmount || "$0.00",
+    maintenance:
+      dataForm?.maintenance?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    maintenanceTotalAmount: dataForm?.maintenanceTotalAmount || "$0.00",
+    medical:
+      dataForm?.medical?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    medicalTotalAmount: dataForm?.medicalTotalAmount || "$0.00",
+    motorVehicleAndTransport:
+      dataForm?.motorVehicleAndTransport?.toLocaleString(
+        "en-US",
+        myObjCurrency
+      ) || "$0.00",
+    motorVehicleAndTransportTotalAmount:
+      dataForm?.motorVehicleAndTransportTotalAmount || "$0.00",
+    otherContractedExpenses:
+      dataForm?.otherContractedExpenses?.toLocaleString(
+        "en-US",
+        myObjCurrency
+      ) || "$0.00",
+    otherContractedExpensesTotalAmount:
+      dataForm?.otherContractedExpensesTotalAmount || "$0.00",
+    otherDiscretionaryExpenses:
+      dataForm?.otherDiscretionaryExpenses?.toLocaleString(
+        "en-US",
+        myObjCurrency
+      ) || "$0.00",
+    otherDiscretionaryExpensesTotalAmount:
+      dataForm?.otherDiscretionaryExpensesTotalAmount || "$0.00",
+    otherVariable:
+      dataForm?.otherVariable?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    otherVariableTotalAmount: dataForm?.otherVariableTotalAmount || "$0.00",
+    personal:
+      dataForm?.personal?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    personalTotalAmount: dataForm?.personalTotalAmount || "$0.00",
+    phoneInternet:
+      dataForm?.phoneInternet?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    phoneInternetTotalAmount: dataForm?.phoneInternetTotalAmount || "$0.00",
+    privateSchoolFees:
+      dataForm?.privateSchoolFees?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    privateSchoolFeesTotalAmount:
+      dataForm?.privateSchoolFeesTotalAmount || "$0.00",
+    rates: dataForm?.rates?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    ratesTotalAmount: dataForm?.ratesTotalAmount || "$0.00",
+    schooling:
+      dataForm?.schooling?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    schoolingTotalAmount: dataForm?.schoolingTotalAmount || "$0.00",
+    sportsAndRecreation:
+      dataForm?.sportsAndRecreation?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    sportsAndRecreationTotalAmount:
+      dataForm?.sportsAndRecreationTotalAmount || "$0.00",
+    utilities:
+      dataForm?.utilities?.toLocaleString("en-US", myObjCurrency) || "$0.00",
+    utilitiesTotalAmount: dataForm?.utilitiesTotalAmount || "$0.00",
+    vehicleRegistration:
+      dataForm?.vehicleRegistration?.toLocaleString("en-US", myObjCurrency) ||
+      "$0.00",
+    vehicleRegistrationTotalAmount:
+      dataForm?.vehicleRegistrationTotalAmount || "$0.00",
+    livingExpenses: frequency,
+
+    totalAmountLiving: `${totalAmountLiving}/${types2[frequency]}`,
+    totalVariable: `${totalVariable}/${types2[frequency]}`,
+    totalDiscretionary: `${totalDiscretionary}/${types2[frequency]}`,
+    totalExpenses: `${totalExpenses}/${types2[frequency]}`,
+    type: types3[frequency],
+  };
+
+  const handleSubmitForm = () => {
+    setStatusDataDetail({
+      email: checkEmailStatus(email),
+      firstName: checkFirstNameStatus(firstName),
+      lastName: checkLastNameStatus(lastName),
+    });
+    if (
+      checkEmailStatus(email) &&
+      checkFirstNameStatus(firstName) &&
+      checkLastNameStatus(lastName)
+    ) {
+      setShowLoading(true);
+      sendDataFormLiving(dataFormSubmit, success, success);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const handleClose = () => {
     setIsShowSendSuccess(false);
     window.location.assign("/living-expenses/");
@@ -610,6 +766,7 @@ const LivingExpenses = () => {
           totalVariable,
           totalDiscretionary,
         }}
+        showLoading={showLoading}
         onChangeSelect={onChangeSelect}
         onBlurHandle={onBlurHandle}
         handleGetDataDetail={handleGetDataDetail}

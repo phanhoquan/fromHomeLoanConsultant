@@ -2,7 +2,7 @@
 
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Card, Accordion, Button } from "react-bootstrap";
+import { Card, Accordion, Button, Spinner } from "react-bootstrap";
 import imgLogo from "../../../images/life/logo.svg";
 import YourDetail from "./YourDetail";
 import AccordionFixed from "./AccordionFixed";
@@ -36,6 +36,7 @@ const FormIndex = ({
   onKeyUpHandle,
   totalExpenses,
   handleSubmitForm,
+  showLoading,
 }: Props) => {
   return (
     <>
@@ -173,7 +174,12 @@ const FormIndex = ({
               </div>
             </div>
             <div className="text-center mt-4">
-              <Button onClick={() => handleSubmitForm()}>Submit</Button>
+              <Button
+                onClick={() => handleSubmitForm()}
+                className="in-progress"
+              >
+                Submit {showLoading && <Spinner animation="border" />}
+              </Button>
             </div>
           </div>
         </div>
