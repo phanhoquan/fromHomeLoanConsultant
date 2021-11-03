@@ -118,6 +118,10 @@ const YourDetail = ({ handleGetDataDetail, statusDataDetail }) => {
     }
   };
 
+  useEffect(() => {
+    handleGetDataDetail(dataDetail);
+  });
+
   return (
     <div className="YourDetail">
       <div className="title">Your details</div>

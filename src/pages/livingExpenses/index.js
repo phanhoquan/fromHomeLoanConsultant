@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import moment from "moment";
 import { getAllTotalAmount, getTotalAmount } from "./helpers/index";
 import checkEmail from "../../utils/checkEmail";
+import ModalSend from "../Modal/ModalSend";
 
 import FormIndex from "./Components/Form";
 
@@ -46,7 +47,7 @@ const LivingExpenses = () => {
   if (document.body) {
     root.setAttribute("class", "fonts100 body-living-expenses");
   }
-
+  const [isShowSendSuccess, setIsShowSendSuccess] = useState(false);
   const [frequency, setFrequency] = useState(types.weekly);
 
   const initDefault = {
@@ -529,12 +530,24 @@ const LivingExpenses = () => {
       firstName: checkFirstNameStatus(firstName),
       lastName: checkLastNameStatus(lastName),
     });
-    console.log(dataDetail, "dataForm");
     if (
       checkEmailStatus(email) &&
       checkFirstNameStatus(firstName) &&
       checkLastNameStatus(lastName)
     ) {
+      console.log(dataDetail, "dataForm");
+      setIsShowSendSuccess(true);
+      setDataDetail({
+        firstName: "",
+        lastName: "",
+        email: "",
+      });
+      setDataForm(initDefault);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -578,6 +591,12 @@ const LivingExpenses = () => {
     dataForm?.totalVariable,
     totalDiscretionary,
   ]);
+
+  const handleClose = () => {
+    setIsShowSendSuccess(false);
+    window.location.assign("/living-expenses/");
+  };
+
   return (
     <React.Fragment>
       <Helmet>
@@ -600,6 +619,7 @@ const LivingExpenses = () => {
         totalExpenses={totalExpenses}
         handleSubmitForm={handleSubmitForm}
       />
+      <ModalSend isShow={isShowSendSuccess} handleClose={handleClose} />
     </React.Fragment>
   );
 };

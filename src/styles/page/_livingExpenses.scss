@@ -414,6 +414,11 @@
 }
 
 html.body-living-expenses.fonts100 {
+  .modal-backdrop {
+    background-color: #001633;
+    opacity: 0.75;
+  }
+
   @media screen and (max-width: 992px) {
     font-size: 80%
   }
@@ -436,5 +441,48 @@ html.body-living-expenses.fonts100 {
 
   @media screen and (max-width: 367px) {
     font-size: 70%;
+  }
+}
+
+.modalSend {
+  .modal-dialog.modal-md {
+    margin: auto;
+
+    .modal-header {
+      padding: 0 !important;
+    }
+
+    * {
+      font-family: 'Rubik' !important;
+    }
+
+    .modal-content {
+      padding-bottom: pxToRem(30) !important;
+    }
+
+    .modal-body {
+      padding-bottom: 0 !important;
+    }
+
+    @media screen and (max-width: 367px) {
+      max-width: pxToRem(450);
+    }
+
+    h4 {
+      font-size: 1.875rem !important;
+    }
+
+    p {
+      font-size: pxToRem(23);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+  }
+
+  .imageSend {
+    img {
+      max-width: pxToRem(100);
+      text-align: center;
+    }
   }
 }
