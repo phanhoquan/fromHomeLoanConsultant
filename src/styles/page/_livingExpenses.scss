@@ -140,7 +140,8 @@
         padding: 0 pxToRem(70);
 
         @media screen and (max-width: 1200px) {
-          padding: 0 pxToRem(15);
+          padding-right: pxToRem(15);
+          padding-left: pxToRem(50);
         }
 
         &:hover {
@@ -153,6 +154,10 @@
         margin: 0;
         align-items: center;
         justify-content: space-between;
+
+        h2 {
+          text-align: left;
+        }
 
         .price {
           text-transform: lowercase;
@@ -226,6 +231,12 @@
         background-size: pxToRem(30);
         background-repeat: no-repeat;
         background-position: left pxToRem(15) center;
+      }
+
+      @media screen and (max-width: 767px) {
+        .card .card-header {
+          background-position: left pxToRem(10) center !important;
+        }
       }
     }
 
