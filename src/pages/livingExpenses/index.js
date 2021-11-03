@@ -60,7 +60,7 @@ const LivingExpenses = () => {
   }
   const [showLoading, setShowLoading] = useState(false);
   const [isShowSendSuccess, setIsShowSendSuccess] = useState(false);
-  const [frequency, setFrequency] = useState(types.weekly);
+  const [frequency, setFrequency] = useState(types.monthly);
 
   const initDefault = {
     frequencyBoard: listOption[5],
