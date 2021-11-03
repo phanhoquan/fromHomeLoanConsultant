@@ -12,7 +12,7 @@
 
   @media screen and (max-width: 767px) {
     position: relative;
-    top: 1px;
+    top: pxToRem(2);
 
     &.position-top {
       &.mobile {
@@ -102,6 +102,9 @@
         border-radius: 10px;
       }
 
+      @media screen and (max-width: 767px) {
+        background-color: #e9e9e9;
+      }
     }
 
     * {
@@ -116,6 +119,10 @@
       // &:hover {
       //   color: #ffffff;
       // }
+    }
+
+    @media screen and (max-width: 767px) {
+      box-shadow: rgb(0 0 0 / 19%) 0px pxToRem(10) pxToRem(20), rgb(0 0 0 / 23%) 0px pxToRem(6) pxToRem(6);
     }
   }
 }

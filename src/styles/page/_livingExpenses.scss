@@ -49,6 +49,10 @@
     color: #00347b;
     font-weight: 500;
     margin-bottom: pxToRem(15);
+
+    @media screen and (max-width: 767px) {
+      text-align: center;
+    }
   }
 
   .step-header {
@@ -104,6 +108,12 @@
       .listAction {
         display: flex;
         justify-content: flex-end;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      .listAction {
+        justify-content: center;
       }
     }
   }
@@ -386,6 +396,7 @@ html.body-living-expenses.fonts100 {
     .tooltipWrap {
       right: pxToRem(-20);
       z-index: 1;
+      margin-top: pxToRem(3);
     }
   }
 
