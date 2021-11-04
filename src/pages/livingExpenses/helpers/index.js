@@ -14,13 +14,13 @@ const myObjCurrency = {
   maximumFractionDigits: 2,
 };
 
-const numberWeeklyOfYear = 52.1429; // Trung bình tổng số tuần /1 năm
+const numberWeeklyOfYear = 52; //52.1429 Trung bình tổng số tuần /1 năm
 const fourWeekly = 4;
 const annually = 12;
 const quarterly = 3;
 const fortnightly = 2;
 const amountQuarterly = 13.04; // trung bình Tuần/quý
-
+const Fortnightly = 26;
 // 1 Số ngày trong tháng
 const numberMonthly = moment(new Date(), "YYYY-MM").daysInMonth();
 
@@ -77,7 +77,7 @@ export const getTotalAmount = (amount, type, typeSelect) => {
     case types.monthly:
       switch (typeSelect?.value) {
         case "Weekly":
-          sum = totalAmount * weekLy;
+          sum = (totalAmount * numberWeeklyOfYear) / annually;
 
           break;
 
@@ -89,7 +89,7 @@ export const getTotalAmount = (amount, type, typeSelect) => {
           sum = totalAmount * (weekLy / fourWeekly);
           break;
         case "Fortnightly":
-          sum = totalAmount * (weekLy / fortnightly);
+          sum = (totalAmount * Fortnightly) / annually;
           break;
         case "Quarterly":
           sum = totalAmount / quarterly;

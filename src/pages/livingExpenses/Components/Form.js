@@ -52,24 +52,26 @@ const FormIndex = ({
           <div className="step-header mt-4">
             <div className="title">Living Expenses</div>
             <div className="listAction">
-              <button
+              {/* <button
                 className={frequency === types.weekly ? "active" : ""}
                 onClick={() => handleClickFrequency(types.weekly)}
               >
                 Weekly
-              </button>
+              </button> */}
               <button
-                className={frequency === types.monthly ? "active" : ""}
+                className={
+                  frequency === types.monthly ? "active border-radius-0" : ""
+                }
                 onClick={() => handleClickFrequency(types.monthly)}
               >
                 Monthly
               </button>
-              <button
+              {/* <button
                 className={frequency === types.annually ? "active" : ""}
                 onClick={() => handleClickFrequency(types.annually)}
               >
                 Annually
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="contentCollapse">

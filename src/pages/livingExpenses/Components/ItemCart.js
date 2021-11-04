@@ -35,10 +35,10 @@ const ItemCart = ({
       value: "Monthly",
       label: "Monthly",
     },
-    {
-      value: "4Weekly",
-      label: "4 Weekly",
-    },
+    // {
+    //   value: "4Weekly",
+    //   label: "4 Weekly",
+    // },
     {
       value: "Fortnightly",
       label: "Fortnightly",

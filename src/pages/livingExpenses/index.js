@@ -117,10 +117,11 @@ const LivingExpenses = () => {
   const fortnightly = 2;
   const quarterly = 3;
   const annually = 12;
+  const Fortnightly = 26;
   const amountQuarterly = 13.04; // trung bình Tuần/quý
   // 1 Số ngày trong tháng
   const numberMonthly = moment(new Date(), "YYYY-MM").daysInMonth();
-  const numberWeeklyOfYear = 52.1429; // Trung bình tổng số tuần /1 năm
+  const numberWeeklyOfYear = 52; // 52.1429 Trung bình tổng số tuần /1 năm
 
   //2 Lấy số tuần trong tháng
   const weekLy = numberMonthly / 7.133;
@@ -230,7 +231,10 @@ const LivingExpenses = () => {
               [nameSelect]: optionSelect,
               [name]: amount,
               [nameTotalAmount]: amount
-                ? `${(amount * weekLy).toLocaleString("en-US", myObjCurrency)}`
+                ? `${((amount * numberWeeklyOfYear) / annually).toLocaleString(
+                    "en-US",
+                    myObjCurrency
+                  )}`
                 : "$0.00",
             });
             break;
@@ -265,7 +269,7 @@ const LivingExpenses = () => {
               [nameSelect]: optionSelect,
               [name]: amount,
               [nameTotalAmount]: amount
-                ? `${(amount * (weekLy / fortnightly)).toLocaleString(
+                ? `${((amount * Fortnightly) / annually).toLocaleString(
                     "en-US",
                     myObjCurrency
                   )}`
