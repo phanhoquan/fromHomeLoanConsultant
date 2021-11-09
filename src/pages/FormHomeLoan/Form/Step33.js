@@ -17,6 +17,7 @@ const Step33 = () => {
   const [noteVale, setNoteVale] = useState(
     localStorage.getItem("noteVale") || ""
   );
+  const [isNoteVale, setIsNoteVale] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,6 +57,10 @@ const Step33 = () => {
   };
 
   const onClickNext = () => {
+    if (noteVale?.length >= 500) {
+      setIsNoteVale(true);
+      return;
+    }
     setShowLoading(true);
     setTimeout(() => setShowLoading(false), 500);
     if (!showLoading) {
@@ -67,6 +72,30 @@ const Step33 = () => {
 
   const onClickBack = () => {
     history.go(-1);
+  };
+
+  const renderMess = () => {
+    let html = (
+      <p className="content-limited mt-2">
+        Content limited to 500 characters. Remaining{" "}
+        <span className="blue">{500 - noteVale?.length || ""}</span>
+      </p>
+    );
+    if (noteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded. Remaining 0
+        </p>
+      );
+    }
+    if (isNoteVale && noteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded in Additional notes
+        </p>
+      );
+    }
+    return html;
   };
 
   return (
@@ -84,15 +113,23 @@ const Step33 = () => {
                 <h2 className="mb-3">33. Please enter any additional notes</h2>
               </Col>
               <Col xs={12}>
-                <Row className="info-customer mt-4 pt-2">
+                <Row
+                  className={`info-customer mt-4 pt-2 ${
+                    noteVale?.length >= 500 ? "box-red" : ""
+                  }`}
+                >
                   <Col xs={12} className="wForm-input pl-0">
                     <textarea
                       className="form-control noteVale"
                       value={noteVale || ""}
                       ref={noteValueRef}
-                      onChange={(e) => setNoteVale(e.target.value)}
+                      onChange={(e) => {
+                        setNoteVale(e.target.value);
+                        setIsNoteVale(false);
+                      }}
                       placeholder="Please enter your additional notes here..."
                     />
+                    {renderMess()}
                   </Col>
                 </Row>
               </Col>

@@ -1208,3 +1208,32 @@ html.fonts90 {
   opacity: 0.3;
   pointer-events: none !important;
 }
+
+.content-limited {
+  font-size: pxToRem(16) !important;
+  font-family: "Rubik";
+  color: #cdcdcd !important;
+
+  .blue {
+    color: #2e9fe9 !important;
+  }
+
+  &.col-red {
+    color: rgb(248, 59, 59) !important;
+  }
+}
+
+.box-red {
+  .form-control {
+    background-color: #f9dfdff5 !important;
+  }
+}
+
+.content-note {
+  padding-bottom: pxToRem(5) !important;
+
+  .content-limited {
+    font-size: pxToRem(13) !important;
+    padding: 0 pxToRem(10);
+  }
+}

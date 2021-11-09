@@ -76,7 +76,7 @@ const HomeLoan = ({
   let dataListMenuStep9 = localStorage.getItem("listMenuStep9")
     ? JSON.parse(localStorage.getItem("listMenuStep9"))
     : [];
-
+  const [isNoteVale, setIsNoteVale] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowMess, setIsShowMess] = useState(false);
   const [contentNoteVale, setContentNoteVale] = useState(
@@ -114,6 +114,10 @@ const HomeLoan = ({
   }, []);
 
   const handleSubmit = () => {
+    if (contentNoteVale?.length >= 500) {
+      setIsNoteVale(true);
+      return;
+    }
     setIsShowModal(true);
   };
 
@@ -152,6 +156,29 @@ const HomeLoan = ({
         <>{item?.question ? <li key={item?.id}>{item?.question}</li> : ""}</>
       );
     });
+  };
+  const renderMess = () => {
+    let html = (
+      <p className="content-limited mt-2">
+        Content limited to 500 characters. Remaining{" "}
+        <span className="blue">{500 - contentNoteVale?.length || ""}</span>
+      </p>
+    );
+    if (contentNoteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded. Remaining 0
+        </p>
+      );
+    }
+    if (isNoteVale && contentNoteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded in Additional notes
+        </p>
+      );
+    }
+    return html;
   };
 
   return (
@@ -344,13 +371,21 @@ const HomeLoan = ({
           Additional notes
           <img src={imgArrowNote} alt="" className="arrow-note" />
         </div>
-        <div className="content-note">
+        <div
+          className={`content-note ${
+            contentNoteVale?.length >= 500 ? "box-red" : ""
+          }`}
+        >
           <textarea
             className="form-control noteVale"
             value={contentNoteVale}
-            onChange={(e) => setContentNoteVale(e.target.value)}
+            onChange={(e) => {
+              setContentNoteVale(e.target.value);
+              setIsNoteVale(false);
+            }}
             placeholder="Please enter your additional notes here..."
           />
+          {renderMess()}
         </div>
       </div>
       <Modal
