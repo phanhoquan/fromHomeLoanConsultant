@@ -383,6 +383,7 @@ const HomeLoan = ({
               setContentNoteVale(e.target.value);
               setIsNoteVale(false);
             }}
+            maxLength="500"
             placeholder="Please enter your additional notes here..."
           />
           {renderMess()}

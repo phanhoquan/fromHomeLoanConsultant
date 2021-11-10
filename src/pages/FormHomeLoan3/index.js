@@ -383,6 +383,7 @@ const HomeLoan = ({
               setIsNoteVale(false);
             }}
             placeholder="Please enter your additional notes here..."
+            maxLength="500"
           />
           {renderMess()}
         </div>

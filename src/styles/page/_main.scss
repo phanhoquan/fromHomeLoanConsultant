@@ -1213,6 +1213,7 @@ html.fonts90 {
   font-size: pxToRem(16) !important;
   font-family: "Rubik";
   color: #cdcdcd !important;
+  font-weight: 300 !important;
 
   .blue {
     color: #2e9fe9 !important;
@@ -1234,6 +1235,10 @@ html.fonts90 {
 
   .content-limited {
     font-size: pxToRem(13) !important;
-    padding: 0 pxToRem(10);
+    padding: 0 pxToRem(18);
+
+    @media screen and (max-width: 767px) {
+      padding: 0 pxToRem(15);
+    }
   }
 }

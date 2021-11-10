@@ -127,6 +127,7 @@ const Step33 = () => {
                         setNoteVale(e.target.value);
                         setIsNoteVale(false);
                       }}
+                      maxLength="500"
                       placeholder="Please enter your additional notes here..."
                     />
                     {renderMess()}
