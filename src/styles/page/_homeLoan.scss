@@ -6,7 +6,6 @@
     align-items: center;
     max-width: 100%;
 
-
     .logo__img {
       max-width: pxToRem(130);
 
@@ -55,7 +54,6 @@
   }
 }
 
-
 .footer.footer-life-insurance.footerDashboard {
   display: block !important;
 }
@@ -68,8 +66,7 @@ textarea {
     }
   }
 
-  +.input__label {
-
+  + .input__label {
     @media screen and (max-width: 640px) {
       white-space: pre-wrap !important;
     }
@@ -84,7 +81,7 @@ textarea {
   }
 
   .Dashboard {
-    max-width: 450px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
 
@@ -104,21 +101,34 @@ textarea {
       text-align: center;
       font-weight: 600;
     }
-
+    .content-box {
+      display: flex;
+      margin-top: 3rem;
+      justify-content: space-around;
+      align-items: center;
+    }
     .item {
       margin-top: 20px;
+      width: 50%;
+      margin-left: 10px;
+      margin-right: 10px;
     }
 
     .item-content {
       display: flex;
       align-items: center;
-      padding: 20px;
+      padding: 10px 15px;
       border-radius: 10px;
       background-color: #fff;
       transition: all 0.3s;
-      border: 3px solid #599bff;
+      border: 2px solid #599bff;
       cursor: pointer;
-
+      min-height: 60px;
+      text-align: center;
+      width: 100%;
+      &.text-center {
+        justify-content: center;
+      }
       &:hover {
         background-color: #599bff;
 
@@ -134,32 +144,43 @@ textarea {
           background-image: url("../../images/Dash_board.png");
         }
 
-        .img2 {
-          background-image: url("../../images/Dash_board2.png");
+        .img2,
+        .mortgage-brokers {
+          filter: brightness(0.5);
         }
       }
 
       .img1 {
-        width: 80px;
-        margin-right: 20px;
+        width: 40px;
+        margin-right: 0;
         background-image: url("../../images/Dash_board_blue.png");
-        min-height: 80px;
+        min-height: 40px;
         background-position: center center;
         background-size: cover;
       }
 
       .img2 {
-        width: 80px;
-        margin-right: 20px;
-        background-image: url("../../images/Dash_board2_blue.png");
-        min-height: 80px;
+        width: 40px;
+        margin-right: 0;
+        background-image: url("../../images/Dash_board3.png");
+        min-height: 40px;
         background-position: center center;
-        background-size: cover;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .mortgage-brokers {
+        width: 40px;
+        margin-right: 0;
+        background-image: url("../../images/Dash_board4.png");
+        min-height: 40px;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
       }
 
       p {
-        font-size: 18px;
-        margin-bottom: 10px;
+        font-size: 16px;
+        margin-bottom: 0;
         transition: all 0.2s;
       }
 

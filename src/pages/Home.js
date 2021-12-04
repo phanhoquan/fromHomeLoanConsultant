@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -8,10 +8,16 @@ import imgLogo from "../images/life/logo.svg";
 
 const Dashboard = () => {
   const history = useHistory();
+  const typeStep = {
+    1: "step1",
+    2: "step2",
+  };
   var root = document.getElementsByTagName("html")[0];
   if (document.body) {
     root.setAttribute("class", "fonts100");
   }
+  const [activeStepPage, setActiveStepPage] = useState(typeStep[1]);
+
   const handleLogOut = () => {
     localStorage.clear();
     history.push("/login");
@@ -45,64 +51,65 @@ const Dashboard = () => {
           <div className="Dashboard">
             <h2>Welcome!</h2>
             <p>Please select the form below to Get Started</p>
-            {/* <div
-              className="item"
-              role="button"
-              onClick={() => history.push("./refinance-fact-find")}
-            >
-              <div className="item-content">
-                <div className="img1" />
-                <div className="info">
-                  <p>Refinance Home Loan Consultant</p>
-                  <div className="group-date">
-                    Create date: 16/07/2021
-                    <br />
-                    Last update: 30/07/2021
+            {activeStepPage === typeStep[1] ? (
+              <div className="content-box">
+                <div
+                  className="item "
+                  role="button"
+                  onClick={() => setActiveStepPage(typeStep[2])}
+                >
+                  <div className="item-content ">
+                    <div className="img2 mr-3 pr-1" />
+                    <div className="info">
+                      <p>Home Loan Consultants</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="item "
+                  role="button"
+                  onClick={() => history.push("./submit-processing-request")}
+                >
+                  <div className="item-content ">
+                    <div className="img2 mortgage-brokers mr-3 pr-1" />
+                    <div className="info">
+                      <p>Mortgage Brokers</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div> */}
-            <div
-              className="item "
-              role="button"
-              onClick={() => history.push("./refinance-fact-find-2")}
-            >
-              <div className="item-content ">
-                <div className="img2 mr-3 pr-1" />
-                <div className="info">
-                  <p>Refinance Home Loan Consultant 2</p>
-                  <div className="group-date">
-                    Create date: 29/07/2021
-                    <br />
-                    Last update: 31/07/2021
+            ) : (
+              <div className="content-box">
+                <div
+                  className="item "
+                  role="button"
+                  onClick={() => history.push("./refinance-fact-find-2")}
+                >
+                  <div className="item-content text-center">
+                    <div className="info">
+                      <p>Refinance Home Loan Consultant 2</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="item "
+                  role="button"
+                  onClick={() => history.push("./refinance-fact-find-3")}
+                >
+                  <div className="item-content text-center ">
+                    <div className="info">
+                      <p>Zabee Refinance HLC</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="item "
-              role="button"
-              onClick={() => history.push("./refinance-fact-find-3")}
-            >
-              <div className="item-content ">
-                <div className="img2 mr-3 pr-1" />
-                <div className="info">
-                  <p>Zabee Refinance HLC</p>
-                  <div className="group-date">
-                    Create date: 09/09/2021
-                    <br />
-                    Last update: 10/09/2021
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="btn-logout" role="button" onClick={handleLogOut}>
-              Logout
-            </div>
+            )}
           </div>
         </main>
         <footer className="footer footer-life-insurance footerDashboard">
+          <div className="btn-logout mb-4" role="button" onClick={handleLogOut}>
+            Logout
+          </div>
           © 2021 Makescents
         </footer>
       </div>

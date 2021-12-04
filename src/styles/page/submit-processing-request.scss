@@ -1,0 +1,174 @@
+.submit-processing-request {
+  background-color: #dadada;
+  min-height: 100vh;
+  * {
+    font-family: "Rubik" !important;
+  }
+  .container {
+    background-color: #fff;
+  }
+  .header-wrap {
+    position: relative;
+    border-bottom: 0;
+    &.home-loan .logo {
+      justify-content: center;
+    }
+  }
+  .btn-reset {
+    position: fixed;
+    right: 15px;
+    top: 20px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    z-index: 999;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    line-height: 28px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0px 10px 40px -10px rgba(46, 159, 233, 0.36);
+    &:hover {
+      opacity: 0.7;
+    }
+    img {
+      margin-right: 5px;
+      max-width: 20px;
+      margin-right: 5px;
+      max-width: 20px;
+      line-height: 1;
+      height: 27px;
+      filter: opacity(0.5);
+    }
+  }
+  .form-request {
+    padding-top: 30px;
+  }
+  .container-form {
+    padding: 0 35px 40px 35px;
+    h2 {
+      text-align: left !important;
+      font-weight: 400;
+      font-size: pxToRem(25);
+    }
+    .card-title {
+      font-size: pxToRem(16);
+      font-weight: 600;
+      text-transform: uppercase;
+      &.title-box {
+        position: relative;
+        text-align: center;
+        &::before {
+          content: "";
+          top: 50%;
+          left: 0;
+          width: calc(50% - 120px);
+          position: absolute;
+          border-top: 1px solid #ced4da;
+          height: 2px;
+        }
+        &::after {
+          content: "";
+          top: 50%;
+          right: 0;
+          width: calc(50% - 120px);
+          position: absolute;
+          border-top: 1px solid #ced4da;
+          height: 2px;
+        }
+      }
+    }
+    .text-error p {
+      justify-content: flex-start;
+      font-weight: 400 !important;
+    }
+    .info-customer {
+      max-width: 100%;
+      margin: 0;
+    }
+    .input__box {
+      input,
+      textarea {
+        font-weight: 500 !important;
+      }
+      label {
+        font-weight: 400 !important;
+      }
+    }
+    .noteVale {
+      background-color: #fff;
+    }
+
+    .btnPrimary.life {
+      background-color: #494949;
+      border-color: #494949;
+      font-weight: 400;
+      &:hover {
+        background-color: #001d30;
+        border-color: #001d30;
+      }
+    }
+    .checkbox {
+      margin: 0.5rem 0;
+      &__label {
+        padding-left: 2.5rem;
+        line-height: 2.2rem;
+        span {
+          line-height: 1.2;
+          display: inline-block;
+        }
+        &::before {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+        &::after {
+          left: pxToRem(5);
+          top: pxToRem(10);
+        }
+      }
+    }
+    .checkbox.checkbox--checked .checkbox__label::before {
+      background-color: #4a4a4a;
+      border-color: #4a4a4a;
+    }
+  }
+  .max-700 {
+    max-width: pxToRem(700) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  @media screen and(max-width: 800px) {
+    .container-form {
+      padding: 0 0 40px 0;
+      h2 {
+        font-size: pxToRem(22);
+      }
+      .card-title {
+        font-size: pxToRem(14);
+        &.title-box {
+          &::before {
+            width: calc(50% - 80px);
+          }
+          &::after {
+            width: calc(50% - 80px);
+          }
+        }
+      }
+      .checkbox__label::after {
+        left: pxToRem(6);
+        top: pxToRem(11);
+      }
+    }
+    .btn-reset {
+      font-size: 0;
+      position: absolute;
+      top: 0;
+      border: 0;
+      box-shadow: none;
+      right: 0;
+    }
+  }
+}

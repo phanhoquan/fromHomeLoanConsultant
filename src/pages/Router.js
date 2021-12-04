@@ -10,6 +10,7 @@ const HomeLoan2 = lazy(() => import("./FormHomeLoan2/Form"));
 const HomeLoan3 = lazy(() => import("./FormHomeLoan3/Form"));
 const Login = lazy(() => import("./Login"));
 const LivingExpenses = lazy(() => import("./livingExpenses/index"));
+const SubmitProcessingRequest = lazy(() => import("./SubmitProcessingRequest/index"));
 
 const Router = () => {
   const { listen } = useHistory();
@@ -36,6 +37,9 @@ const Router = () => {
     <Switch>
       <Route path="/living-expenses">
         <LivingExpenses />
+      </Route>
+      <Route path="/submit-processing-request">
+        <SubmitProcessingRequest />
       </Route>
       <PrivateRoute
         exact
