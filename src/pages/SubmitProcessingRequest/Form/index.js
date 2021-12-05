@@ -37,7 +37,7 @@ const listCheckBox4 = [
   { name: "Principle & Interest", value: "principle_interest" },
   { name: "Interest Only (O/O)", value: "interest_only" },
   {
-    name: "Low DocInterest Only (Investment)",
+    name: "Low Doc Interest Only (Investment)",
     value: "interest_only_investment",
   },
 ];
