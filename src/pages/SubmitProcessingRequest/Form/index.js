@@ -288,7 +288,6 @@ const Form = () => {
               <textarea
                 className="form-control noteVale"
                 value={recommendProduct}
-                onKeyPress={onKeyDown}
                 onChange={(e) => {
                   onKeyUpHandle("recommendProduct", e.target.value);
                 }}
@@ -442,7 +441,6 @@ const Form = () => {
               <textarea
                 className="form-control noteVale"
                 value={additionalNotes}
-                onKeyPress={onKeyDown}
                 onChange={(e) => {
                   onKeyUpHandle("additionalNotes", e.target.value);
                 }}

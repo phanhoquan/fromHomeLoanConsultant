@@ -91,7 +91,7 @@ export const sendDataFormProcessingRequest = (
   callback = () => {},
   error = () => {}
 ) => {
-  fetch(`${BASE_URL}recommend-product.php`, {
+  fetch(`${BASE_URL}submit-processing-request.php`, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
