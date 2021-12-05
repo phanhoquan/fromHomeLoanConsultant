@@ -208,7 +208,7 @@ const Form = () => {
     } else {
       setDataFormSubmit({
         ...dataFormSubmit,
-        needCompleted: listCheckBox6,
+        needCompleted: listCheckBox6Default,
       });
     }
   };
@@ -226,7 +226,7 @@ const Form = () => {
     loan_purpose: loanPurpose || "",
     loan_repayents: loanRepayments || "",
     optional: optional || "",
-    needs_to_be_completed: needCompleted || listCheckBox6,
+    needs_to_be_completed: needCompleted || listCheckBox6Default,
     additional_notes: additionalNotes || "",
   };
   const handleSubmitForm = () => {
