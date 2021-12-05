@@ -13,49 +13,30 @@ import ModalSend from "../../Modal/ModalSendRequest";
 //Calling WOWjs
 import qs from "qs";
 
-const listCheckBox1 = [
-  { name: "Purchase", value: "purchase" },
-  { name: "Refinance", value: "refinance" },
-  { name: "Commercial", value: "commercial" },
-];
-const listCheckBox2 = [
-  { name: "Owner Occupied", value: "owner_occupied" },
-  { name: "Investment", value: "investment" },
-];
+const listCheckBox1 = ["Purchase", "Refinance", "Commercial"];
+const listCheckBox2 = ["Owner Occupied", "Investment"];
 const listCheckBox3 = [
-  { name: "Refinance", value: "refinance" },
-  { name: "Construction", value: "construction" },
-  { name: "Bridging", value: "bridging" },
-  { name: "Owner Builder", value: "owner_builder" },
-  { name: "Full Doc", value: "full_doc" },
-  { name: "Low Doc", value: "low_doc" },
+  "Refinance",
+  "Construction",
+  "Bridging",
+  "Owner Builder",
+  "Full Doc",
+  "Low Doc",
 ];
 const listCheckBox4 = [
-  { name: "Weekly", value: "weekly" },
-  { name: "Fortnightly", value: "fortnightly" },
-  { name: "Monthly", value: "monthly" },
-  { name: "Principle & Interest", value: "principle_interest" },
-  { name: "Interest Only (O/O)", value: "interest_only" },
-  {
-    name: "Low Doc Interest Only (Investment)",
-    value: "interest_only_investment",
-  },
+  "Weekly",
+  "Fortnightly",
+  "Monthly",
+  "Principle & Interest",
+  "Interest Only (O/O)",
+  "Low Doc Interest Only (Investment)",
 ];
-const listCheckBox5 = [
-  { name: "Needs LMI", value: "needs_LMI" },
-  { name: "First Home Buyer", value: "first_home_buyer" },
-];
+const listCheckBox5 = ["Needs LMI", "First Home Buyer"];
 const listCheckBox6 = [
-  { name: "File Invite", value: "file_invite" },
-  { name: "Check Service ability", value: "check_service_ability" },
-  { name: "Order Valuation", value: "order_valuation" },
-  { name: "Perform Credit Check", value: "perform_credit_check" },
-];
-const listCheckBox6Default = [
-  "file_invite",
-  "check_service_ability",
-  "order_valuation",
-  "perform_credit_check",
+  "File Invite",
+  "Check Service Ability",
+  "Order Valuation",
+  "Perform Credit Check",
 ];
 
 const Form = () => {
@@ -119,7 +100,7 @@ const Form = () => {
     loanPurpose: "",
     optional: "",
     loanRepayments: "",
-    needCompleted: listCheckBox6Default || [],
+    needCompleted: listCheckBox6 || [],
   };
 
   const [showLoading, setShowLoading] = useState(false);
@@ -174,7 +155,7 @@ const Form = () => {
     }
   };
   const handleToggleCheckbox = (name, item, value) => {
-    if (value === item && name === value) {
+    if (value === item) {
       setDataFormSubmit({
         ...dataFormSubmit,
         [name]: "",
@@ -188,7 +169,6 @@ const Form = () => {
   };
   const handelChangeCheckbox = (itemObj) => {
     let dataSubmit = [];
-    console.log(itemObj, "itemObj");
     if (needCompleted?.some((data) => data === itemObj)) {
       dataSubmit = needCompleted.filter((item) => item !== itemObj);
     } else {
@@ -208,7 +188,7 @@ const Form = () => {
     } else {
       setDataFormSubmit({
         ...dataFormSubmit,
-        needCompleted: listCheckBox6Default,
+        needCompleted: listCheckBox6,
       });
     }
   };
@@ -226,7 +206,7 @@ const Form = () => {
     loan_purpose: loanPurpose || "",
     loan_repayents: loanRepayments || "",
     optional: optional || "",
-    needs_to_be_completed: needCompleted || listCheckBox6Default,
+    needs_to_be_completed: needCompleted || listCheckBox6,
     additional_notes: additionalNotes || "",
   };
   const handleSubmitForm = () => {
@@ -326,14 +306,14 @@ const Form = () => {
                       handleToggleCheckbox={() =>
                         handleToggleCheckbox(
                           "typeOfEnquiry",
-                          item.value,
+                          item,
                           typeOfEnquiry
                         )
                       }
-                      label={item.name}
-                      id={`${item.value}-${index}-typeOfEnquiry`}
-                      name={item.value}
-                      isChecked={item.value === typeOfEnquiry}
+                      label={item}
+                      id={`${item}-${index}-typeOfEnquiry`}
+                      name={item}
+                      isChecked={item === typeOfEnquiry}
                     />
                   </Col>
                 ))}
@@ -350,14 +330,14 @@ const Form = () => {
                       handleToggleCheckbox={() =>
                         handleToggleCheckbox(
                           "investmentType",
-                          item.value,
+                          item,
                           investmentType
                         )
                       }
-                      label={item.name}
-                      id={`${item.value}-${index}-investmentType`}
-                      name={item.value}
-                      isChecked={item.value === investmentType}
+                      label={item}
+                      id={`${item}-${index}-investmentType`}
+                      name={item}
+                      isChecked={item === investmentType}
                     />
                   </Col>
                 ))}
@@ -372,16 +352,12 @@ const Form = () => {
                   <Col xs={6} lg={4} key={index} className="p-0">
                     <CheckBox
                       handleToggleCheckbox={() =>
-                        handleToggleCheckbox(
-                          "loanPurpose",
-                          item.value,
-                          loanPurpose
-                        )
+                        handleToggleCheckbox("loanPurpose", item, loanPurpose)
                       }
-                      label={item.name}
-                      id={`${item.value}-${index}-loanPurpose`}
-                      name={item.value}
-                      isChecked={item.value === loanPurpose}
+                      label={item}
+                      id={`${item}-${index}-loanPurpose`}
+                      name={item}
+                      isChecked={item === loanPurpose}
                     />
                   </Col>
                 ))}
@@ -398,14 +374,14 @@ const Form = () => {
                       handleToggleCheckbox={() =>
                         handleToggleCheckbox(
                           "loanRepayments",
-                          item.value,
+                          item,
                           loanRepayments
                         )
                       }
-                      label={item.name}
-                      id={`${item.value}-${index}-loanRepayments`}
-                      name={item.value}
-                      isChecked={item.value === loanRepayments}
+                      label={item}
+                      id={`${item}-${index}-loanRepayments`}
+                      name={item}
+                      isChecked={item === loanRepayments}
                     />
                   </Col>
                 ))}
@@ -414,18 +390,18 @@ const Form = () => {
           </Col>
           <Col xs={12}>
             <div className="info-customer mt-4 mt-md-5 group-checkbox">
-              <h3 className="mb-3 card-title title-box">Optional</h3>
+              <h3 className="mb-3 card-title title-box">Optional Features</h3>
               <div className="group-checkbox row m-0 justify-content-center">
                 {listCheckBox5.map((item, index) => (
                   <Col xs={6} lg={3} key={index} className="p-0">
                     <CheckBox
                       handleToggleCheckbox={() =>
-                        handleToggleCheckbox("optional", item.value, optional)
+                        handleToggleCheckbox("optional", item, optional)
                       }
-                      label={item.name}
-                      id={`${item.value}-${index}-optional`}
-                      name={item.value}
-                      isChecked={item.value === optional}
+                      label={item}
+                      id={`${item}-${index}-optional`}
+                      name={item}
+                      isChecked={item === optional}
                     />
                   </Col>
                 ))}
@@ -449,13 +425,11 @@ const Form = () => {
                 {listCheckBox6.map((item, index) => (
                   <Col xs={6} key={index}>
                     <CheckBox
-                      handleToggleCheckbox={() =>
-                        handelChangeCheckbox(item.value)
-                      }
-                      label={item.name}
-                      id={`${item.value}-${index}-needCompleted`}
-                      name={item.value}
-                      isChecked={needCompleted.includes(item.value)}
+                      handleToggleCheckbox={() => handelChangeCheckbox(item)}
+                      label={item}
+                      id={`${item}-${index}-needCompleted`}
+                      name={item}
+                      isChecked={needCompleted.includes(item)}
                     />
                   </Col>
                 ))}
