@@ -85,3 +85,25 @@ export const sendDataFormLiving = (
       error(err);
     });
 };
+
+export const sendDataFormProcessingRequest = (
+  data,
+  callback = () => {},
+  error = () => {}
+) => {
+  fetch(`${BASE_URL}recommend-product.php`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      callback(result);
+    })
+    .catch((err) => {
+      error(err);
+    });
+};

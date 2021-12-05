@@ -20,9 +20,7 @@ const ModalSend = ({ handleClose, isShow }: Props) => {
           <img src={imageSend} alt="Send" />
         </div>
         <h4>Thank you!</h4>
-        <p>
-          Your information has now <br /> been sent to your broker.
-        </p>
+        <p>Your information has now been sent.</p>
       </Modal.Body>
     </Modal>
   );

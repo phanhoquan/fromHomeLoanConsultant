@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { beginPage } from "../../../utils/beginPage";
+import { sendDataFormProcessingRequest } from "../../../utils/api";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 import checkEmail from "../../../utils/checkEmail";
 import { valid } from "../../../utils/constant";
@@ -191,21 +192,30 @@ const Form = () => {
       });
     }
   };
-  console.log("itemObj", needCompleted);
   const success = (data) => {
     setIsShowSendSuccess(true);
     setShowLoading(false);
     setDataFormSubmit(initDefault);
   };
-
+  const dataForm = {
+    fullname: fullName || "",
+    email,
+    recommend_product: recommendProduct || "",
+    type_of_enquiry: typeOfEnquiry || "",
+    investment_type: investmentType || "",
+    loan_purpose: loanPurpose || "",
+    loan_repayents: loanRepayments || "",
+    optional: optional || "",
+    needs_to_be_completed: needCompleted || listCheckBox6,
+    additional_notes: additionalNotes || "",
+  };
   const handleSubmitForm = () => {
     checkEmailStatus(email);
     checkFullNameStatus(fullName);
     setShowLoading(true);
     if (checkEmailStatus(email) && checkFullNameStatus(fullName)) {
       setShowLoading(true);
-      setIsShowSendSuccess(true);
-      // sendDataFormLiving(dataFormSubmit, success, success);
+      sendDataFormProcessingRequest(dataForm, success, success);
     } else {
       setShowLoading(false);
       window.scrollTo({
