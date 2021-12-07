@@ -140,6 +140,46 @@
     margin-left: auto !important;
     margin-right: auto !important;
   }
+  .detail {
+    &__label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      * {
+        font-size: 1rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .selectEnterName {
+    max-width: 100%;
+    .customSelect__control {
+      border: 1px solid #ced4da !important;
+      border-radius: 0.25rem !important;
+      .customSelect__placeholder {
+        font-size: 1rem;
+      }
+      .customSelect__input input {
+        transition: none !important;
+        height: pxToRem(50);
+      }
+    }
+    .customSelect__menu-list {
+      max-height: 500px !important;
+      .customSelect__option {
+        font-size: 1.2rem;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+    }
+    .customSelect__menu {
+      border: 1px solid #ced4da !important;
+    }
+    .customSelect__indicators {
+      display: none;
+    }
+  }
   @media screen and(max-width: 800px) {
     .container-form {
       padding: 0 0 40px 0;

@@ -2,6 +2,9 @@
 
 // const BASE_URL = 'http://localhost/api.makescents/';
 const BASE_URL = "https://api.makescents.com.au/";
+// const BASE_URL_HUB = "https://api.hubapi.com/engagements/v1/engagements";
+// const hapikey = `?hapikey=c17ea055-071c-469f-8769-877a3c5e375a`;
+
 export const getUID = (formID, options, callback) => {
   let url = `${BASE_URL}index.php?action=uid&form-id=${formID}`;
   for (const item in options) {
@@ -92,6 +95,43 @@ export const sendDataFormProcessingRequest = (
   error = () => {}
 ) => {
   fetch(`${BASE_URL}submit-processing-request.php`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      callback(result);
+    })
+    .catch((err) => {
+      error(err);
+    });
+};
+
+export const getDataHubAPIProcessingRequest = (
+  params = "",
+  callback = () => {},
+  error = () => {}
+) => {
+  fetch(`${BASE_URL}get-content-hubapi.php${params}`)
+    .then((response) => response.json())
+    .then((result) => {
+      callback(result);
+    })
+    .catch((err) => {
+      error(err);
+    });
+};
+
+export const sendDataFormEngagementsRequest = (
+  data,
+  callback = () => {},
+  error = () => {}
+) => {
+  fetch(`${BASE_URL}insert-data-hubapi.php`, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

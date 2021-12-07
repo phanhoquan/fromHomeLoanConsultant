@@ -1,17 +1,20 @@
 /** @format */
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { beginPage } from "../../../utils/beginPage";
-import { sendDataFormProcessingRequest } from "../../../utils/api";
+import {
+  sendDataFormProcessingRequest,
+  getDataHubAPIProcessingRequest,
+  sendDataFormEngagementsRequest,
+} from "../../../utils/api";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
-import checkEmail from "../../../utils/checkEmail";
 import { valid } from "../../../utils/constant";
-import InputCustom2 from "../../../Components/InputCustom2";
 import CheckBox from "../../../Components/CheckBox2";
 import ModalSend from "../../Modal/ModalSendRequest";
 //Calling WOWjs
 import qs from "qs";
+import SelectDropdown from "../../../Components/Select/index";
 
 const listCheckBox1 = ["Purchase", "Refinance", "Commercial"];
 const listCheckBox2 = ["Owner Occupied", "Investment"];
@@ -42,13 +45,13 @@ const listCheckBox6 = [
 const Form = () => {
   const history = useHistory();
   const location = useLocation();
-  const firstNameRef = useRef(null);
   const [isShowSendSuccess, setIsShowSendSuccess] = useState(false);
+  const [listDataAccount, setListDataAccount] = useState([]);
+  const [listDataAccountHubID, setListDataAccountHubID] = useState([]);
   //Redirect all page not begin
   useEffect(() => {
     beginPage(history, "/submit-processing-request");
   }, [history]);
-
   //Redirect all page not begin
   useEffect(() => {
     if (history.action === "POP") {
@@ -101,18 +104,40 @@ const Form = () => {
     optional: "",
     loanRepayments: "",
     needCompleted: listCheckBox6 || [],
+    optionName: null,
+    ownerId: null,
+    attachments: null,
   };
 
   const [showLoading, setShowLoading] = useState(false);
   const [dataFormSubmit, setDataFormSubmit] = useState(initDefault);
-  const [emailValid, setEmailValid] = useState(valid.NON_VALID);
   const [fullNameValid, setFullNameValidValid] = useState(valid.NON_VALID);
 
-  const checkEmailStatus = (value) => {
-    let test = value && checkEmail(value || "");
-    setEmailValid(Number(test));
-    return test;
+  const callback = (data) => {
+    if (data && data.length > 0) {
+      setListDataAccount(data || []);
+    } else {
+      setListDataAccount([]);
+    }
   };
+
+  const callbackHubID = (data) => {
+    if (data && data.length > 0) {
+      setListDataAccountHubID(data || []);
+    } else {
+      setListDataAccountHubID([]);
+    }
+  };
+
+  useEffect(() => {
+    getDataHubAPIProcessingRequest(
+      "?properties=hubspot_owner_id",
+      callbackHubID,
+      callbackHubID
+    );
+    getDataHubAPIProcessingRequest("", callback, callback);
+  }, []);
+
   const checkFullNameStatus = (value) => {
     let test = value.length > 2;
     setFullNameValidValid(Number(test));
@@ -140,20 +165,11 @@ const Form = () => {
     loanRepayments,
     optional,
     needCompleted,
+    optionName,
+    ownerId,
+    attachmentsId,
   } = dataFormSubmit;
 
-  const handleBlur = (name) => {
-    switch (name) {
-      case "fullName":
-        checkFullNameStatus(fullName);
-        break;
-      case "email":
-        checkEmailStatus(email);
-        break;
-      default:
-        break;
-    }
-  };
   const handleToggleCheckbox = (name, item, value) => {
     if (value === item) {
       setDataFormSubmit({
@@ -167,6 +183,7 @@ const Form = () => {
       });
     }
   };
+
   const handelChangeCheckbox = (itemObj) => {
     let dataSubmit = [];
     if (needCompleted?.some((data) => data === itemObj)) {
@@ -179,6 +196,7 @@ const Form = () => {
       needCompleted: dataSubmit,
     });
   };
+
   const handelChangeCheckboxAll = () => {
     if (needCompleted.length === 4) {
       setDataFormSubmit({
@@ -192,11 +210,34 @@ const Form = () => {
       });
     }
   };
+
+  const filterHubID = (idItem) => {
+    const filterHubId = listDataAccountHubID.find((item) => item.id === idItem);
+    return (filterHubId && filterHubId.properties.hubspot_owner_id) || "";
+  };
+
+  const onKeyUpHandleSelect = (option) => {
+    setDataFormSubmit({
+      ...dataFormSubmit,
+      optionName: option,
+      fullName: option.value,
+      ownerId: filterHubID(option.id),
+      attachmentsId: option.id,
+    });
+  };
+
   const success = (data) => {
     setIsShowSendSuccess(true);
     setShowLoading(false);
     setDataFormSubmit(initDefault);
   };
+
+  const successEngagements = (data) => {
+    setIsShowSendSuccess(true);
+    setShowLoading(false);
+    setDataFormSubmit(initDefault);
+  };
+
   const dataForm = {
     fullname: fullName || "",
     email,
@@ -209,13 +250,20 @@ const Form = () => {
     needs_to_be_completed: needCompleted || listCheckBox6,
     additional_notes: additionalNotes || "",
   };
+
+  const dataEngagements = {
+    ownerId: ownerId,
+    attachmentsId,
+    body: additionalNotes,
+  };
+
   const handleSubmitForm = () => {
-    checkEmailStatus(email);
     checkFullNameStatus(fullName);
     setShowLoading(true);
-    if (checkEmailStatus(email) && checkFullNameStatus(fullName)) {
+    if (checkFullNameStatus(fullName)) {
       setShowLoading(true);
       sendDataFormProcessingRequest(dataForm, success, success);
+      sendDataFormEngagementsRequest(dataEngagements, successEngagements);
     } else {
       setShowLoading(false);
       window.scrollTo({
@@ -224,34 +272,38 @@ const Form = () => {
       });
     }
   };
-  const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleSubmitForm();
-    }
-  };
+
+  const listDataSelect = listDataAccount.map((item) => {
+    return {
+      id: item.id,
+      label: item.properties.dealname,
+      value: item.properties.dealname,
+      closedate: item.properties.closedate,
+      createdate: item.properties.createdate,
+      dealstage: item.properties.dealstage,
+    };
+  });
 
   return (
     <section className="form-request">
       <div className="container-form">
         <Row>
           <Col xs={12} className="text-center">
-            <h2 className="mb-3">Please enter your details</h2>
+            <h2 className="mb-3">Please enter your name</h2>
           </Col>
           <Col xs={12}>
             <Row className="info-customer">
               <Col xs={12} md={6} className="wForm-input mb-3 p-0 pr-md-3">
-                <InputCustom2
-                  onFocus={() => setFullNameValidValid(valid.NON_VALID)}
-                  onChange={(e) => onKeyUpHandle("fullName", e.target.value)}
-                  label="FULL NAME"
-                  onKeyPress={onKeyDown}
-                  value={
-                    fullName && fullName[0].toUpperCase() + fullName.slice(1)
-                  }
-                  id="fullName"
-                  customClassLabel={fullName ? "active" : ""}
-                  innerRef={firstNameRef}
-                  onBlur={() => handleBlur("fullName")}
+                <SelectDropdown
+                  placeholder="ENTER NAME HEAR"
+                  customClass="selectEnterName"
+                  listItem={listDataSelect || []}
+                  onChange={(option) => {
+                    onKeyUpHandleSelect(option);
+                    checkFullNameStatus(option?.value || "");
+                  }}
+                  isSearchable
+                  option={optionName || null}
                 />
                 {fullNameValid === valid.INVALID && (
                   <div className="text-error mt-2 text-left">
@@ -259,28 +311,45 @@ const Form = () => {
                   </div>
                 )}
               </Col>
-              <Col xs={12} md={6} className="wForm-input mb-3 p-0 pl-md-3">
-                <InputCustom2
-                  onFocus={() => setEmailValid(valid.NON_VALID)}
-                  onChange={(e) => onKeyUpHandle("email", e.target.value)}
-                  label="PLEASE ENTER YOUR EMAIL"
-                  value={email}
-                  type="email"
-                  onKeyPress={onKeyDown}
-                  id="email-input"
-                  customClassLabel={email ? "active" : ""}
-                  iconEmail
-                  onBlur={() => handleBlur("email")}
-                  customClassWrap="email"
-                />
-                {emailValid === valid.INVALID && (
-                  <div className="text-error mt-2 text-left">
-                    <p>Please enter in a valid Email</p>
-                  </div>
-                )}
-              </Col>
             </Row>
           </Col>
+          {optionName ? (
+            <Col xs={12} className="info-customer mt-4">
+              <Row>
+                <Col xs={12} md={7}>
+                  <div className="detail">
+                    <div className="detail__left">
+                      <div className="detail__label">
+                        <label>ID:</label>
+                        <div className="ml-2">{optionName.id}</div>
+                      </div>
+                      <div className="detail__label">
+                        <label>DEALSTAGE:</label>
+                        <div className="ml-2">{optionName.dealstage}</div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                <Col xs={12} md={5}>
+                  <div className="detail">
+                    <div className="detail__left">
+                      <div className="detail__label">
+                        <label>CLOSEDATE:</label>
+                        <div className="ml-2">{optionName.closedate}</div>
+                      </div>
+                      <div className="detail__label">
+                        <label>CREATEDATE:</label>
+                        <div className="ml-2">{optionName.createdate}</div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+          ) : (
+            ""
+          )}
+
           <Col xs={12}>
             <div className="info-customer mt-4 mt-md-5">
               <h2 className="mb-3">Information about the request</h2>
