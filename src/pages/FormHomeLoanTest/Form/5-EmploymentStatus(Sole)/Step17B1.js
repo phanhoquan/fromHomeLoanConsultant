@@ -51,7 +51,7 @@ const Step15 = ({
   }, [occupation]);
 
   const onKeyUpHandle = (name, value) => {
-    if (name === "loan2occupation17B1") {
+    if (name === "occupation") {
       setOccupation(value);
       if (value?.length >= 2) {
         setIsShowModal(true);
