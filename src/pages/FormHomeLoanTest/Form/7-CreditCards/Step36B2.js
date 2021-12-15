@@ -139,7 +139,7 @@ const Step30 = ({ handleGetLoan2value }) => {
                     onBlur={() => {
                       checkValueCreditCardAmountStatus(valueCreditCardAmount);
                       handleGetLoan2value(
-                        "creditCardB2Amount",
+                        "creditCardAmountB2",
                         valueCreditCardAmount
                       );
                     }}

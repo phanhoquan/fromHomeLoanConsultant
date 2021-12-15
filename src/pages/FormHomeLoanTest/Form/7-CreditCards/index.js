@@ -50,9 +50,9 @@ const CreditCards = () => {
       window.localStorage.setItem("loan2valueCreditCard", "");
       window.localStorage.setItem("loan2valueCreditCardAmount", "");
       window.localStorage.setItem("loan2valueCreditCardB1", "");
-      window.localStorage.setItem("loan2valueCreditCardAmountB1", "");
+      window.localStorage.setItem("loan2valueCreditCardB1Amount", "");
       window.localStorage.setItem("loan2valueCreditCardB2", "");
-      window.localStorage.setItem("loan2valueCreditCardAmountB2", "");
+      window.localStorage.setItem("loan2valueCreditCardB2Amount", "");
       window.localStorage.setItem("numberCardWorking", "");
       setLoan2value({
         ...loan2value,
@@ -64,6 +64,20 @@ const CreditCards = () => {
         valueCreditCardB2: "",
         creditCardAmountB2: "",
         numberCardWorking: ''
+      });
+    }
+    if(name === 'numberCardWorking'){
+      window.localStorage.setItem("loan2valueCreditCardB1", "");
+      window.localStorage.setItem("loan2valueCreditCardB1Amount", "");
+      window.localStorage.setItem("loan2valueCreditCardB2", "");
+      window.localStorage.setItem("loan2valueCreditCardB2Amount", "");
+      setLoan2value({
+        ...loan2value,
+        numberCardWorking: value,
+        valueCreditCardB1: "",
+        creditCardAmountB1: "",
+        valueCreditCardB2: "",
+        creditCardAmountB2: "",
       });
     }
   };
@@ -113,11 +127,11 @@ const CreditCards = () => {
     {
       id: 8,
       question: `${
-        creditCardAmountB2 ? "37.8. What is the limit on the credit card?" : ""
+        creditCardAmountB2 ? "37.3. What is the limit on the credit card?" : ""
       }`,
     },
   ];
-
+  
   useMemo(() => {
     if (loan2creditCard || valueCreditCard || creditCardAmount || numberCardWorking || valueCreditCardB1 || valueCreditCardB2 || creditCardAmountB1 || creditCardAmountB2) {
       setDataListMenuStep8(step8);
@@ -158,7 +172,6 @@ const CreditCards = () => {
               loan2creditCard={loan2creditCard}
             />
            ): ''}
-
         </div>
       ) : (
         ""
