@@ -179,6 +179,16 @@ const EmploymentStatusSoleJoint = () => {
       window.localStorage.setItem("loan2employmentWorkingStatus", "");
     }
 
+    if (name === "numberYearWorking") {
+      window.localStorage.setItem("loan2occupation17B1", "");
+      window.localStorage.setItem("loan2numberYearWorking17b", "");
+      setLoan2value({
+        ...loan2value,
+        numberYearWorking: value,
+        numberYearWorking17b: '',
+        loan2occupation17B1: ''
+      });
+    }
     if (name === "employmentPartnersWorkingStatus" && value !== types3[6]) {
       window.localStorage.setItem("loan2numberPartnerReturn", "");
     }
@@ -373,7 +383,8 @@ const EmploymentStatusSoleJoint = () => {
     numberPartnerReturn,
     partnersSalary,
     loan2yourSalary,
-    numberYearWorking17b
+    numberYearWorking17b,
+    loan2occupation17B1
   ]);
   
   const onClickNext = () => {
