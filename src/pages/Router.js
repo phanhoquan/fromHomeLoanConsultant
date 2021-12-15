@@ -8,6 +8,7 @@ import HomePage from "./Home";
 const HomeLoan = lazy(() => import("./FormHomeLoan/Form"));
 const HomeLoan2 = lazy(() => import("./FormHomeLoan2/Form"));
 const HomeLoan3 = lazy(() => import("./FormHomeLoan3/Form"));
+const RefinanceHomeLoanTest= lazy(() => import("./FormHomeLoanTest/Form"));
 const Login = lazy(() => import("./Login"));
 const LivingExpenses = lazy(() => import("./livingExpenses/index"));
 const SubmitProcessingRequest = lazy(() => import("./SubmitProcessingRequest/index"));
@@ -63,6 +64,18 @@ const Router = () => {
         exact
         path="/refinance-fact-find-2/*"
         component={HomeLoan2}
+        isAuthenticated={isAuthenticated}
+      />
+       <PrivateRoute
+        exact
+        path="/refinance-home-loan-consultant-test/"
+        component={RefinanceHomeLoanTest}
+        isAuthenticated={isAuthenticated}
+      />
+      <PrivateRoute
+        exact
+        path="/refinance-home-loan-consultant-test/*"
+        component={RefinanceHomeLoanTest}
         isAuthenticated={isAuthenticated}
       />
       <PrivateRoute

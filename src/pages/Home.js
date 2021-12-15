@@ -83,7 +83,7 @@ const Dashboard = () => {
                 <div
                   className="item "
                   role="button"
-                  onClick={() => history.push("./refinance-fact-find-2")}
+                  onClick={() => history.push("./refinance-home-loan-consultant-test")}
                 >
                   <div className="item-content text-center">
                     <div className="info">

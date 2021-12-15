@@ -272,7 +272,6 @@ const Form = () => {
       });
     }
   };
-
   const listDataSelect = listDataAccount.map((item) => {
     return {
       id: item.id,
@@ -295,7 +294,7 @@ const Form = () => {
             <Row className="info-customer">
               <Col xs={12} md={6} className="wForm-input mb-3 p-0 pr-md-3">
                 <SelectDropdown
-                  placeholder="ENTER NAME HEAR"
+                  placeholder="ENTER NAME HERE"
                   customClass="selectEnterName"
                   listItem={listDataSelect || []}
                   onChange={(option) => {
