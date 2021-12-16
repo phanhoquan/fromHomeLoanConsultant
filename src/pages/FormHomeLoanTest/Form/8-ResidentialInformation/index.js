@@ -4,14 +4,20 @@ import React, { useMemo, useState } from "react";
 import LifeInsurance from "../../index";
 
 import Step31 from "./Step31";
+import Step38B from "./Step38B";
+import Step38C from "./Step38C";
 import Step32 from "./Step32";
+import Step39B from "./Step39B";
+import Step39D from "./Step39D";
+import Step39C from "./Step39C";
 import Step32B from "./Step32B";
 import Step33 from "./Step33";
 
 export const types = {
-  1: "YES",
-  2: "NO",
+  1: 'o/o',
+  2: "Investment property",
 };
+
 
 const ResidentialInformation = () => {
   let listMenuStep9 = localStorage.getItem("listMenuStep9")
@@ -24,9 +30,15 @@ const ResidentialInformation = () => {
 
   const [loan2value, setLoan2value] = useState({
     fullAddress: localStorage.getItem("loan2fullAddress") || "",
-    currentlyRenting: localStorage.getItem("loan2currentlyRenting") || "",
+    timeLiving39B: localStorage.getItem("timeLiving39B") || "",
     timeRefinancing: localStorage.getItem("loan2timeRefinancing") || "",
     rentalPropertyIncome: localStorage.getItem("rentalPropertyIncome") || "",
+    investmentProperty38B: localStorage.getItem("investmentProperty38B") || "",
+    incomeProperty38C: localStorage.getItem("incomeProperty38C") || "",
+
+    fullAddress39A: localStorage.getItem("loan2fullAddress39A") || "",
+    fullAddress39C: localStorage.getItem("loan2fullAddress39C") || "",
+    timeLiving39D: localStorage.getItem("timeLiving39D") || "",
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -34,42 +46,98 @@ const ResidentialInformation = () => {
       ...loan2value,
       [name]: value,
     });
-
-    if (name === "currentlyRenting" && value === types[2]) {
-      localStorage.setItem("rentalPropertyIncome", "");
+    if (name === "investmentProperty38B") {
+      localStorage.setItem("incomeProperty38C", "");
       setLoan2value({
         ...loan2value,
-        currentlyRenting: value,
-        rentalPropertyIncome: "",
+        investmentProperty38B: value,
+        incomeProperty38C: "",
+      });
+    }
+    if (name ==="timeLiving39B" && parseInt(value, 10) < 3){
+      localStorage.setItem("loan2fullAddress39C", "");
+      localStorage.setItem("loan2street39C", "");
+      localStorage.setItem("loan2city39C", "");
+      localStorage.setItem("loan2state39C", "");
+      localStorage.setItem("loan2postcode39C", "");
+      setLoan2value({
+        ...loan2value,
+        timeLiving39B: value,
+        fullAddress39C: "",
       });
     }
   };
 
   const {
     fullAddress,
-    currentlyRenting,
     timeRefinancing,
     rentalPropertyIncome,
+    incomeProperty38C,
+    investmentProperty38B,
+    fullAddress39A,
+    timeLiving39B,
+    fullAddress39C,
+    timeLiving39D
   } = loan2value;
   const step9 = [
     {
       id: 1,
       question: `${
         fullAddress
-          ? " 38. What is the full residential address of your current property?"
+          ? "38a. What is the full residential address of your current property?"
           : ""
       }`,
     },
     {
       id: 2,
       question: `${
-        currentlyRenting
-          ? "39. So with that property, are you currently renting it out?"
+        investmentProperty38B
+          ? " 38b. Is this a o/o or investment property?"
           : ""
       }`,
     },
     {
       id: 3,
+      question: `${
+        incomeProperty38C
+          ? "38c. What is the rental income of this property?"
+          : ""
+      }`,
+    },
+    {
+      id: 4,
+      question: `${
+        fullAddress39A
+          ? "39a. What is your current living address?"
+          : ""
+      }`,
+    },
+    {
+      id: 5,
+      question: `${
+        timeLiving39B
+          ? "39b. How long have you been living in this address for?"
+          : ""
+      }`,
+    },
+    {
+      id: 6,
+      question: `${
+        fullAddress39C
+          ? "39c. Since you have less than 3 years living history at your current address, where were you previously living?"
+          : ""
+      }`,
+    },
+    {
+      id: 7,
+      question: `${
+        timeLiving39D
+          ? "39d. How long were you living at that address for?"
+          : ""
+      }`,
+    },
+    {
+      id: 8,
       question: `${
         rentalPropertyIncome
           ? "40. How much rental income do you have on this property?"
@@ -77,7 +145,7 @@ const ResidentialInformation = () => {
       }`,
     },
     {
-      id: 4,
+      id: 9,
       question: `${
         timeRefinancing
           ? "41. What kind of time frame are you thinking of refinancing?"
@@ -87,12 +155,13 @@ const ResidentialInformation = () => {
   ];
 
   useMemo(() => {
-    if (fullAddress || currentlyRenting || rentalPropertyIncome) {
+    if (fullAddress || fullAddress39A || rentalPropertyIncome || incomeProperty38C ||
+      investmentProperty38B || timeLiving39B || fullAddress39C || timeLiving39D) {
       setDataListMenuStep9(step9);
     }
     window.localStorage.setItem("listMenuStep9", JSON.stringify(step9));
     // eslint-disable-next-line
-  }, [fullAddress, currentlyRenting, timeRefinancing, rentalPropertyIncome]);
+  }, [fullAddress, fullAddress39A, timeRefinancing, rentalPropertyIncome, incomeProperty38C, investmentProperty38B, timeLiving39B, fullAddress39C, timeLiving39D]);
 
   return (
     <LifeInsurance
@@ -101,12 +170,18 @@ const ResidentialInformation = () => {
       listMenuStep9={dataListMenuStep9}
     >
       <Step31 handleGetLoan2value={handleGetLoan2value} />
+      <Step38B handleGetLoan2value={handleGetLoan2value} />
+      { investmentProperty38B === types[2] ?(
+        <Step38C handleGetLoan2value={handleGetLoan2value} />
+      ):'' }
       <Step32 handleGetLoan2value={handleGetLoan2value} />
-      {currentlyRenting === types[1] ? (
-        <Step32B handleGetLoan2value={handleGetLoan2value} />
-      ) : (
-        ""
-      )}
+      <Step39B handleGetLoan2value={handleGetLoan2value} />
+      { timeLiving39B && parseInt(timeLiving39B, 10) < 3 ? (
+        <Step39C handleGetLoan2value={handleGetLoan2value} />
+      ):""}
+      <Step39D handleGetLoan2value={handleGetLoan2value} />
+
+      <Step32B handleGetLoan2value={handleGetLoan2value} />
       <Step33 handleGetLoan2value={handleGetLoan2value} />
     </LifeInsurance>
   );

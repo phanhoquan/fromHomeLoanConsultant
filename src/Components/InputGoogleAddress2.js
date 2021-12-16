@@ -19,6 +19,8 @@ const InputGoogleAddress = ({
   onKeyDown,
   innerRef,
   onBlur,
+  label ="Please enter your full residential address",
+  id="textMultiLine",
   ...otherProps
 }) => {
   useEffect(() => {
@@ -40,11 +42,11 @@ const InputGoogleAddress = ({
         }}
         renderInput={(params) => (
           <InputCustomMultiLine
-            label="Please enter your full residential address"
+            label={label}
             {...params}
             value={params?.value}
             type="email"
-            id="textMultiLine"
+            id={id}
             customClassLabel={params?.value ? "active" : ""}
             iconLocation
             customClassWrap="email"

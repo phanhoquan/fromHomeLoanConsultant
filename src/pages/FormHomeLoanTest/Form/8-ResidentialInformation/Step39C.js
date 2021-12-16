@@ -9,14 +9,14 @@ import InputGoogleAddress from "../../../../Components/InputGoogleAddress2";
 const Step38 = ({ handleGetLoan2value }) => {
   const fullAddressRef = useRef(null);
   const [zipCodeState, setZipCodeState] = useState({
-    street: localStorage.getItem("loan2street") || "",
-    city: localStorage.getItem("loan2city") || "",
-    state: localStorage.getItem("loan2state") || "",
-    postcode: localStorage.getItem("loan2postcode") || "",
+    street: localStorage.getItem("loan2street39C") || "",
+    city: localStorage.getItem("loan2city39C") || "",
+    state: localStorage.getItem("loan2state39C") || "",
+    postcode: localStorage.getItem("loan2postcode39C") || "",
   });
 
   const [fullAddress, setFullAddress] = useState(
-    localStorage.getItem("loan2fullAddress") || ""
+    localStorage.getItem("loan2fullAddress39C") || ""
   );
   const [fullAddressValid, setFullAddressValid] = useState(valid.NON_VALID);
   const [validMessage, setValidMessage] = useState("This field is required");
@@ -26,33 +26,33 @@ const Step38 = ({ handleGetLoan2value }) => {
       setValidMessage("This field is required");
       setFullAddressValid(valid.INVALID);
       setFullAddress("");
-      localStorage.setItem("loan2fullAddress", "");
-      localStorage.setItem("loan2street", "");
-      localStorage.setItem("loan2city", "");
-      localStorage.setItem("loan2state", "");
-      localStorage.setItem("loan2postcode", "");
-      handleGetLoan2value("fullAddress", "");
+      localStorage.setItem("loan2fullAddress39C", "");
+      localStorage.setItem("loan2street39C", "");
+      localStorage.setItem("loan2city39C", "");
+      localStorage.setItem("loan2state39C", "");
+      localStorage.setItem("loan2postcode39C", "");
+      handleGetLoan2value("fullAddress39C", "");
       return valid.INVALID;
     }
 
     if (zipCode.street === undefined) {
       setValidMessage("Please select your full street address");
       setFullAddressValid(valid.INVALID);
-      localStorage.setItem("loan2fullAddress", "");
-      localStorage.setItem("loan2street", "");
-      localStorage.setItem("loan2city", "");
-      localStorage.setItem("loan2state", "");
-      localStorage.setItem("loan2postcode", "");
-      handleGetLoan2value("fullAddress", "");
+      localStorage.setItem("loan2fullAddress39C", "");
+      localStorage.setItem("loan2street39C", "");
+      localStorage.setItem("loan2city39C", "");
+      localStorage.setItem("loan2state39C", "");
+      localStorage.setItem("loan2postcode39C", "");
+      handleGetLoan2value("fullAddress39C", "");
       setFullAddress("");
       return valid.INVALID;
     }
     if (zipCode.street && zipCode.city && zipCode.state && zipCode.postcode) {
       setFullAddressValid(valid.VALID);
-      localStorage.setItem("loan2street", zipCode?.street);
-      localStorage.setItem("loan2city", zipCode?.city);
-      localStorage.setItem("loan2state", zipCode?.state);
-      localStorage.setItem("loan2postcode", zipCode?.postcode);
+      localStorage.setItem("loan2street39C", zipCode?.street);
+      localStorage.setItem("loan2city39C", zipCode?.city);
+      localStorage.setItem("loan2state39C", zipCode?.state);
+      localStorage.setItem("loan2postcode39C", zipCode?.postcode);
       return valid.VALID;
     }
     setFullAddressValid(valid.INVALID);
@@ -60,12 +60,12 @@ const Step38 = ({ handleGetLoan2value }) => {
   };
 
   const nextStep = () => {
-    localStorage.setItem("loan2fullAddress", fullAddress);
-    localStorage.setItem("loan2street", zipCodeState?.street);
-    localStorage.setItem("loan2city", zipCodeState?.city);
-    localStorage.setItem("loan2state", zipCodeState?.state);
-    localStorage.setItem("loan2postcode", zipCodeState?.postcode);
-    handleGetLoan2value("fullAddress", fullAddress);
+    localStorage.setItem("loan2fullAddress39C", fullAddress);
+    localStorage.setItem("loan2street39C", zipCodeState?.street);
+    localStorage.setItem("loan2city39C", zipCodeState?.city);
+    localStorage.setItem("loan2state39C", zipCodeState?.state);
+    localStorage.setItem("loan2postcode39C", zipCodeState?.postcode);
+    handleGetLoan2value("fullAddress39C", fullAddress);
   };
 
   const onUpdateState = (zipCode) => {
@@ -101,10 +101,10 @@ const Step38 = ({ handleGetLoan2value }) => {
     if (fullAddress) {
       getZipCodeWithAddress(fullAddress, onUpdateState);
       nextStep();
-      localStorage.setItem("loan2street", zipCodeState?.street);
-      localStorage.setItem("loan2city", zipCodeState?.city);
-      localStorage.setItem("loan2state", zipCodeState?.state);
-      localStorage.setItem("loan2postcode", zipCodeState?.postcode);
+      localStorage.setItem("loan2street39C", zipCodeState?.street);
+      localStorage.setItem("loan2city39C", zipCodeState?.city);
+      localStorage.setItem("loan2state39C", zipCodeState?.state);
+      localStorage.setItem("loan2postcode39C", zipCodeState?.postcode);
     }
     // eslint-disable-next-line
   }, [fullAddress]);
@@ -116,7 +116,7 @@ const Step38 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                38a. What is the address of the property <br/> you are wanting to refinance?
+                39c. Since you have less than 3 years living history at your current address,<br/> where were you previously living?
               </h2>
             </Col>
             <Col xs={12}>
@@ -124,6 +124,8 @@ const Step38 = ({ handleGetLoan2value }) => {
                 <Col xs={12} className="wForm-input pl-0">
                   <InputGoogleAddress
                     country="au"
+                    label = "Please enter where were you previously living"
+                    id="loan2street39C"
                     defaultValue={fullAddress || ""}
                     updateState={onUpdateState}
                     updateAddress={setFullAddress}
