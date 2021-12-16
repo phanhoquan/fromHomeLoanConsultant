@@ -37,7 +37,7 @@ const Step16B = ({ handleGetLoan2value }) => {
         <div className="wForm wow fadeInUp">
           <Row>
             <Col xs={12} className="text-center">
-              <h2 className="mb-3">18. What is your salary?</h2>
+              <h2 className="mb-3">18. What is your salary for your current role?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-3">

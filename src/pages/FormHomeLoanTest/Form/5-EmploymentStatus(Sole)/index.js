@@ -22,7 +22,9 @@ import Step21 from "./Step21";
 import Step22 from "./Step22";
 import Step23 from "./Step23";
 import Step24 from "./Step24";
-
+import Step24B from "./Step24B";
+import Step24C from "./Step24C";
+import Step24D from "./Step24D";
 export const types = {
   1: "Sole Applicant",
   2: "Joint Applicant",
@@ -96,6 +98,10 @@ const EmploymentStatusSoleJoint = () => {
     partnersSalary: localStorage.getItem("loan2partnersSalary") || "",
     loan2yourSalary: localStorage.getItem("loan2yourSalary") || "",
     numberYearWorking17b: localStorage.getItem("loan2numberYearWorking17b") || "",
+
+    numberYearWorking24B: localStorage.getItem("numberYearWorking24B") || "",
+    loan2occupation24C: localStorage.getItem("loan2occupation24C") || "",
+    numberYearWorking24D: localStorage.getItem("numberYearWorking24D") || "",
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -189,6 +195,18 @@ const EmploymentStatusSoleJoint = () => {
         loan2occupation17B1: ''
       });
     }
+
+    if (name === "numberYearWorking24B") {
+      window.localStorage.setItem("loan2occupation24C", "");
+      window.localStorage.setItem("numberYearWorking24D", "");
+      setLoan2value({
+        ...loan2value,
+        numberYearWorking24B: value,
+        numberYearWorking24D: '',
+        loan2occupation24C: ''
+      });
+    }
+
     if (name === "employmentPartnersWorkingStatus" && value !== types3[6]) {
       window.localStorage.setItem("loan2numberPartnerReturn", "");
     }
@@ -203,6 +221,7 @@ const EmploymentStatusSoleJoint = () => {
       });
     }
   };
+
   const {
     workingStatus,
     employmentWorkingStatus,
@@ -220,7 +239,10 @@ const EmploymentStatusSoleJoint = () => {
     numberPartnerReturn,
     partnersSalary,
     loan2yourSalary,
-    numberYearWorking17b
+    numberYearWorking17b,
+    numberYearWorking24B,
+    loan2occupation24C,
+    numberYearWorking24D
   } = loan2value;
 
   const titleStep12 = `13. You mentioned that you are working ‘${employmentStatus}’ Is that correct?`;
@@ -259,7 +281,7 @@ const EmploymentStatusSoleJoint = () => {
       id: 6,
       question: `${
         loan2occupation17B1
-          ? "17b. What was your previous occupation?"
+          ? "17b. Since you have less than 3 years occupation history, what was your previous occupation?"
           : ""
       }`,
     },
@@ -267,13 +289,13 @@ const EmploymentStatusSoleJoint = () => {
       id: 7,
       question: `${
         numberYearWorking17b
-          ? "17b. How long were you working at that job for?"
+          ? "17c. How long were you working at that  previous job for?"
           : ""
       }`,
     },
     {
       id: 8,
-      question: `${loan2yourSalary ? "18. What is your salary?" : ""}`,
+      question: `${loan2yourSalary ? "18. What is your salary for your current role?" : ""}`,
     },
     {
       id: 9,
@@ -320,13 +342,37 @@ const EmploymentStatusSoleJoint = () => {
     {
       id: 15,
       question: `${
+        numberYearWorking24B && jointApplicationStatus === types[2]
+          ? "24b. How many years has your partner been working in this role for?"
+          : ""
+      }`,
+    },
+    {
+      id: 16,
+      question: `${
+        loan2occupation24C && jointApplicationStatus === types[2]
+          ? "24c. Since your partner has less than 3 years occupation history, what was your partners previous occupation?"
+          : ""
+      }`,
+    },
+    {
+      id: 17,
+      question: `${
+        numberYearWorking24D && jointApplicationStatus === types[2]
+          ? "24d. How long has your partner been working in this role for?"
+          : ""
+      }`,
+    },
+    {
+      id: 18,
+      question: `${
         employmentPartnersWorkingStatus && jointApplicationStatus === types[2]
           ? "25. What is your partners employment status?"
           : ""
       }`,
     },
     {
-      id: 16,
+      id: 19,
       question: `${
         numberPartnerReturn && jointApplicationStatus === types[2]
           ? "26. When is your partner expected to return to work?"
@@ -334,7 +380,7 @@ const EmploymentStatusSoleJoint = () => {
       }`,
     },
     {
-      id: 17,
+      id: 20,
       question: `${
         partnersSalary && jointApplicationStatus === types[2]
           ? "27. What is your partners salary?"
@@ -361,7 +407,10 @@ const EmploymentStatusSoleJoint = () => {
       partnersSalary ||
       loan2yourSalary ||
       loan2occupation17B1 ||
-      numberYearWorking17b
+      numberYearWorking17b ||
+      numberYearWorking24B ||
+      loan2occupation24C ||
+      numberYearWorking24D
     ) {
       setDataListMenuStep5(step5);
     }
@@ -384,7 +433,10 @@ const EmploymentStatusSoleJoint = () => {
     partnersSalary,
     loan2yourSalary,
     numberYearWorking17b,
-    loan2occupation17B1
+    loan2occupation17B1,
+    numberYearWorking24B,
+    loan2occupation24C,
+    numberYearWorking24D
   ]);
   
   const onClickNext = () => {
@@ -466,6 +518,23 @@ const EmploymentStatusSoleJoint = () => {
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
       />
+      <Step24B
+        handleGetLoan2value={handleGetLoan2value}
+        jointApplicationStatus={jointApplicationStatus}
+      />
+       {numberYearWorking24B&&listNumberYearWorking[numberYearWorking24B] < 3 ? (
+        <>
+          <Step24C
+            handleGetLoan2value={handleGetLoan2value}
+            jointApplicationStatus = {jointApplicationStatus}
+          />
+          <Step24D
+            handleGetLoan2value={handleGetLoan2value}
+            jointApplicationStatus= {jointApplicationStatus}
+          />
+        </>
+       ):""}
+
       <Step22
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
@@ -479,7 +548,6 @@ const EmploymentStatusSoleJoint = () => {
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
       />
-
       <div className="group-btn-footer col d-flex justify-content-center mb-5">
         <Button
           className="btnPrimary life wow fadeInUp mt-0 in-progress"

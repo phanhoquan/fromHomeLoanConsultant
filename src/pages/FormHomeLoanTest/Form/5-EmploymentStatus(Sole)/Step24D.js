@@ -5,6 +5,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+}
+
 const listNumberYearWorking = [
   "Less than 12 months",
   "1 year",
@@ -14,15 +19,14 @@ const listNumberYearWorking = [
   "5+ years",
 ];
 
-const Step17B2 = ({
+const Step24D = ({
   handleGetLoan2value,
-  employmentWorkingStatus,
-  workingStatus,
+  jointApplicationStatus
 }) => {
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [numberYearWorking, setNumberYearWorking] = useState(
-    localStorage.getItem("loan2numberYearWorking17b") || ""
+    localStorage.getItem("numberYearWorking24D") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -33,23 +37,18 @@ const Step17B2 = ({
   const onClickSelect = (value) => {
     setNumberYearWorking(value);
     setIsShowModal(false);
-    window.localStorage.setItem("loan2numberYearWorking17b", value);
-    handleGetLoan2value("numberYearWorking17b", value);
+    window.localStorage.setItem("numberYearWorking24D", value);
+    handleGetLoan2value("numberYearWorking24D", value);
   };
 
   useMemo(() => {
-    if (employmentWorkingStatus) {
-      setNumberYearWorking(localStorage.getItem("loan2numberYearWorking17b"));
+    if (jointApplicationStatus && jointApplicationStatus !== types[2]) {
+      setNumberYearWorking("");
+      setIsShowModal(false);
+      handleGetLoan2value("numberYearWorking24D", "");
     }
     // eslint-disable-next-line
-  }, [employmentWorkingStatus]);
-
-  useMemo(() => {
-    if (workingStatus) {
-      setNumberYearWorking(localStorage.getItem("loan2numberYearWorking17b"));
-    }
-    // eslint-disable-next-line
-  }, [workingStatus]);
+  }, [jointApplicationStatus]);
 
   return (
     <section
@@ -60,7 +59,7 @@ const Step17B2 = ({
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                17c. How long were you working at that  previous job for?
+               24d. How long has your partner been working in this role for?
               </h2>
             </Col>
             <Col xs={12}>
@@ -77,7 +76,7 @@ const Step17B2 = ({
                     onChange={() => () => {}}
                     label="Please select how long you have worked"
                     value={numberYearWorking}
-                    id="numberYearWorking17B2"
+                    id="numberYearWorking24D"
                     customClassLabel={numberYearWorking ? "active" : ""}
                     iconArrow
                     customClassWrap="email five"
@@ -110,4 +109,4 @@ const Step17B2 = ({
   );
 };
 
-export default Step17B2;
+export default Step24D;

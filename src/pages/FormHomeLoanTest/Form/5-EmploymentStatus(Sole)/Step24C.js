@@ -8,16 +8,20 @@ import { getDataListOccupationOptions } from "../../../../utils/quoteOccupations
 import originArray from "../../../../utils/quoteOccupations";
 import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
+export const types = {
+  1: "Sole Applicant",
+  2: "Joint Applicant",
+};
+
 const Step15 = ({
   handleGetLoan2value,
-  employmentWorkingStatus,
-  workingStatus,
+  jointApplicationStatus
 }) => {
   const occupationRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [isShowModal, setIsShowModal] = useState(false);
   const [occupation, setOccupation] = useState(
-    localStorage.getItem("loan2occupation17B1") || ""
+    localStorage.getItem("loan2occupation24C") || ""
   );
   const [dataListOccupations, setDataListOccupations] = useState(
     originArray || []
@@ -55,8 +59,8 @@ const Step15 = ({
       setOccupation(value);
       if (value?.length >= 2) {
         setIsShowModal(true);
-        window.localStorage.setItem("loan2occupation17B1", value);
-        handleGetLoan2value("loan2occupation17B1", value);
+        window.localStorage.setItem("loan2occupation24C", value);
+        handleGetLoan2value("loan2occupation24C", value);
       } else {
         setIsShowModal(false);
       }
@@ -76,8 +80,8 @@ const Step15 = ({
     setOccupation(name);
     checkOccupationStatus(name);
     setIsShowModal(false);
-    window.localStorage.setItem("loan2occupation17B1", name);
-    handleGetLoan2value("loan2occupation17B1", name);
+    window.localStorage.setItem("loan2occupation24C", name);
+    handleGetLoan2value("loan2occupation24C", name);
   };
 
   const showClass =
@@ -86,19 +90,18 @@ const Step15 = ({
       : "d-none";
 
   useMemo(() => {
-    if (employmentWorkingStatus) {
-      setOccupation(localStorage.getItem("loan2occupation17B1"));
+    if (jointApplicationStatus) {
+      setOccupation(localStorage.getItem("loan2occupation24C"));
+    }
+    if (jointApplicationStatus && jointApplicationStatus !== types[2]) {
+      setOccupation("");
+      setIsShowModal(false);
+      handleGetLoan2value("loan2occupation24C", "");
     }
     // eslint-disable-next-line
-  }, [employmentWorkingStatus]);
+  }, [jointApplicationStatus]);
 
-  useMemo(() => {
-    if (workingStatus) {
-      setOccupation(localStorage.getItem("loan2occupation17B1"));
-    }
-    // eslint-disable-next-line
-  }, [workingStatus]);
-
+  
   return (
     <section
       className="formContent-step-second form-six formContent-life-insurance mb-3"
@@ -107,7 +110,7 @@ const Step15 = ({
         <div>
           <Row>
             <Col xs={12} className="text-center">
-              <h2>17b. Since you have less than 3 years occupation history, <br className="d-none d-md-block"/> what was your previous occupation?</h2>
+              <h2>24c. Since your partner has less than 3 years occupation history,<br className="d-none d-md-block"/> what was your partners previous occupation?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">
@@ -119,7 +122,7 @@ const Step15 = ({
                     }
                     label="Current job role"
                     value={occupation}
-                    id="iconOccupation17b"
+                    id="iconOccupation24c"
                     customClassLabel={occupation ? "active" : ""}
                     innerRef={occupationRef}
                   />
