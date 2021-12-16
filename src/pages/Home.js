@@ -79,11 +79,12 @@ const Dashboard = () => {
                 </div>
               </div>
             ) : (
+              <>
               <div className="content-box">
                 <div
                   className="item "
                   role="button"
-                  onClick={() => history.push("./refinance-home-loan-consultant-test")}
+                  onClick={() => history.push("./refinance-fact-find-2")}
                 >
                   <div className="item-content text-center">
                     <div className="info">
@@ -103,6 +104,18 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+              <div
+              className="item pr-3"
+              role="button"
+              onClick={() => history.push("./refinance-home-loan-consultant-test")}
+            >
+              <div className="item-content text-center">
+                <div className="info">
+                  <p>Refinance Test</p>
+                </div>
+              </div>
+            </div>
+              </>
             )}
           </div>
         </main>

@@ -86,7 +86,7 @@ const CreditCards = () => {
   const step8 = [
     {
       id: 1,
-      question: `${loan2creditCard ? "35. Do you have a credit card?" : ""}`,
+      question: `${loan2creditCard ? "35. Do you own any credit cards?" : ""}`,
     },
     {
       id: 2,
