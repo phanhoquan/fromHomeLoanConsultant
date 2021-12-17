@@ -1,161 +1,157 @@
 /** @format */
 
-import React, { useState, useMemo, useRef } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { valid } from "../../../../utils/constant";
-import InputCustom2 from "../../../../Components/InputCustom2";
-import InputNumber from "../../../../Components/InputNumber";
-
-export const types = {
-  1: "YES",
-  2: "NO",
-};
+import React, { useState, useMemo } from "react";
+import CardList from "./CardList";
 
 const Step30 = ({ handleGetLoan2value }) => {
-  const valueCreditCardRef = useRef(null);
-  const valueCreditCardAmountRef = useRef(null);
 
-  const [valueCreditCard, setValueCreditCard] = useState(
-    localStorage.getItem("loan2valueCreditCardB1") || ""
+  const [listCreditCard, setListCreditCard] = useState(
+    localStorage.getItem("listCreditCard")
+      ? JSON.parse(localStorage.getItem("listCreditCard"))
+      : null
   );
-  const [valueCreditCardValid, setValueCreditCardValid] = useState(
-    valid.NON_VALID
-  );
+  const [listCreditCardValid, setListCreditCardValid] = useState({});
 
-  const [valueCreditCardAmount, setValueCreditCardAmount] = useState(
-    localStorage.getItem("loan2valueCreditCardB1Amount") || ""
-  );
-  const [valueCreditCardAmountValid, setValueCreditCardAmountValid] = useState(
-    valid.NON_VALID
-  );
+  const [childrenNumber, setChildrenNumber] = useState((localStorage.getItem("listCreditCardNumber") && parseInt(localStorage.getItem("listCreditCardNumber"), 10)) || 1);
+  const [validMessage, setValidMessage] = useState({});
 
-  const checkValueCreditCardStatus = (value) => {
-    let test = value.length > 1;
-    setValueCreditCardValid(Number(test));
+  const checkValueCreditCardStatus = (value, name) => {
+    let test = value && value.length > 1;
+    setListCreditCardValid({
+      ...listCreditCard,
+      [name]: Number(test)
+    });
+    window.localStorage.setItem(
+      "listCreditCard",
+      JSON.stringify(listCreditCard)
+    );
+    setValidMessage({
+      ...validMessage,
+      childrenNumber: "",
+    });
     return test;
   };
 
-  const checkValueCreditCardAmountStatus = (value) => {
-    let test =
+  const checkValueCreditCardAmountStatus = (value, name) => {
+    let test =value &&
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
       parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
-    setValueCreditCardAmountValid(Number(test));
+      setListCreditCardValid({
+        ...listCreditCard,
+        [name]: Number(test)
+      });
+      window.localStorage.setItem(
+        "listCreditCard",
+        JSON.stringify(listCreditCard)
+      );
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
     return test;
   };
 
   const onKeyUpHandle = (value, name) => {
-    if (name === "valueCreditCardB1") {
-      setValueCreditCard(value);
-    }
-    if (name === "valueCreditCardB1Amount") {
-      setValueCreditCardAmount(value);
-    }
+    setListCreditCard({
+      ...listCreditCard,
+      [name]: value
+    });
+    setValidMessage({
+      ...validMessage,
+      childrenNumber: "",
+    });
   };
 
   useMemo(() => {
-    window.localStorage.setItem("loan2valueCreditCardB1", valueCreditCard);
-  }, [valueCreditCard]);
-
-  useMemo(() => {
     window.localStorage.setItem(
-      "loan2valueCreditCardB1Amount",
-      valueCreditCardAmount &&
-        parseInt(valueCreditCardAmount.replace(/,/g, ""), 10)
+      "listCreditCard",
+      JSON.stringify(listCreditCard)
     );
-  }, [valueCreditCardAmount]);
+    window.localStorage.setItem("listCreditCardNumber", childrenNumber);
+    handleGetLoan2value("listCreditCard", listCreditCard);
+    // eslint-disable-next-line
+  }, [listCreditCard, childrenNumber]);
+
+  const handlePlusItem = () => {
+    if (childrenNumber <= 2) {
+      setChildrenNumber(childrenNumber + 1);
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
+    } else {
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "Max must be less than or equal to 3",
+      });
+    }
+  };
+
+  const handleRemoveItem = () => {
+    if (childrenNumber >= 1) {
+      setChildrenNumber(childrenNumber - 1);
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "",
+      });
+      setListCreditCard({
+        ...listCreditCard,
+        [`valueCreditCard35${childrenNumber}`]: "",
+        [`valueCreditCard35Amount${childrenNumber}`]: ""
+      });
+    } else {
+      setValidMessage({
+        ...validMessage,
+        childrenNumber: "Max must be greater than or equal to 1",
+      });
+    }
+  };
+
+  const handleSetValueCreditCardValid = (value, name) =>{
+    setListCreditCardValid({
+      ...listCreditCard,
+      [name]: value
+    });
+  }
+  
+  const renderListChillCard = ()=> {
+    const listChillApplicantAge = [];
+    for (let i = 1; i <= parseInt(childrenNumber, 10); i += 1) {
+      listChillApplicantAge.push(
+        <CardList
+          key={i}
+          handlePlusItem={handlePlusItem} 
+          handleRemoveItem={handleRemoveItem}
+          handleGetLoan2value={handleGetLoan2value}
+          indexItem={i}
+          valueCreditCardValid={listCreditCardValid ? listCreditCardValid[`valueCreditCard35${i}`] : ""}
+          handleSetValueCreditCardValid={handleSetValueCreditCardValid}
+          onKeyUpHandle={onKeyUpHandle}
+          valueCreditCard={listCreditCard ? listCreditCard[`valueCreditCard35${i}`] : ""}
+          checkValueCreditCardStatus={checkValueCreditCardStatus}
+          valueCreditCardAmount={listCreditCard && listCreditCard[`valueCreditCard35Amount${i}`]}
+          checkValueCreditCardAmountStatus={checkValueCreditCardAmountStatus}
+          valueCreditCardAmountValid={listCreditCardValid && listCreditCardValid[`valueCreditCard35Amount${i}`]}
+          childrenNumber={childrenNumber}
+        />
+      );
+    }
+    return listChillApplicantAge;
+  }
 
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-2">
-      <Container>
-        <div className="wForm wow fadeInUp">
-          <Row>
-            <Col xs={12} className="text-center">
-              <h2 className="mb-3">
-                36.2. Which institution is the credit card with?
-              </h2>
-            </Col>
-            <Col xs={12}>
-              <Row className="info-customer mt-3">
-                <Col xs={12} className="wForm-input pl-0">
-                  <InputCustom2
-                    onFocus={() => setValueCreditCardValid(valid.NON_VALID)}
-                    onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "valueCreditCardB1")
-                    }
-                    label="Credit Card Institution"
-                    value={
-                      valueCreditCard &&
-                      valueCreditCard[0].toUpperCase() +
-                        valueCreditCard.slice(1)
-                    }
-                    id="valueCreditCard1"
-                    customClassLabel={valueCreditCard ? "active" : ""}
-                    customClassWrap="email five"
-                    innerRef={valueCreditCardRef}
-                    onBlur={() => {
-                      checkValueCreditCardStatus(valueCreditCard);
-                      handleGetLoan2value("valueCreditCardB1", valueCreditCard);
-                    }}
-                  />
-                </Col>
-              </Row>
-              {valueCreditCardValid === valid.INVALID && (
-                <div className="text-error">
-                  <p>Please enter your Car Loan Institution</p>
-                </div>
-              )}
-            </Col>
-
-            <Col xs={12} className="text-center mt-4">
-              <h2 className="mb-3">
-                37.2. What is the limit on the credit card?
-              </h2>
-            </Col>
-            <Col xs={12}>
-              <Row className="info-customer mt-3">
-                <Col xs={12} className="wForm-input pl-0">
-                  <InputNumber
-                    inputMode="numeric"
-                    options={{
-                      numericOnly: true,
-                      numeral: true,
-                      numeralDecimalMark: "",
-                      delimiter: ",",
-                      numeralThousandsGroupStyle: "thousand",
-                    }}
-                    onFocus={() =>
-                      setValueCreditCardAmountValid(valid.NON_VALID)
-                    }
-                    onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "valueCreditCardB1Amount")
-                    }
-                    label="E.G. $10,000"
-                    value={valueCreditCardAmount}
-                    id="valueCreditCardAmount1"
-                    customClassLabel={valueCreditCardAmount ? "active" : ""}
-                    iconPrice
-                    customClassWrap="email five"
-                    innerRef={valueCreditCardAmountRef}
-                    onBlur={() => {
-                      checkValueCreditCardAmountStatus(valueCreditCardAmount);
-                      handleGetLoan2value(
-                        "creditCardAmountB1",
-                        valueCreditCardAmount
-                      );
-                    }}
-                  />
-                </Col>
-              </Row>
-              {valueCreditCardAmountValid === valid.INVALID && (
-                <div className="text-error">
-                  <p>Value should be in between $0 - $10,000,000</p>
-                </div>
-              )}
-            </Col>
-          </Row>
-        </div>
-      </Container>
-    </section>
+    <div className="position-relative w-100">
+      {renderListChillCard()}
+      <div xs={12} className="text-center">
+        {validMessage?.childrenNumber ? (
+          <div className="text-error mb-3">
+            <p>{validMessage?.childrenNumber}</p>
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+    </div>
   );
 };
 
