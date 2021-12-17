@@ -42,7 +42,7 @@ const Step40 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-0">
               <h2 className="mb-3">
-                38c. What is the rental income of this property?
+                40c. What is the rental income of this property?
               </h2>
             </Col>
             <Col xs={12}>

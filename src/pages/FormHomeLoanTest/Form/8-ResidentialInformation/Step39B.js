@@ -42,7 +42,7 @@ const Step40 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-0">
               <h2 className="mb-3">
-                39b. How long have you been living in this address for?
+                41b. How long have you been living in this address for?
               </h2>
             </Col>
             <Col xs={12}>

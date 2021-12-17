@@ -116,7 +116,7 @@ const Step38 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                38a. What is the address of the property <br/> you are wanting to refinance?
+                40a. What is the address of the property <br/> you are wanting to refinance?
               </h2>
             </Col>
             <Col xs={12}>

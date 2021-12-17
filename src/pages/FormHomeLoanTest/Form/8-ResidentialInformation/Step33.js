@@ -49,7 +49,7 @@ const Step41 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                41. What kind of time frame are you thinking of refinancing?
+                43. What kind of time frame are you thinking of refinancing?
               </h2>
             </Col>
             <Col xs={12}>

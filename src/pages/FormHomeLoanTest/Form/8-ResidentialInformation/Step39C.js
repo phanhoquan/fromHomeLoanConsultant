@@ -116,7 +116,7 @@ const Step38 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                39c. Since you have less than 3 years living history at your current address,<br/> where were you previously living?
+                41c. Since you have less than 3 years living history at your current address,<br/> where were you previously living?
               </h2>
             </Col>
             <Col xs={12}>

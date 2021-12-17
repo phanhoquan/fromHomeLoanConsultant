@@ -69,7 +69,7 @@ const CreditCards = () => {
     {
       id: 4,
       question: `${
-        listCreditCard && (listCreditCard.valueCreditCard35Amount3 || listCreditCard.valueCreditCard353)  ? "3What institution is the credit card #1 with ans what is the limit?" : ""
+        listCreditCard && (listCreditCard.valueCreditCard35Amount3 || listCreditCard.valueCreditCard353)  ? "What institution is the credit card #1 with ans what is the limit?" : ""
       }`,
     },
   ];
@@ -82,7 +82,7 @@ const CreditCards = () => {
     // eslint-disable-next-line
   }, [loan2creditCard, listCreditCard]);
   const onClickNext = () => {
-    history.push("/refinance-home-loan-consultant-test/ResidentialInformation");
+    history.push("/refinance-home-loan-consultant-test/Assets");
   };
 
   return (

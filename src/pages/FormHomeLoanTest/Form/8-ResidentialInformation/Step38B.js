@@ -28,7 +28,7 @@ const Step38B = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                38b. Is this a o/o or investment property?
+                40b. Is this a o/o or investment property?
               </h2>
             </Col>
             <Col xs={12}>

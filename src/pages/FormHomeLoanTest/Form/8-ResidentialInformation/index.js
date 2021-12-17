@@ -84,7 +84,7 @@ const ResidentialInformation = () => {
       id: 1,
       question: `${
         fullAddress
-          ? "38a. What is the full residential address of your current property?"
+          ? "40a. What is the full residential address of your current property?"
           : ""
       }`,
     },
@@ -92,7 +92,7 @@ const ResidentialInformation = () => {
       id: 2,
       question: `${
         investmentProperty38B
-          ? " 38b. Is this a o/o or investment property?"
+          ? "40b. Is this a o/o or investment property?"
           : ""
       }`,
     },
@@ -100,7 +100,7 @@ const ResidentialInformation = () => {
       id: 3,
       question: `${
         incomeProperty38C
-          ? "38c. What is the rental income of this property?"
+          ? "40c. What is the rental income of this property?"
           : ""
       }`,
     },
@@ -108,7 +108,7 @@ const ResidentialInformation = () => {
       id: 4,
       question: `${
         fullAddress39A
-          ? "39a. What is your current living address?"
+          ? "41a. What is your current living address?"
           : ""
       }`,
     },
@@ -116,7 +116,7 @@ const ResidentialInformation = () => {
       id: 5,
       question: `${
         timeLiving39B
-          ? "39b. How long have you been living in this address for?"
+          ? "41b. How long have you been living in this address for?"
           : ""
       }`,
     },
@@ -124,7 +124,7 @@ const ResidentialInformation = () => {
       id: 6,
       question: `${
         fullAddress39C
-          ? "39c. Since you have less than 3 years living history at your current address, where were you previously living?"
+          ? "41c. Since you have less than 3 years living history at your current address, where were you previously living?"
           : ""
       }`,
     },
@@ -132,7 +132,7 @@ const ResidentialInformation = () => {
       id: 7,
       question: `${
         timeLiving39D
-          ? "39d. How long were you living at that address for?"
+          ? "41d. How long were you living at that address for?"
           : ""
       }`,
     },
@@ -140,7 +140,7 @@ const ResidentialInformation = () => {
       id: 8,
       question: `${
         rentalPropertyIncome
-          ? "40. How much rental income do you have on this property?"
+          ? "42. How much rental income do you have on this property?"
           : ""
       }`,
     },
@@ -148,7 +148,7 @@ const ResidentialInformation = () => {
       id: 9,
       question: `${
         timeRefinancing
-          ? "41. What kind of time frame are you thinking of refinancing?"
+          ? "43. What kind of time frame are you thinking of refinancing?"
           : ""
       }`,
     },

@@ -5,35 +5,35 @@ import { Container, Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
 import InputNumber from "../../../../Components/InputNumber";
 
-const Step40 = ({ handleGetLoan2value }) => {
-  const timeLiving39DRef = useRef(null);
+const Step39 = ({ handleGetLoan2value }) => {
+  const amountHome39Ref = useRef(null);
 
-  const [timeLiving39D, setTimeLiving39D] = useState(
-    localStorage.getItem("timeLiving39D") || ""
+  const [amountHome39, setAmountHome39] = useState(
+    localStorage.getItem("amountHome39") || ""
   );
-  const [timeLiving39DValid, setTimeLiving39DValid] = useState(
+  const [amountHome39Valid, setAmountHome39Valid] = useState(
     valid.NON_VALID
   );
 
-  const checkTimeLiving39DStatus = (value) => {
+  const checkAmountHome39Status = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 100;
-    setTimeLiving39DValid(Number(test));
+      parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
+    setAmountHome39Valid(Number(test));
     return test;
   };
 
   const onKeyUpHandle = (value) => {
-    setTimeLiving39D(value);
+    setAmountHome39(value);
   };
 
   useMemo(() => {
     window.localStorage.setItem(
-      "timeLiving39D",
-      timeLiving39D &&
-        parseInt(timeLiving39D.replace(/,/g, ""), 10)
+      "amountHome39",
+      amountHome39 &&
+        parseInt(amountHome39.replace(/,/g, ""), 10)
     );
-  }, [timeLiving39D]);
+  }, [amountHome39]);
 
   return (
     <section className="formContent-step-second formContent-life-insurance mb-2">
@@ -42,7 +42,7 @@ const Step40 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-0">
               <h2 className="mb-3">
-                41d. How long were you living at that address for?
+                39. What is the value of your home contents?
               </h2>
             </Col>
             <Col xs={12}>
@@ -58,31 +58,31 @@ const Step40 = ({ handleGetLoan2value }) => {
                       numeralThousandsGroupStyle: "thousand",
                     }}
                     onFocus={() =>
-                      setTimeLiving39DValid(valid.NON_VALID)
+                      setAmountHome39Valid(valid.NON_VALID)
                     }
                     onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "timeLiving39D")
+                      onKeyUpHandle(e.target.value, "amountHome39")
                     }
-                    label="Please enter your time living in this address"
-                    value={timeLiving39D}
-                    id="timeLiving39D"
-                    maxLength ="3"
-                    customClassLabel={timeLiving39D ? "active" : ""}
+                    label="Amount"
+                    value={amountHome39}
+                    id="amountHome39"
+                    customClassLabel={amountHome39 ? "active" : ""}
+                    iconPrice
                     customClassWrap="email five"
-                    innerRef={timeLiving39DRef}
+                    innerRef={amountHome39Ref}
                     onBlur={() => {
-                      checkTimeLiving39DStatus(timeLiving39D);
+                      checkAmountHome39Status(amountHome39);
                       handleGetLoan2value(
-                        "timeLiving39D",
-                        timeLiving39D
+                        "amountHome39",
+                        amountHome39
                       );
                     }}
                   />
                 </Col>
               </Row>
-              {timeLiving39DValid === valid.INVALID && (
+              {amountHome39Valid === valid.INVALID && (
                 <div className="text-error">
-                  <p>Value should be in between 1 - 100</p>
+                  <p>Value should be in between $0 - $10,000,000</p>
                 </div>
               )}
             </Col>
@@ -93,4 +93,4 @@ const Step40 = ({ handleGetLoan2value }) => {
   );
 };
 
-export default Step40;
+export default Step39;

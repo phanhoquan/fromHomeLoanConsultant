@@ -19,7 +19,7 @@ import EmploymentStatusSole from "./menu/EmploymentStatusSole";
 import Liabilities from "./menu/Liabilities";
 import CreditCards from "./menu/CreditCards";
 import ResidentialInformation from "./menu/ResidentialInformation";
-
+import MenuAssets from "./menu/Assets";
 import Modal from "../Modal/ModalSubmit";
 
 export const types = {
@@ -40,6 +40,7 @@ const HomeLoan = ({
   listMenuStep7 = [],
   listMenuStep8 = [],
   listMenuStep9 = [],
+  listMenuStep10 = [],
   jointApplicationStatus = "",
 }) => {
   var root = document.getElementsByTagName("html")[0];
@@ -76,6 +77,11 @@ const HomeLoan = ({
   let dataListMenuStep9 = localStorage.getItem("listMenuStep9")
     ? JSON.parse(localStorage.getItem("listMenuStep9"))
     : [];
+
+    let dataListMenuStep10 = localStorage.getItem("listMenuStep10")
+    ? JSON.parse(localStorage.getItem("listMenuStep10"))
+    : [];
+
   const [isNoteVale, setIsNoteVale] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isShowMess, setIsShowMess] = useState(false);
@@ -335,6 +341,22 @@ const HomeLoan = ({
                   )}
                 </ul>
               </CreditCards>
+              <MenuAssets
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep10?.length > 0
+                    ? listMenuStep10[0]
+                    : dataListMenuStep10[0]
+                }
+              >
+                <ul className="sub-question">
+                  {renderMenu(
+                    listMenuStep10?.length > 0
+                      ? listMenuStep10
+                      : dataListMenuStep10
+                  )}
+                </ul>
+              </MenuAssets>
               <ResidentialInformation
                 stepActive={activeStep}
                 answerActive={

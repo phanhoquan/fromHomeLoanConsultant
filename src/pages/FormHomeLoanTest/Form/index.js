@@ -14,6 +14,7 @@ import EmploymentStatus from "./5-EmploymentStatus(Sole)";
 import Liabilities from "./6-Liabilities";
 import CreditCards from "./7-CreditCards";
 import ResidentialInformation from "./8-ResidentialInformation";
+import Assets from "./9-Assets";
 import Success from "./Success";
 import StepReset from "./PageReset";
 
@@ -98,6 +99,10 @@ const Form = () => {
         <Route
           path="/refinance-home-loan-consultant-test/CreditCards"
           component={CreditCards}
+        />
+         <Route
+          path="/refinance-home-loan-consultant-test/Assets"
+          component={Assets}
         />
         <Route
           path="/refinance-home-loan-consultant-test/ResidentialInformation"
