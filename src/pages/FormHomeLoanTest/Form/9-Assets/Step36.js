@@ -53,7 +53,6 @@ const Step30 = ({ handleGetLoan2value }) => {
       childrenNumber: "",
     });
   };
-console.log(listAnyCardValid, 'listAnyCardValid')
   useMemo(() => {
     window.localStorage.setItem(
       "listAnyCard",

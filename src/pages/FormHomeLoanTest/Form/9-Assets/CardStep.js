@@ -115,7 +115,6 @@ const Step36A = ({
         ):''}
         </Row>
       </Col>
-      {console.log(makeModelValid, '')}
       <Col xs={12}>
         {makeModelValid ? (
           <div className="text-error">
