@@ -1,90 +1,91 @@
 /** @format */
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { valid } from "../../../../utils/constant";
-import InputNumber from "../../../../Components/InputNumber";
+import InputCustom2 from "../../../../Components/InputCustom2";
+import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
-const Step40 = ({ handleGetLoan2value }) => {
+const listTimeLiving39B = [
+  "Less than 12 months",
+  "1 year",
+  "2 years",
+  "3 years",
+  "4 years",
+  "5+ years",
+];
+
+const Step41B = ({
+  handleGetLoan2value,
+}) => {
   const timeLiving39BRef = useRef(null);
-
+  const wrapperInfoRef = useRef();
   const [timeLiving39B, setTimeLiving39B] = useState(
-    localStorage.getItem("timeLiving39B") || ""
+    localStorage.getItem("loan2timeLiving39B") || ""
   );
-  const [timeLiving39BValid, setTimeLiving39BValid] = useState(
-    valid.NON_VALID
-  );
+  const [isShowModal, setIsShowModal] = useState(false);
 
-  const checkTimeLiving39BStatus = (value) => {
-    let test =
-      parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 100;
-    setTimeLiving39BValid(Number(test));
-    return test;
-  };
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowModal(false);
+  });
 
-  const onKeyUpHandle = (value) => {
+  const onClickSelect = (value) => {
     setTimeLiving39B(value);
+    setIsShowModal(false);
+    window.localStorage.setItem("timeLiving39B", value);
+    handleGetLoan2value("timeLiving39B", value);
   };
-
-  useMemo(() => {
-    window.localStorage.setItem(
-      "timeLiving39B",
-      timeLiving39B &&
-        parseInt(timeLiving39B.replace(/,/g, ""), 10)
-    );
-  }, [timeLiving39B]);
 
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-2">
+    <section
+      className="formContent-step-second formContent-life-insurance"
+    >
       <Container>
-        <div className="wForm wow fadeInUp">
+        <div>
           <Row>
-            <Col xs={12} className="text-center mt-0">
+            <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                41b. How long have you been living in this address for?
+                41b. How long have you been working at this job for?
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-3">
-                <Col xs={12} className="wForm-input pl-0">
-                  <InputNumber
-                    inputMode="numeric"
-                    options={{
-                      numericOnly: true,
-                      numeral: true,
-                      numeralDecimalMark: "",
-                      delimiter: ",",
-                      numeralThousandsGroupStyle: "thousand",
+              <Row className="info-customer mt-2">
+                <Col
+                  xs={12}
+                  className="wForm-input pl-0 bankProviders"
+                  ref={wrapperInfoRef}
+                >
+                  <InputCustom2
+                    onFocus={() => {
+                      setIsShowModal(true);
                     }}
-                    onFocus={() =>
-                      setTimeLiving39BValid(valid.NON_VALID)
-                    }
-                    onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "timeLiving39B")
-                    }
-                    label="Please enter your time living in this address"
+                    onChange={() => () => {}}
+                    label="Please select your time living in this address"
                     value={timeLiving39B}
                     id="timeLiving39B"
-                    maxLength ="3"
                     customClassLabel={timeLiving39B ? "active" : ""}
+                    iconArrow
                     customClassWrap="email five"
                     innerRef={timeLiving39BRef}
-                    onBlur={() => {
-                      checkTimeLiving39BStatus(timeLiving39B);
-                      handleGetLoan2value(
-                        "timeLiving39B",
-                        timeLiving39B
-                      );
-                    }}
+                    readOnly
                   />
+                  <ul
+                    className={`list-occupation ${
+                      isShowModal ? "d-block" : "d-none"
+                    }`}
+                  >
+                    {listTimeLiving39B &&
+                      listTimeLiving39B.map((name, index) => (
+                        <li
+                          key={index + 1}
+                          onClick={() => onClickSelect(name)}
+                          className={timeLiving39B === name ? "active" : ""}
+                        >
+                          {name}
+                        </li>
+                      ))}
+                  </ul>
                 </Col>
               </Row>
-              {timeLiving39BValid === valid.INVALID && (
-                <div className="text-error">
-                  <p>Value should be in between 1 - 100</p>
-                </div>
-              )}
             </Col>
           </Row>
         </div>
@@ -93,4 +94,4 @@ const Step40 = ({ handleGetLoan2value }) => {
   );
 };
 
-export default Step40;
+export default Step41B;

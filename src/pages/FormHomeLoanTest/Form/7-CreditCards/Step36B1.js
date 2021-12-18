@@ -18,7 +18,7 @@ const Step30 = ({ handleGetLoan2value }) => {
   const checkValueCreditCardStatus = (value, name) => {
     let test = value && value.length > 1;
     setListCreditCardValid({
-      ...listCreditCard,
+      ...listCreditCardValid,
       [name]: Number(test)
     });
     window.localStorage.setItem(
@@ -109,7 +109,7 @@ const Step30 = ({ handleGetLoan2value }) => {
 
   const handleSetValueCreditCardValid = (value, name) =>{
     setListCreditCardValid({
-      ...listCreditCard,
+      ...listCreditCardValid,
       [name]: value
     });
   }

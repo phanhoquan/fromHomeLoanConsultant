@@ -26,11 +26,15 @@ const Assets = () => {
   );
 
   const [loan2value, setLoan2value] = useState({
-    makeModel36: localStorage.getItem("makeModel36") || "",
-    makeModel37: localStorage.getItem("makeModel37") || "",
     amountHome39: localStorage.getItem("amountHome39") || "",
     amountHome38A: localStorage.getItem("amountHome38A") || "",
     amountHome38B: localStorage.getItem("amountHome38B") || "",
+    listAnyCard: localStorage.getItem("listAnyCard")
+    ? JSON.parse(localStorage.getItem("listAnyCard"))
+    : null,
+    listVehiclesBoats: localStorage.getItem("listVehiclesBoats")
+    ? JSON.parse(localStorage.getItem("listVehiclesBoats"))
+    : null,
   });
 
   const handleGetLoan2value = (name, value) => {
@@ -40,23 +44,23 @@ const Assets = () => {
     });
   };
 
-  const { makeModel36, makeModel37,amountHome38A,amountHome38B, amountHome39} = loan2value;
+  const { listAnyCard, listVehiclesBoats,amountHome38A,amountHome38B, amountHome39} = loan2value;
 
   const step10 = [
     {
       id: 1,
-      question: `${makeModel36 ? "36. Do you own any cars?" : ""}`,
+      question: `${listAnyCard ? "36. Do you own any cars?" : ""}`,
     },
     {
       id: 2,
       question: `${
-        makeModel37 ? "37. Do you own any other vehicles or boats?" : ""
+        listVehiclesBoats ? "37. Do you own any other vehicles or boats?" : ""
       }`,
     },
     {
       id: 3,
       question: `${
-        amountHome38A || amountHome38B? "38. How much superannuation do you have?" : ""
+        amountHome38A || amountHome38B ? "38. How much superannuation do you have?" : ""
       }`,
     },
     {
@@ -68,12 +72,12 @@ const Assets = () => {
   ];
   
   useMemo(() => {
-    if (makeModel36||makeModel37||amountHome39 || amountHome38B ||amountHome38A ) {
+    if (listAnyCard||listVehiclesBoats||amountHome39 || amountHome38B ||amountHome38A ) {
       setDataListMenuStep10(step10);
     }
     window.localStorage.setItem("listMenuStep10", JSON.stringify(step10));
     // eslint-disable-next-line
-  }, [makeModel36,makeModel37,amountHome38A,amountHome38B, amountHome39]);
+  }, [listAnyCard,listVehiclesBoats,amountHome38A,amountHome38B, amountHome39]);
 
   const onClickNext = () => {
     history.push("/refinance-home-loan-consultant-test/ResidentialInformation");

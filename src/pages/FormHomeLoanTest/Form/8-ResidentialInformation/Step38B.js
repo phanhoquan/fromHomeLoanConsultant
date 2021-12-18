@@ -6,7 +6,7 @@ import { CheckboxButton } from "../../../../Components/CheckBox3";
 
 
 export const types = {
-  1: 'o/o',
+  1: 'Owner Occupied',
   2: "Investment property",
 };
 
@@ -28,7 +28,7 @@ const Step38B = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                40b. Is this a o/o or investment property?
+                40b. Is this property Owner Occupied or an Investment Property?
               </h2>
             </Col>
             <Col xs={12}>

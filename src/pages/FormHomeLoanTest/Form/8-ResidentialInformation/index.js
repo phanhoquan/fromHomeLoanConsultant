@@ -14,9 +14,18 @@ import Step32B from "./Step32B";
 import Step33 from "./Step33";
 
 export const types = {
-  1: 'o/o',
+  1: 'Owner Occupied',
   2: "Investment property",
 };
+
+const listNumberYearWorking = {
+  "Less than 12 months": 0,
+  "1 year": 1,
+  "2 years": 2,
+  "3 years": 3,
+  "4 years": 4,
+  "5+ years": 5,
+}
 
 
 const ResidentialInformation = () => {
@@ -54,7 +63,7 @@ const ResidentialInformation = () => {
         incomeProperty38C: "",
       });
     }
-    if (name ==="timeLiving39B" && parseInt(value, 10) < 3){
+    if (name ==="timeLiving39B" && listNumberYearWorking[name] < 3){
       localStorage.setItem("loan2fullAddress39C", "");
       localStorage.setItem("loan2street39C", "");
       localStorage.setItem("loan2city39C", "");
@@ -92,7 +101,7 @@ const ResidentialInformation = () => {
       id: 2,
       question: `${
         investmentProperty38B
-          ? "40b. Is this a o/o or investment property?"
+          ? "40b. Is this property Owner Occupied or an Investment Property?"
           : ""
       }`,
     },
@@ -176,7 +185,7 @@ const ResidentialInformation = () => {
       ):'' }
       <Step32 handleGetLoan2value={handleGetLoan2value} />
       <Step39B handleGetLoan2value={handleGetLoan2value} />
-      { timeLiving39B && parseInt(timeLiving39B, 10) < 3 ? (
+      { timeLiving39B && listNumberYearWorking[timeLiving39B] < 3 ? (
         <Step39C handleGetLoan2value={handleGetLoan2value} />
       ):""}
       <Step39D handleGetLoan2value={handleGetLoan2value} />
