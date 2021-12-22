@@ -57,10 +57,22 @@ const ResidentialInformation = () => {
     });
     if (name === "investmentProperty38B") {
       localStorage.setItem("incomeProperty38C", "");
+      localStorage.setItem("loan2fullAddress39C", "");
+      localStorage.setItem("loan2street39C", "");
+      localStorage.setItem("loan2city39C", "");
+      localStorage.setItem("loan2state39C", "");
+      localStorage.setItem("loan2postcode39C", "");
+      localStorage.setItem("loan2fullAddress39A", "");
+      localStorage.setItem("timeLiving39D", "");
+      localStorage.setItem("rentalPropertyIncome", "");
       setLoan2value({
         ...loan2value,
         investmentProperty38B: value,
         incomeProperty38C: "",
+        fullAddress39C:'',
+        fullAddress39A:'',
+        timeLiving39D: '',
+        rentalPropertyIncome:''
       });
     }
     if (name ==="timeLiving39B" && listNumberYearWorking[name] < 3){
@@ -181,16 +193,18 @@ const ResidentialInformation = () => {
       <Step31 handleGetLoan2value={handleGetLoan2value} />
       <Step38B handleGetLoan2value={handleGetLoan2value} />
       { investmentProperty38B === types[2] ?(
-        <Step38C handleGetLoan2value={handleGetLoan2value} />
-      ):'' }
-      <Step32 handleGetLoan2value={handleGetLoan2value} />
-      <Step39B handleGetLoan2value={handleGetLoan2value} />
-      { timeLiving39B && listNumberYearWorking[timeLiving39B] < 3 ? (
-        <Step39C handleGetLoan2value={handleGetLoan2value} />
-      ):""}
-      <Step39D handleGetLoan2value={handleGetLoan2value} />
-
-      <Step32B handleGetLoan2value={handleGetLoan2value} />
+        <>
+          <Step38C handleGetLoan2value={handleGetLoan2value} />
+          <Step32 handleGetLoan2value={handleGetLoan2value} />
+          <Step39B handleGetLoan2value={handleGetLoan2value} />
+          { timeLiving39B && listNumberYearWorking[timeLiving39B] < 3 ? (
+            <Step39C handleGetLoan2value={handleGetLoan2value} />
+          ):""}
+          <Step32B handleGetLoan2value={handleGetLoan2value} />
+        </>
+      ):
+        <Step39D handleGetLoan2value={handleGetLoan2value} />
+      }
       <Step33 handleGetLoan2value={handleGetLoan2value} />
     </LifeInsurance>
   );
