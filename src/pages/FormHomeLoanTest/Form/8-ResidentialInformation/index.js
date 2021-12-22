@@ -192,20 +192,27 @@ const ResidentialInformation = () => {
     >
       <Step31 handleGetLoan2value={handleGetLoan2value} />
       <Step38B handleGetLoan2value={handleGetLoan2value} />
-      { investmentProperty38B === types[2] ?(
+      {investmentProperty38B ? (
         <>
-          <Step38C handleGetLoan2value={handleGetLoan2value} />
-          <Step32 handleGetLoan2value={handleGetLoan2value} />
-          <Step39B handleGetLoan2value={handleGetLoan2value} />
-          { timeLiving39B && listNumberYearWorking[timeLiving39B] < 3 ? (
-            <Step39C handleGetLoan2value={handleGetLoan2value} />
-          ):""}
-          <Step32B handleGetLoan2value={handleGetLoan2value} />
+          { investmentProperty38B === types[2] ?(
+            <>
+              <Step38C handleGetLoan2value={handleGetLoan2value} />
+              <Step32 handleGetLoan2value={handleGetLoan2value} />
+              <Step39B handleGetLoan2value={handleGetLoan2value} />
+              { timeLiving39B && listNumberYearWorking[timeLiving39B] < 3 ? (
+                <Step39C handleGetLoan2value={handleGetLoan2value} />
+              ):""}
+              <Step32B handleGetLoan2value={handleGetLoan2value} />
+            </>
+          ):
+          <>
+            <Step39D handleGetLoan2value={handleGetLoan2value} />
+            <Step33 handleGetLoan2value={handleGetLoan2value} />
+          </>
+          }
         </>
-      ):
-        <Step39D handleGetLoan2value={handleGetLoan2value} />
-      }
-      <Step33 handleGetLoan2value={handleGetLoan2value} />
+      ):''
+    }
     </LifeInsurance>
   );
 };
