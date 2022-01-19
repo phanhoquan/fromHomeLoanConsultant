@@ -59,7 +59,7 @@ const Step24D = ({
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-               24d. How long has your partner been working in this role for?
+               24d. How long has your partner been working in this previous role for?
               </h2>
             </Col>
             <Col xs={12}>

@@ -90,7 +90,8 @@ const Step37 = ({ handleGetLoan2value }) => {
         ...listVehiclesBoats,
         [`makeBoats${childrenNumber}`]: "",
         [`modelBoats${childrenNumber}`]: "",
-        [`valueBoats${childrenNumber}`]: ""
+        [`valueBoats${childrenNumber}`]: "",
+        [`typeBoats${childrenNumber}`]: ""
       });
     } else {
       setValidMessage({
@@ -124,9 +125,11 @@ const Step37 = ({ handleGetLoan2value }) => {
           value={listVehiclesBoats ? listVehiclesBoats[`valueBoats${i}`] : ""}
           model={listVehiclesBoats ? listVehiclesBoats[`modelBoats${i}`] : ""}
           make={listVehiclesBoats ? listVehiclesBoats[`makeBoats${i}`] : ""}
+          typeOption={listVehiclesBoats ? listVehiclesBoats[`typeBoats${i}`] : ""}
           makeModelValid={listVehiclesBoatsValid && 
             ((listVehiclesBoatsValid[`valueBoats${i}`] === valid.INVALID) ||
             (listVehiclesBoatsValid[`modelBoats${i}`] === valid.INVALID) ||
+            (listVehiclesBoatsValid[`typeBoats${i}`] === valid.INVALID) ||
             (listVehiclesBoatsValid[`makeBoats${i}`] === valid.INVALID))}
           />
       );

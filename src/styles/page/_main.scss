@@ -1246,3 +1246,32 @@ html.fonts90 {
 .radius .checkbox .checkbox__label {
  white-space: nowrap;
 }
+.selectType {
+  top: 0 !important;
+  .customSelect {
+    &__control {
+      border: 0.0625rem solid #b0b0b0 !important;
+    }
+    &__placeholder {
+      text-transform: uppercase;
+      font-family: "Lato";
+      color: #b0b0b0;
+      font-size: 0.9375rem;
+    }
+    * {
+      text-transform: uppercase;
+      font-family: "Lato";
+      color: #b0b0b0;
+      font-size: 0.9375rem;
+    }
+    &__option {
+      padding: 0.125rem 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+}
+.max-650 {
+  &.info-customer {
+    max-width: pxToRem(650);
+  }
+}

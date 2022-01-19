@@ -1,42 +1,69 @@
 /** @format */
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { valid } from "../../../../utils/constant";
-import InputNumber from "../../../../Components/InputNumber";
+import InputCustom2 from "../../../../Components/InputCustom2";
+import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
-const Step40 = ({ handleGetLoan2value }) => {
-  const timeLiving39DRef = useRef(null);
+export const types = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Self Employed",
+  4: "Unemployed",
+};
+
+export const types2 = {
+  1: "Full Time",
+  2: "Part Time",
+  3: "Casual",
+  4: "Self Employed",
+  5: "Unemployed",
+  6: "Maternal Leave",
+};
+
+const listNumberYearWorking = [
+  "Less than 12 months",
+  "1 year",
+  "2 years",
+  "3 years",
+  "4 years",
+  "5+ years",
+];
+
+const Step40 = ({
+  handleGetLoan2value
+}) => {
+  const numberYearWorkingRef = useRef(null);
+  const wrapperInfoRef = useRef();
 
   const [timeLiving39D, setTimeLiving39D] = useState(
     localStorage.getItem("timeLiving39D") || ""
   );
-  const [timeLiving39DValid, setTimeLiving39DValid] = useState(
-    valid.NON_VALID
-  );
+  const [isShowModal, setIsShowModal] = useState(false);
 
-  const checkTimeLiving39DStatus = (value) => {
-    let test =
-      parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 100;
-    setTimeLiving39DValid(Number(test));
-    return test;
-  };
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowModal(false);
+  });
 
-  const onKeyUpHandle = (value) => {
+  const onClickSelect = (value) => {
     setTimeLiving39D(value);
+    setIsShowModal(false);
+    window.localStorage.setItem("timeLiving39D", value);
+    handleGetLoan2value("timeLiving39D", value);
   };
 
   useMemo(() => {
-    window.localStorage.setItem(
-      "timeLiving39D",
-      timeLiving39D &&
-        parseInt(timeLiving39D.replace(/,/g, ""), 10)
-    );
+    if (timeLiving39D) {
+      setTimeLiving39D(localStorage.getItem("timeLiving39D"));
+    }
+    // eslint-disable-next-line
   }, [timeLiving39D]);
 
   return (
-    <section className="formContent-step-second formContent-life-insurance mb-2">
+    <section
+    className={`formContent-step-second formContent-life-insurance ${
+      isShowModal ? "mb-10" : "mb-3" } `}
+  >
       <Container>
         <div className="wForm wow fadeInUp">
           <Row>
@@ -46,45 +73,44 @@ const Step40 = ({ handleGetLoan2value }) => {
               </h2>
             </Col>
             <Col xs={12}>
-              <Row className="info-customer mt-3">
-                <Col xs={12} className="wForm-input pl-0">
-                  <InputNumber
-                    inputMode="numeric"
-                    options={{
-                      numericOnly: true,
-                      numeral: true,
-                      numeralDecimalMark: "",
-                      delimiter: ",",
-                      numeralThousandsGroupStyle: "thousand",
+            <Row className="info-customer mt-2">
+                <Col
+                  xs={12}
+                  className="wForm-input pl-0 bankProviders"
+                  ref={wrapperInfoRef}
+                >
+                  <InputCustom2
+                    onFocus={() => {
+                      setIsShowModal(true);
                     }}
-                    onFocus={() =>
-                      setTimeLiving39DValid(valid.NON_VALID)
-                    }
-                    onChange={(e) =>
-                      onKeyUpHandle(e.target.value, "timeLiving39D")
-                    }
-                    label="Please enter your time living in this address"
+                    onChange={() => () => {}}
+                    label="Please select how long you living at that address"
                     value={timeLiving39D}
-                    id="timeLiving39D"
-                    maxLength ="3"
+                    id="numberYearWorking"
                     customClassLabel={timeLiving39D ? "active" : ""}
+                    iconArrow
                     customClassWrap="email five"
-                    innerRef={timeLiving39DRef}
-                    onBlur={() => {
-                      checkTimeLiving39DStatus(timeLiving39D);
-                      handleGetLoan2value(
-                        "timeLiving39D",
-                        timeLiving39D
-                      );
-                    }}
+                    innerRef={numberYearWorkingRef}
+                    readOnly
                   />
+                  <ul
+                    className={`list-occupation ${
+                      isShowModal ? "d-block" : "d-none"
+                    }`}
+                  >
+                    {listNumberYearWorking &&
+                      listNumberYearWorking.map((name, index) => (
+                        <li
+                          key={index + 1}
+                          onClick={() => onClickSelect(name)}
+                          className={timeLiving39D === name ? "active" : ""}
+                        >
+                          {name}
+                        </li>
+                      ))}
+                  </ul>
                 </Col>
               </Row>
-              {timeLiving39DValid === valid.INVALID && (
-                <div className="text-error">
-                  <p>Value should be in between 1 - 100</p>
-                </div>
-              )}
             </Col>
           </Row>
         </div>

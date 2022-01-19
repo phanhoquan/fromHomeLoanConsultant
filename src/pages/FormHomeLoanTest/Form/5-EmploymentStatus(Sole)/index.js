@@ -359,7 +359,7 @@ const EmploymentStatusSoleJoint = () => {
       id: 17,
       question: `${
         numberYearWorking24D && jointApplicationStatus === types[2]
-          ? "24d. How long has your partner been working in this role for?"
+          ? "24d. How long has your partner been working in this previous role for?"
           : ""
       }`,
     },

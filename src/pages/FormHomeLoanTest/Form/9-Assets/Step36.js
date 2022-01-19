@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { Row, Col } from "react-bootstrap";
 import { valid } from "../../../../utils/constant";
-import CardStep from "./CardStep";
+import CardStep from "./CardStep36";
 
 const Step30 = ({ handleGetLoan2value }) => {
 
