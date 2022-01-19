@@ -64,7 +64,7 @@ const Step30 = ({ handleGetLoan2value }) => {
   }, [listAnyCard, childrenNumber]);
 
   const handlePlusItem = () => {
-    if (childrenNumber <= 10) {
+    if (childrenNumber < 2) {
       setChildrenNumber(childrenNumber + 1);
       setValidMessage({
         ...validMessage,
@@ -73,7 +73,7 @@ const Step30 = ({ handleGetLoan2value }) => {
     } else {
       setValidMessage({
         ...validMessage,
-        childrenNumber: "Max must be less than or equal to 10",
+        childrenNumber: "Max must be less than or equal to 2",
       });
     }
   };
