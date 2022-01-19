@@ -71,6 +71,18 @@ export default function Success() {
     ? localStorage.getItem("loan2personalLoansStatus").split(",")
     : [];
 
+  const dataStep35 = localStorage.getItem("listCreditCard")
+    ? JSON.parse(localStorage.getItem("listCreditCard"))
+    : {};
+  
+  const dataStep36 = localStorage.getItem("listAnyCard")
+    ? JSON.parse(localStorage.getItem("listAnyCard"))
+    : {};
+
+  const dataStep37 = localStorage.getItem("listVehiclesBoats")
+    ? JSON.parse(localStorage.getItem("listVehiclesBoats"))
+    : {};
+    
   const setDataStateWithIpClient = (ipClient) => {
     setDataState({
       ...getDataMore(),
@@ -79,12 +91,6 @@ export default function Success() {
       f_4_lastname: localStorage.getItem("loan2lastName") || "",
       f_88_employment_status:
         localStorage.getItem("loan2employmentStatus") || "", //1
-
-      f_40_city: localStorage.getItem("loan2city") || "",
-      f_41_state: localStorage.getItem("loan2state") || "",
-      f_11_postcode: localStorage.getItem("loan2postcode") || "",
-      f_6_address1: localStorage.getItem("loan2fullAddress") || "", //30
-
       f_17_ipaddress: ipClient,
       f_58_submissiondate: getTimeNow(),
       f_76_user_agent: navigator.userAgent,
@@ -154,7 +160,8 @@ export default function Success() {
         localStorage.getItem("loan2yourSalary") || "", //16B
       f_1609_job_duration_sole_applicant:
         localStorage.getItem("loan2numberYearWorking") || "", //17
-
+      f_1744_sole_occupation_previous_role: localStorage.getItem("loan2occupation17B1") || "", // 17b
+      f_1745_sole_occupation_previous_role_duration: localStorage.getItem("loan2numberYearWorking17b") || "", // 17c
       f_1610_self_employed_business_type:
         localStorage.getItem("loan2typeOfBusinessOther") || "", //19
       f_1612_self_employed_abn_years:
@@ -169,6 +176,11 @@ export default function Success() {
         localStorage.getItem("loan2partnersOccupation") || "", //23
       f_1617_joint_applicant_employment_status:
         localStorage.getItem("loan2employmentPartnersWorkingStatus") || "", //24
+      f_1746_joint_applicant_occupation_previous_role:
+        localStorage.getItem("loan2occupation24C") || "", //24c
+      f_1747_joint_applicant_occupation_previous_role_duration:
+        localStorage.getItem("numberYearWorking24D") || "", //24d
+
       f_1618_joint_applicant_maternity:
         localStorage.getItem("loan2numberPartnerReturn") || "", //25
 
@@ -199,13 +211,49 @@ export default function Success() {
       f_1622_hecs_institution: localStorage.getItem("loan2HECSDebt") || "", //27c
       f_1623_hecs_amount: localStorage.getItem("loan2HECSDebtAmount") || "", // 27c
 
-      f_1628_credit_card_confirm: localStorage.getItem("loan2creditCard") || "", //29
+      f_1628_credit_card_confirm: localStorage.getItem("loan2creditCard") || "", //35
 
       f_1626_credit_card_institution:
-        localStorage.getItem("loan2valueCreditCard") || "", // 30
-
+        dataStep36?.valueCreditCard351 || "", // 35#1
       f_1627_credit_card_amount:
-        localStorage.getItem("loan2valueCreditCardAmount") || "", // 30
+        dataStep36?.valueCreditCard35Amount1 || "", // 35#1
+      f_1748_credit_card_institution_2:
+        dataStep36?.valueCreditCard352 || "", // 35#2
+      f_1749_credit_card_amount_2:
+        dataStep36?.valueCreditCard35Amount2 || "", // 35#2
+      f_1751_credit_card_institution_3:
+        dataStep36?.valueCreditCard353 || "", // 35#3
+      f_1750_credit_card_amount_3:
+        dataStep36?.valueCreditCard35Amount3 || "", // 35#3
+
+      f_1752_car_make_1: dataStep36?.makeCard1 || "", // 36#1
+      f_1753_car_model_1: dataStep36?.modelCard1 || "", // 36#1
+      f_1754_car_value_1: dataStep36?.valueCard1 || "", // 36#1
+      f_1755_car_make_2: dataStep36?.makeCard2 || "", // 36#1
+      f_1756_car_model_2: dataStep36?.modelCard2 || "", // 36#1
+      f_1757_car_value_2: dataStep36?.valueCard2 || "", // 36#1
+
+      f_1758_other_vehicles_type_1: dataStep37?.typeBoats1?.value || "", // 37#1
+      f_1764_other_vehicles_make_1: dataStep37?.makeBoats1 || "", // 37#1
+      f_1761_other_vehicles_model_1: dataStep37?.modelBoats1 || "", // 37#1
+      f_1767_other_vehicles_value_1: dataStep37?.valueBoats1 || "", // 37#1
+      f_1759_other_vehicles_type_2: dataStep37?.typeBoats2?.value || "", // 37#2
+      f_1765_other_vehicles_make_2: dataStep37?.makeBoats2 || "", // 37#2
+      f_1762_other_vehicles_model_2: dataStep37?.modelBoats1 || "", // 37#2
+      f_1768_other_vehicles_value_2: dataStep37?.valueBoats1 || "", // 37#2
+      f_1760_other_vehicles_type_3: dataStep37?.typeBoats3?.value || "", // 37#1
+      f_1766_other_vehicles_make_3: dataStep37?.makeBoats3 || "", // 37#2
+      f_1763_other_vehicles_model_3: dataStep37?.modelBoats1 || "", // 37#3
+      f_1769_other_vehicles_value_3: dataStep37?.valueBoats1 || "", // 37#4
+
+      f_1770_sole_applicant_superannuation_amount: localStorage.getItem("amountHome38A") || "", // 38#A
+      f_1771_joint_applicant_superannuation_amount: localStorage.getItem("amountHome38B") || "", // 38#B
+      f_1772_home_contents_value: localStorage.getItem("amountHome39") || "", // 39
+
+      f_40_city: localStorage.getItem("loan2city") || "", // 40a
+      f_41_state: localStorage.getItem("loan2state") || "", // 40a
+      f_11_postcode: localStorage.getItem("loan2postcode") || "", // 40a
+      f_6_address1: localStorage.getItem("loan2fullAddress") || "", //40a
 
       f_1632_loan_type:
         localStorage.getItem("loan2currentlyRenting") === types2[1]
