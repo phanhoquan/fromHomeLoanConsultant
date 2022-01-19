@@ -5,7 +5,7 @@ import LifeInsurance from "../../index";
 
 import Step31 from "./Step31";
 import Step38B from "./Step38B";
-import Step38C from "./Step38C";
+// import Step38C from "./Step38C";
 import Step32 from "./Step32";
 import Step39B from "./Step39B";
 import Step39D from "./Step39D";
@@ -121,14 +121,14 @@ const ResidentialInformation = () => {
           : ""
       }`,
     },
-    {
-      id: 3,
-      question: `${
-        incomeProperty38C
-          ? "40c. What is the rental income of this property?"
-          : ""
-      }`,
-    },
+    // {
+    //   id: 3,
+    //   question: `${
+    //     incomeProperty38C
+    //       ? "40c. What is the rental income of this property?"
+    //       : ""
+    //   }`,
+    // },
     {
       id: 4,
       question: `${
@@ -198,13 +198,14 @@ const ResidentialInformation = () => {
       <Step38B handleGetLoan2value={handleGetLoan2value} />
       {investmentProperty38B ? (
         <>
-          { investmentProperty38B === types[2] ?(
+          { investmentProperty38B !== types[2] ?(
             <>
-              <Step38C handleGetLoan2value={handleGetLoan2value} />
-              <Step32 handleGetLoan2value={handleGetLoan2value} />          
+              <Step39B handleGetLoan2value={handleGetLoan2value} />
+              <Step33 handleGetLoan2value={handleGetLoan2value} />
             </>
           ):
           <>
+              <Step32 handleGetLoan2value={handleGetLoan2value} />  
               <Step39B handleGetLoan2value={handleGetLoan2value} />
               {timeLiving39B && listNumberYearWorking[timeLiving39B] < 3 ? (
                 <>
@@ -213,7 +214,6 @@ const ResidentialInformation = () => {
                 </>
               ):""}
             <Step32B handleGetLoan2value={handleGetLoan2value} />
-            <Step33 handleGetLoan2value={handleGetLoan2value} />
           </>
           }
         </>
