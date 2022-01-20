@@ -30,7 +30,7 @@ const CardList = ({
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                What institution is the credit card #{indexItem} with ans what is the limit?
+                What institution is the credit card #{indexItem} with and what is the limit?
               </h2>
             </Col>
             <Col xs={12}>

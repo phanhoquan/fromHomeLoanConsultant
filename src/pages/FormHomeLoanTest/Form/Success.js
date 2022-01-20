@@ -86,9 +86,9 @@ export default function Success() {
   const setDataStateWithIpClient = (ipClient) => {
     setDataState({
       ...getDataMore(),
-      f_1_email: localStorage.getItem("loan2email") || "",
-      f_3_firstname: localStorage.getItem("loan2firstName") || "",
-      f_4_lastname: localStorage.getItem("loan2lastName") || "",
+      f_1_email: localStorage.getItem("loan2email") || "",//1
+      f_3_firstname: localStorage.getItem("loan2firstName") || "",//1
+      f_4_lastname: localStorage.getItem("loan2lastName") || "",//1
       f_88_employment_status:
         localStorage.getItem("loan2employmentStatus") || "", //1
       f_17_ipaddress: ipClient,
@@ -211,20 +211,24 @@ export default function Success() {
       f_1622_hecs_institution: localStorage.getItem("loan2HECSDebt") || "", //27c
       f_1623_hecs_amount: localStorage.getItem("loan2HECSDebtAmount") || "", // 27c
 
+      f_1632_loan_type:
+        localStorage.getItem("loan2currentlyRenting") === types2[1]
+          ? "Investment"
+          : "Owner Occupied" || "", //32,
+      f_1633_additional_notes: localStorage.getItem("contentNoteVale") || "", //33
       f_1628_credit_card_confirm: localStorage.getItem("loan2creditCard") || "", //35
-
       f_1626_credit_card_institution:
-        dataStep36?.valueCreditCard351 || "", // 35#1
+        dataStep35?.valueCreditCard351 || "", // 35#1
       f_1627_credit_card_amount:
-        dataStep36?.valueCreditCard35Amount1 || "", // 35#1
+        dataStep35?.valueCreditCard35Amount1 || "", // 35#1
       f_1748_credit_card_institution_2:
-        dataStep36?.valueCreditCard352 || "", // 35#2
+        dataStep35?.valueCreditCard352 || "", // 35#2
       f_1749_credit_card_amount_2:
-        dataStep36?.valueCreditCard35Amount2 || "", // 35#2
+        dataStep35?.valueCreditCard35Amount2 || "", // 35#2
       f_1751_credit_card_institution_3:
-        dataStep36?.valueCreditCard353 || "", // 35#3
+        dataStep35?.valueCreditCard353 || "", // 35#3
       f_1750_credit_card_amount_3:
-        dataStep36?.valueCreditCard35Amount3 || "", // 35#3
+        dataStep35?.valueCreditCard35Amount3 || "", // 35#3
 
       f_1752_car_make_1: dataStep36?.makeCard1 || "", // 36#1
       f_1753_car_model_1: dataStep36?.modelCard1 || "", // 36#1
@@ -249,20 +253,18 @@ export default function Success() {
       f_1770_sole_applicant_superannuation_amount: localStorage.getItem("amountHome38A") || "", // 38#A
       f_1771_joint_applicant_superannuation_amount: localStorage.getItem("amountHome38B") || "", // 38#B
       f_1772_home_contents_value: localStorage.getItem("amountHome39") || "", // 39
-
+      f_1777_refinance_address: localStorage.getItem("loan2fullAddress") || "", // 40a
       f_40_city: localStorage.getItem("loan2city") || "", // 40a
       f_41_state: localStorage.getItem("loan2state") || "", // 40a
       f_11_postcode: localStorage.getItem("loan2postcode") || "", // 40a
       f_6_address1: localStorage.getItem("loan2fullAddress") || "", //40a
-
-      f_1632_loan_type:
-        localStorage.getItem("loan2currentlyRenting") === types2[1]
-          ? "Investment"
-          : "Owner Occupied" || "", //32,
-      f_1633_additional_notes: localStorage.getItem("contentNoteVale") || "", //33
-      f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //34
+      f_1778_current_living_address: localStorage.getItem("loan2fullAddress39A") || "", // 41a
+      f_1779_current_living_address_duration: localStorage.getItem("timeLiving39B") || "", // 41b
+      f_1780_previous_living_address: localStorage.getItem("loan2fullAddress39C") || "", // 41c
+      f_1781_previous_living_address_duration: localStorage.getItem("timeLiving39D") || "", //
       f_1712_rental_property_income:
-        localStorage.getItem("rentalPropertyIncome") || "",
+        localStorage.getItem("rentalPropertyIncome") || "", // 42
+      f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //43
       cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/refinance-home-loan-consultant-test",
     });

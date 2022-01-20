@@ -20,7 +20,7 @@ const Step41B = ({
   const timeLiving39BRef = useRef(null);
   const wrapperInfoRef = useRef();
   const [timeLiving39B, setTimeLiving39B] = useState(
-    localStorage.getItem("loan2timeLiving39B") || ""
+    localStorage.getItem("timeLiving39B") || ""
   );
   const [isShowModal, setIsShowModal] = useState(false);
 

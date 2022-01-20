@@ -57,19 +57,19 @@ const CreditCards = () => {
     {
       id: 2,
       question: `${
-        listCreditCard && (listCreditCard.valueCreditCard35Amount1 || listCreditCard.valueCreditCard351) ? "What institution is the credit card #1 with ans what is the limit?" : ""
+        listCreditCard && (listCreditCard.valueCreditCard35Amount1 || listCreditCard.valueCreditCard351) ? "What institution is the credit card #1 with and what is the limit?" : ""
       }`,
     },
     {
       id: 3,
       question: `${
-        listCreditCard && (listCreditCard.valueCreditCard35Amount2 || listCreditCard.valueCreditCard352)  ? "What institution is the credit card #2 with ans what is the limit?" : ""
+        listCreditCard && (listCreditCard.valueCreditCard35Amount2 || listCreditCard.valueCreditCard352)  ? "What institution is the credit card #2 with and what is the limit?" : ""
       }`,
     },
     {
       id: 4,
       question: `${
-        listCreditCard && (listCreditCard.valueCreditCard35Amount3 || listCreditCard.valueCreditCard353)  ? "What institution is the credit card #1 with ans what is the limit?" : ""
+        listCreditCard && (listCreditCard.valueCreditCard35Amount3 || listCreditCard.valueCreditCard353)  ? "What institution is the credit card #1 with and what is the limit?" : ""
       }`,
     },
   ];
