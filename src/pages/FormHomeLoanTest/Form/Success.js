@@ -191,11 +191,11 @@ export default function Success() {
       f_1629_car_loan_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[2])
           ? types[2]
-          : "") || "",
+          : "") || "",//26
       f_1631_hecs_debt_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[3])
           ? types[3]
-          : "") || "",
+          : "") || "",//26
 
       f_1620_car_loan_institution:
         localStorage.getItem("loan2personalLoan") || "", //27a,
