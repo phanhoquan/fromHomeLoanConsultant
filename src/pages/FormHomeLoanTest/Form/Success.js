@@ -220,15 +220,15 @@ export default function Success() {
       f_1626_credit_card_institution:
         dataStep35?.valueCreditCard351 || "", // 35#1
       f_1627_credit_card_amount:
-        dataStep35?.valueCreditCard35Amount1 || "", // 35#1
+        dataStep35?.valueCreditCard35Amount1 ? parseInt(dataStep35?.valueCreditCard35Amount1.replace(/,/gi, ""), 10) : "", // 35#1
       f_1748_credit_card_institution_2:
         dataStep35?.valueCreditCard352 || "", // 35#2
       f_1749_credit_card_amount_2:
-        dataStep35?.valueCreditCard35Amount2 || "", // 35#2
+        dataStep35?.valueCreditCard35Amount2 ? parseInt(dataStep35?.valueCreditCard35Amount2.replace(/,/gi, ""), 10) : "", // 35#2
       f_1751_credit_card_institution_3:
         dataStep35?.valueCreditCard353 || "", // 35#3
       f_1750_credit_card_amount_3:
-        dataStep35?.valueCreditCard35Amount3 || "", // 35#3
+        dataStep35?.valueCreditCard35Amount3 ? parseInt(dataStep35?.valueCreditCard35Amount3.replace(/,/gi, ""), 10) : "", // 35#3
 
       f_1752_car_make_1: dataStep36?.makeCard1 || "", // 36#1
       f_1753_car_model_1: dataStep36?.modelCard1 || "", // 36#1
@@ -243,12 +243,12 @@ export default function Success() {
       f_1767_other_vehicles_value_1: dataStep37?.valueBoats1 || "", // 37#1
       f_1759_other_vehicles_type_2: dataStep37?.typeBoats2?.value || "", // 37#2
       f_1765_other_vehicles_make_2: dataStep37?.makeBoats2 || "", // 37#2
-      f_1762_other_vehicles_model_2: dataStep37?.modelBoats1 || "", // 37#2
-      f_1768_other_vehicles_value_2: dataStep37?.valueBoats1 || "", // 37#2
+      f_1762_other_vehicles_model_2: dataStep37?.modelBoats2 || "", // 37#2
+      f_1768_other_vehicles_value_2: dataStep37?.valueBoats2 || "", // 37#2
       f_1760_other_vehicles_type_3: dataStep37?.typeBoats3?.value || "", // 37#1
       f_1766_other_vehicles_make_3: dataStep37?.makeBoats3 || "", // 37#2
-      f_1763_other_vehicles_model_3: dataStep37?.modelBoats1 || "", // 37#3
-      f_1769_other_vehicles_value_3: dataStep37?.valueBoats1 || "", // 37#4
+      f_1763_other_vehicles_model_3: dataStep37?.modelBoats3 || "", // 37#3
+      f_1769_other_vehicles_value_3: dataStep37?.valueBoats3 || "", // 37#4
 
       f_1770_sole_applicant_superannuation_amount: localStorage.getItem("amountHome38A") || "", // 38#A
       f_1771_joint_applicant_superannuation_amount: localStorage.getItem("amountHome38B") || "", // 38#B
