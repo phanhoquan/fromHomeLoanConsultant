@@ -175,7 +175,7 @@ const Step09 = ({ handleGetLoan2value }) => {
       "loan2chillApplicantAge",
       JSON.stringify(chillApplicantAge)
     );
-    window.localStorage.setItem("loan2childrenNumber", finAgeValid?.length);
+    window.localStorage.setItem("loan2childrenNumber", finAgeValid?.length||0);
     handleGetLoan2value("chillApplicantAge", finAgeValid);
     // eslint-disable-next-line
   }, [chillApplicantAge]);

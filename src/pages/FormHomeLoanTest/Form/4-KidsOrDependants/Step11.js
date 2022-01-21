@@ -172,7 +172,7 @@ const Step11 = ({ handleGetLoan2value, otherDependents }) => {
     );
     window.localStorage.setItem(
       "loan2otherChildrenNumber",
-      finAgeValid?.length
+      finAgeValid?.length || 0
     );
 
     handleGetLoan2value("otherChillApplicantAge", finAgeValid);
