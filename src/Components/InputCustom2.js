@@ -9,6 +9,7 @@ import imgCheck from "../images/life/iconCheck.svg";
 import imgIconBank from "../images/life/bank.svg";
 import imgIconArrow from "../images/life/arrow.svg";
 import imgIconRate from "../images/rate .png";
+import imgIconSearch from "../images/search.svg";
 
 const InputCustom2 = ({
   placeholder = "",
@@ -44,6 +45,8 @@ const InputCustom2 = ({
   iconBank = false,
   iconArrow = false,
   iconRate = false,
+  iconSearch = false,
+  handleSearch = () => {}
 }: Props) => {
   return (
     <div
@@ -125,6 +128,11 @@ const InputCustom2 = ({
         {iconArrow && (
           <div className="icon check-phone">
             <img src={imgIconArrow} alt="" className="iconEmail " />
+          </div>
+        )}
+        {iconSearch && (
+          <div className="icon check-phone search" onClick={handleSearch} title="Search">
+            <img src={imgIconSearch} alt="Search" className="iconEmail " />
           </div>
         )}
       </div>

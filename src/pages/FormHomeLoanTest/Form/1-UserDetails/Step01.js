@@ -6,8 +6,10 @@ import LifeInsurance from "../../index";
 import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import checkEmail from "../../../../utils/checkEmail";
-import { CheckboxButton } from "../../../../Components/CheckBox3";
 import { useHistory } from "react-router-dom";
+import {
+  getDataInFoContact,
+} from "../../../../utils/api";
 
 export const types = {
   1: "Full Time",
@@ -17,7 +19,7 @@ export const types = {
 };
 
 const First = () => {
-  const firstNameRef = useRef(null);
+  const emailNameRef = useRef(null);
   const history = useHistory();
   let listMenuStep1 = localStorage.getItem("listMenuStep1")
     ? JSON.parse(localStorage.getItem("listMenuStep1"))
@@ -33,12 +35,19 @@ const First = () => {
   const [lastName, setLastName] = useState(
     localStorage.getItem("loan2lastName") || ""
   );
-  const [firstNameValid, setFirstNameValid] = useState(valid.NON_VALID);
-  const [lastNameValid, setLastNameValid] = useState(valid.NON_VALID);
   const [email, setEmail] = useState(localStorage.getItem("loan2email") || "");
   const [emailValid, setEmailValid] = useState(valid.NON_VALID);
   const [employmentStatus, setEmploymentStatus] = useState(
     localStorage.getItem("loan2employmentStatus") || ""
+  );
+  const [existingMortgageAmount, setExistingMortgageAmount] = useState(
+    localStorage.getItem("existingMortgageAmount") || ""
+  );
+  const [currentLender, setCurrentLender] = useState(
+    localStorage.getItem("currentLender") || ""
+  );
+  const [valueOfProperty, setValueOfProperty] = useState(
+    localStorage.getItem("valueOfProperty") || ""
   );
 
   const checkEmailStatus = (value) => {
@@ -49,25 +58,9 @@ const First = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      firstNameRef?.current?.focus();
+      emailNameRef?.current?.focus();
     }, 400);
   }, []);
-
-  const checkFirstNameStatus = (value) => {
-    let test = /^([A-Za-z'’＇`]{2,})$/.test(value);
-    setFirstNameValid(Number(test));
-    return test;
-  };
-
-  const checkLastNameStatus = (value) => {
-    let test = /^([A-Za-z'’＇`]{2,})$/.test(value);
-    setLastNameValid(Number(test));
-    return test;
-  };
-
-  const onCheck = (option) => {
-    setEmploymentStatus(option);
-  };
 
   const onKeyUpHandle = (name, value) => {
     switch (name) {
@@ -79,26 +72,14 @@ const First = () => {
         break;
       case "email":
         setEmail(value);
+        setEmploymentStatus('');
+        setExistingMortgageAmount('');
+        setCurrentLender('');
+        setValueOfProperty('');
+        setLastName('');
+        setFirstName('');
         break;
 
-      default:
-        break;
-    }
-  };
-
-  const handleBlur = (name) => {
-    switch (name) {
-      case "lastName":
-        checkLastNameStatus(lastName);
-
-        break;
-      case "firstName":
-        checkFirstNameStatus(firstName);
-
-        break;
-      case "email":
-        checkEmailStatus(email);
-        break;
       default:
         break;
     }
@@ -107,37 +88,73 @@ const First = () => {
   const step1 = [
     {
       id: 1,
-      question: `${lastName && firstName ? "1. Please enter your name" : ""}`,
-    },
-    {
-      id: 2,
-      question: `${email ? "1. What’s your email address?" : ""}`,
-    },
-    {
-      id: 3,
-      question: `${employmentStatus ? "1. Are you currently employed?" : ""}`,
-    },
+      question: `${email && lastName && firstName ? "1. Enter email address" : ""}`,
+    }
   ];
 
   useMemo(() => {
     localStorage.setItem("loan2lastName", lastName);
     localStorage.setItem("loan2firstName", firstName);
     localStorage.setItem("loan2email", email);
+    localStorage.setItem("existingMortgageAmount", existingMortgageAmount);
+    localStorage.setItem("valueOfProperty", valueOfProperty);
+    localStorage.setItem("currentLender", currentLender);
     localStorage.setItem("loan2employmentStatus", employmentStatus);
     if (
       lastName.trim() ||
       firstName.trim() ||
       email.trim() ||
-      employmentStatus
+      employmentStatus ||
+      existingMortgageAmount ||
+      currentLender ||
+      valueOfProperty
     ) {
       setDataListMenuStep1(step1);
     }
     window.localStorage.setItem("listMenuStep1", JSON.stringify(step1));
     // eslint-disable-next-line
-  }, [lastName, firstName, email, employmentStatus]);
+  }, [lastName, firstName, email, employmentStatus, existingMortgageAmount, currentLender, valueOfProperty]);
 
   const onClickNext = () => {
     history.push("/refinance-home-loan-consultant-test/loanInformation");
+  };
+  const callback = (data) => {
+    if (data) {
+      const mortgage_amount = data?.existing_mortgage_amount || 0;
+      setEmploymentStatus(data?.employmentstatus || '');
+      setExistingMortgageAmount(mortgage_amount ? parseInt(mortgage_amount.replace(/,/gi, ""), 10).toLocaleString("en") : '');
+      setCurrentLender(data?.current_lender || '');
+      setValueOfProperty(data?.value_of_property || '');
+      setLastName(data?.lastname || '');
+      setFirstName(data?.firstname || '');
+    }else {
+      setEmploymentStatus('');
+      setExistingMortgageAmount('');
+      setCurrentLender('');
+      setValueOfProperty('');
+      setLastName('');
+      setFirstName('');
+    }
+  };
+  const handleSearch = () => {
+    if (checkEmailStatus(email)){
+      getDataInFoContact(email, callback, callback)
+    }
+  }
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+  const handleBlur = (name) => {
+    switch (name) {
+      case "email":
+        checkEmailStatus(email);
+        handleSearch()
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -151,75 +168,24 @@ const First = () => {
           <div>
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-4">1. Please enter your name</h2>
+                <h2 className="mb-4">1. Enter email address</h2>
               </Col>
-              <Col xs={12}>
-                <Row className="info-customer">
-                  <Col xs={6} className="wForm-input pl-0">
-                    <InputCustom2
-                      onFocus={() => setFirstNameValid(valid.NON_VALID)}
-                      onChange={(e) =>
-                        onKeyUpHandle("firstName", e.target.value)
-                      }
-                      label="FIRST NAME"
-                      value={
-                        firstName &&
-                        firstName[0].toUpperCase() + firstName.slice(1)
-                      }
-                      id="firstName"
-                      customClassLabel={firstName ? "active" : ""}
-                      innerRef={firstNameRef}
-                      onBlur={() => handleBlur("firstName")}
-                    />
-                  </Col>
-                  <Col xs={6} className="wForm-input pr-0">
-                    <InputCustom2
-                      onFocus={() => setLastNameValid(valid.NON_VALID)}
-                      onChange={(e) =>
-                        onKeyUpHandle("lastName", e.target.value)
-                      }
-                      id="lastName"
-                      label="LAST NAME"
-                      value={
-                        lastName &&
-                        lastName[0].toUpperCase() + lastName.slice(1)
-                      }
-                      onBlur={() => handleBlur("lastName")}
-                      customClassLabel={lastName ? "active" : ""}
-                    />
-                  </Col>
-                </Row>
-              </Col>
-              <Col xs={12}>
-                {firstNameValid === valid.INVALID && (
-                  <div className="text-error">
-                    <p>Please enter in a valid first name</p>
-                  </div>
-                )}
-
-                {lastNameValid === valid.INVALID && (
-                  <div className="text-error">
-                    <p>Please enter in a valid last name</p>
-                  </div>
-                )}
-              </Col>
-              <Col xs={12} className="text-center mt-3">
-                <h2 className="mb-4">1. What’s your email address?</h2>
-              </Col>
-              <Col xs={12}>
+              <Col xs={12} className="mb-3">
                 <Row className="info-customer">
                   <Col xs={12} className="wForm-input pl-0">
                     <InputCustom2
                       onFocus={() => setEmailValid(valid.NON_VALID)}
                       onChange={(e) => onKeyUpHandle("email", e.target.value)}
-                      label="PLEASE ENTER YOUR EMAIL"
+                      label="Enter email address"
                       value={email}
                       type="email"
+                      onKeyPress={onKeyDown}
                       id="email-input"
                       customClassLabel={email ? "active" : ""}
-                      iconEmail
+                      iconSearch
                       onBlur={() => handleBlur("email")}
-                      customClassWrap="email"
+                      innerRef={emailNameRef}
+                      handleSearch = {handleSearch}
                     />
                   </Col>
                 </Row>
@@ -229,43 +195,102 @@ const First = () => {
                   </div>
                 )}
               </Col>
-              <Col xs={12} className="text-center mt-3">
-                <h2 className="mb-4">1. Are you currently employed?</h2>
-              </Col>
-              <Col xs={12}>
-                <Row className="info-customer">
-                  <Col xs={6} className="wForm-input">
-                    <CheckboxButton
-                      checkBox={employmentStatus === types[1]}
-                      onClick={() => onCheck(types[1])}
-                      name={types[1]}
-                    />
+              {lastName && firstName ? (
+                <> 
+                  <Col xs={12}>
+                    <Row className="info-customer mb-3">
+                      <Col xs={6} className="wForm-input pl-0">
+                        <InputCustom2
+                          onChange={(e) =>
+                            onKeyUpHandle("firstName", e.target.value)
+                          }
+                          label="FIRST NAME"
+                          value={
+                            firstName &&
+                            firstName[0].toUpperCase() + firstName.slice(1)
+                          }
+                          id="firstName"
+                          customClassLabel={firstName ? "active" : ""}
+                          readOnly
+                        />
+                      </Col>
+                      <Col xs={6} className="wForm-input pr-0">
+                        <InputCustom2
+                          onChange={(e) =>
+                            onKeyUpHandle("lastName", e.target.value)
+                          }
+                          id="lastName"
+                          label="LAST NAME"
+                          value={
+                            lastName &&
+                            lastName[0].toUpperCase() + lastName.slice(1)
+                          }
+                          readOnly
+                          customClassLabel={lastName ? "active" : ""}
+                        />
+                      </Col>
+                    </Row>
                   </Col>
-                  <Col xs={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[2])}
-                      checkBox={employmentStatus === types[2]}
-                      name={types[2]}
-                    />
+                  <Col xs={12}>
+                    <Row className="info-customer mb-3">
+                      <Col xs={12} className="wForm-input pl-0">
+                        <InputCustom2
+                          onChange={(e) => onKeyUpHandle("valueOfProperty", e.target.value)}
+                          label="Value of property"
+                          value={valueOfProperty}
+                          id="valueOfProperty"
+                          customClassLabel={valueOfProperty ? "active" : ""}
+                          readOnly
+                        />
+                      </Col>
+                    </Row>
                   </Col>
-                  <Col xs={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[3])}
-                      checkBox={employmentStatus === types[3]}
-                      name={types[3]}
-                    />
+                  <Col xs={12}>
+                    <Row className="info-customer mb-3">
+                      <Col xs={12} className="wForm-input pl-0">
+                        <InputCustom2
+                          onChange={(e) => onKeyUpHandle("existingMortgageAmount", e.target.value)}
+                          label="Existing mortgage amount"
+                          value={existingMortgageAmount}
+                          id="existingMortgageAmount"
+                          customClassLabel={existingMortgageAmount ? "active" : ""}
+                          readOnly
+                        />
+                      </Col>
+                    </Row>
                   </Col>
-                  <Col xs={6} className="wForm-input">
-                    <CheckboxButton
-                      onClick={() => onCheck(types[4])}
-                      checkBox={employmentStatus === types[4]}
-                      name={types[4]}
-                    />
+                  <Col xs={12}>
+                    <Row className="info-customer mb-3">
+                      <Col xs={12} className="wForm-input pl-0">
+                        <InputCustom2
+                          onChange={(e) => onKeyUpHandle("currentLender", e.target.value)}
+                          label="Current lender"
+                          value={currentLender}
+                          id="currentLender"
+                          customClassLabel={currentLender ? "active" : ""}
+                          readOnly
+                        />
+                      </Col>
+                    </Row>
                   </Col>
-                </Row>
-              </Col>
+                  <Col xs={12}>
+                    <Row className="info-customer mb-3">
+                      <Col xs={12} className="wForm-input pl-0">
+                        <InputCustom2
+                          onChange={(e) => onKeyUpHandle("employmentStatus", e.target.value)}
+                          label="Employment Status"
+                          value={employmentStatus}
+                          id="employmentStatus"
+                          customClassLabel={employmentStatus ? "active" : ""}
+                          readOnly
+                        />
+                      </Col>
+                    </Row>
+                  </Col>
+                </>
+              ) : ''}
             </Row>
-            <div className="group-btn-footer col d-flex justify-content-center">
+            <div className="group-btn-footer col d-flex justify-content-center mt-4">
               <Button
                 className="btnPrimary life wow fadeInUp mt-0 in-progress"
                 type="next"

@@ -147,3 +147,18 @@ export const sendDataFormEngagementsRequest = (
       error(err);
     });
 };
+
+export const getDataInFoContact = (
+  params = "",
+  callback = () => {},
+  error = () => {}
+) => {
+  fetch(`${BASE_URL}/get-info-contact-hubapi.php?q=${params}`)
+    .then((response) => response.json())
+    .then((result) => {
+      callback(result);
+    })
+    .catch((err) => {
+      error(err);
+    });
+};

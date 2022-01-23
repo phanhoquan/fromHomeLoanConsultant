@@ -851,6 +851,16 @@ html.fonts90 {
 
 .icon.check-phone {
   z-index: -1;
+  &.search {
+    z-index: 2;
+    cursor: pointer;
+    .iconEmail {
+      width: pxToRem(40) !important;
+      height: pxToRem(50) !important;
+      top: pxToRem(-12);
+      position: relative;
+    }
+  }
 }
 
 .sub {
