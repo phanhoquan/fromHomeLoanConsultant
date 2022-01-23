@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { valid } from "../../../../utils/constant";
 import InputCustom2 from "../../../../Components/InputCustom2";
 import InputNumber from "../../../../Components/InputNumber";
 import SelectDropdown from "../../../../Components/Select/index";
@@ -33,7 +32,6 @@ const listOption = [
 ];
 
 const Step36A = ({
-  handleSetMakeModelValid,
   nameCard,
   indexCard=1,
   make,
@@ -41,7 +39,6 @@ const Step36A = ({
   value,
   onKeyUpHandle,
   handleBlur,
-  makeModelValid,
   handlePlusItem,
   childrenNumber,
   handleRemoveItem,
@@ -67,12 +64,6 @@ const Step36A = ({
           </Col>
           <Col xs={6} md={3} className="wForm-input mb-2">
             <InputCustom2
-              onFocus={() =>
-                handleSetMakeModelValid(
-                  valid.NON_VALID,
-                  `make${nameCard}${indexCard}`
-                )
-              }
               onChange={(e) =>
                 onKeyUpHandle(e.target.value, `make${nameCard}${indexCard}`)
               }
@@ -85,12 +76,6 @@ const Step36A = ({
           </Col>
           <Col xs={6} md={3} className="wForm-input mb-2">
             <InputCustom2
-                onFocus={() =>
-                  handleSetMakeModelValid(
-                    valid.NON_VALID,
-                    `model${nameCard}${indexCard}`
-                  )
-                }
                 onChange={(e) =>
                   onKeyUpHandle(e.target.value, `model${nameCard}${indexCard}`)
                 }
@@ -111,12 +96,6 @@ const Step36A = ({
                 delimiter: ",",
                 numeralThousandsGroupStyle: "thousand",
               }}
-              onFocus={() =>
-                handleSetMakeModelValid(
-                  valid.NON_VALID,
-                  `value${nameCard}${indexCard}`
-                )
-              }
               onChange={(e) =>
                 onKeyUpHandle(e.target.value, `value${nameCard}${indexCard}`)
               }
@@ -151,13 +130,6 @@ const Step36A = ({
             </div>
         ):''}
         </Row>
-      </Col>
-      <Col xs={12}>
-        {makeModelValid ? (
-          <div className="text-error">
-            <p>Please enter in a valid Type\Make\Model\Value</p>
-          </div>
-        ):''}
       </Col>
     </>
   );
