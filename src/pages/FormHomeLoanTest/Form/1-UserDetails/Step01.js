@@ -195,100 +195,96 @@ const First = () => {
                   </div>
                 )}
               </Col>
-              {lastName && firstName ? (
-                <> 
-                  <Col xs={12}>
-                    <Row className="info-customer mb-3">
-                      <Col xs={6} className="wForm-input pl-0">
-                        <InputCustom2
-                          onChange={(e) =>
-                            onKeyUpHandle("firstName", e.target.value)
-                          }
-                          label="FIRST NAME"
-                          value={
-                            firstName &&
-                            firstName[0].toUpperCase() + firstName.slice(1)
-                          }
-                          id="firstName"
-                          customClassLabel={firstName ? "active" : ""}
-                          readOnly
-                        />
-                      </Col>
-                      <Col xs={6} className="wForm-input pr-0">
-                        <InputCustom2
-                          onChange={(e) =>
-                            onKeyUpHandle("lastName", e.target.value)
-                          }
-                          id="lastName"
-                          label="LAST NAME"
-                          value={
-                            lastName &&
-                            lastName[0].toUpperCase() + lastName.slice(1)
-                          }
-                          readOnly
-                          customClassLabel={lastName ? "active" : ""}
-                        />
-                      </Col>
-                    </Row>
+              <Col xs={12}>
+                <Row className="info-customer mb-3">
+                  <Col xs={6} className="wForm-input pl-0">
+                    <InputCustom2
+                      onChange={(e) =>
+                        onKeyUpHandle("firstName", e.target.value)
+                      }
+                      label="FIRST NAME"
+                      value={
+                        firstName &&
+                        firstName[0].toUpperCase() + firstName.slice(1)
+                      }
+                      id="firstName"
+                      customClassLabel={firstName ? "active" : ""}
+                      readOnly
+                    />
                   </Col>
-                  <Col xs={12}>
-                    <Row className="info-customer mb-3">
-                      <Col xs={12} className="wForm-input pl-0">
-                        <InputCustom2
-                          onChange={(e) => onKeyUpHandle("valueOfProperty", e.target.value)}
-                          label="Value of property"
-                          value={valueOfProperty}
-                          id="valueOfProperty"
-                          customClassLabel={valueOfProperty ? "active" : ""}
-                          readOnly
-                        />
-                      </Col>
-                    </Row>
+                  <Col xs={6} className="wForm-input pr-0">
+                    <InputCustom2
+                      onChange={(e) =>
+                        onKeyUpHandle("lastName", e.target.value)
+                      }
+                      id="lastName"
+                      label="LAST NAME"
+                      value={
+                        lastName &&
+                        lastName[0].toUpperCase() + lastName.slice(1)
+                      }
+                      readOnly
+                      customClassLabel={lastName ? "active" : ""}
+                    />
                   </Col>
-                  <Col xs={12}>
-                    <Row className="info-customer mb-3">
-                      <Col xs={12} className="wForm-input pl-0">
-                        <InputCustom2
-                          onChange={(e) => onKeyUpHandle("existingMortgageAmount", e.target.value)}
-                          label="Existing mortgage amount"
-                          value={existingMortgageAmount}
-                          id="existingMortgageAmount"
-                          customClassLabel={existingMortgageAmount ? "active" : ""}
-                          readOnly
-                        />
-                      </Col>
-                    </Row>
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <Row className="info-customer mb-3">
+                  <Col xs={12} className="wForm-input pl-0">
+                    <InputCustom2
+                      onChange={(e) => onKeyUpHandle("valueOfProperty", e.target.value)}
+                      label="Value of property"
+                      value={valueOfProperty}
+                      id="valueOfProperty"
+                      customClassLabel={valueOfProperty ? "active" : ""}
+                      readOnly
+                    />
                   </Col>
-                  <Col xs={12}>
-                    <Row className="info-customer mb-3">
-                      <Col xs={12} className="wForm-input pl-0">
-                        <InputCustom2
-                          onChange={(e) => onKeyUpHandle("currentLender", e.target.value)}
-                          label="Current lender"
-                          value={currentLender}
-                          id="currentLender"
-                          customClassLabel={currentLender ? "active" : ""}
-                          readOnly
-                        />
-                      </Col>
-                    </Row>
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <Row className="info-customer mb-3">
+                  <Col xs={12} className="wForm-input pl-0">
+                    <InputCustom2
+                      onChange={(e) => onKeyUpHandle("existingMortgageAmount", e.target.value)}
+                      label="Existing mortgage amount"
+                      value={existingMortgageAmount}
+                      id="existingMortgageAmount"
+                      customClassLabel={existingMortgageAmount ? "active" : ""}
+                      readOnly
+                    />
                   </Col>
-                  <Col xs={12}>
-                    <Row className="info-customer mb-3">
-                      <Col xs={12} className="wForm-input pl-0">
-                        <InputCustom2
-                          onChange={(e) => onKeyUpHandle("employmentStatus", e.target.value)}
-                          label="Employment Status"
-                          value={employmentStatus}
-                          id="employmentStatus"
-                          customClassLabel={employmentStatus ? "active" : ""}
-                          readOnly
-                        />
-                      </Col>
-                    </Row>
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <Row className="info-customer mb-3">
+                  <Col xs={12} className="wForm-input pl-0">
+                    <InputCustom2
+                      onChange={(e) => onKeyUpHandle("currentLender", e.target.value)}
+                      label="Current lender"
+                      value={currentLender}
+                      id="currentLender"
+                      customClassLabel={currentLender ? "active" : ""}
+                      readOnly
+                    />
                   </Col>
-                </>
-              ) : ''}
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <Row className="info-customer mb-3">
+                  <Col xs={12} className="wForm-input pl-0">
+                    <InputCustom2
+                      onChange={(e) => onKeyUpHandle("employmentStatus", e.target.value)}
+                      label="Employment Status"
+                      value={employmentStatus}
+                      id="employmentStatus"
+                      customClassLabel={employmentStatus ? "active" : ""}
+                      readOnly
+                    />
+                  </Col>
+                </Row>
+              </Col>
             </Row>
             <div className="group-btn-footer col d-flex justify-content-center mt-4">
               <Button
