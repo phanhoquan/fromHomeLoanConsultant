@@ -121,10 +121,10 @@ const First = () => {
   const callback = (data) => {
     if (data) {
       const mortgage_amount = data?.existing_mortgage_amount || 0;
-      setEmploymentStatus(data?.employmentstatus || '');
-      setExistingMortgageAmount(mortgage_amount ? parseInt(mortgage_amount.replace(/,/gi, ""), 10).toLocaleString("en") : '');
+      setEmploymentStatus(data?.employment_status || '');
+      setExistingMortgageAmount(mortgage_amount ? mortgage_amount.replace(/,/gi, "") : '');
       setCurrentLender(data?.current_lender || '');
-      setValueOfProperty(data?.value_of_property || '');
+      setValueOfProperty(data?.value_of_property? data?.value_of_property.replace(/,/gi, "") : '');
       setLastName(data?.lastname || '');
       setFirstName(data?.firstname || '');
     }else {

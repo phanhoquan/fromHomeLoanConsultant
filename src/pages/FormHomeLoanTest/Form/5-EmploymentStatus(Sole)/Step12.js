@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { CheckboxButton } from "../../../../Components/CheckBox3";
 
@@ -20,6 +20,19 @@ const Step12 = ({ handleGetLoan2value }) => {
     window.localStorage.setItem("loan2workingStatus", option);
     handleGetLoan2value("workingStatus", option);
   };
+
+  useEffect(() => {
+    if (employmentStatus) {
+      if (employmentStatus?.toLocaleUpperCase() !=="UNEMPLOYED") {
+        setWorkingStatus(types[1])
+        handleGetLoan2value("workingStatus", types[1]);
+      } else {
+        setWorkingStatus(types[2])
+        handleGetLoan2value("workingStatus", types[2]);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [employmentStatus]);
 
   return (
     <section className="formContent-step-first">
