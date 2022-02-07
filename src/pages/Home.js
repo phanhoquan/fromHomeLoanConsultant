@@ -88,7 +88,7 @@ const Dashboard = () => {
                 >
                   <div className="item-content text-center">
                     <div className="info">
-                      <p>Refinance Home Loan Consultant 2</p>
+                      <p>Refinance Home Loan Consultant 3</p>
                     </div>
                   </div>
                 </div>
