@@ -84,7 +84,7 @@ const Dashboard = () => {
                 <div
                   className="item "
                   role="button"
-                  onClick={() => history.push("./refinance-fact-find-2")}
+                  onClick={() => history.push("./refinance-fact-find-v3")}
                 >
                   <div className="item-content text-center">
                     <div className="info">
