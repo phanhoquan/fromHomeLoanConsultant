@@ -58,9 +58,9 @@ const Header = ({ handleSubmit, hiddenAction = false }) => {
                 className="authorName"
                 target="_blank"
                 rel="noreferrer"
-                href="https://meetings.hubspot.com/robert-scozzafava/rob-scozzafava-30mins-consulatation"
+                href="https://meetings.hubspot.com/bobby-horianto/bobby-horinato-30mins-consultation"
               >
-                <p>Rob Scozzafava</p>
+                <p>Bobby Horianto</p>
               </a>
             </Button>
             <Button
