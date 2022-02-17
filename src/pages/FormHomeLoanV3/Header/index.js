@@ -54,14 +54,24 @@ const Header = ({ handleSubmit, hiddenAction = false }) => {
               <img src={imgAuthor} alt="" className="imgResetBlue mr-3" />
               <img src={imgAuthorWhite} alt="" className="imgResetWhite mr-3" />
               BOOK MEETING
-              <a
-                className="authorName"
-                target="_blank"
-                rel="noreferrer"
-                href="https://meetings.hubspot.com/bobby-horianto/bobby-horinato-30mins-consultation"
-              >
-                <p>Bobby Horianto</p>
-              </a>
+              <div className="listAuthorName">
+                <a
+                  className="authorName"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://meetings.hubspot.com/bobby-horianto/bobby-horinato-30mins-consultation"
+                >
+                  <p>Bobby Horianto</p>
+                </a>
+                <a
+                  className="authorName"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://meetings.hubspot.com/robert-scozzafava/rob-scozzafava-30mins-consulatation"
+                >
+                  <p>Rob Scozzafava</p>
+                </a>
+              </div>
             </Button>
             <Button
               className="btnPrimary life min-150 mt-0 w-auto min-h-50"

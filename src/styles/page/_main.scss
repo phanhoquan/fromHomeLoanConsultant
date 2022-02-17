@@ -1285,3 +1285,34 @@ html.fonts90 {
     max-width: pxToRem(650);
   }
 }
+.fromHomeLoan2 {
+  .btnPrimary {
+    &:hover,
+    &.active {
+      .listAuthorName {
+        display: block;
+        .authorName {
+          display: block;
+          color: #589bff;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .listAuthorName {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    display: none;
+    .authorName{
+      display: block;
+      position: relative;
+      border-radius: 0;
+      &:last-child {
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+      }
+    }
+  }
+}
