@@ -23,10 +23,10 @@ const Applicants = () => {
               </div>
               <div className="table-body d-flex">
                   <div className="table-content w-50">
-                    <p></p>
+                    <p>{localStorage.getItem("loan2personalLoan")}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>$</p>
+                    <p>${localStorage.getItem("loan2personalLoanAmount")? parseInt(localStorage.getItem("loan2personalLoanAmount")).toLocaleString('en'):''}</p>
                   </div>
               </div>
           </div>
@@ -48,10 +48,10 @@ const Applicants = () => {
               </div>
               <div className="table-body d-flex">
                   <div className="table-content w-50">
-                    <p></p>
+                     <p>{localStorage.getItem("loan2carLoan")}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>$</p>
+                    <p>${localStorage.getItem("loan2carLoanAmount")? parseInt(localStorage.getItem("loan2carLoanAmount")).toLocaleString('en'):''}</p>
                   </div>
               </div>
           </div>
@@ -64,16 +64,20 @@ const Applicants = () => {
                   </div>
               </div>
               <div className="table-body table-sub d-flex">
-                  <div className="table-label w-100">
-                    <p>Balance</p>
+                 <div className="table-label w-50 text-center">
+                    <p>Instituation</p>
                   </div>
-                  <div className="table-label w-0 text-center" />
+                  <div className="table-label w-50 text-center">
+                    <p>Limit</p>
+                  </div>
               </div>
               <div className="table-body d-flex">
-                  <div className="table-content w-100">
-                    <p>$</p>
+                  <div className="table-content w-50">
+                     <p>{localStorage.getItem("loan2HECSDebt")}</p>
                   </div>
-                  <div className="table-content w-0"/>
+                  <div className="table-content w-50">
+                    <p>${localStorage.getItem("loan2HECSDebtAmount")? parseInt(localStorage.getItem("loan2HECSDebtAmount")).toLocaleString('en'):''}</p>
+                  </div>
               </div>
           </div>
       </div>

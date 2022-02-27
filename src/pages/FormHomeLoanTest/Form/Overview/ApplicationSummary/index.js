@@ -9,18 +9,28 @@ import image5 from "../images/chat-arrow-grow.png"
 import image6 from "../images/bank.png"
 
 const ApplicationSummary = () => {
+    const types2 = {
+        1: "YES",
+        2: "NO",
+      };
+    const valueOfProperty = localStorage.getItem("valueOfProperty");
+    const loanAmount = localStorage.getItem("existingMortgageAmount");
+    const investment = localStorage.getItem("loan2currentlyRenting") === types2[1]
+          ? "Investment"
+          : "Owner Occupied" || "";
+
 const data =[
     {
         id: 1,
         image: image1,
         title: 'Property Value',
-        content: '$450,000'
+        content: `$${valueOfProperty ? parseInt(valueOfProperty, 10).toLocaleString('en'): 0 }`
     },
     {
         id: 2,
         image: image2,
         title: 'Loan Amount',
-        content: '$450,000'
+        content: `$${loanAmount ? parseInt(loanAmount, 10).toLocaleString('en'): 0 }`
     },
     {
         id: 3,
@@ -32,23 +42,31 @@ const data =[
         id: 4,
         image: image4,
         title: 'Loan Status',
-        content: 'Fixed'
+        content: localStorage.getItem("loan2currentLoanStatus")
     },
     {
         id: 5,
         image: image5,
         title: 'Current Rate',
-        content: '2.6%'
+        content: `${localStorage.getItem("loan2valueInterestRateSplit") || '0'}%${localStorage.getItem("loan2valueInterestRate2Split")? ', ' + localStorage.getItem("loan2valueInterestRate2Split") + '%': ''}`
     },
     {
         id: 6,
         image: image6,
-        title: 'Investment',
+        title: investment,
         content: ''
     }
 ];
 
 const [progress, setProgress] = useState(90);
+
+useEffect(() => {
+ if(loanAmount &&  valueOfProperty) {
+    setProgress(parseInt(loanAmount, 10) / parseInt(valueOfProperty, 10) * 100)
+ }else {
+    setProgress(0)
+ }
+}, [valueOfProperty, loanAmount]);
 
 useEffect(() => {
     const pro = progress * 3.6 + 'deg';

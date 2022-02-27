@@ -3,6 +3,9 @@
 import React from "react";
 
 const Applicants = () => {
+  const dataStep35 = localStorage.getItem("listCreditCard")
+    ? JSON.parse(localStorage.getItem("listCreditCard"))
+    : {};
 
   return (
     <>
@@ -23,10 +26,10 @@ const Applicants = () => {
               </div>
               <div className="table-body d-flex">
                   <div className="table-content w-50">
-                    <p></p>
+                    <p>{dataStep35?.valueCreditCard351 || ''}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>$</p>
+                    <p>${dataStep35?.valueCreditCard35Amount1 ? parseInt(dataStep35?.valueCreditCard35Amount1.replace(/,/gi, ""), 10).toLocaleString('en') : ""}</p>
                   </div>
               </div>
           </div>
@@ -47,11 +50,11 @@ const Applicants = () => {
                   </div>
               </div>
               <div className="table-body d-flex">
-                  <div className="table-content w-50">
-                    <p></p>
+              <div className="table-content w-50">
+                    <p>{dataStep35?.valueCreditCard352 || ''}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>$</p>
+                    <p>${dataStep35?.valueCreditCard35Amount2 ? parseInt(dataStep35?.valueCreditCard35Amount2.replace(/,/gi, ""), 10).toLocaleString('en') : ""}</p>
                   </div>
               </div>
           </div>
@@ -72,11 +75,11 @@ const Applicants = () => {
                   </div>
               </div>
               <div className="table-body d-flex">
-                  <div className="table-content w-50">
-                    <p></p>
+                 <div className="table-content w-50">
+                    <p>{dataStep35?.valueCreditCard353 || ''}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>$</p>
+                    <p>${dataStep35?.valueCreditCard35Amount3 ? parseInt(dataStep35?.valueCreditCard35Amount3.replace(/,/gi, ""), 10).toLocaleString('en') : ""}</p>
                   </div>
               </div>
           </div>

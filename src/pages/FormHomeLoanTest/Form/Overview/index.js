@@ -11,11 +11,11 @@ import Liabilities2 from "./Liabilities/index2"
 import Assets from "./Assets"
 import ResidentialInformation from "./ResidentialInformation"
 import SelfEmployment from "./SelfEmployment"
+import { applicants1, applicants2 } from "./data.js"
 import "./_styles.scss"
 
 const Overviews = () => {
   const history = useHistory();
-
   return (
     <div className="page-overview fromHomeLoan2">
         <Header/>
@@ -28,8 +28,8 @@ const Overviews = () => {
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
-                    <Applicants/>
-                    <Applicants/>
+                    <Applicants nameKey="1" listData={applicants1}/>
+                    <Applicants nameKey="2" listData={applicants2}/>
                   </div>
               </div>
               <div className="title mb-3 ml-3">Liabilities</div>
