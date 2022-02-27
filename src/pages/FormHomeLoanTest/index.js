@@ -20,6 +20,7 @@ import Liabilities from "./menu/Liabilities";
 import CreditCards from "./menu/CreditCards";
 import ResidentialInformation from "./menu/ResidentialInformation";
 import MenuAssets from "./menu/Assets";
+import Overviews from "./menu/Overview";
 import Modal from "../Modal/ModalSubmit";
 
 export const types = {
@@ -373,6 +374,7 @@ const HomeLoan = ({
                   )}
                 </ul>
               </ResidentialInformation>
+              <Overviews/>
             </ul>
           </div>
           <div className="nav-right">{children}</div>

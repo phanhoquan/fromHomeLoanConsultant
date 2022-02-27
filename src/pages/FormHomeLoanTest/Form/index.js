@@ -17,6 +17,7 @@ import ResidentialInformation from "./8-ResidentialInformation";
 import Assets from "./9-Assets";
 import Success from "./Success";
 import StepReset from "./PageReset";
+import Overviews from "./Overview";
 
 const Form = () => {
   const history = useHistory();
@@ -108,9 +109,13 @@ const Form = () => {
           path="/refinance-home-loan-consultant-test/ResidentialInformation"
           component={ResidentialInformation}
         />
+        <Route
+          path="/refinance-home-loan-consultant-test/overview"
+          component={Overviews}
+        />
         <Route path="/refinance-home-loan-consultant-test/step-success" component={Success} />
         <Route path="/refinance-home-loan-consultant-test/step-reset" component={StepReset} />
-        <Route path="/refinance-home-loan-consultant-test/" component={UserDetails} />
+        <Route path="/refinance-home-loan-consultant-test/" component={Overviews} />
       </Switch>
     </section>
   );
