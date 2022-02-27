@@ -26,19 +26,19 @@ const ResidentialInformation = () => {
             </div>
             <div className="table-body d-flex">
                 <div className="table-content">
-                  <p>Address of the property wanting to refinance</p>
+                  <p>{localStorage.getItem("loan2fullAddress")||''}</p>
                 </div>
                 <div className="table-content border-left-0">
-                  <p>Investment Property</p>
+                  <p>{localStorage.getItem("investmentProperty38B") ||''}</p>
                 </div>
                 <div className="table-content border-left-0">
-                  <p>2/19 Randwick Court, Varsity Lakes, QLD 4227, Australia copy</p>
+                  <p>{localStorage.getItem("loan2fullAddress39A") ||localStorage.getItem("loan2fullAddress39C") || ""}</p>
                 </div>
                 <div className="table-content border-left-0">
-                  <p>4 Years</p>
+                  <p>{localStorage.getItem("timeLiving39B") || localStorage.getItem("timeLiving39D") ||''}</p>
                 </div>
                 <div className="table-content border-left-0">
-                  <p className="price">$250,000</p>
+                  <p className="price">{localStorage.getItem("rentalPropertyIncome")? `$${parseInt(localStorage.getItem("rentalPropertyIncome")).toLocaleString('en')}`:''}</p>
                 </div>
             </div>
         </div>

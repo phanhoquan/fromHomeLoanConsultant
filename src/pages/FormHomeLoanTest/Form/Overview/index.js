@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import moment from "moment";
 import { Button } from "react-bootstrap";
 import Header from "./Header";
 import { useHistory } from "react-router-dom";
@@ -16,13 +17,14 @@ import "./_styles.scss"
 
 const Overviews = () => {
   const history = useHistory();
+  const currentDate = moment(new Date()).format("DD/MM/YYYY");
   return (
     <div className="page-overview fromHomeLoan2">
         <Header/>
         <div className="container pb-5">
            <div className="content-body">
               <div className="refinance-date">
-                Refinance - 15/02/2022
+                Refinance - {currentDate}
               </div>
               <ApplicationSummary/>
               <div className="title mb-3 ml-3">Applicants</div>

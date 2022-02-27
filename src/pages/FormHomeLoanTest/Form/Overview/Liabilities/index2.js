@@ -26,7 +26,7 @@ const Applicants = () => {
                     <p>{localStorage.getItem("loan2personalLoan")}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>${localStorage.getItem("loan2personalLoanAmount")? parseInt(localStorage.getItem("loan2personalLoanAmount")).toLocaleString('en'):''}</p>
+                      <p>{localStorage.getItem("loan2personalLoanAmount")? `$${parseInt(localStorage.getItem("loan2personalLoanAmount")).toLocaleString('en')}`:''}</p>
                   </div>
               </div>
           </div>
@@ -51,7 +51,7 @@ const Applicants = () => {
                      <p>{localStorage.getItem("loan2carLoan")}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>${localStorage.getItem("loan2carLoanAmount")? parseInt(localStorage.getItem("loan2carLoanAmount")).toLocaleString('en'):''}</p>
+                  <p>{localStorage.getItem("loan2carLoanAmount")? `$${parseInt(localStorage.getItem("loan2carLoanAmount")).toLocaleString('en')}`:''}</p>
                   </div>
               </div>
           </div>
@@ -76,7 +76,7 @@ const Applicants = () => {
                      <p>{localStorage.getItem("loan2HECSDebt")}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>${localStorage.getItem("loan2HECSDebtAmount")? parseInt(localStorage.getItem("loan2HECSDebtAmount")).toLocaleString('en'):''}</p>
+                    <p>{localStorage.getItem("loan2HECSDebtAmount")? `$${parseInt(localStorage.getItem("loan2HECSDebtAmount")).toLocaleString('en')}`:''}</p>
                   </div>
               </div>
           </div>

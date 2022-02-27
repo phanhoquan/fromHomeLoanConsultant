@@ -29,7 +29,7 @@ const Applicants = () => {
                     <p>{dataStep35?.valueCreditCard351 || ''}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>${dataStep35?.valueCreditCard35Amount1 ? parseInt(dataStep35?.valueCreditCard35Amount1.replace(/,/gi, ""), 10).toLocaleString('en') : ""}</p>
+                    <p>{dataStep35?.valueCreditCard35Amount1 ? `$${dataStep35?.valueCreditCard35Amount1}`: ""}</p>
                   </div>
               </div>
           </div>
@@ -54,7 +54,7 @@ const Applicants = () => {
                     <p>{dataStep35?.valueCreditCard352 || ''}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>${dataStep35?.valueCreditCard35Amount2 ? parseInt(dataStep35?.valueCreditCard35Amount2.replace(/,/gi, ""), 10).toLocaleString('en') : ""}</p>
+                  <p>{dataStep35?.valueCreditCard35Amount2 ? `$${dataStep35?.valueCreditCard35Amount2}`: ""}</p>
                   </div>
               </div>
           </div>
@@ -79,7 +79,7 @@ const Applicants = () => {
                     <p>{dataStep35?.valueCreditCard353 || ''}</p>
                   </div>
                   <div className="table-content w-50">
-                    <p>${dataStep35?.valueCreditCard35Amount3 ? parseInt(dataStep35?.valueCreditCard35Amount3.replace(/,/gi, ""), 10).toLocaleString('en') : ""}</p>
+                  <p>{dataStep35?.valueCreditCard35Amount3 ? `$${dataStep35?.valueCreditCard35Amount3}`: ""}</p>
                   </div>
               </div>
           </div>

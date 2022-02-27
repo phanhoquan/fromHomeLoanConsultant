@@ -261,7 +261,7 @@ export default function Success() {
       f_1778_current_living_address: localStorage.getItem("loan2fullAddress39A") || "", // 41a
       f_1779_current_living_address_duration: localStorage.getItem("timeLiving39B") || "", // 41b
       f_1780_previous_living_address: localStorage.getItem("loan2fullAddress39C") || "", // 41c
-      f_1781_previous_living_address_duration: localStorage.getItem("timeLiving39D") || "", //
+      f_1781_previous_living_address_duration: localStorage.getItem("timeLiving39D") || "", //41d
       f_1712_rental_property_income:
         localStorage.getItem("rentalPropertyIncome") || "", // 42
       f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //43
