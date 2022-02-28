@@ -111,7 +111,7 @@ const EmploymentStatusSoleJoint = () => {
     });
     if (name === "employmentWorkingStatus") {
       setEmploymentStatusStep(value);
-      switch (value.trim()) {
+      switch (value?.trim()) {
         case types2[1]:
         case types2[2]:
         case types2[3]:
@@ -485,8 +485,8 @@ const EmploymentStatusSoleJoint = () => {
         </>
       ):''}
       
-      {employmentStatusStep.trim() !== types2[4] &&
-      employmentStatusStep.trim() !== types2[5] ? (
+      {employmentStatusStep?.trim() !== types2[4] &&
+      employmentStatusStep?.trim() !== types2[5] ? (
         <Step16B handleGetLoan2value={handleGetLoan2value} />
       ) : (
         ""
@@ -502,7 +502,7 @@ const EmploymentStatusSoleJoint = () => {
         employmentWorkingStatus={employmentWorkingStatus}
         workingStatus={workingStatus}
       />
-      {employmentStatusStep.trim() === types2[4] ? (
+      {employmentStatusStep?.trim() === types2[4] ? (
         <>
           <Step19 handleGetLoan2value={handleGetLoan2value} />
           {taxReturns === types4[1] ? (

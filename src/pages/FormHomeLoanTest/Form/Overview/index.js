@@ -12,7 +12,7 @@ import Liabilities2 from "./Liabilities/index2"
 import Assets from "./Assets"
 import ResidentialInformation from "./ResidentialInformation"
 import SelfEmployment from "./SelfEmployment"
-import { applicants1, applicants2 } from "./data.js"
+import { applicants1, applicants2,employment1, employment2 } from "./data.js"
 import "./_styles.scss"
 
 const Overviews = () => {
@@ -62,8 +62,8 @@ const Overviews = () => {
               <div className="title my-3 ml-3">PAYG Employment</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
-                    <Applicants/>
-                    <Applicants/>
+                    <Applicants nameKey="1" listData={employment1}/>
+                    <Applicants nameKey="2" listData={employment2}/>
                   </div>
               </div>
               <div className="title my-3 ml-3">Self - Employment</div>

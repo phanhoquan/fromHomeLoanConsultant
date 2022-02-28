@@ -44,31 +44,31 @@ const SelfEmployment = () => {
                 </div>
                 <div className="table-body d-flex">
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                     <div className="table-content border-right">
-                        <p>4 Years</p>
+                        <p>null</p>
                     </div>
                 </div>
             </div>
@@ -111,31 +111,31 @@ const SelfEmployment = () => {
             </div>
             <div className="table-body d-flex">
                 <div className="table-content">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
                 <div className="table-content border-left-0">
-                    <p>4 Years</p>
+                    <p>null</p>
                 </div>
             </div>
         </div>

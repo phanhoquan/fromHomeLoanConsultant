@@ -25,7 +25,6 @@ const Applicants = ({
                   </div>
               </div>
             )}
-            
         </div>
     </div>
   );

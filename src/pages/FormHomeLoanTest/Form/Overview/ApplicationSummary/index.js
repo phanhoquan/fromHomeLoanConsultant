@@ -36,7 +36,7 @@ const data =[
         id: 3,
         image: image3,
         title: 'Property Address',
-        content: '2/19 Randwick Court, Varsity Lakes, QLD 4227, Australia'
+        content: 'null'
     },
     {
         id: 4,
