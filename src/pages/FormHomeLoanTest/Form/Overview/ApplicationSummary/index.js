@@ -92,7 +92,7 @@ useEffect(() => {
                 <div className="chart ml-auto mr-auto mr-md-3">
                     <div className="set-size charts-container">
                         <div className="pie-wrapper progress-45 style-2">
-                            <span className="label">{progress}<span className="smaller">%</span><span className="complete">Complete</span></span>                       
+                            <span className="label">{progress?.toFixed(0)}<span className="smaller">%</span><span className="complete">Complete</span></span>                       
                             <div className="pie" id="pie">
                             <div className="left-side half-circle" id="left-side"></div>
                             <div className="right-side half-circle" id="right-side"></div>

@@ -115,7 +115,7 @@ const Form = () => {
         />
         <Route path="/refinance-home-loan-consultant-test/step-success" component={Success} />
         <Route path="/refinance-home-loan-consultant-test/step-reset" component={StepReset} />
-        <Route path="/refinance-home-loan-consultant-test/" component={Overviews} />
+        <Route path="/refinance-home-loan-consultant-test/" component={UserDetails} />
       </Switch>
     </section>
   );
