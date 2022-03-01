@@ -9,15 +9,8 @@ import image5 from "../images/chat-arrow-grow.png"
 import image6 from "../images/bank.png"
 
 const ApplicationSummary = () => {
-    const types2 = {
-        1: "YES",
-        2: "NO",
-      };
     const valueOfProperty = localStorage.getItem("valueOfProperty");
     const loanAmount = localStorage.getItem("existingMortgageAmount");
-    const investment = localStorage.getItem("loan2currentlyRenting") === types2[1]
-          ? "Investment"
-          : "Owner Occupied" || "";
 
 const data =[
     {
@@ -36,7 +29,7 @@ const data =[
         id: 3,
         image: image3,
         title: 'Property Address',
-        content: 'null'
+        content: localStorage.getItem("loan2fullAddress")
     },
     {
         id: 4,
@@ -48,12 +41,12 @@ const data =[
         id: 5,
         image: image5,
         title: 'Current Rate',
-        content: `${localStorage.getItem("loan2valueInterestRateSplit") || '0'}%${localStorage.getItem("loan2valueInterestRate2Split")? ', ' + localStorage.getItem("loan2valueInterestRate2Split") + '%': ''}`
+        content: `${localStorage.getItem("loan2valueInterestRate")||localStorage.getItem("loan2valueInterestRateSplit") ||localStorage.getItem("loan2valueInterestRate2Variable") || '0'}%${localStorage.getItem("loan2valueInterestRate2Split")? '\n' + localStorage.getItem("loan2valueInterestRate2Split") + '%': ''}`
     },
     {
         id: 6,
         image: image6,
-        title: investment,
+        title: localStorage.getItem("investmentProperty38B")||'',
         content: ''
     }
 ];

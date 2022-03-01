@@ -24,7 +24,7 @@ const Assets = () => {
                     <p>Make</p>
                   </div>
                   <div className="table-label w-100 text-center">
-                    <p>Modal</p>
+                    <p>Model</p>
                   </div>
                   <div className="table-label w-100 text-center border-right">
                     <p>Value</p>
@@ -55,7 +55,7 @@ const Assets = () => {
                     <p>Make</p>
                   </div>
                   <div className="table-label w-100 text-center">
-                    <p>Modal</p>
+                    <p>Model</p>
                   </div>
                   <div className="table-label w-100 text-center border-right">
                     <p>Value</p>
@@ -89,7 +89,7 @@ const Assets = () => {
                     <p>Make</p>
                   </div>
                   <div className="table-label w-25 text-center">
-                    <p>Modal</p>
+                    <p>Model</p>
                   </div>
                   <div className="table-label w-25 text-center border-right">
                     <p>Value</p>
@@ -126,7 +126,7 @@ const Assets = () => {
                     <p>Make</p>
                   </div>
                   <div className="table-label w-25 text-center">
-                    <p>Modal</p>
+                    <p>Model</p>
                   </div>
                   <div className="table-label w-25 text-center border-right">
                     <p>Value</p>
@@ -163,7 +163,7 @@ const Assets = () => {
                     <p>Make</p>
                   </div>
                   <div className="table-label w-25 text-center">
-                    <p>Modal</p>
+                    <p>Model</p>
                   </div>
                   <div className="table-label w-25 text-center border-right">
                     <p>Value</p>

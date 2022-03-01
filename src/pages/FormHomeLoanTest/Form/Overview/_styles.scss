@@ -185,6 +185,7 @@ $label-font-size-redo: $default-size * 4;
             }
             .item-content {
                 font-size: 30px;
+                white-space: pre-wrap;
                 &.font-small {
                     font-size: 16px;
                 }

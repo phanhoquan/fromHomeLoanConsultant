@@ -45,31 +45,31 @@ const SelfEmployment = () => {
                     </div>
                     <div className="table-body d-flex">
                         <div className="table-content">
-                            <p>null</p>
+                            <p>{localStorage.getItem("loan2typeOfBusinessOther")||''}</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>{localStorage.getItem("loan2businessBeenRegistered")||''}</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>{localStorage.getItem("loan2numberYearWorking")||''}</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                         <div className="table-content border-right">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                 </div>
@@ -112,31 +112,31 @@ const SelfEmployment = () => {
                 </div>
                 <div className="table-body d-flex">
                     <div className="table-content">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                     <div className="table-content border-left-0">
-                        <p>null</p>
+                        <p>N/A</p>
                     </div>
                 </div>
                 </div>
@@ -152,10 +152,10 @@ const SelfEmployment = () => {
                     </div>
                     <div className="table-body table-sub d-flex">
                         <div className="table-label">
-                            <p>Kind Of Property</p>
+                            <p>Business Type</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                            <p>{localStorage.getItem("loan2typeOfBusinessOther")||''}</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -163,7 +163,7 @@ const SelfEmployment = () => {
                             <p>ABN Number</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                            <p>{localStorage.getItem("loan2businessBeenRegistered")||''}</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -171,7 +171,7 @@ const SelfEmployment = () => {
                             <p>Start Date</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                            <p>{localStorage.getItem("loan2numberYearWorking")||''}</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -179,7 +179,7 @@ const SelfEmployment = () => {
                         <p>Is GST Registred</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                        <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -187,7 +187,7 @@ const SelfEmployment = () => {
                             <p>Company/Trust Profit FY 2019</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -195,7 +195,7 @@ const SelfEmployment = () => {
                             <p>Company/Trust Profit FY 2020</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -203,7 +203,7 @@ const SelfEmployment = () => {
                             <p>Salary Paid To MA or FA FY 2020</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -211,7 +211,7 @@ const SelfEmployment = () => {
                             <p>Salary Paid To MA or FA FY 2021</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -219,7 +219,7 @@ const SelfEmployment = () => {
                             <p>Ownership e.g. 50% MA, 50% FA</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                 </div>
@@ -233,10 +233,10 @@ const SelfEmployment = () => {
                     </div>
                     <div className="table-body table-sub d-flex">
                         <div className="table-label">
-                            <p>Kind Of Property</p>
+                            <p>Business Type</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                        <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -244,7 +244,7 @@ const SelfEmployment = () => {
                             <p>ABN Number</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                        <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -252,7 +252,7 @@ const SelfEmployment = () => {
                             <p>Start Date</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                        <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -260,7 +260,7 @@ const SelfEmployment = () => {
                         <p>Is GST Registred</p>
                         </div>
                         <div className="table-content">
-                        <p>null</p>
+                        <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -268,7 +268,7 @@ const SelfEmployment = () => {
                             <p>Company/Trust Profit FY 2019</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -276,7 +276,7 @@ const SelfEmployment = () => {
                             <p>Company/Trust Profit FY 2020</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -284,7 +284,7 @@ const SelfEmployment = () => {
                             <p>Salary Paid To MA or FA FY 2020</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -292,7 +292,7 @@ const SelfEmployment = () => {
                             <p>Salary Paid To MA or FA FY 2021</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -300,7 +300,7 @@ const SelfEmployment = () => {
                             <p>Ownership e.g. 50% MA, 50% FA</p>
                         </div>
                         <div className="table-content">
-                            <p>null</p>
+                            <p>N/A</p>
                         </div>
                     </div>
                 </div>
