@@ -11,6 +11,20 @@ import image6 from "../images/bank.png"
 const ApplicationSummary = () => {
     const valueOfProperty = localStorage.getItem("valueOfProperty");
     const loanAmount = localStorage.getItem("existingMortgageAmount");
+ let currentRate = "";
+    if(localStorage.getItem("loan2valueInterestRate")) {
+        currentRate = `${localStorage.getItem("loan2valueInterestRate")}%`
+    }
+   if(localStorage.getItem("loan2valueInterestRate2Variable")){
+     currentRate = `${localStorage.getItem("loan2valueInterestRate2Variable")}%`
+    }
+    if(localStorage.getItem("loan2valueInterestRate2Variable")){
+        currentRate = `${localStorage.getItem("loan2valueInterestRate2Variable")}%`
+    }
+    if(localStorage.getItem("loan2valueInterestRateSplit") && localStorage.getItem("loan2currentLoanStatus") ==="Split"){
+        currentRate = `Fixed - ${localStorage.getItem("loan2valueInterestRateSplit")}% \n Variable - ${localStorage.getItem("loan2valueInterestRate2Split")}%`
+    }
+
 
 const data =[
     {
@@ -41,7 +55,7 @@ const data =[
         id: 5,
         image: image5,
         title: 'Current Rate',
-        content: `${localStorage.getItem("loan2valueInterestRate")||localStorage.getItem("loan2valueInterestRateSplit") ||localStorage.getItem("loan2valueInterestRate2Variable") || '0'}%${localStorage.getItem("loan2valueInterestRate2Split")? '\n' + localStorage.getItem("loan2valueInterestRate2Split") + '%': ''}`
+        content: currentRate
     },
     {
         id: 6,
@@ -85,7 +99,7 @@ useEffect(() => {
                 <div className="chart ml-auto mr-auto mr-md-3">
                     <div className="set-size charts-container">
                         <div className="pie-wrapper progress-45 style-2">
-                            <span className="label">{progress?.toFixed(0)}<span className="smaller">%</span><span className="complete">Complete</span></span>                       
+                            <span className="label">{progress?.toFixed(0)}<span className="smaller">%</span><span className="complete">LVR</span></span>                       
                             <div className="pie" id="pie">
                             <div className="left-side half-circle" id="left-side"></div>
                             <div className="right-side half-circle" id="right-side"></div>

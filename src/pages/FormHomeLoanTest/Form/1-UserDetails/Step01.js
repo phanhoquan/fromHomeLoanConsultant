@@ -40,6 +40,9 @@ const First = () => {
   const [employmentStatus, setEmploymentStatus] = useState(
     localStorage.getItem("loan2employmentStatus") || ""
   );
+  const [mobile, setMobile] = useState(
+    localStorage.getItem("loan2mobile") || ""
+  );
   const [existingMortgageAmount, setExistingMortgageAmount] = useState(
     localStorage.getItem("existingMortgageAmount") || ""
   );
@@ -73,6 +76,7 @@ const First = () => {
       case "email":
         setEmail(value);
         setEmploymentStatus('');
+        setMobile('');
         setExistingMortgageAmount('');
         setCurrentLender('');
         setValueOfProperty('');
@@ -100,6 +104,7 @@ const First = () => {
     localStorage.setItem("valueOfProperty", valueOfProperty);
     localStorage.setItem("currentLender", currentLender);
     localStorage.setItem("loan2employmentStatus", employmentStatus);
+    localStorage.setItem("loan2mobile", mobile);
     if (
       lastName.trim() ||
       firstName.trim() ||
@@ -107,13 +112,14 @@ const First = () => {
       employmentStatus ||
       existingMortgageAmount ||
       currentLender ||
-      valueOfProperty
+      valueOfProperty ||
+      mobile
     ) {
       setDataListMenuStep1(step1);
     }
     window.localStorage.setItem("listMenuStep1", JSON.stringify(step1));
     // eslint-disable-next-line
-  }, [lastName, firstName, email, employmentStatus, existingMortgageAmount, currentLender, valueOfProperty]);
+  }, [lastName, firstName, email,mobile, employmentStatus, existingMortgageAmount, currentLender, valueOfProperty]);
 
   const onClickNext = () => {
     history.push("/refinance-home-loan-consultant-test/loanInformation");
@@ -127,6 +133,7 @@ const First = () => {
       setValueOfProperty(data?.value_of_property? data?.value_of_property.replace(/,/gi, "") : '');
       setLastName(data?.lastname || '');
       setFirstName(data?.firstname || '');
+      setMobile(data?.mobile || '');
     }else {
       setEmploymentStatus('');
       setExistingMortgageAmount('');
@@ -134,6 +141,7 @@ const First = () => {
       setValueOfProperty('');
       setLastName('');
       setFirstName('');
+      setMobile('');
     }
   };
   const handleSearch = () => {
@@ -225,6 +233,20 @@ const First = () => {
                       }
                       readOnly
                       customClassLabel={lastName ? "active" : ""}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <Row className="info-customer mb-3">
+                  <Col xs={12} className="wForm-input pl-0">
+                    <InputCustom2
+                      onChange={(e) => onKeyUpHandle("mobile", e.target.value)}
+                      label="Mobile"
+                      value={mobile}
+                      id="mobile"
+                      customClassLabel={mobile ? "active" : ""}
+                      readOnly
                     />
                   </Col>
                 </Row>

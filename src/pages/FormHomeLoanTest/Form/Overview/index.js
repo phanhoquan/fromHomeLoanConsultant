@@ -179,11 +179,19 @@ const applicants2 = [
         content: 'N/A'
     }
 ];
+let employmentStatus3 =localStorage.getItem("loan2employmentStatus")||'';
+ if (localStorage.getItem("loan2workingStatus") ==="YES") {
+    employmentStatus3 =localStorage.getItem("loan2employmentStatus") ||''
+ }
+ if (localStorage.getItem("loan2workingStatus") ==="NO") {
+    employmentStatus3 =localStorage.getItem("loan2employmentPartnersWorkingStatus") ||''
+ }
+
 const employment1 = [
     {
         id: 1,
         name: 'Employment Status',
-        content: localStorage.getItem("loan2employmentStatus")
+        content: employmentStatus3
     },
     {
         id: 2,

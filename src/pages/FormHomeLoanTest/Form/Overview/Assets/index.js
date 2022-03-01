@@ -190,7 +190,7 @@ const Assets = () => {
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
-                      <p>Superanuation Applicant 1</p>
+                      <p>Superannuation Applicant 1</p>
                     </div>
                     <div className="table-content w-0"/>
                 </div>
@@ -208,7 +208,7 @@ const Assets = () => {
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
-                      <p>Superanuation Applicant 2</p>
+                      <p>Superannuation Applicant 2</p>
                     </div>
                     <div className="table-content w-0"/>
                 </div>
