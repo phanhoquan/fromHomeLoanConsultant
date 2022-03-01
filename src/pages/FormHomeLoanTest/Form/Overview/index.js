@@ -54,7 +54,7 @@ const applicants1 = [
     {
         id: 2,
         name: 'Contact number',
-        content: 'N/A'
+        content: localStorage.getItem("loan2mobile")
     },
     {
         id: 3,
