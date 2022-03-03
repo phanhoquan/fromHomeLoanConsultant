@@ -113,7 +113,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
         <div>
           <Row>
             <Col xs={12} className="text-center">
-              <h2>24. What is your partners occupation?</h2>
+              <h2>25. What is your partners occupation?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

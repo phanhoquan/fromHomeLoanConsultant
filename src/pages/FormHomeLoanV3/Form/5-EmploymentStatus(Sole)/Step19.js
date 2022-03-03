@@ -32,7 +32,7 @@ const Step19 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                21. Have the tax returns for 2019/2020 <br />
+                21. Have the tax returns for 2020/2021 <br />
                 been completed?
               </h2>
             </Col>

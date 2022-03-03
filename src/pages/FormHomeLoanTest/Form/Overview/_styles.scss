@@ -161,8 +161,16 @@ $label-font-size-redo: $default-size * 4;
     background: none;
     }
 }
-    &.progress-45 {
+.progress-45 {
         @include draw-progress(#366cb4);
+    }
+}
+.font-site-0 {
+    * {
+        font-size: 0 !important;
+    }
+    @media screen and(max-width: 992px) {
+        display: none !important;
     }
 }
 .application-summary {

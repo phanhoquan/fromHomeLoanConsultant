@@ -16,7 +16,7 @@ const Applicants = ({
                 <div className="table-content"/>
             </div>
               {listData?.map( item => 
-                <div key={item.id} className="table-body d-flex">
+                <div key={item.id} className={`table-body d-flex ${item?.isShow? 'font-site-0': ''}`}>
                   <div className="table-label">
                     <p>{item.name}</p>
                   </div>

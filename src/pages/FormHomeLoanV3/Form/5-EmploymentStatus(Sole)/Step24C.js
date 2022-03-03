@@ -110,7 +110,7 @@ const Step15 = ({
         <div>
           <Row>
             <Col xs={12} className="text-center">
-              <h2>24c. Since your partner has less than 3 years occupation history,<br className="d-none d-md-block"/> what was your partners previous occupation?</h2>
+              <h2>25c. Since your partner has less than 3 years occupation history,<br className="d-none d-md-block"/> what was your partners previous occupation?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

@@ -23,7 +23,7 @@ const Applicants = () => {
               </div>
               <div className="table-body d-flex">
                   <div className="table-content w-50">
-                    <p>{localStorage.getItem("loan2personalLoan")}</p>
+                    <p>{localStorage.getItem("loan2personalLoan") || 'No'}</p>
                   </div>
                   <div className="table-content w-50">
                       <p>{localStorage.getItem("loan2personalLoanAmount")? `$${parseInt(localStorage.getItem("loan2personalLoanAmount")).toLocaleString('en')}`:''}</p>
@@ -48,7 +48,7 @@ const Applicants = () => {
               </div>
               <div className="table-body d-flex">
                   <div className="table-content w-50">
-                     <p>{localStorage.getItem("loan2carLoan")}</p>
+                     <p>{localStorage.getItem("loan2carLoan")||'No'}</p>
                   </div>
                   <div className="table-content w-50">
                   <p>{localStorage.getItem("loan2carLoanAmount")? `$${parseInt(localStorage.getItem("loan2carLoanAmount")).toLocaleString('en')}`:''}</p>

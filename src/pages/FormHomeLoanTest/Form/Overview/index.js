@@ -20,6 +20,15 @@ const Overviews = () => {
   const chillApplicantAge = localStorage.getItem("loan2chillApplicantAge")
 ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
 : {};
+const listNumberYearWorking = {
+    "Less than 12 months": 0,
+    "1 year": 1,
+    "2 years": 2,
+    "3 years": 3,
+    "4 years": 4,
+    "5+ years": 5,
+  }
+  
 const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge):[]
 let employmentStatus = localStorage.getItem("loan2employmentStatus") || localStorage.getItem("loan2numberPartnerReturn16");
 let temEmploymentStatus = ''
@@ -186,6 +195,20 @@ let employmentStatus3 =localStorage.getItem("loan2employmentStatus")||'';
  if (localStorage.getItem("loan2workingStatus") ==="NO") {
     employmentStatus3 =localStorage.getItem("loan2employmentPartnersWorkingStatus") ||''
  }
+const loan2numberYearWorking= localStorage.getItem("loan2numberYearWorking") || localStorage.getItem("loan2numberYearWorking17b")
+let textNumberYearWorking =""
+    if(loan2numberYearWorking &&listNumberYearWorking[loan2numberYearWorking] < 3){
+        textNumberYearWorking = loan2numberYearWorking
+    }else {
+        textNumberYearWorking =""
+    }
+    const loan2numberYearWorking2 = localStorage.getItem("numberYearWorking24B")|| ''
+    let textNumberYearWorking2 =""
+    if(loan2numberYearWorking2 &&listNumberYearWorking[loan2numberYearWorking2] < 3){
+        textNumberYearWorking2 = loan2numberYearWorking2
+    }else {
+        textNumberYearWorking2 =""
+    }
 
 const employment1 = [
     {
@@ -215,6 +238,12 @@ const employment1 = [
     },
     {
         id: 6,
+        name: 'Time In Current Job',
+        content: textNumberYearWorking,
+        isShow: !textNumberYearWorking,
+    },
+    {
+        id: 7,
         name: 'Annual Bonus',
         content: 'N/A'
     }
@@ -247,10 +276,20 @@ const employment2 = [
     },
     {
         id: 6,
+        name: 'Time In Current Job',
+        content: textNumberYearWorking2,
+        isShow: !textNumberYearWorking2,
+    },
+    {
+        id: 7,
         name: 'Annual Bonus',
         content: 'N/A'
     }
 ]
+const dataStep35 = localStorage.getItem("listCreditCard")
+? JSON.parse(localStorage.getItem("listCreditCard"))
+: {};
+
   return (
     <div className="page-overview fromHomeLoan2">
         <Header/>
@@ -269,7 +308,7 @@ const employment2 = [
               </div>
               <div className="title mb-3 ml-3">Liabilities</div>
               <div className="liabilities-top">
-                <div className="liabilities mb-5">
+                <div className={`liabilities ${dataStep35?.valueCreditCard35Amount1 ?'mb-5' :''}`}>
                     <div className="d-block d-md-flex">
                       <Liabilities/>
                     </div>

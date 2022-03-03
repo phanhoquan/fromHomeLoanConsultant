@@ -315,59 +315,59 @@ const EmploymentStatusSoleJoint = () => {
       id: 11,
       question: `${
         taxReturns
-          ? "21. Have the tax returns for 2019/2020 been completed?"
+          ? "21. Have the tax returns for 2020/2021 been completed?"
           : ""
       }`,
     },
     {
       id: 12,
       question: `${
-        priceTax2019 ? "22. What was your 2019 taxable income?" : ""
+        priceTax2019 ? "22. What was your 2020 taxable income?" : ""
       }`,
     },
     {
       id: 13,
       question: `${
-        priceTax2020 ? "23. What was your 2020 taxable income?" : ""
+        priceTax2020 ? "23. What was your 2021 taxable income?" : ""
       }`,
     },
     {
       id: 14,
       question: `${
-        partnersOccupation && jointApplicationStatus === types[2]
-          ? "24. What is your partners occupation?"
+        employmentPartnersWorkingStatus && jointApplicationStatus === types[2]
+          ? "24. What is your partners employment status?"
           : ""
       }`,
     },
     {
       id: 15,
       question: `${
-        numberYearWorking24B && jointApplicationStatus === types[2]
-          ? "24b. How many years has your partner been working in this role for?"
+        partnersOccupation && jointApplicationStatus === types[2]
+          ? "25. What is your partners occupation?"
           : ""
       }`,
     },
     {
       id: 16,
       question: `${
-        loan2occupation24C && jointApplicationStatus === types[2]
-          ? "24c. Since your partner has less than 3 years occupation history, what was your partners previous occupation?"
+        numberYearWorking24B && jointApplicationStatus === types[2]
+          ? "25b. How many years has your partner been working in this role for?"
           : ""
       }`,
     },
     {
       id: 17,
       question: `${
-        numberYearWorking24D && jointApplicationStatus === types[2]
-          ? "24d. How long has your partner been working in this previous role for?"
+        loan2occupation24C && jointApplicationStatus === types[2]
+          ? "25c. Since your partner has less than 3 years occupation history, what was your partners previous occupation?"
           : ""
       }`,
     },
     {
       id: 18,
       question: `${
-        employmentPartnersWorkingStatus && jointApplicationStatus === types[2]
-          ? "25. What is your partners employment status?"
+        numberYearWorking24D && jointApplicationStatus === types[2]
+          ? "25d. How long has your partner been working in this previous role for?"
           : ""
       }`,
     },
@@ -514,6 +514,10 @@ const EmploymentStatusSoleJoint = () => {
       ) : (
         ""
       )}
+      <Step22
+        handleGetLoan2value={handleGetLoan2value}
+        jointApplicationStatus={jointApplicationStatus}
+      />
       <Step21
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
@@ -534,11 +538,6 @@ const EmploymentStatusSoleJoint = () => {
           />
         </>
        ):""}
-
-      <Step22
-        handleGetLoan2value={handleGetLoan2value}
-        jointApplicationStatus={jointApplicationStatus}
-      />
       <Step23
         handleGetLoan2value={handleGetLoan2value}
         jointApplicationStatus={jointApplicationStatus}
