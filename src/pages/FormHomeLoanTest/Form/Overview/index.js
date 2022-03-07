@@ -228,22 +228,27 @@ const employment1 = [
     },
     {
         id: 4,
+        name: 'Previous Employment Info',
+        content: localStorage.getItem("loan2numberYearWorking17b")|| ''
+    },
+    {
+        id: 5,
         name: 'Annual Base Salary',
         content: localStorage.getItem("loan2yourSalary")? `$${parseInt(localStorage.getItem("loan2yourSalary")).toLocaleString('en')}`: '' 
     },
     {
-        id: 5,
+        id: 6,
         name: 'Annual Commission',
         content: 'N/A'
     },
     {
-        id: 6,
+        id: 7,
         name: 'Time In Current Job',
         content: textNumberYearWorking,
         isShow: !textNumberYearWorking,
     },
     {
-        id: 7,
+        id: 8,
         name: 'Annual Bonus',
         content: 'N/A'
     }
@@ -266,22 +271,27 @@ const employment2 = [
     },
     {
         id: 4,
+        name: 'Previous Employment Info',
+        content: localStorage.getItem("loan2occupation24C")|| ''
+    },
+    {
+        id: 5,
         name: 'Annual Base Salary',
         content: localStorage.getItem("loan2partnersSalary") || ''
     },
     {
-        id: 5,
+        id: 6,
         name: 'Annual Commission',
         content: 'N/A'
     },
     {
-        id: 6,
+        id: 7,
         name: 'Time In Current Job',
         content: textNumberYearWorking2,
         isShow: !textNumberYearWorking2,
     },
     {
-        id: 7,
+        id: 8,
         name: 'Annual Bonus',
         content: 'N/A'
     }
