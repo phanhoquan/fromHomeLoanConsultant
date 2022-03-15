@@ -3,7 +3,14 @@
 import React from "react";
 
 const SelfEmployment = () => {
-
+    let textApplicant = "Applicant 1 or 2"
+    let employmentStatus = localStorage.getItem("loan2employmentStatus") || localStorage.getItem("loan2numberPartnerReturn16");
+    let employmentStatus2 = localStorage.getItem("loan2employmentPartnersWorkingStatus");
+    if (employmentStatus ==="Full Time" && employmentStatus2 ==='Self Employed') {
+        textApplicant ="Applicant 2"
+    }else {
+        textApplicant ="Applicant 1 or 2"
+    }
   return (
     <>
         <div className="d-none d-md-block">
@@ -11,7 +18,7 @@ const SelfEmployment = () => {
                 <div className="table-cell">
                     <div className="table-header d-flex">
                         <div className="table-label w-100 text-left">
-                        <p>Applicant 1 or 2</p>
+                        <p>{textApplicant}</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
@@ -147,7 +154,7 @@ const SelfEmployment = () => {
                 <div className="table-cell">
                     <div className="table-header d-flex">
                         <div className="table-label w-100 text-left">
-                        <p>Applicant 1 or 2</p>
+                        <p>{textApplicant}</p>
                         </div>
                     </div>
                     <div className="table-body table-sub d-flex">
