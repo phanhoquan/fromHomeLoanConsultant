@@ -210,11 +210,12 @@ export default function Success() {
 
       f_1622_hecs_institution: localStorage.getItem("loan2HECSDebt") || "", //27c
       f_1623_hecs_amount: localStorage.getItem("loan2HECSDebtAmount") || "", // 27c
-
+      f_1810_personal_loan_monthly_repayment: localStorage.getItem("loan2personalLoanMonthly")||'', // 30a
       f_1632_loan_type:
         localStorage.getItem("loan2currentlyRenting") === types2[1]
           ? "Investment"
           : "Owner Occupied" || "", //32,
+      f_1811_car_loan_monthly_repayment: localStorage.getItem("loan2carLoanMonthly") || '', // 32a
       f_1633_additional_notes: localStorage.getItem("contentNoteVale") || "", //33
       f_1628_credit_card_confirm: localStorage.getItem("loan2creditCard") || "", //35
       f_1626_credit_card_institution:

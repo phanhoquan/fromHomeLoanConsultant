@@ -33,7 +33,7 @@ const Overviews = ({ children, stepActive, answerActive }) => {
         className="blue"
       />
       <div className="wrap-question ml-3 mt-1">
-        <p className="question">Overviews</p>
+        <p className="question">Overview</p>
         {children}
       </div>
     </li>

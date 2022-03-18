@@ -395,6 +395,36 @@ $label-font-size-redo: $default-size * 4;
         }
     }
 }
+.no-data {
+    padding: 15px;
+    color: red;
+}
+.disable {
+    background-color: #a8a8a8 !important;
+    border-color: #d4d4d4 !important;
+    .table-label {
+        background-color: #a8a8a8 !important;
+        border-color: #d4d4d4 !important;
+    }
+    .table-content {
+        background-color: #f5f5f5 !important;
+        border-color: #d4d4d4 !important;
+    }
+    .table-sub .table-label {
+        background-color: #e7e7e7 !important;
+        border-color: #d4d4d4 !important;
+    }
+}
+.disable2 {
+    &.table-label {
+        background-color: #a8a8a8 !important;
+        border-color: #d4d4d4 !important;
+    }
+    &.table-content {
+        background-color: #f5f5f5 !important;
+        border-color: #d4d4d4 !important;
+    }
+}
 .residentialInformation {
     .table-cell {
        .table-header {

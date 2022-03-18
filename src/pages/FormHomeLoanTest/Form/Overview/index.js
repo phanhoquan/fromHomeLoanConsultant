@@ -22,10 +22,15 @@ const Overviews = () => {
 : {};
 
 const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge):[]
-let employmentStatus = localStorage.getItem("loan2employmentStatus") || localStorage.getItem("loan2numberPartnerReturn16");
+let employmentStatus = localStorage.getItem("loan2employmentStatus");
 let temEmploymentStatus = ''
+const status = 'Full Time Part Time Casual Unemployed Maternal Leave';
+const dataStep35 = localStorage.getItem("listCreditCard")
+? JSON.parse(localStorage.getItem("listCreditCard"))
+: {};
+
 if (employmentStatus) {
-    if (employmentStatus !=='Self Employed') {
+    if (status.includes(employmentStatus)) {
         temEmploymentStatus ="PAYG"
     }else {
         temEmploymentStatus ="Self Employed"
@@ -34,16 +39,17 @@ if (employmentStatus) {
 }else {
     temEmploymentStatus =""
 }
+
 let employmentStatus2 = localStorage.getItem("loan2employmentPartnersWorkingStatus");
 let temEmploymentStatus2 = ''
 if (employmentStatus2) {
-    if (employmentStatus2 !=='Self Employed') {
+    if (status.includes(employmentStatus2)) {
         temEmploymentStatus2 ="PAYG"
     }else {
         temEmploymentStatus2 ="Self Employed"
     }
 }else {
-    temEmploymentStatus =""
+    temEmploymentStatus2 =""
 }
 const applicants1 = [
     {
@@ -184,7 +190,7 @@ let employmentStatus3 =localStorage.getItem("loan2employmentStatus")||'';
     employmentStatus3 =localStorage.getItem("loan2employmentStatus") ||''
  }
  if (localStorage.getItem("loan2workingStatus") ==="NO") {
-    employmentStatus3 =localStorage.getItem("loan2employmentPartnersWorkingStatus") ||''
+    employmentStatus3 =localStorage.getItem("loan2employmentWorkingStatus") ||''
  }
 
 const employment1 = [
@@ -205,16 +211,21 @@ const employment1 = [
     },
     {
         id: 4,
-        name: 'Previous Employment Info',
-        content: localStorage.getItem("loan2numberYearWorking17b")|| ''
+        name: 'Previous employment info',
+        content: localStorage.getItem("loan2occupation17B1")|| ''
     },
     {
         id: 5,
+        name: 'Previous job duration',
+        content: localStorage.getItem("loan2numberYearWorking17b")|| ''
+    },
+    {
+        id: 6,
         name: 'Annual Base Salary',
         content: localStorage.getItem("loan2yourSalary")? `$${parseInt(localStorage.getItem("loan2yourSalary")).toLocaleString('en')}`: '' 
     },
     {
-        id: 6,
+        id: 7,
         name: 'Annual Commission',
         content: 'N/A'
     },
@@ -228,7 +239,7 @@ const employment2 = [
     {
         id: 1,
         name: 'Employment Status',
-        content: localStorage.getItem("loan2employmentPartnersWorkingStatus") || ''
+        content: employmentStatus3 || ''
     },
     {
         id: 2,
@@ -247,11 +258,16 @@ const employment2 = [
     },
     {
         id: 5,
+        name: 'Previous job duration',
+        content: localStorage.getItem("numberYearWorking24D")|| ''
+    },
+    {
+        id: 6,
         name: 'Annual Base Salary',
         content: localStorage.getItem("loan2partnersSalary") || ''
     },
     {
-        id: 6,
+        id: 7,
         name: 'Annual Commission',
         content: 'N/A'
     },
@@ -261,9 +277,7 @@ const employment2 = [
         content: 'N/A'
     }
 ]
-const dataStep35 = localStorage.getItem("listCreditCard")
-? JSON.parse(localStorage.getItem("listCreditCard"))
-: {};
+
 const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationStatus");
 
   return (
@@ -275,6 +289,17 @@ const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationSt
                 Refinance - {currentDate}
               </div>
               <ApplicationSummary/>
+              <div className="title mb-3 ml-3">Loan Purpose</div>
+              <div className="mb-4">
+                <textarea
+                    className="form-control textarea bg-white"
+                    value={localStorage.getItem("textLoanPurpose")}
+                    onChange={() =>  {}}
+                    maxLength="500"
+                    readOnly
+                    placeholder="Loan Purpose"
+                    />
+              </div>
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
@@ -285,13 +310,20 @@ const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationSt
                   </div>
               </div>
               <div className="title mb-3 ml-3">Liabilities</div>
+            <div className="liabilities-wrap w-100">
+
+            {!dataStep35?.valueCreditCard35Amount1 && !dataStep35?.valueCreditCard35Amount1 && !dataStep35?.valueCreditCard35Amount1 ? (
+                <h2 className="no-data">Applicant does not have any credit cards</h2>
+            ): '' }
+
+            </div>
               <div className="liabilities-top">
-                <div className={`liabilities ${dataStep35?.valueCreditCard35Amount1 ?'mb-5' :''}`}>
+                <div className="">
                     <div className="d-block d-md-flex">
                       <Liabilities/>
                     </div>
                 </div>
-                <div className="liabilities">
+                <div className="">
                     <div className="d-block d-md-flex">
                       <Liabilities2/>
                     </div>

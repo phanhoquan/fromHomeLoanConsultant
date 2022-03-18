@@ -3,11 +3,13 @@
 import React from "react";
 
 const Applicants = () => {
-
+const loan2personalLoan =localStorage.getItem("loan2personalLoan");
+const loan2carLoanAmount =localStorage.getItem("loan2carLoanAmount");
+const loan2HECSDebtAmount =localStorage.getItem("loan2HECSDebtAmount")
   return (
     <>
       <div className="liabilities-wrap w-100">
-          <div className="table-cell">
+          <div className={`table-cell ${loan2personalLoan?'':'disable'}`}>
               <div className="table-header d-flex">
                   <div className="table-label w-100">
                     <p>Personal Loan</p>
@@ -32,7 +34,7 @@ const Applicants = () => {
           </div>
       </div>
       <div className="liabilities-wrap w-100">
-          <div className="table-cell">
+            <div className={`table-cell ${loan2carLoanAmount?'':'disable'}`}>
               <div className="table-header d-flex">
                   <div className="table-label w-100">
                     <p>Car Loan</p>
@@ -57,7 +59,7 @@ const Applicants = () => {
           </div>
       </div>
       <div className="liabilities-wrap w-100">
-          <div className="table-cell">
+          <div className={`table-cell ${loan2HECSDebtAmount?'':'disable'}`}>
               <div className="table-header d-flex">
                   <div className="table-label w-100">
                     <p>HECS</p>

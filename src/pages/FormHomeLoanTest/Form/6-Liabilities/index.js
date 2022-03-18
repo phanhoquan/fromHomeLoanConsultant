@@ -6,9 +6,11 @@ import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step26 from "./Step26";
+import Step27 from "./Step27";
 import Step27A from "./Step27a";
 import Step27B from "./Step27B";
-import Step27C from "./Step27C";
+import Step32A from "./Step32a";
+// import Step27C from "./Step27C";
 
 export const types = {
   1: "Personal Loans",
@@ -33,8 +35,14 @@ const Liabilities = () => {
       : [],
     personalLoan: localStorage.getItem("loan2personalLoan") || "",
     personalLoanAmount: localStorage.getItem("loan2personalLoanAmount") || "",
+
+    loan2personalLoanMonthly: localStorage.getItem("loan2personalLoanMonthly") || "",
+
     carLoan: localStorage.getItem("loan2carLoan") || "",
     carLoanAmount: localStorage.getItem("loan2carLoanAmount") || "",
+
+    carLoanMonthly: localStorage.getItem("loan2carLoanMonthly") || "",
+
     HECSDebt: localStorage.getItem("loan2HECSDebt") || "",
     HECSDebtAmount: localStorage.getItem("loan2HECSDebtAmount") || "",
   });
@@ -55,6 +63,7 @@ const Liabilities = () => {
 
         window.localStorage.setItem("loan2personalLoan", "");
         window.localStorage.setItem("loan2personalLoanAmount", "");
+        window.localStorage.setItem("loan2personalLoanMonthly", "");
       }
 
       if (!value?.includes(types[2])) {
@@ -67,6 +76,8 @@ const Liabilities = () => {
 
         window.localStorage.setItem("loan2carLoan", "");
         window.localStorage.setItem("loan2carLoanAmount", "");
+        window.localStorage.setItem("loan2carLoanMonthly", "");
+        window.localStorage.setItem("loan2personalLoanMonthly", "");
       }
 
       if (!value?.includes(types[3])) {
@@ -86,8 +97,10 @@ const Liabilities = () => {
         window.localStorage.setItem("loan2HECSDebtAmount", "");
         window.localStorage.setItem("loan2carLoan", "");
         window.localStorage.setItem("loan2carLoanAmount", "");
+        window.localStorage.setItem("loan2carLoanMonthly", "");
         window.localStorage.setItem("loan2personalLoan", "");
         window.localStorage.setItem("loan2personalLoanAmount", "");
+        window.localStorage.setItem("loan2personalLoanMonthly", "");
         setLoan2value({
           ...loan2value,
           personalLoansStatus: value,
@@ -109,6 +122,8 @@ const Liabilities = () => {
     carLoanAmount,
     HECSDebt,
     HECSDebtAmount,
+    loan2personalLoanMonthly,
+    carLoanMonthly
   } = loan2value;
 
   const step7 = [
@@ -137,11 +152,19 @@ const Liabilities = () => {
     {
       id: 4,
       question: `${
-        carLoan ? "31. Which institution is the car loan with?" : ""
+        loan2personalLoanMonthly
+          ? "30a. How much is your personal loan monthly repayment?"
+          : ""
       }`,
     },
     {
       id: 5,
+      question: `${
+        carLoan ? "31. Which institution is the car loan with?" : ""
+      }`,
+    },
+    {
+      id: 6,
       question: `${
         carLoanAmount ? "32. What is the limit on the car loan amount?" : ""
       }`,
@@ -149,7 +172,7 @@ const Liabilities = () => {
     {
       id: 6,
       question: `${
-        HECSDebt ? "33. Which institution is the HECS debt with?" : ""
+        carLoanMonthly ? "32a. How much is your car loan monthly repayment?" : ""
       }`,
     },
     {
@@ -170,7 +193,9 @@ const Liabilities = () => {
       carLoan ||
       carLoanAmount ||
       HECSDebt ||
-      HECSDebtAmount
+      HECSDebtAmount ||
+      loan2personalLoanMonthly||
+      carLoanMonthly
     ) {
       setDataListMenuStep7(step7);
     }
@@ -184,6 +209,8 @@ const Liabilities = () => {
     carLoanAmount,
     HECSDebt,
     HECSDebtAmount,
+    loan2personalLoanMonthly,
+    carLoanMonthly
   ]);
 
   const onClickNext = () => {
@@ -198,20 +225,26 @@ const Liabilities = () => {
     >
       <Step26 handleGetLoan2value={handleGetLoan2value} />
       {!!personalLoansStatus?.includes(types[1]) ? (
-        <Step27A handleGetLoan2value={handleGetLoan2value} />
+        <>
+          <Step27A handleGetLoan2value={handleGetLoan2value} />
+          <Step27 handleGetLoan2value={handleGetLoan2value}/>
+        </>
       ) : (
         ""
       )}
       {!!personalLoansStatus?.includes(types[2]) ? (
+        <>
         <Step27B handleGetLoan2value={handleGetLoan2value} />
+        <Step32A handleGetLoan2value={handleGetLoan2value}/>
+        </>
       ) : (
         ""
       )}
-      {!!personalLoansStatus?.includes(types[3]) ? (
+      {/* {!!personalLoansStatus?.includes(types[3]) ? (
         <Step27C handleGetLoan2value={handleGetLoan2value} />
       ) : (
         ""
-      )}
+      )} */}
       <div className="group-btn-footer col d-flex justify-content-center mb-5">
         <Button
           className="btnPrimary life wow fadeInUp mt-0 in-progress"

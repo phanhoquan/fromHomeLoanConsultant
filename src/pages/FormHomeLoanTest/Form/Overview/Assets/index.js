@@ -9,11 +9,13 @@ const Assets = () => {
     const dataStep37 = localStorage.getItem("listVehiclesBoats")
     ? JSON.parse(localStorage.getItem("listVehiclesBoats"))
     : {};
-    
+const amountHome38A = localStorage.getItem("amountHome38A");
+const amountHome38B = localStorage.getItem("amountHome38B");
+const amountHome39 = localStorage.getItem("amountHome39");
   return (
     <>
       {dataStep36?.makeCard1? (
-        <div className="assets-wrap mb-4 w-100">
+        <div className="assets-wrap w-100">
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
@@ -46,7 +48,7 @@ const Assets = () => {
         </div>
       ):''}
        {dataStep36?.makeCard2? (
-        <div className="assets-wrap mb-4 w-100">
+        <div className="assets-wrap w-100">
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
@@ -79,7 +81,7 @@ const Assets = () => {
         </div>
        ):''}
       {dataStep37?.typeBoats1?.value? (
-        <div className="assets-wrap mb-4 w-100">
+        <div className="assets-wrap w-100">
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
@@ -118,7 +120,7 @@ const Assets = () => {
         </div>
       ):''}
        {dataStep37?.typeBoats2?.value? (
-        <div className="assets-wrap mb-4 w-100">
+        <div className="assets-wrap w-100">
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
@@ -157,7 +159,7 @@ const Assets = () => {
         </div>
       ):''}
       {dataStep37?.typeBoats3?.value? (
-        <div className="assets-wrap mb-4 w-100">
+        <div className="assets-wrap w-100">
             <div className="table-cell">
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
@@ -197,7 +199,7 @@ const Assets = () => {
       ):''}
       <div className="d-block d-md-flex">
         <div className="applicants-wrap w-100">
-            <div className="table-cell">
+            <div className={`table-cell ${amountHome38A?'':'disable'}`}>
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
                       <p>Superannuation Applicant 1</p>
@@ -215,7 +217,7 @@ const Assets = () => {
             </div>
         </div>
         <div className="applicants-wrap w-100">
-            <div className="table-cell">
+            <div className={`table-cell ${amountHome38B?'':'disable'}`}>
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
                       <p>Superannuation Applicant 2</p>
@@ -233,7 +235,7 @@ const Assets = () => {
             </div>
         </div>
         <div className="applicants-wrap w-100">
-            <div className="table-cell">
+            <div className={`table-cell ${amountHome39?'':'disable'}`}>
                 <div className="table-header d-flex">
                     <div className="table-label w-100">
                       <p>Home Contents</p>
