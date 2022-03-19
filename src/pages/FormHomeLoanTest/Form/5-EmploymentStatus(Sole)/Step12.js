@@ -14,7 +14,6 @@ const Step12 = ({ handleGetLoan2value }) => {
   const [workingStatus, setWorkingStatus] = useState(
     localStorage.getItem("loan2workingStatus") || ""
   );
-
   const onCheck = (option) => {
     setWorkingStatus(option);
     window.localStorage.setItem("loan2workingStatus", option);
@@ -23,7 +22,7 @@ const Step12 = ({ handleGetLoan2value }) => {
 
   useEffect(() => {
     if (employmentStatus) {
-      if (employmentStatus?.toLocaleUpperCase() !=="UNEMPLOYED") {
+      if (employmentStatus?.toLocaleUpperCase() !=="UNEMPLOYED" && localStorage.getItem("loan2workingStatus") !== "NO") {
         setWorkingStatus(types[1])
         handleGetLoan2value("workingStatus", types[1]);
       } else {

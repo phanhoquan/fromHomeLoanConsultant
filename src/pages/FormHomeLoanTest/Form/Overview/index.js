@@ -35,13 +35,13 @@ if (employmentStatus) {
     }else {
         temEmploymentStatus ="Self Employed"
     }
-    
 }else {
     temEmploymentStatus =""
 }
 
 let employmentStatus2 = localStorage.getItem("loan2employmentPartnersWorkingStatus");
 let temEmploymentStatus2 = ''
+
 if (employmentStatus2) {
     if (status.includes(employmentStatus2)) {
         temEmploymentStatus2 ="PAYG"
@@ -51,6 +51,22 @@ if (employmentStatus2) {
 }else {
     temEmploymentStatus2 =""
 }
+let employmentStatus3 =localStorage.getItem("loan2employmentStatus")||'';
+let employmentStatus4 = ""
+ if (localStorage.getItem("loan2workingStatus") ==="YES") {
+    employmentStatus3 =localStorage.getItem("loan2employmentStatus") ||'';
+    employmentStatus4 = ""
+ }
+ if (localStorage.getItem("loan2workingStatus") === "NO") {
+    employmentStatus3 = localStorage.getItem("loan2employmentWorkingStatus") ||'';
+    employmentStatus4 = localStorage.getItem("loan2employmentWorkingStatus") ||'';
+    if (status.includes(localStorage.getItem("loan2employmentWorkingStatus"))) {
+        temEmploymentStatus ="PAYG"
+    }else {
+        temEmploymentStatus ="Self Employed"
+    }
+ }
+
 const applicants1 = [
     {
         id: 1,
@@ -185,13 +201,6 @@ const applicants2 = [
         content: 'N/A'
     }
 ];
-let employmentStatus3 =localStorage.getItem("loan2employmentStatus")||'';
- if (localStorage.getItem("loan2workingStatus") ==="YES") {
-    employmentStatus3 =localStorage.getItem("loan2employmentStatus") ||''
- }
- if (localStorage.getItem("loan2workingStatus") ==="NO") {
-    employmentStatus3 =localStorage.getItem("loan2employmentWorkingStatus") ||''
- }
 
 const employment1 = [
     {
@@ -239,7 +248,7 @@ const employment2 = [
     {
         id: 1,
         name: 'Employment Status',
-        content: employmentStatus3 || ''
+        content: employmentStatus4 || ''
     },
     {
         id: 2,
