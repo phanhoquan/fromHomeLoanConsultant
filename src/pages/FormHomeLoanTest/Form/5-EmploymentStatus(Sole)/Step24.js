@@ -46,7 +46,6 @@ const Step24 = ({ handleGetLoan2value, jointApplicationStatus }) => {
     }
     // eslint-disable-next-line
   }, [jointApplicationStatus]);
-
   return (
     <section
       className={`formContent-step-second formContent-life-insurance mb-3 ${

@@ -60,11 +60,11 @@ const listNumberYearWorking = {
   "5+ years": 5,
 }
 
-
 const EmploymentStatusSoleJoint = () => {
   const history = useHistory();
   const jointApplicationStatus =
     localStorage.getItem("loan2jointApplicationStatus") || "";
+
   let listMenuStep5 = localStorage.getItem("listMenuStep5")
     ? JSON.parse(localStorage.getItem("listMenuStep5"))
     : [];
@@ -137,6 +137,7 @@ const EmploymentStatusSoleJoint = () => {
           localStorage.setItem("loan2numberYearWorking17b", '');
           window.localStorage.setItem("loan2occupation17B1", "");
           window.localStorage.setItem("loan2yourSalary", "");
+          window.localStorage.setItem("loan2typeOfBusinessOther", "");
           setLoan2value({
             ...loan2value,
             employmentWorkingStatus: value,
@@ -145,7 +146,8 @@ const EmploymentStatusSoleJoint = () => {
             occupation: "",
             numberYearWorking: "",
             loan2occupation17B1: '',
-            numberYearWorking17b:''
+            numberYearWorking17b:'',
+            typeOfBusinessOther: "",
           });
           break;
         case types2[5]:
@@ -388,7 +390,7 @@ const EmploymentStatusSoleJoint = () => {
       }`,
     },
   ];
-
+  
   useMemo(() => {
     if (
       workingStatus ||
@@ -469,6 +471,7 @@ const EmploymentStatusSoleJoint = () => {
         handleGetLoan2value={handleGetLoan2value}
         employmentWorkingStatus={employmentWorkingStatus}
         workingStatus={workingStatus}
+        jointApplicationStatus={jointApplicationStatus}
       />
       {numberYearWorking&&listNumberYearWorking[numberYearWorking] < 3 ? (
         <>

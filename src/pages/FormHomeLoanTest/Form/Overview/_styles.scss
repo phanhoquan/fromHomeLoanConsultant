@@ -415,6 +415,17 @@ $label-font-size-redo: $default-size * 4;
         border-color: #d4d4d4 !important;
     }
 }
+.max-100 {
+    max-width: 100% !important;
+}
+@media screen and(min-width: 800px) {
+    .h-80 {
+        height: 80px;
+    }
+}
+.w-33 {
+    width: 33.33% !important;
+}
 .disable2 {
     &.table-label {
         background-color: #a8a8a8 !important;
@@ -423,6 +434,11 @@ $label-font-size-redo: $default-size * 4;
     &.table-content {
         background-color: #f5f5f5 !important;
         border-color: #d4d4d4 !important;
+    }
+}
+.contentNoteValeAdmin {
+    .content-limited {
+        color: #212121 !important;
     }
 }
 .residentialInformation {

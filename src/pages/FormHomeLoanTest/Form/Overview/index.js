@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, {useMemo, useState} from "react";
 import moment from "moment";
 import { Button } from "react-bootstrap";
 import Header from "./Header";
@@ -20,7 +20,10 @@ const Overviews = () => {
   const chillApplicantAge = localStorage.getItem("loan2chillApplicantAge")
 ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
 : {};
-
+const [contentNoteVale, setContentNoteVale] = useState(
+    localStorage.getItem("contentNoteValeAdmin") || ""
+  );
+const [isNoteVale, setIsNoteVale] = useState(false);
 const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge):[]
 let employmentStatus = localStorage.getItem("loan2employmentStatus");
 let temEmploymentStatus = ''
@@ -51,15 +54,14 @@ if (employmentStatus2) {
 }else {
     temEmploymentStatus2 =""
 }
+
 let employmentStatus3 =localStorage.getItem("loan2employmentStatus")||'';
-let employmentStatus4 = ""
+
  if (localStorage.getItem("loan2workingStatus") ==="YES") {
     employmentStatus3 =localStorage.getItem("loan2employmentStatus") ||'';
-    employmentStatus4 = ""
  }
  if (localStorage.getItem("loan2workingStatus") === "NO") {
     employmentStatus3 = localStorage.getItem("loan2employmentWorkingStatus") ||'';
-    employmentStatus4 = localStorage.getItem("loan2employmentWorkingStatus") ||'';
     if (status.includes(localStorage.getItem("loan2employmentWorkingStatus"))) {
         temEmploymentStatus ="PAYG"
     }else {
@@ -248,7 +250,7 @@ const employment2 = [
     {
         id: 1,
         name: 'Employment Status',
-        content: employmentStatus4 || ''
+        content: employmentStatus2 || ''
     },
     {
         id: 2,
@@ -288,7 +290,41 @@ const employment2 = [
 ]
 
 const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationStatus");
+const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus2 ==="PAYG";
 
+useMemo(() => {
+    window.localStorage.setItem("contentNoteValeAdmin", contentNoteVale);
+    if (contentNoteVale?.length >= 500) {
+        setIsNoteVale(true);
+        return;
+    }else {
+        setIsNoteVale(false);
+    }
+  }, [contentNoteVale]);
+
+  const renderMess = () => {
+    let html = (
+      <p className="content-limited mt-2">
+        Content limited to 500 characters. Remaining{" "}
+        <span className="blue">{500 - contentNoteVale?.length || ""}</span>
+      </p>
+    );
+    if (contentNoteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded. Remaining 0
+        </p>
+      );
+    }
+    if (isNoteVale && contentNoteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded in Additional notes
+        </p>
+      );
+    }
+    return html;
+  };
   return (
     <div className="page-overview fromHomeLoan2">
         <Header/>
@@ -298,17 +334,7 @@ const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationSt
                 Refinance - {currentDate}
               </div>
               <ApplicationSummary/>
-              <div className="title mb-3 ml-3">Loan Purpose</div>
-              <div className="mb-4">
-                <textarea
-                    className="form-control textarea bg-white"
-                    value={localStorage.getItem("textLoanPurpose")}
-                    onChange={() =>  {}}
-                    maxLength="500"
-                    readOnly
-                    placeholder="Loan Purpose"
-                    />
-              </div>
+              <div className="title mb-3 ml-3">Loan Purpose: <span style={{fontWeight: '400'}}>{localStorage.getItem("textLoanPurpose")}</span></div>
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
@@ -318,13 +344,10 @@ const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationSt
                     : ""}
                   </div>
               </div>
-              <div className="title mb-3 ml-3">Liabilities</div>
+              <div className="title mb-3 ml-3">Liabilities: {!dataStep35?.valueCreditCard35Amount1 && !dataStep35?.valueCreditCard35Amount1 && !dataStep35?.valueCreditCard35Amount1 ? (
+               <span style={{fontWeight: '400'}}>Applicant does not have any credit cards</span>
+            ): '' }</div>
             <div className="liabilities-wrap w-100">
-
-            {!dataStep35?.valueCreditCard35Amount1 && !dataStep35?.valueCreditCard35Amount1 && !dataStep35?.valueCreditCard35Amount1 ? (
-                <h2 className="no-data">Applicant does not have any credit cards</h2>
-            ): '' }
-
             </div>
               <div className="liabilities-top">
                 <div className="">
@@ -357,11 +380,27 @@ const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationSt
                     <Applicants nameKey="2" listData={employment2}/>
                   </div>
               </div>
-              <div className="title my-3 ml-3">Self - Employment</div>
+              <div className="title my-3 ml-3">Self - Employment <span style={{fontWeight: '400'}}>{isEmploymentStatus? 'Both applicants are not self employed':''}</span></div>
               <div className="liabilities-top">
                 <div className="liabilities">
-                    <SelfEmployment/>
+                    <SelfEmployment
+                        temEmploymentStatus = {temEmploymentStatus}
+                        temEmploymentStatus2 = {temEmploymentStatus2}
+                    />
                 </div>
+              </div>
+              <div className="title my-3 ml-3">Additional Notes</div>
+              <div className="contentNoteValeAdmin">
+                <textarea
+                    className="form-control noteVale"
+                    value={contentNoteVale}
+                    onChange={(e) => {
+                    setContentNoteVale(e.target.value);
+                    }}
+                    maxLength="500"
+                    placeholder="Please enter your additional notes here..."
+                />
+                {renderMess()}
               </div>
             </div>
             <Button
