@@ -198,13 +198,13 @@ export default function Success() {
           : "") || "",//26
 
       f_1620_car_loan_institution:
-        localStorage.getItem("loan2personalLoan") || "", //27a,
+        localStorage.getItem("loan2carLoan") || "", //31,
       f_1621_car_loan_amount:
         localStorage.getItem("loan2personalLoanAmount") || "", // 27a,
       f_1619_joint_applicant_salary:
         localStorage.getItem("loan2partnersSalary") || "",
       f_1624_personal_loan_institution:
-        localStorage.getItem("loan2carLoan") || "", //27b
+        localStorage.getItem("loan2personalLoan") || "", //29
       f_1625_personal_loan_amount:
         localStorage.getItem("loan2carLoanAmount") || "", //27b
 
