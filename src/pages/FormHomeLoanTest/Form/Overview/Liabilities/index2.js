@@ -4,12 +4,19 @@ import React from "react";
 
 const Applicants = () => {
 const loan2personalLoan =localStorage.getItem("loan2personalLoan");
+const loan2personalLoanAmount =localStorage.getItem("loan2personalLoanAmount");
+const loan2personalLoanMonthly =localStorage.getItem("loan2personalLoanMonthly");
+
 const loan2carLoanAmount =localStorage.getItem("loan2carLoanAmount");
-const loan2HECSDebtAmount =localStorage.getItem("loan2HECSDebtAmount")
+const loan2carLoan =localStorage.getItem("loan2carLoan");
+const loan2carLoanMonthly =localStorage.getItem("loan2carLoanMonthly");
+
+const loan2HECSDebtAmount =localStorage.getItem("loan2HECSDebtAmount");
+
   return (
     <>
       <div className="liabilities-wrap w-100">
-          <div className={`table-cell ${loan2personalLoan?'':'disable'}`}>
+          <div className={`table-cell ${!loan2personalLoan && !loan2personalLoanAmount && !loan2personalLoanMonthly ?'disable':''}`}>
               <div className="table-header d-flex">
                   <div className="table-label w-100">
                     <p>Personal Loan</p>
@@ -40,7 +47,7 @@ const loan2HECSDebtAmount =localStorage.getItem("loan2HECSDebtAmount")
           </div>
       </div>
       <div className="liabilities-wrap w-100">
-            <div className={`table-cell ${loan2carLoanAmount?'':'disable'}`}>
+            <div className={`table-cell ${!loan2carLoan && !loan2carLoanMonthly &&!loan2carLoanAmount?'disable':''}`}>
               <div className="table-header d-flex">
                   <div className="table-label w-100">
                     <p>Car Loan</p>

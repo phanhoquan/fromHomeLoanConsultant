@@ -34,8 +34,8 @@ const Step02 = ({ handleGetLoan2value }) => {
     setTextLoanPurpose(value);
   };
   useMemo(() => {
-    window.localStorage.setItem("textLoanPurpose", textLoanPurpose?.value||null);
-    handleGetLoan2value("textLoanPurpose", textLoanPurpose?.value||null);
+    window.localStorage.setItem("textLoanPurpose", textLoanPurpose?.value ||'');
+    handleGetLoan2value("textLoanPurpose", textLoanPurpose?.value ||'');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [textLoanPurpose?.value]);
 

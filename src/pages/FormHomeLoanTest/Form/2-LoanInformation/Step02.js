@@ -6,8 +6,7 @@ import { CheckboxButton } from "../../../../Components/CheckBox3";
 
 export const types = {
   1: "Fixed",
-  2: "Variable",
-  3: "Split",
+  2: "Variable"
 };
 
 const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
@@ -34,7 +33,7 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
             </Col>
             <Col xs={12}>
               <Row className="info-customer w-500 mb-0">
-                <Col xs={6} sm={4} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     checkBox={currentLoanStatus === types[1]}
                     onClick={() => onCheck(types[1])}
@@ -42,19 +41,11 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
                     classContainer="radius"
                   />
                 </Col>
-                <Col xs={6} sm={4} className="wForm-input">
+                <Col xs={6} className="wForm-input">
                   <CheckboxButton
                     onClick={() => onCheck(types[2])}
                     checkBox={currentLoanStatus === types[2]}
                     name={types[2]}
-                    classContainer="radius"
-                  />
-                </Col>
-                <Col xs={12} sm={4} className="wForm-input">
-                  <CheckboxButton
-                    onClick={() => onCheck(types[3])}
-                    checkBox={currentLoanStatus === types[3]}
-                    name={types[3]}
                     classContainer="radius"
                   />
                 </Col>

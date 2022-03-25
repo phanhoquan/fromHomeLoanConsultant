@@ -9,7 +9,7 @@ import Step01 from "./Step01";
 import Step02 from "./Step02";
 import Step03A from "./Step03-1";
 import Step03B from "./Step03-2";
-import Step03C from "./Step03-3";
+// import Step03C from "./Step03-3";
 
 export const types = {
   1: "Fixed",
@@ -139,11 +139,6 @@ const LoanInformation = () => {
       )}
       {loan2currentLoanStatus === types[2] ? (
         <Step03B handleGetLoan2value={handleGetLoan2value} />
-      ) : (
-        ""
-      )}
-      {loan2currentLoanStatus === types[3] ? (
-        <Step03C handleGetLoan2value={handleGetLoan2value} />
       ) : (
         ""
       )}

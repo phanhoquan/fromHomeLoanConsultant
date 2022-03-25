@@ -1,6 +1,6 @@
 /** @format */
 
-import React, {useMemo, useState} from "react";
+import React from "react";
 import moment from "moment";
 import { Button } from "react-bootstrap";
 import Header from "./Header";
@@ -13,8 +13,6 @@ import Assets from "./Assets"
 import ResidentialInformation from "./ResidentialInformation"
 import InvestmentProperties from "./ResidentialInformation/index2"
 import SelfEmployment from "./SelfEmployment"
-import imgNote from "../../../../images/note.png";
-import imgArrowNote from "../../../../images/arrow-white.svg";
 import "./_styles.scss"
 
 const Overviews = () => {
@@ -23,11 +21,7 @@ const Overviews = () => {
   const chillApplicantAge = localStorage.getItem("loan2chillApplicantAge")
 ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
 : {};
-const [contentNoteVale, setContentNoteVale] = useState(
-    localStorage.getItem("contentNoteVale") || ""
-  );
-const [isShowNoteVale, setIsShowNoteVale] = useState(false);
-const [isNoteVale, setIsNoteVale] = useState(false);
+
 const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge):[]
 let employmentStatus = localStorage.getItem("loan2employmentStatus");
 let temEmploymentStatus = ''
@@ -295,42 +289,7 @@ const employment2 = [
 
 const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationStatus");
 const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus2 ==="PAYG";
-const handleTogglesAddNote = () => {
-    setIsShowNoteVale(!isShowNoteVale);
-};
-useMemo(() => {
-    window.localStorage.setItem("contentNoteVale", contentNoteVale);
-    if (contentNoteVale?.length >= 500) {
-        setIsNoteVale(true);
-        return;
-    }else {
-        setIsNoteVale(false);
-    }
-  }, [contentNoteVale]);
 
-  const renderMess = () => {
-    let html = (
-      <p className="content-limited mt-2">
-        Content limited to 500 characters. Remaining{" "}
-        <span className="blue">{500 - contentNoteVale?.length || ""}</span>
-      </p>
-    );
-    if (contentNoteVale?.length >= 500) {
-      html = (
-        <p className="content-limited mt-2 col-red">
-          Maximum characters exceeded. Remaining 0
-        </p>
-      );
-    }
-    if (isNoteVale && contentNoteVale?.length >= 500) {
-      html = (
-        <p className="content-limited mt-2 col-red">
-          Maximum characters exceeded in Additional notes
-        </p>
-      );
-    }
-    return html;
-  };
   return (
     <div className="page-overview fromHomeLoan2">
         <Header/>
@@ -340,7 +299,7 @@ useMemo(() => {
                 Refinance - {currentDate}
               </div>
               <ApplicationSummary/>
-              <div className="title mb-3 ml-3">Loan Purpose: <span style={{fontWeight: '400'}}>{localStorage.getItem("textLoanPurpose")}</span></div>
+              <div className="title mb-3 ml-3">Loan Purpose: <span style={{fontWeight: '400'}}>{localStorage.getItem("textLoanPurpose")||''}</span></div>
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
@@ -401,6 +360,17 @@ useMemo(() => {
                     />
                 </div>
               </div>
+              <div className="title my-3 ml-3">Additional notes</div>
+              <div className="liabilities-top">
+                <textarea
+                    className="form-control noteVale"
+                    value={localStorage.getItem("contentNoteVale")}
+                    onChange={() => {}}
+                    maxLength="500"
+                    disabled
+                    placeholder="Additional notes"
+                />
+            </div>
             </div>
             <Button
                 className="btnPrimary life min-300 mt-0 w-auto min-h-50"
@@ -409,30 +379,6 @@ useMemo(() => {
                 Go Back
             </Button>
         </div>
-        <div className={`addNote ${isShowNoteVale ? "show" : ""}`}>
-            <div className="addHeader" onClick={handleTogglesAddNote}>
-            <img src={imgNote} alt="" className="icon-note" />
-            Additional notes
-            <img src={imgArrowNote} alt="" className="arrow-note" />
-            </div>
-            <div
-            className={`content-note ${
-                contentNoteVale?.length >= 500 ? "box-red" : ""
-            }`}
-            >
-            <textarea
-                className="form-control noteVale"
-                value={contentNoteVale}
-                onChange={(e) => {
-                setContentNoteVale(e.target.value);
-                setIsNoteVale(false);
-                }}
-                maxLength="500"
-                placeholder="Please enter your additional notes here..."
-            />
-            {renderMess()}
-        </div>
-      </div>
     </div>
   );
 };
