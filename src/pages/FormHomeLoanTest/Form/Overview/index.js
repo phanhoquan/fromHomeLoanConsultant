@@ -11,7 +11,10 @@ import Liabilities from "./Liabilities"
 import Liabilities2 from "./Liabilities/index2"
 import Assets from "./Assets"
 import ResidentialInformation from "./ResidentialInformation"
+import InvestmentProperties from "./ResidentialInformation/index2"
 import SelfEmployment from "./SelfEmployment"
+import imgNote from "../../../../images/note.png";
+import imgArrowNote from "../../../../images/arrow-white.svg";
 import "./_styles.scss"
 
 const Overviews = () => {
@@ -21,8 +24,9 @@ const Overviews = () => {
 ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
 : {};
 const [contentNoteVale, setContentNoteVale] = useState(
-    localStorage.getItem("contentNoteValeAdmin") || ""
+    localStorage.getItem("contentNoteVale") || ""
   );
+const [isShowNoteVale, setIsShowNoteVale] = useState(false);
 const [isNoteVale, setIsNoteVale] = useState(false);
 const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge):[]
 let employmentStatus = localStorage.getItem("loan2employmentStatus");
@@ -291,9 +295,11 @@ const employment2 = [
 
 const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationStatus");
 const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus2 ==="PAYG";
-
+const handleTogglesAddNote = () => {
+    setIsShowNoteVale(!isShowNoteVale);
+};
 useMemo(() => {
-    window.localStorage.setItem("contentNoteValeAdmin", contentNoteVale);
+    window.localStorage.setItem("contentNoteVale", contentNoteVale);
     if (contentNoteVale?.length >= 500) {
         setIsNoteVale(true);
         return;
@@ -373,6 +379,12 @@ useMemo(() => {
                     <ResidentialInformation/>
                 </div>
               </div>
+              <div className="title my-3 ml-3">Investment Properties</div>
+              <div className="liabilities-top">
+                <div className="liabilities">
+                    <InvestmentProperties/>
+                </div>
+              </div>
               <div className="title my-3 ml-3">PAYG Employment</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
@@ -389,19 +401,6 @@ useMemo(() => {
                     />
                 </div>
               </div>
-              <div className="title my-3 ml-3">Additional Notes</div>
-              <div className="contentNoteValeAdmin">
-                <textarea
-                    className="form-control noteVale"
-                    value={contentNoteVale}
-                    onChange={(e) => {
-                    setContentNoteVale(e.target.value);
-                    }}
-                    maxLength="500"
-                    placeholder="Please enter your additional notes here..."
-                />
-                {renderMess()}
-              </div>
             </div>
             <Button
                 className="btnPrimary life min-300 mt-0 w-auto min-h-50"
@@ -410,6 +409,30 @@ useMemo(() => {
                 Go Back
             </Button>
         </div>
+        <div className={`addNote ${isShowNoteVale ? "show" : ""}`}>
+            <div className="addHeader" onClick={handleTogglesAddNote}>
+            <img src={imgNote} alt="" className="icon-note" />
+            Additional notes
+            <img src={imgArrowNote} alt="" className="arrow-note" />
+            </div>
+            <div
+            className={`content-note ${
+                contentNoteVale?.length >= 500 ? "box-red" : ""
+            }`}
+            >
+            <textarea
+                className="form-control noteVale"
+                value={contentNoteVale}
+                onChange={(e) => {
+                setContentNoteVale(e.target.value);
+                setIsNoteVale(false);
+                }}
+                maxLength="500"
+                placeholder="Please enter your additional notes here..."
+            />
+            {renderMess()}
+        </div>
+      </div>
     </div>
   );
 };

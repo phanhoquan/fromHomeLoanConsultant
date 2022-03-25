@@ -82,7 +82,9 @@ export default function Success() {
   const dataStep37 = localStorage.getItem("listVehiclesBoats")
     ? JSON.parse(localStorage.getItem("listVehiclesBoats"))
     : {};
-    
+  const dataStep44 = localStorage.getItem("listItemProperty")
+    ? JSON.parse(localStorage.getItem("listItemProperty"))
+    : {};
   const setDataStateWithIpClient = (ipClient) => {
     setDataState({
       ...getDataMore(),
@@ -95,7 +97,7 @@ export default function Success() {
       f_58_submissiondate: getTimeNow(),
       f_76_user_agent: navigator.userAgent,
       f_85_type_of_loan: localStorage.getItem("loan2currentLoanStatus") || "", //2
-
+      f_1018_loan_purpose:localStorage.getItem("textLoanPurpose") || '',
       f_1579_current_interest_rate_fixed:
         localStorage.getItem("loan2valueInterestRate") ||
         localStorage.getItem("loan2valueInterestRateSplit") ||
@@ -199,14 +201,13 @@ export default function Success() {
 
       f_1620_car_loan_institution:
         localStorage.getItem("loan2carLoan") || "", //31,
-      f_1621_car_loan_amount:
-        localStorage.getItem("loan2personalLoanAmount") || "", // 27a,
+      f_1621_car_loan_amount:localStorage.getItem("loan2carLoanAmount") || "", // 32
       f_1619_joint_applicant_salary:
         localStorage.getItem("loan2partnersSalary") || "",
       f_1624_personal_loan_institution:
         localStorage.getItem("loan2personalLoan") || "", //29
       f_1625_personal_loan_amount:
-        localStorage.getItem("loan2carLoanAmount") || "", //27b
+        localStorage.getItem("loan2personalLoanAmount") || "", //30
 
       f_1622_hecs_institution: localStorage.getItem("loan2HECSDebt") || "", //27c
       f_1623_hecs_amount: localStorage.getItem("loan2HECSDebtAmount") || "", // 27c
@@ -266,6 +267,29 @@ export default function Success() {
       f_1712_rental_property_income:
         localStorage.getItem("rentalPropertyIncome") || "", // 42
       f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //43
+
+      // Property investment 1 // 44
+      f_1843_invest_property_1_address: dataStep44?.addressProperty1||'',
+      f_1844_invest_property_1_loan_amount: dataStep44?.loanAmountProperty1||'',
+      f_1845_invest_property_1_interest_rate: dataStep44?.interestRateProperty1||'',
+      f_1846_invest_property_1_lender_name: dataStep44?.lenderProperty1||'',
+      f_1847_invest_property_1_loan_type: dataStep44?.fixedOrVariableProperty1?.value||'',
+      f_1848_invest_property_1_rental_income: dataStep44?.rentalIncomeProperty1||'',
+      // Property investment 2 // 44
+      f_1849_invest_property_2_address: dataStep44?.addressProperty2||'',
+      f_1850_invest_property_2_loan_amount: dataStep44?.loanAmountProperty2||'',
+      f_1851_invest_property_2_interest_rate: dataStep44?.interestRateProperty2||'',
+      f_1852_invest_property_2_lender_name: dataStep44?.lenderProperty2||'',
+      f_1853_invest_property_2_loan_type: dataStep44?.fixedOrVariableProperty2?.value||'',
+      f_1854_invest_property_2_rental_income: dataStep44?.rentalIncomeProperty2||'',
+      // Property investment 3 // 44
+      f_1855_invest_property_3_address: dataStep44?.addressProperty3||'',
+      f_1856_invest_property_3_loan_amount: dataStep44?.loanAmountProperty3||'',
+      f_1857_invest_property_3_interest_rate: dataStep44?.interestRateProperty3||'',
+      f_1858_invest_property_3_lender_name: dataStep44?.lenderProperty3||'',
+      f_1859_invest_property_3_loan_type: dataStep44?.fixedOrVariableProperty3?.value||'',
+      f_1860_invest_property_3_rental_income: dataStep44?.rentalIncomeProperty3||'',
+
       cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/refinance-home-loan-consultant-test",
     });

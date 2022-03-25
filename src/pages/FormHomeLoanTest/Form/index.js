@@ -17,6 +17,7 @@ import ResidentialInformation from "./8-ResidentialInformation";
 import Assets from "./9-Assets";
 import Success from "./Success";
 import StepReset from "./PageReset";
+import InvestmentProperties from './10-InvestmentProperties'
 import Overviews from "./Overview";
 
 const Form = () => {
@@ -108,6 +109,10 @@ const Form = () => {
         <Route
           path="/refinance-home-loan-consultant-test/ResidentialInformation"
           component={ResidentialInformation}
+        />
+         <Route
+          path="/refinance-home-loan-consultant-test/InvestmentProperties"
+          component={InvestmentProperties}
         />
         <Route
           path="/refinance-home-loan-consultant-test/overview"

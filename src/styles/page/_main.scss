@@ -1285,7 +1285,49 @@ html.fonts90 {
     max-width: pxToRem(650);
   }
 }
+.max-900 {
+  &.info-customer {
+    max-width: pxToRem(900);
+    @media (min-width: 768px) {
+      .col-md-2 {
+          -ms-flex: 0 0 20%;
+          flex: 0 0 20%;
+          max-width: 20%;
+      }
+    }
+  }
+}
+.max-540 {
+  &.info-customer {
+    max-width: pxToRem(540);
+  }
+}
 .fromHomeLoan2 {
+  .customer-select .customSelect__control {
+    height: 3.4375rem; 
+    border-radius: 0.4375rem;
+    @media (min-width: 768px) {
+      height: 3.75rem;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+      .customer-select .customSelect__menu {
+          max-width: 100%;
+          .customSelect__option {
+            font-size: 19px;
+            padding: 0.3rem 0.9375rem;
+          }
+      }
+  }
+  @media screen and (max-width: 640px){
+    .checkbox-button {
+      padding: 0.625rem 0.5rem;
+    }
+    .checkbox-button.radius .checkbox .checkbox__label::after {
+        left: 4px;
+        top: 10px;
+    }
+  }
   .btnPrimary {
     &:hover,
     &.active {

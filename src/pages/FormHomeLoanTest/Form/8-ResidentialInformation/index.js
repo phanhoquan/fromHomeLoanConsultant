@@ -1,6 +1,8 @@
 /** @format */
 
 import React, { useMemo, useState } from "react";
+import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
 import Step31 from "./Step31";
@@ -29,6 +31,7 @@ const listNumberYearWorking = {
 
 
 const ResidentialInformation = () => {
+  const history = useHistory();
   let listMenuStep9 = localStorage.getItem("listMenuStep9")
     ? JSON.parse(localStorage.getItem("listMenuStep9"))
     : [];
@@ -187,7 +190,9 @@ const ResidentialInformation = () => {
     window.localStorage.setItem("listMenuStep9", JSON.stringify(step9));
     // eslint-disable-next-line
   }, [fullAddress, fullAddress39A, timeRefinancing, rentalPropertyIncome, incomeProperty38C, investmentProperty38B, timeLiving39B, fullAddress39C, timeLiving39D]);
-
+  const onClickNext = () => {
+    history.push("/refinance-home-loan-consultant-test/InvestmentProperties");
+  };
   return (
     <LifeInsurance
       activeStep={8}
@@ -225,6 +230,15 @@ const ResidentialInformation = () => {
         </>
       ):''
     }
+    <div className="group-btn-footer col d-flex justify-content-center mb-5">
+        <Button
+          className="btnPrimary life wow fadeInUp mt-0 in-progress"
+          type="next"
+          onClick={onClickNext}
+        >
+          NEXT
+        </Button>
+      </div>
     </LifeInsurance>
   );
 };

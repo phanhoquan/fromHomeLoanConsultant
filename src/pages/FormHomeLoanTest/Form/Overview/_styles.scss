@@ -239,7 +239,6 @@ $label-font-size-redo: $default-size * 4;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     overflow: hidden;
-    background-color: #fff;
 }
 .w-0 {
     width: 0 !important;
@@ -300,6 +299,7 @@ $label-font-size-redo: $default-size * 4;
         margin: 0;
         color: #ffffff;
         word-break: break-all;
+        white-space: pre-line;
      }
      .table-label {
         width: 45%;
@@ -307,12 +307,14 @@ $label-font-size-redo: $default-size * 4;
         text-align: center;
         border-right: 0;
         border-top: 0;
+        white-space: pre-line;
      }
      .table-content {
          width: 55%;
          border: 0.2px solid #88bbff;
          border-right: 0;
          border-top: 0;
+         white-space: pre-line;
      }
   }
   .table-body {
@@ -347,34 +349,36 @@ $label-font-size-redo: $default-size * 4;
             margin: 0;
             color: #212121;
             min-height: 57px;
+            white-space: pre-line;
          }
     }
  }
     @media screen and(max-width: 800px) {
         .table-header {
             p {
-               padding: 10px 5px;
-               font-size: 14px;
+                padding: 10px 5px;
+                font-size: 14px;
             }
-         }
-         .table-body {
-           .table-label {
-              p {
-               padding: 10px 5px;
-               font-size: 14px;
-               white-space: normal;
             }
-           }
-           .table-content {
-               p {
-                   padding: 10px 5px;
-                   font-size: 16px;
-                   min-height: 41px;
+            .table-body {
+            .table-label {
+                p {
+                padding: 10px 5px;
+                font-size: 14px;
+                white-space: pre-line;
+            }
+            }
+            .table-content {
+                p {
+                    padding: 10px 5px;
+                    font-size: 16px;
+                    min-height: 41px;
                 }
-           }
+            }
         }
     }
 }
+
 @media screen and(max-width: 800px) {
     .applicants-wrap {
         .table-cell .table-body .table-content {
@@ -393,6 +397,11 @@ $label-font-size-redo: $default-size * 4;
                 }
             }
         }
+    }
+}
+.table-cell.mobile.d-block.d-md-none.mb-3{
+    &:last-child {
+        margin-bottom: 0 !important;
     }
 }
 .no-data {

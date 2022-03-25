@@ -197,16 +197,15 @@ export default function Success() {
           ? types[3]
           : "") || "",//26
 
-      f_1620_car_loan_institution:
-        localStorage.getItem("loan2carLoan") || "", //31,
-      f_1621_car_loan_amount:
-        localStorage.getItem("loan2personalLoanAmount") || "", // 27a,
-      f_1619_joint_applicant_salary:
-        localStorage.getItem("loan2partnersSalary") || "",
-      f_1624_personal_loan_institution:
-        localStorage.getItem("loan2personalLoan") || "", //29
-      f_1625_personal_loan_amount:
-        localStorage.getItem("loan2carLoanAmount") || "", //27b
+          f_1620_car_loan_institution:
+          localStorage.getItem("loan2carLoan") || "", //31,
+        f_1621_car_loan_amount:localStorage.getItem("loan2carLoanAmount") || "", // 32
+        f_1619_joint_applicant_salary:
+          localStorage.getItem("loan2partnersSalary") || "",
+        f_1624_personal_loan_institution:
+          localStorage.getItem("loan2personalLoan") || "", //29
+        f_1625_personal_loan_amount:
+          localStorage.getItem("loan2personalLoanAmount") || "", //30
 
       f_1622_hecs_institution: localStorage.getItem("loan2HECSDebt") || "", //27c
       f_1623_hecs_amount: localStorage.getItem("loan2HECSDebtAmount") || "", // 27c
