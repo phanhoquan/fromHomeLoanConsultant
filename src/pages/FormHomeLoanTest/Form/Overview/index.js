@@ -293,7 +293,7 @@ const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus
   return (
     <div className="page-overview fromHomeLoan2">
         <Header/>
-        <div className="container pb-5">
+        <div id="content-overview" className="container">
            <div className="content-body">
               <div className="refinance-date">
                 Refinance - {currentDate}
@@ -361,21 +361,25 @@ const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus
                 </div>
               </div>
               <div className="title my-3 ml-3">Additional notes</div>
-              <div className="liabilities-top">
-                <textarea
-                    className="form-control noteVale"
-                    value={localStorage.getItem("contentNoteVale")}
-                    onChange={() => {}}
-                    maxLength="500"
-                    disabled
-                    placeholder="Additional notes"
-                />
+              {localStorage.getItem("contentNoteVale") ?(
+                <div className="liabilities-top">
+                    <textarea
+                        className="form-control noteVale"
+                        value={localStorage.getItem("contentNoteVale")}
+                        onChange={() => {}}
+                        maxLength="500"
+                        disabled
+                        placeholder="Additional notes"
+                    />
+                </div>
+              ):''}
             </div>
-            </div>
+        </div>
+        <div className="pb-5">
             <Button
                 className="btnPrimary life min-300 mt-0 w-auto min-h-50"
                 onClick={() => history.go(-1)}
-              >
+                >
                 Go Back
             </Button>
         </div>
