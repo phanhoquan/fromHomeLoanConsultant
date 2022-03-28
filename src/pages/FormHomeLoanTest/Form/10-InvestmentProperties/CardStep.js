@@ -51,7 +51,7 @@ const Step36A = ({
       <Col xs={12}>
       <Row className="info-customer mt-2 position-relative max-540">
             <Col xs={12} className={`text-center ${indexCard === 1? 'mb-4 mb-md-0': '0'}`}>
-              <h3 className="mb-0">Investment properties #{indexCard}</h3>
+              <h3 className="mb-0">Investment property #{indexCard}</h3>
             </Col>
         </Row>
         <Row className="info-customer mt-2 position-relative max-540">

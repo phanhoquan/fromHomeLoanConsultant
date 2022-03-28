@@ -119,25 +119,26 @@
   }
 
   .accordion {
-    .card {
+    .accordion-item {
       border-radius: 0;
       border: 0 !important;
       margin-bottom: 2px;
     }
 
-    .card-header {
+    .accordion-header {
       background-color: #4B5869;
       border: none;
       padding: pxToRem(10) pxToRem(0);
       border-radius: 0 !important;
 
-      .btn-link {
-        padding: 0;
+      .accordion-button {
+        background: transparent !important;
         outline: none;
         width: 100%;
         box-shadow: none;
         text-decoration: none !important;
         padding: 0 pxToRem(70);
+        border: 0 !important;
 
         @media screen and (max-width: 1200px) {
           padding-right: pxToRem(15);
@@ -171,7 +172,7 @@
       }
     }
 
-    .card-body {
+    .accordion-body {
       border: 0;
       padding: 0;
     }
@@ -212,21 +213,21 @@
 
   .contentCollapse {
     .accordion {
-      .card:nth-child(1) .card-header {
+      .accordion-item:nth-child(1) .accordion-header {
         background-image: url("../../images/Home.svg");
         background-size: pxToRem(36);
         background-repeat: no-repeat;
         background-position: left pxToRem(15) center;
       }
 
-      .card:nth-child(2) .card-header {
+      .accordion-item:nth-child(2) .accordion-header {
         background-image: url("../../images/Cart.svg");
         background-size: pxToRem(36);
         background-repeat: no-repeat;
         background-position: left pxToRem(15) center;
       }
 
-      .card:nth-child(3) .card-header {
+      .accordion-item:nth-child(3) .accordion-header {
         background-image: url("../../images/Ticket.svg");
         background-size: pxToRem(30);
         background-repeat: no-repeat;
@@ -234,7 +235,7 @@
       }
 
       @media screen and (max-width: 767px) {
-        .card .card-header {
+        .accordion-item .accordion-header {
           background-position: left pxToRem(10) center !important;
         }
       }
