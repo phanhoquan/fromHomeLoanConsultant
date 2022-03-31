@@ -19,7 +19,7 @@ const Step37 = ({ handleGetLoan2value }) => {
 
   const checkValueCreditCardAmountStatus = (value, key, name ) => {
     let test = false;
-      if(key ==='loanAmount'|| key ==='rentalIncome'){
+      if(key ==='loanAmount'|| key ==='rentalIncome' || key ==='valueOfProperty'){
         test = value ?  (parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
         parseInt(value.replace(/,/gi, ""), 10) <= 10000000): false
       }else{
@@ -103,6 +103,7 @@ const Step37 = ({ handleGetLoan2value }) => {
         [`fixedOrVariableProperty${childrenNumber}`]: "",
         [`addressProperty${childrenNumber}`]: "",
         [`rentalIncomeProperty${childrenNumber}`]: "",
+        [`valueOfProperty${childrenNumber}`]: "",
       });
     } else {
       setValidMessage({
@@ -131,6 +132,7 @@ const Step37 = ({ handleGetLoan2value }) => {
           fixedOrVariable={listItemProperty ? listItemProperty[`fixedOrVariableProperty${i}`] : ""}
           rentalIncome={listItemProperty ? listItemProperty[`rentalIncomeProperty${i}`] : ""}
           address={listItemProperty ? listItemProperty[`addressProperty${i}`] : ""}
+          valueOfProperty={listItemProperty ? listItemProperty[`valueOfProperty${i}`] : ""}
           onUpdateState ={onUpdateState}
         />
       );

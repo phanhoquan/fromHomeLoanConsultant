@@ -1285,16 +1285,9 @@ html.fonts90 {
     max-width: pxToRem(650);
   }
 }
-.max-900 {
+.max-1100 {
   &.info-customer {
-    max-width: pxToRem(900);
-    @media (min-width: 768px) {
-      .col-md-2 {
-          -ms-flex: 0 0 20%;
-          flex: 0 0 20%;
-          max-width: 20%;
-      }
-    }
+    max-width: pxToRem(1150);
   }
 }
 .max-540 {

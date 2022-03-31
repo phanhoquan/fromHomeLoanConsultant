@@ -16,6 +16,11 @@ const ResidentialInformation = () => {
           content: dataStep44?.addressProperty1||''
         },
         {
+          id: 7,
+          title: 'Value Of Property',
+          content: dataStep44?.valueOfProperty1? `$${parseInt(dataStep44?.valueOfProperty1.replace(/,/gi, ""), 10).toLocaleString('en')}`:''
+        },
+        {
           id: 2,
           title: 'Loan Amount',
           content: dataStep44?.loanAmountProperty1? `$${parseInt(dataStep44?.loanAmountProperty1.replace(/,/gi, ""), 10).toLocaleString('en')}`:''
@@ -50,6 +55,11 @@ const ResidentialInformation = () => {
           content: dataStep44?.addressProperty2||''
         },
         {
+          id: 7,
+          title: 'Value Of Property',
+          content: dataStep44?.valueOfProperty2? `$${parseInt(dataStep44?.valueOfProperty2.replace(/,/gi, ""), 10).toLocaleString('en')}`:''
+        },
+        {
           id: 2,
           title: 'Loan Amount',
           content: dataStep44?.loanAmountProperty2? `$${parseInt(dataStep44?.loanAmountProperty2.replace(/,/gi, ""), 10).toLocaleString('en')}`:''
@@ -82,6 +92,11 @@ const ResidentialInformation = () => {
           id: 1,
           title: 'Investment property \n 3 Address',
           content: dataStep44?.addressProperty3||''
+        },
+        {
+          id: 7,
+          title: 'Value Of Property',
+          content: dataStep44?.valueOfProperty3? `$${parseInt(dataStep44?.valueOfProperty3.replace(/,/gi, ""), 10).toLocaleString('en')}`:''
         },
         {
           id: 2,

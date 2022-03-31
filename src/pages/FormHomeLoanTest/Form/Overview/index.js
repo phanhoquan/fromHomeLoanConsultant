@@ -91,7 +91,7 @@ const applicants1 = [
     {
         id: 5,
         name: 'Residential status',
-        content: 'N/A'
+        content: localStorage.getItem("livingSituation41E")
     },
     {
         id: 6,
@@ -158,7 +158,7 @@ const applicants2 = [
     {
         id: 5,
         name: 'Residential status',
-        content: 'N/A'
+        content: localStorage.getItem("livingSituation41E")
     },
     {
         id: 6,

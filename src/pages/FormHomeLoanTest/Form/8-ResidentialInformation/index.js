@@ -7,6 +7,7 @@ import LifeInsurance from "../../index";
 
 import Step31 from "./Step31";
 import Step38B from "./Step38B";
+import Step41E from "./Step41E";
 // import Step38C from "./Step38C";
 import Step32 from "./Step32";
 import Step39B from "./Step39B";
@@ -47,7 +48,7 @@ const ResidentialInformation = () => {
     rentalPropertyIncome: localStorage.getItem("rentalPropertyIncome") || "",
     investmentProperty38B: localStorage.getItem("investmentProperty38B") || "",
     incomeProperty38C: localStorage.getItem("incomeProperty38C") || "",
-
+    livingSituation41E: localStorage.getItem("livingSituation41E") || "",
     fullAddress39A: localStorage.getItem("loan2fullAddress39A") || "",
     fullAddress39C: localStorage.getItem("loan2fullAddress39C") || "",
     timeLiving39D: localStorage.getItem("timeLiving39D") || "",
@@ -69,6 +70,7 @@ const ResidentialInformation = () => {
       localStorage.setItem("timeLiving39B", "");
       localStorage.setItem("rentalPropertyIncome", "");
       localStorage.setItem("timeLiving39D", "");
+      localStorage.setItem("timeLiving39D", "");
       setLoan2value({
         ...loan2value,
         investmentProperty38B: value,
@@ -77,7 +79,8 @@ const ResidentialInformation = () => {
         fullAddress39A:'',
         timeLiving39B: '',
         rentalPropertyIncome:'',
-        timeLiving39D: ''
+        timeLiving39D: '',
+        livingSituation41E:''
       });
     }
     if (name ==="timeLiving39B" && listNumberYearWorking[name] < 3){
@@ -105,7 +108,8 @@ const ResidentialInformation = () => {
     fullAddress39A,
     timeLiving39B,
     fullAddress39C,
-    timeLiving39D
+    timeLiving39D,
+    livingSituation41E
   } = loan2value;
   const step9 = [
     {
@@ -135,45 +139,53 @@ const ResidentialInformation = () => {
     {
       id: 4,
       question: `${
-        fullAddress39A
-          ? "41a. What is your current living address?"
+        rentalPropertyIncome
+          ? "41. How much rental income do you have on this property?"
           : ""
       }`,
     },
     {
       id: 5,
       question: `${
-        timeLiving39B
-          ? "41b. How long have you been living at this address for?"
+        fullAddress39A
+          ? "42a. What is your current living address?"
           : ""
       }`,
     },
     {
       id: 6,
       question: `${
-        fullAddress39C
-          ? "41c. Since you have less than 3 years living history at your current address, where were you previously living?"
+        timeLiving39B
+          ? "42b. How long have you been living at this address for?"
           : ""
       }`,
     },
     {
       id: 7,
       question: `${
-        timeLiving39D
-          ? "41d. How long were you living at that address for?"
+        fullAddress39C
+          ? "42c. Since you have less than 3 years living history at your current address, where were you previously living?"
           : ""
       }`,
     },
     {
       id: 8,
       question: `${
-        rentalPropertyIncome
-          ? "42. How much rental income do you have on this property?"
+        timeLiving39D
+          ? "42d. How long were you living at that address for?"
           : ""
       }`,
     },
     {
       id: 9,
+      question: `${
+        livingSituation41E
+          ? "42e. What is your current living situation?"
+          : ""
+      }`,
+    },
+    {
+      id: 10,
       question: `${
         timeRefinancing
           ? "43. What kind of time frame are you thinking of refinancing?"
@@ -184,12 +196,12 @@ const ResidentialInformation = () => {
 
   useMemo(() => {
     if (fullAddress || fullAddress39A || rentalPropertyIncome || incomeProperty38C ||
-      investmentProperty38B || timeLiving39B || fullAddress39C || timeLiving39D) {
+      investmentProperty38B || timeLiving39B || fullAddress39C || timeLiving39D ||livingSituation41E) {
       setDataListMenuStep9(step9);
     }
     window.localStorage.setItem("listMenuStep9", JSON.stringify(step9));
     // eslint-disable-next-line
-  }, [fullAddress, fullAddress39A, timeRefinancing, rentalPropertyIncome, incomeProperty38C, investmentProperty38B, timeLiving39B, fullAddress39C, timeLiving39D]);
+  }, [fullAddress, fullAddress39A, timeRefinancing, rentalPropertyIncome, incomeProperty38C, investmentProperty38B, timeLiving39B, fullAddress39C, timeLiving39D||livingSituation41E]);
   const onClickNext = () => {
     history.push("/refinance-home-loan-consultant-test/InvestmentProperties");
   };
@@ -201,6 +213,10 @@ const ResidentialInformation = () => {
     >
       <Step31 handleGetLoan2value={handleGetLoan2value} />
       <Step38B handleGetLoan2value={handleGetLoan2value} />
+      { investmentProperty38B === types[2] ?(
+        <Step32B handleGetLoan2value={handleGetLoan2value} />
+      ):''}
+
       {investmentProperty38B ? (
         <>
           { investmentProperty38B !== types[2] ?(
@@ -212,6 +228,7 @@ const ResidentialInformation = () => {
                   <Step39D handleGetLoan2value={handleGetLoan2value} />
                 </>
               ):""}
+              <Step41E handleGetLoan2value={handleGetLoan2value} />
               <Step33 handleGetLoan2value={handleGetLoan2value} />
             </>
           ):
@@ -224,7 +241,7 @@ const ResidentialInformation = () => {
                   <Step39D handleGetLoan2value={handleGetLoan2value} />
                 </>
               ):""}
-            <Step32B handleGetLoan2value={handleGetLoan2value} />
+              <Step41E handleGetLoan2value={handleGetLoan2value} />
           </>
           }
         </>

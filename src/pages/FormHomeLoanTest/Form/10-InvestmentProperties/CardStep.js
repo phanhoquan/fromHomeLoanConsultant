@@ -35,6 +35,7 @@ const Step36A = ({
   handleRemoveItem,
   fixedOrVariable,
   onUpdateState,
+  valueOfProperty,
   setFullAddress
 }) => {
   const fullAddressRef1 = useRef(null);
@@ -91,7 +92,29 @@ const Step36A = ({
             ):''}
           </Col>
         </Row>
-        <Row className="info-customer mt-2 position-relative max-900">
+        <Row className="info-customer mt-2 position-relative max-1100">
+        <Col xs={6} md={2} className="wForm-input mb-2">
+            <InputNumber
+                inputMode="numeric"
+                options={{
+                  numericOnly: true,
+                  numeral: true,
+                  numeralDecimalMark: "",
+                  delimiter: ",",
+                  numeralThousandsGroupStyle: "thousand",
+                }}
+                maxLength="10"
+                onChange={(e) =>
+                  onKeyUpHandle(e.target.value, `valueOfProperty${nameCard}${indexCard}`)
+                }
+                customClassLabel={valueOfProperty ? "active" : ""}
+                label="Value of property"
+                value={valueOfProperty}
+                id={`valueOfProperty${nameCard}${indexCard}`}
+                customClassWrap="five"
+                onBlur={() => handleBlur(valueOfProperty, 'valueOfProperty', `valueOfProperty${nameCard}${indexCard}`)}
+              />
+          </Col>
           <Col xs={6} md={2} className="wForm-input mb-2">
             <InputNumber
                 inputMode="numeric"
