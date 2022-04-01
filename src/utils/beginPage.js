@@ -31,8 +31,8 @@ export const redirectTo = (url) => {
 const removeAllItem = () => {
   const except = ["isLogin", "password", "userName"];
   const allItems = Object.keys(localStorage);
-  // for (const item of allItems) {
-  //   if (except.includes(item)) continue;
-  //   localStorage.removeItem(item);
-  // }
+  for (const item of allItems) {
+    if (except.includes(item)) continue;
+    localStorage.removeItem(item);
+  }
 };
