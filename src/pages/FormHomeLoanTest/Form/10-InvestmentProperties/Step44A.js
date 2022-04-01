@@ -132,7 +132,7 @@ const Step37 = ({ handleGetLoan2value }) => {
           fixedOrVariable={listItemProperty ? listItemProperty[`fixedOrVariableProperty${i}`] : ""}
           rentalIncome={listItemProperty ? listItemProperty[`rentalIncomeProperty${i}`] : ""}
           address={listItemProperty ? listItemProperty[`addressProperty${i}`] : ""}
-          valueOfProperty={listItemProperty ? listItemProperty[`valueOfProperty${i}`] : ""}
+          valueOfProperty={listItemProperty ? listItemProperty[`valueOfPropertyProperty${i}`] : ""}
           onUpdateState ={onUpdateState}
         />
       );
