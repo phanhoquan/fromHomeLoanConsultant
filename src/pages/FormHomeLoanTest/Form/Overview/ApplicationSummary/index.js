@@ -11,13 +11,12 @@ import image6 from "../images/bank.png"
 const ApplicationSummary = () => {
     const valueOfProperty = localStorage.getItem("valueOfProperty");
     const loanAmount = localStorage.getItem("existingMortgageAmount");
- let currentRate = "";
+
+    let currentRate = "";
     if(localStorage.getItem("loan2valueInterestRate")) {
         currentRate = `${localStorage.getItem("loan2valueInterestRate")}%`
     }
-   if(localStorage.getItem("loan2valueInterestRate2Variable")){
-     currentRate = `${localStorage.getItem("loan2valueInterestRate2Variable")}%`
-    }
+
     if(localStorage.getItem("loan2valueInterestRate2Variable")){
         currentRate = `${localStorage.getItem("loan2valueInterestRate2Variable")}%`
     }

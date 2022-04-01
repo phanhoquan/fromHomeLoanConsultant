@@ -83,7 +83,7 @@ const LoanInformation = () => {
       id: 2,
       question: `${
         loan2currentLoanStatus
-          ? "2. Is the loan you currently have Fixed, Variable or Split?"
+          ? "2. Is the loan you currently have Fixed or Variable?"
           : ""
       }`,
     },

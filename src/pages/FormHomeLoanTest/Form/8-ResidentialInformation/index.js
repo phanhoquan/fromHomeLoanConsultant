@@ -228,8 +228,6 @@ const ResidentialInformation = () => {
                   <Step39D handleGetLoan2value={handleGetLoan2value} />
                 </>
               ):""}
-              <Step41E handleGetLoan2value={handleGetLoan2value} />
-              <Step33 handleGetLoan2value={handleGetLoan2value} />
             </>
           ):
           <>
@@ -241,9 +239,10 @@ const ResidentialInformation = () => {
                   <Step39D handleGetLoan2value={handleGetLoan2value} />
                 </>
               ):""}
-              <Step41E handleGetLoan2value={handleGetLoan2value} />
           </>
           }
+          <Step41E handleGetLoan2value={handleGetLoan2value} />
+          <Step33 handleGetLoan2value={handleGetLoan2value} />
         </>
       ):''
     }

@@ -13,7 +13,17 @@ const ResidentialInformation = () => {
   ? JSON.parse(localStorage.getItem("listItemProperty"))
   : {};
   const investmentProperty38B = localStorage.getItem("investmentProperty38B") ||''; // 40B
-  const rentalPropertyIncome = localStorage.getItem("rentalPropertyIncome")? `$${parseInt(localStorage.getItem("rentalPropertyIncome")).toLocaleString('en')}`:''; // 41
+  const valueOfProperty = localStorage.getItem("valueOfProperty")? `$${parseInt(localStorage.getItem("valueOfProperty")).toLocaleString('en')}`:''; // 1
+  const existingMortgageAmount = localStorage.getItem("existingMortgageAmount")? `$${parseInt(localStorage.getItem("existingMortgageAmount")).toLocaleString('en')}`:''; // 1
+  
+  let currentRate = "";
+  if(localStorage.getItem("loan2valueInterestRate")) {
+    currentRate = `${localStorage.getItem("loan2valueInterestRate")}%`
+  }
+  if(localStorage.getItem("loan2valueInterestRate2Variable")){
+    currentRate = `${localStorage.getItem("loan2valueInterestRate2Variable")}%`
+  }
+
   const dataList =[
     {
       list: [
@@ -145,32 +155,32 @@ const ResidentialInformation = () => {
         {
           id: 7,
           title: 'Value Of Property',
-          content: rentalPropertyIncome // 41a
+          content: valueOfProperty // 41a
         },
         {
           id: 2,
           title: 'Loan Amount',
-          content: localStorage.getItem("loan2fullAddress39A")||''// 42a 
+          content: existingMortgageAmount // 1
         },
         {
           id: 3,
           title: 'Interest Rate',
-          content: localStorage.getItem("timeLiving39B")||'' // 42b
+          content: currentRate || '' // 3
         },
         {
           id: 4,
           title: 'Lender',
-          content: localStorage.getItem("loan2fullAddress39C")||''// 42c
+          content: localStorage.getItem("currentLender")||''// 1
         },
         {
           id: 5,
           title: 'Loan Type',
-          content: localStorage.getItem("timeLiving39D") ||'',// 42D
+          content: localStorage.getItem("loan2currentLoanStatus") ||'',// 2
         },
         {
           id: 6,
           title: 'Rental Income',
-          content: localStorage.getItem("livingSituation41E") ||''// 42e
+          content: localStorage.getItem("rentalPropertyIncome")? `$${parseInt(localStorage.getItem("rentalPropertyIncome")).toLocaleString('en')}`:''
         }
       ]
     },

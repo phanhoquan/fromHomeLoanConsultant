@@ -460,7 +460,10 @@ $label-font-size-redo: $default-size * 4;
         .table-body {
           width: 100%; 
           .table-label {
-            width: 100%;
+            width: 80%;
+            @media screen and(min-width: 800px) {
+              width: 100%;
+            }
              p {
               font-size: 14px;
            }

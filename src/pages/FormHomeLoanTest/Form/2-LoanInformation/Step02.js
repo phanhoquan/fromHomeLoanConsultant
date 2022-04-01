@@ -27,8 +27,7 @@ const Step02 = ({ handelGetLoan2currentLoanStatus }) => {
           <Row>
             <Col xs={12} className="text-center mt-3">
               <h2 className="mb-4">
-                2. Is the loan you currently have Fixed,{" "}
-                <br className="d-block" /> Variable or Split?{" "}
+                2. Is the loan you currently have Fixed or Variable?
               </h2>
             </Col>
             <Col xs={12}>
