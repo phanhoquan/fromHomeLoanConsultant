@@ -69,14 +69,14 @@ const ResidentialInformation = () => {
         <div className={`table-cell pc d-none d-md-block ${investmentProperty38B ===types[1]?'':'opacity-03'}`} key={index}>
             <div className="table-header d-flex">
               {item.list.map((subitem, subIndex) =>
-                <div className={`table-label text-left ${subitem.content.trim() ? '':'disable2'}`} key={subIndex}>
+                <div className={`table-label text-left ${subitem.content?.trim() ? '':'disable2'}`} key={subIndex}>
                   <p>{subitem.title}</p>
                 </div>
               )}
             </div>
             <div className="table-body d-flex">
               {item.list.map((subitem, subIndex) =>
-                <div className={`table-content ${subIndex < 6?'border-right-0':''} ${subitem.content.trim() ? '':'disable2'}`} key={subIndex}>
+                <div className={`table-content ${subIndex < 6?'border-right-0':''} ${subitem?.content.trim() ? '':'disable2'}`} key={subIndex}>
                   <p>{subitem.content}</p>
                 </div>
               )}
@@ -87,10 +87,10 @@ const ResidentialInformation = () => {
         <div className="table-cell mobile d-block d-md-none mb-3" key={index}>
            {item.list.map((subitem, subIndex) =>
             <div className={`table-body d-flex ${investmentProperty38B ===types[1]?'':'opacity-03'}`} key={subIndex}>
-                <div className={`table-label bg-blue ${subitem.content.trim() ? '':'disable2'}`}>
+                <div className={`table-label bg-blue ${subitem?.content?.trim() ? '':'disable2'}`}>
                   <p>{subitem.title}</p>
                 </div>
-                <div className={`table-content ${subIndex ===0 ?'border-top':''} ${subitem.content.trim() ? '':'disable2'}`}>
+                <div className={`table-content ${subIndex ===0 ?'border-top':''} ${subitem?.content?.trim() ? '':'disable2'}`}>
                   <p>{subitem.content}</p>
                 </div>
             </div>

@@ -38,14 +38,14 @@ const data =[
         <div className="table-cell pc d-none d-md-block">
             <div className="table-header d-flex">
               {data.map((item, index) =>
-                <div className={`table-label text-left ${item.content.trim() ? '':'disable2'}`} key={index}>
+                <div className={`table-label text-left ${item.content?.trim() ? '':'disable2'}`} key={index}>
                   <p>{item.title}</p>
                 </div>
               )}
             </div>
             <div className="table-body d-flex">
               {data.map((item, index) =>
-                <div className={`table-content ${index > 0?' border-left-0':''} ${item.content.trim() ? '':'disable2'}`} key={index}>
+                <div className={`table-content ${index > 0?' border-left-0':''} ${item.content?.trim() ? '':'disable2'}`} key={index}>
                   <p>{item.content}</p>
                 </div>
               )}
@@ -54,10 +54,10 @@ const data =[
         <div className="table-cell mobile d-block d-md-none">
             {data.map((item, index) =>
               <div className="table-body d-flex" key={index}>
-                <div className={`table-label bg-blue ${item.content.trim() ? '':'disable2'}`}>
+                <div className={`table-label bg-blue ${item.content?.trim() ? '':'disable2'}`}>
                   <p>{item.title}</p>
                 </div>
-                <div className={`table-content ${index === 0? 'border-top':''} ${item.content.trim() ? '':'disable2'}`}>
+                <div className={`table-content ${index === 0? 'border-top':''} ${item.content?.trim() ? '':'disable2'}`}>
                 <p>{item.content}</p>
                 </div>
               </div>
