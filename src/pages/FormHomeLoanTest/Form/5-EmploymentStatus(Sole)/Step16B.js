@@ -15,7 +15,7 @@ const Step16B = ({ handleGetLoan2value }) => {
   const checkYourSalaryStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 1000000;
+      parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
     setYourSalaryValid(Number(test));
     return test;
   };
@@ -69,7 +69,7 @@ const Step16B = ({ handleGetLoan2value }) => {
               </Row>
               {yourSalaryValid === valid.INVALID && (
                 <div className="text-error">
-                  <p>Value should be in between $0 - $1,000,000</p>
+                  <p>Value should be in between $0 - $10,000,000</p>
                 </div>
               )}
             </Col>

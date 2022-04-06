@@ -12,6 +12,7 @@ import Liabilities2 from "./Liabilities/index2"
 import Assets from "./Assets"
 import ResidentialInformation from "./ResidentialInformation"
 import InvestmentProperties from "./ResidentialInformation/index2"
+import OwnerOccupiedPropertyInformation from "./ResidentialInformation/index3"
 import SelfEmployment from "./SelfEmployment"
 import "./_styles.scss"
 
@@ -336,6 +337,12 @@ const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus
               <div className="liabilities-top">
                 <div className="liabilities">
                     <ResidentialInformation/>
+                </div>
+              </div>
+              <div className="title my-3 ml-3"> Owner Occupied Property Information</div>
+              <div className="liabilities-top">
+                <div className="liabilities">
+                    <OwnerOccupiedPropertyInformation/>
                 </div>
               </div>
               <div className="title my-3 ml-3">Investment Properties</div>

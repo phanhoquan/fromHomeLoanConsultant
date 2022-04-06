@@ -4,13 +4,12 @@ import React from "react";
 
 const ResidentialInformation = () => {
 
-const loan2fullAddress = localStorage.getItem("loan2fullAddress39A")||''; // 40a
 const investmentProperty38B = localStorage.getItem("investmentProperty38B") ||''; // 40B
 
 const data =[
   {
     title: 'Current living address',
-    content: localStorage.getItem("loan2fullAddress39A") || loan2fullAddress || '' // 42a
+    content: localStorage.getItem("loan2fullAddress39A") || localStorage.getItem("loan2fullAddress") // 42a
   },
   {
     title: 'Kind Of Property',
