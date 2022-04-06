@@ -32,17 +32,17 @@ const ResidentialInformation = () => {
         {
           id: 7,
           title: 'Value Of Property',
-          content: valueOfProperty,
+          content: valueOfProperty||'',
         },
         {
           id: 2,
           title: 'Loan Amount',
-          content: existingMortgageAmount
+          content: existingMortgageAmount||''
         },
         {
           id: 3,
           title: 'Interest Rate',
-          content: currentRate
+          content: currentRate||''
         },
         {
           id: 4,
@@ -57,7 +57,7 @@ const ResidentialInformation = () => {
         {
           id: 6,
           title: 'Residential Status',
-          content: localStorage.getItem("livingSituation41E"),
+          content: localStorage.getItem("livingSituation41E")||'',
         }
       ]
     },
@@ -76,7 +76,7 @@ const ResidentialInformation = () => {
             </div>
             <div className="table-body d-flex">
               {item.list.map((subitem, subIndex) =>
-                <div className={`table-content ${subIndex < 6?'border-right-0':''} ${subitem?.content.trim() ? '':'disable2'}`} key={subIndex}>
+                <div className={`table-content ${subIndex < 6?'border-right-0':''} ${subitem?.content?.trim() ? '':'disable2'}`} key={subIndex}>
                   <p>{subitem.content}</p>
                 </div>
               )}
