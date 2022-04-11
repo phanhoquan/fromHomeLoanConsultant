@@ -19,10 +19,9 @@ const Step09 = ({ handleGetLoan2value }) => {
       ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
       : null
   );
-  const [childrenNumber, setChildrenNumber] = useState(localStorage.getItem("loan2childrenNumber")? parseInt(localStorage.getItem("loan2childrenNumber", 10)):2);
+  const [childrenNumber, setChildrenNumber] = useState(localStorage.getItem("loan2childrenNumber") !=='0' ? parseInt(localStorage.getItem("loan2childrenNumber", 10)):2);
   const [chillApplicantAgeValid, setChillApplicantAgeValid] = useState({});
   const [validMessage, setValidMessage] = useState({});
-
   const checkChillApplicantAgeStatus = (amount, name) => {
     const originAmount = amount && Number(amount.replace(/[^0-9\\.-]+/g, ""));
     if (!originAmount) {

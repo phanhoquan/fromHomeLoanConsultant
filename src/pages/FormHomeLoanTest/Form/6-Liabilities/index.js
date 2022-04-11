@@ -10,7 +10,7 @@ import Step27 from "./Step27";
 import Step27A from "./Step27a";
 import Step27B from "./Step27B";
 import Step32A from "./Step32a";
-// import Step27C from "./Step27C";
+import Step27C from "./Step27C";
 
 export const types = {
   1: "Personal Loans",
@@ -170,13 +170,19 @@ const Liabilities = () => {
       }`,
     },
     {
-      id: 6,
+      id: 7,
       question: `${
         carLoanMonthly ? "32a. How much is your car loan monthly repayment?" : ""
       }`,
     },
     {
-      id: 7,
+      id: 8,
+      question: `${
+        carLoanMonthly ? "33. Which institution is the HECS debt with?" : ""
+      }`,
+    },
+    {
+      id: 9,
       question: `${
         HECSDebtAmount
           ? "34. What is the amount left owing on your HECS debt amount?"
@@ -240,11 +246,11 @@ const Liabilities = () => {
       ) : (
         ""
       )}
-      {/* {!!personalLoansStatus?.includes(types[3]) ? (
+      {!!personalLoansStatus?.includes(types[3]) ? (
         <Step27C handleGetLoan2value={handleGetLoan2value} />
       ) : (
         ""
-      )} */}
+      )}
       <div className="group-btn-footer col d-flex justify-content-center mb-5">
         <Button
           className="btnPrimary life wow fadeInUp mt-0 in-progress"
