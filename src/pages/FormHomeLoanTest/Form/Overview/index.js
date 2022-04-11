@@ -23,7 +23,8 @@ const Overviews = () => {
 ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
 : {};
 
-const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge):[]
+const ages = chillApplicantAge && chillApplicantAge.name1?Object.values(chillApplicantAge)?.filter(number=>number):[]
+
 let employmentStatus = localStorage.getItem("loan2employmentStatus");
 let temEmploymentStatus = ''
 const status = 'Full Time Part Time Casual Unemployed Maternal Leave';
@@ -301,6 +302,7 @@ const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus
               </div>
               <ApplicationSummary/>
               <div className="title mb-3 ml-3">Loan Purpose: <span style={{fontWeight: '400'}}>{localStorage.getItem("textLoanPurpose")||''}</span></div>
+              <div className="title mb-3 ml-3">Time Frame: <span style={{fontWeight: '400'}}>{localStorage.getItem("loan2timeRefinancing")||''}</span></div>
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">

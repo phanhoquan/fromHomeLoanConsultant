@@ -14,7 +14,6 @@ import Step39B from "./Step39B";
 import Step39D from "./Step39D";
 import Step39C from "./Step39C";
 import Step32B from "./Step32B";
-import Step33 from "./Step33";
 
 export const types = {
   1: 'Owner Occupied',
@@ -44,7 +43,6 @@ const ResidentialInformation = () => {
   const [loan2value, setLoan2value] = useState({
     fullAddress: localStorage.getItem("loan2fullAddress") || "",
     timeLiving39B: localStorage.getItem("timeLiving39B") || "",
-    timeRefinancing: localStorage.getItem("loan2timeRefinancing") || "",
     rentalPropertyIncome: localStorage.getItem("rentalPropertyIncome") || "",
     investmentProperty38B: localStorage.getItem("investmentProperty38B") || "",
     incomeProperty38C: localStorage.getItem("incomeProperty38C") || "",
@@ -101,7 +99,6 @@ const ResidentialInformation = () => {
 
   const {
     fullAddress,
-    timeRefinancing,
     rentalPropertyIncome,
     incomeProperty38C,
     investmentProperty38B,
@@ -184,14 +181,6 @@ const ResidentialInformation = () => {
           : ""
       }`,
     },
-    {
-      id: 10,
-      question: `${
-        timeRefinancing
-          ? "43. What kind of time frame are you thinking of refinancing?"
-          : ""
-      }`,
-    },
   ];
 
   useMemo(() => {
@@ -201,7 +190,7 @@ const ResidentialInformation = () => {
     }
     window.localStorage.setItem("listMenuStep9", JSON.stringify(step9));
     // eslint-disable-next-line
-  }, [fullAddress, fullAddress39A, timeRefinancing, rentalPropertyIncome, incomeProperty38C, investmentProperty38B, timeLiving39B, fullAddress39C, timeLiving39D||livingSituation41E]);
+  }, [fullAddress, fullAddress39A, rentalPropertyIncome, incomeProperty38C, investmentProperty38B, timeLiving39B, fullAddress39C, timeLiving39D||livingSituation41E]);
   const onClickNext = () => {
     history.push("/refinance-home-loan-consultant-test/InvestmentProperties");
   };
@@ -242,7 +231,6 @@ const ResidentialInformation = () => {
           </>
           }
           <Step41E handleGetLoan2value={handleGetLoan2value} />
-          <Step33 handleGetLoan2value={handleGetLoan2value} />
         </>
       ):''
     }

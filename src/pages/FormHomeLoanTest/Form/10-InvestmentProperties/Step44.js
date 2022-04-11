@@ -1,50 +1,94 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { CheckboxButton } from "../../../../Components/CheckBox3";
+import InputCustom2 from "../../../../Components/InputCustom2";
+import useOnClickOutside from "../../../../hooks/useClickOutSide";
 
-export const types = {
-  1: "YES",
-  2: "NO",
-};
+const listHomeLoan = [
+  "As soon as possible",
+  "Within the next week",
+  "Within the next month",
+  "Within 6 Months",
+  "6 months or more",
+];
 
-const Step44 = ({ handleGetLoan2value }) => {
-  const [investmentProperties, setInvestmentProperties] = useState(
-    localStorage.getItem("loan2investmentProperties") || ""
+const Step41 = ({ handleGetLoan2value }) => {
+  const timeRefinancingRef = useRef(null);
+  const wrapperInfoRef = useRef();
+  const [timeRefinancing, setTimeRefinancing] = useState(
+    localStorage.getItem("loan2timeRefinancing") || ""
   );
+  const [isShowModal, setIsShowModal] = useState(false);
 
-  const onCheck = (option) => {
-    setInvestmentProperties(option);
-    window.localStorage.setItem("loan2investmentProperties", option);
-    handleGetLoan2value("investmentProperties", option);
+  useOnClickOutside(wrapperInfoRef, () => {
+    setIsShowModal(false);
+  });
+
+  const onClickSelect = (value) => {
+    setTimeRefinancing(value);
+    setIsShowModal(false);
+    localStorage.setItem("loan2timeRefinancing", value);
+    handleGetLoan2value("timeRefinancing", value);
   };
 
+  useMemo(() => {
+    setTimeRefinancing(localStorage.getItem("loan2timeRefinancing"));
+
+    // eslint-disable-next-line
+  }, [timeRefinancing]);
+
   return (
-    <section className="formContent-step-first mb-3">
+    <section
+      className={`formContent-step-second formContent-life-insurance ${
+        isShowModal ? "mb-5 pb-50" : "mb-5"
+      }`}
+    >
       <Container>
         <div>
           <Row>
-            <Col xs={12} className="text-center mt-3">
-              <h2 className="mb-4">44. Do you have any other investment properties?</h2>
+            <Col xs={12} className="text-center">
+              <h2 className="mb-3">
+                44. What kind of time frame are you thinking of refinancing?
+              </h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2 mb-2">
-                <Col xs={6} className="wForm-input">
-                  <CheckboxButton
-                    checkBox={investmentProperties === types[1]}
-                    onClick={() => onCheck(types[1])}
-                    name={types[1]}
-                    classContainer="radius"
+                <Col
+                  xs={12}
+                  className="wForm-input pl-0 bankProviders"
+                  ref={wrapperInfoRef}
+                >
+                  <InputCustom2
+                    onFocus={() => {
+                      setIsShowModal(true);
+                    }}
+                    onChange={() => () => {}}
+                    label="Select your relationship with the applicant"
+                    value={timeRefinancing}
+                    id="timeRefinancing"
+                    customClassLabel={timeRefinancing ? "active" : ""}
+                    iconArrow
+                    customClassWrap=" five"
+                    innerRef={timeRefinancingRef}
+                    readOnly
                   />
-                </Col>
-                <Col xs={6} className="wForm-input">
-                  <CheckboxButton
-                    onClick={() => onCheck(types[2])}
-                    checkBox={investmentProperties === types[2]}
-                    name={types[2]}
-                    classContainer="radius"
-                  />
+                  <ul
+                    className={`list-occupation ${
+                      isShowModal ? "d-block" : "d-none"
+                    }`}
+                  >
+                    {listHomeLoan &&
+                      listHomeLoan.map((name, index) => (
+                        <li
+                          key={index + 1}
+                          onClick={() => onClickSelect(name)}
+                          className={timeRefinancing === name ? "active" : ""}
+                        >
+                          {name}
+                        </li>
+                      ))}
+                  </ul>
                 </Col>
               </Row>
             </Col>
@@ -55,4 +99,4 @@ const Step44 = ({ handleGetLoan2value }) => {
   );
 };
 
-export default Step44;
+export default Step41;

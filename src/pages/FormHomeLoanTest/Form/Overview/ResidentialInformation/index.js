@@ -4,17 +4,17 @@ import React from "react";
 
 const ResidentialInformation = () => {
 
-const investmentProperty38B = localStorage.getItem("investmentProperty38B") ||''; // 40B
+// const investmentProperty38B = localStorage.getItem("investmentProperty38B") ||''; // 40B
 
 const data =[
   {
     title: 'Current living address',
     content: localStorage.getItem("loan2fullAddress39A") || localStorage.getItem("loan2fullAddress") // 42a
   },
-  {
-    title: 'Kind Of Property',
-    content: investmentProperty38B // 40b
-  },
+  // {
+  //   title: 'Kind Of Property',
+  //   content: investmentProperty38B // 40b
+  // },
   {
     title: 'Time living at this address',
     content: localStorage.getItem("timeLiving39B")||""  // 42b
