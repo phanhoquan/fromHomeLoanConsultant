@@ -19,7 +19,7 @@ const Step11 = ({ handleGetLoan2value, otherDependents }) => {
       ? JSON.parse(localStorage.getItem("loan2otherChillApplicantAge"))
       : null
   );
-  const [childrenNumber, setChildrenNumber] = useState(localStorage.getItem("loan2otherChildrenNumber") !=='0'? parseInt(localStorage.getItem("loan2otherChildrenNumber", 10)):2);
+  const [childrenNumber, setChildrenNumber] = useState(localStorage.getItem("loan2otherChildrenNumber") && parseInt(localStorage.getItem("loan2otherChildrenNumber", 10))? parseInt(localStorage.getItem("loan2otherChildrenNumber", 10)):2);
 
   const [otherChillApplicantAgeValid, setOtherChillApplicantAgeValid] =
     useState({});
