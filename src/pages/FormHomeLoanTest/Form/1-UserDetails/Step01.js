@@ -220,7 +220,7 @@ const First = () => {
                       readOnly
                     />
                   </Col>
-                  <Col xs={6} className="wForm-input pr-0">
+                  <Col xs={6} className="wForm-input">
                     <InputCustom2
                       onChange={(e) =>
                         onKeyUpHandle("lastName", e.target.value)
