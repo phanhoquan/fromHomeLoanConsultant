@@ -33,7 +33,7 @@ const dataStep35 = localStorage.getItem("listCreditCard")
 : {};
 
 if (employmentStatus) {
-    if (status.includes(employmentStatus)) {
+    if (status.includes(employmentStatus?.trim())) {
         temEmploymentStatus ="PAYG"
     }else {
         temEmploymentStatus ="Self Employed"
@@ -44,9 +44,8 @@ if (employmentStatus) {
 
 let employmentStatus2 = localStorage.getItem("loan2employmentPartnersWorkingStatus");
 let temEmploymentStatus2 = ''
-
 if (employmentStatus2) {
-    if (status.includes(employmentStatus2)) {
+    if (status.includes(employmentStatus2?.trim())) {
         temEmploymentStatus2 ="PAYG"
     }else {
         temEmploymentStatus2 ="Self Employed"

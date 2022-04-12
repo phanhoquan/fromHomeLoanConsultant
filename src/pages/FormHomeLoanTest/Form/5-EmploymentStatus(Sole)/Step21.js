@@ -61,6 +61,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
       setPartnersOccupation(value.replace(/[0-9]/g, ""));
       if (value?.length >= 2) {
         setIsShowModal(true);
+        window.localStorage.setItem("loan2partnersOccupation", value||'');
       } else {
         setIsShowModal(false);
       }

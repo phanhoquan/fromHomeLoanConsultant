@@ -123,7 +123,7 @@ const SelfEmployment = ({temEmploymentStatus, temEmploymentStatus2}:Props) => {
         <div className="d-block d-md-none">
             {listEmploymentStatus.map((item, index) =>
              <div key={index}>
-                {item.temEmploymentStatus === SelfEmployed? (
+                {item.temEmploymentStatus === SelfEmployed ? (
                     <div className="applicants-wrap SelfEmployment w-100">
                         <div className="table-cell">
                             <div className="table-header d-flex">

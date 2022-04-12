@@ -270,25 +270,31 @@ export default function Success() {
 
       // Property investment 1 // 44
       f_1843_invest_property_1_address: dataStep44?.addressProperty1||'',
-      f_1844_invest_property_1_loan_amount: dataStep44?.loanAmountProperty1||'',
+      f_1844_invest_property_1_loan_amount: dataStep44?.loanAmountProperty1 ? parseInt(dataStep44?.loanAmountProperty1.replace(/,/gi, ""), 10):'',
       f_1845_invest_property_1_interest_rate: dataStep44?.interestRateProperty1||'',
       f_1846_invest_property_1_lender_name: dataStep44?.lenderProperty1||'',
       f_1847_invest_property_1_loan_type: dataStep44?.fixedOrVariableProperty1?.value||'',
-      f_1848_invest_property_1_rental_income: dataStep44?.rentalIncomeProperty1||'',
+      f_1848_invest_property_1_rental_income: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.rentalIncomeProperty1.replace(/,/gi, ""), 10):'',
+      f_1878_invest_property_1_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty1.replace(/,/gi, ""), 10):'',
+      
       // Property investment 2 // 44
       f_1849_invest_property_2_address: dataStep44?.addressProperty2||'',
-      f_1850_invest_property_2_loan_amount: dataStep44?.loanAmountProperty2||'',
+      f_1850_invest_property_2_loan_amount: dataStep44?.loanAmountProperty2 ? parseInt(dataStep44?.loanAmountProperty2.replace(/,/gi, ""), 10):'',
       f_1851_invest_property_2_interest_rate: dataStep44?.interestRateProperty2||'',
       f_1852_invest_property_2_lender_name: dataStep44?.lenderProperty2||'',
       f_1853_invest_property_2_loan_type: dataStep44?.fixedOrVariableProperty2?.value||'',
-      f_1854_invest_property_2_rental_income: dataStep44?.rentalIncomeProperty2||'',
+      f_1854_invest_property_2_rental_income: dataStep44?.rentalIncomeProperty2 ? parseInt(dataStep44?.rentalIncomeProperty2.replace(/,/gi, ""), 10):'',
+      f_1877_invest_property_2_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty2.replace(/,/gi, ""), 10):'',
       // Property investment 3 // 44
       f_1855_invest_property_3_address: dataStep44?.addressProperty3||'',
-      f_1856_invest_property_3_loan_amount: dataStep44?.loanAmountProperty3||'',
+      f_1856_invest_property_3_loan_amount: dataStep44?.loanAmountProperty3 ? parseInt(dataStep44?.loanAmountProperty3.replace(/,/gi, ""), 10):'',
       f_1857_invest_property_3_interest_rate: dataStep44?.interestRateProperty3||'',
       f_1858_invest_property_3_lender_name: dataStep44?.lenderProperty3||'',
       f_1859_invest_property_3_loan_type: dataStep44?.fixedOrVariableProperty3?.value||'',
-      f_1860_invest_property_3_rental_income: dataStep44?.rentalIncomeProperty3||'',
+      f_1860_invest_property_3_rental_income: dataStep44?.rentalIncomeProperty3 ? parseInt(dataStep44?.rentalIncomeProperty3.replace(/,/gi, ""), 10):'',
+
+      f_1876_invest_property_3_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty3.replace(/,/gi, ""), 10):'',
+
 
       cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/refinance-home-loan-consultant-test",
