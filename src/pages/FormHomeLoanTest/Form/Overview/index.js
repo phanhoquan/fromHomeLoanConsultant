@@ -329,16 +329,18 @@ const handleSubmitData = () => {
               <ApplicationSummary/>
               <div className="title mb-3 ml-3">
                   Loan Purpose:
-                  <div className="mt-3">
-                      <InputCustom2
-                        onChange={() => {}}
-                        label="Loan Purpose"
-                        readOnly
-                        value={localStorage.getItem("textLoanPurpose")||''}
-                        id="email-input"
-                        customClassLabel={localStorage.getItem("textLoanPurpose") ? "active" : ""}
-                    />
+                  {localStorage.getItem("textLoanPurpose")? (
+                    <div className="mt-3">
+                        <InputCustom2
+                            onChange={() => {}}
+                            label="Loan Purpose"
+                            readOnly
+                            value={localStorage.getItem("textLoanPurpose")||''}
+                            id="email-input"
+                            customClassLabel={localStorage.getItem("textLoanPurpose") ? "active" : ""}
+                        />
                     </div>
+                  ):''}
                 </div>
               <div className="title mb-3 ml-3">Time Frame: <span style={{fontWeight: '400'}}>{localStorage.getItem("loan2timeRefinancing")||''}</span></div>
               <div className="title mb-3 ml-3">Applicants</div>
