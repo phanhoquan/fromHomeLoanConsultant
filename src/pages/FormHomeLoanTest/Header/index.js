@@ -11,7 +11,7 @@ import imgAuthor from "../../../images/booking.png";
 import imgAuthorWhite from "../../../images/booking-white.png";
 import Modal from "../../Modal/Modal";
 
-const Header = ({ handleSubmit, hiddenAction = false }) => {
+const Header = ({ hiddenAction = false }) => {
   // custom header sticky
   const [isShowModal, setIsShowModal] = useState(false);
   useEffect(() => {
@@ -62,12 +62,6 @@ const Header = ({ handleSubmit, hiddenAction = false }) => {
               >
                 <p>Rob Scozzafava</p>
               </a>
-            </Button>
-            <Button
-              className="btnPrimary life min-150 mt-0 w-auto min-h-50"
-              onClick={handleSubmit}
-            >
-              SUBMIT
             </Button>
             <Button
               className="btnPrimary life width-50 mt-0 w-auto min-h-50 btn-white btnResetWhite"

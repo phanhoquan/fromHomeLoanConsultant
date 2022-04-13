@@ -1,19 +1,27 @@
 /** @format */
 
-import React from "react";
+import React, {useState} from "react";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf'
 import domtoimage from 'dom-to-image';
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { redirectTo } from "../../../../../utils/beginPage";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import imgLogo from "../../../../../images/life/logo.svg";
+import imgReset from "../../../../../images/reload.png";
+import imgResetWhite from "../../../../../images/reload-white.png";
+import Modal from "../../../../Modal/Modal";
 
-const Header = () => {
+const Header = ({handleSubmit}) => {
+  const history = useHistory();
+  const [isShowModal, setIsShowModal] = useState(false);
   const outputPdf = () => {
     exportPDF();
  }
  const exportPDF = () => {
+
    const inputPDF = document.getElementById('content-overview');
    const nameFile  = moment(new Date()).format('DD_MM_YYYY');
     html2canvas(inputPDF)
@@ -35,6 +43,11 @@ const exportPDFMobile = () => {
     });
   }
 
+  const handleReset = () => {
+    redirectTo("/refinance-home-loan-consultant-test");
+    setIsShowModal(false);
+  };
+
   return (
     <>
     <header className="header header-wrap" id="header">
@@ -45,13 +58,19 @@ const exportPDFMobile = () => {
       </div>
       <div className="btn-reset d-flex " style={{ opacity: "1" }}>
         <Button
+            className="btnPrimary min-150 life mt-0 w-auto min-h-50"
+            onClick={() => history.go(-1)}
+            >
+            Go Back
+        </Button>
+        <Button
           className="btnPrimary life d-none d-md-flex min-300 mt-0 w-auto min-h-50"
           onClick={outputPdf}
         >
          Print To PDF 
         </Button>
         <Button
-          className="btnPrimary life min-300 mt-0 w-auto min-h-50"
+          className="btnPrimary d-none d-md-flex life min-300 mt-0 w-auto min-h-50"
           onClick={() => {}}
         >
           Book an appointment
@@ -74,14 +93,74 @@ const exportPDFMobile = () => {
             </a>
           </div>
         </Button>
+        <Button
+          className="btnPrimary d-none d-md-flex life min-150 mt-0 w-auto min-h-50"
+          onClick={handleSubmit}
+        >
+          SUBMIT
+        </Button>
+        <Button
+          className="btnPrimary life width-50 mt-0 w-auto min-h-50 btn-white btnResetWhite"
+          onClick={() => setIsShowModal(true)}
+        >
+          <img
+            src={imgReset}
+            title="Reset"
+            alt=""
+            className="imgResetBlue"
+          />
+          <img
+            src={imgResetWhite}
+            title="Reset"
+            alt=""
+            className="imgResetWhite"
+          />
+        </Button>
       </div>
     </header>
-    <Button
-      className="btnPrimary d-flex d-md-none life mt-4 w-auto min-h-50"
-      onClick={exportPDFMobile}
-    >
-      Print To PDF 
-    </Button>
+    <div className="list-button-mobile d-flex mt-2">
+      <Button
+          className="btnPrimary d-flex d-md-none life min-300 mt-0 w-auto min-h-50"
+          onClick={() => {}}
+          >
+            Book an appointment
+            <div className="listAuthorName">
+              <a
+                className="authorName"
+                target="_blank"
+                rel="noreferrer"
+                href="https://meetings.hubspot.com/bobby-horianto/bobby-horinato-30mins-consultation"
+              >
+                <p>Bobby Horianto</p>
+              </a>
+              <a
+                className="authorName"
+                target="_blank"
+                rel="noreferrer"
+                href="https://meetings.hubspot.com/robert-scozzafava/rob-scozzafava-30mins-consulatation"
+              >
+                <p>Rob Scozzafava</p>
+              </a>
+            </div>
+        </Button>
+        <Button
+          className="btnPrimary d-flex d-md-none life mt-0 w-auto min-h-50"
+          onClick={exportPDFMobile}
+        >
+          Print To PDF 
+        </Button>
+        <Button
+          className="btnPrimary d-flex d-md-none life min-150 mt-0 w-auto min-h-50"
+          onClick={handleSubmit}
+        >
+          SUBMIT
+        </Button>
+    </div>
+    <Modal
+        isShow={isShowModal}
+        handleClose={() => setIsShowModal(false)}
+        handleSubmit={() => handleReset()}
+      />
     </>
   );
 };

@@ -11,7 +11,11 @@ const ModalReset = ({ handleClose, handleSubmit, isShow }: Props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton />
+      <Modal.Header>
+        <button onClick={handleClose} type="button" class="close">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+      </Modal.Header>
       <Modal.Body>
         <h4>WANT TO START OVER?</h4>
         <p>This will clear your answers and start again from the beginning</p>

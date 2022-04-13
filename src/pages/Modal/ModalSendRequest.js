@@ -14,7 +14,11 @@ const ModalSend = ({ handleClose, isShow }: Props) => {
       centered
       className="modalSend"
     >
-      <Modal.Header closeButton />
+      <Modal.Header>
+        <button onClick={handleClose} type="button" class="close">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+      </Modal.Header>
       <Modal.Body>
         <div className="imageSend">
           <img src={imageSend} alt="Send" />

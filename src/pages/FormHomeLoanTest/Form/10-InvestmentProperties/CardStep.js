@@ -147,7 +147,7 @@ const Step36A = ({
                 delimiter: ",",
                 numeralThousandsGroupStyle: "thousand",
               }}
-              maxLength="3"
+              maxLength="4"
               onChange={(e) =>
                 onKeyUpHandle(e.target.value, `interestRate${nameCard}${indexCard}`)
               }

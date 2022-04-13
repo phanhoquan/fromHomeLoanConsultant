@@ -260,3 +260,26 @@ textarea {
 .max-500 {
   max-width: 500px !important;
 }
+@media screen and (max-width: 640px) {
+  .fromHomeLoan.loan-consultant-test {
+    .header-wrap.home-loan {
+      height: auto;
+      .logo .logo__img {
+        position: relative;
+        top: 5px;
+      }
+    }
+    .life-insurance__MainCt.page-main {
+      padding-top: 6.25rem;
+    }
+    .nav-left.style2.open {
+      padding-top: 7rem;
+    }
+    .iconMenuClose {
+      top: 4.75rem;
+    }
+    .iconMenu {
+      top: 3.25rem;
+    }
+  }
+}

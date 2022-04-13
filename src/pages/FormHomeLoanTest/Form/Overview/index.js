@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, {useState} from "react";
 import moment from "moment";
 import { Button } from "react-bootstrap";
 import Header from "./Header";
@@ -14,6 +14,8 @@ import ResidentialInformation from "./ResidentialInformation"
 import InvestmentProperties from "./ResidentialInformation/index2"
 import OwnerOccupiedPropertyInformation from "./ResidentialInformation/index3"
 import SelfEmployment from "./SelfEmployment"
+import Modal from "../../../Modal/ModalSubmit";
+import InputCustom2 from "../../../../Components/InputCustom2";
 import "./_styles.scss"
 
 const Overviews = () => {
@@ -287,20 +289,57 @@ const employment2 = [
         content: 'N/A'
     }
 ]
-
+const [isShowModal, setIsShowModal] = useState(false);
+const [isShowMess, setIsShowMess] = useState(false);
 const loan2jointApplicationStatus =localStorage.getItem("loan2jointApplicationStatus");
 const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus2 ==="PAYG";
+const [isNoteVale, setIsNoteVale] = useState(false);
+const contentNoteVale = localStorage.getItem("contentNoteVale") || ""
+
+const handleSubmit = () => {
+    if (contentNoteVale?.length >= 500) {
+      setIsNoteVale(true);
+      return;
+    }
+    setIsNoteVale(false);
+    setIsShowModal(true);
+  };
+
+const handleSubmitData = () => {
+    if (
+      !localStorage.getItem("loan2lastName") ||
+      !localStorage.getItem("loan2lastName") ||
+      !localStorage.getItem("loan2email")
+    ) {
+      setIsShowMess(true);
+      return;
+    } else {
+      history.push("/refinance-home-loan-consultant-test/step-success");
+    }
+  };
 
   return (
     <div className="page-overview fromHomeLoan2">
-        <Header/>
+        <Header handleSubmit={handleSubmit}/>
         <div id="content-overview" className="container">
            <div className="content-body">
               <div className="refinance-date">
                 Refinance - {currentDate}
               </div>
               <ApplicationSummary/>
-              <div className="title mb-3 ml-3">Loan Purpose: <span style={{fontWeight: '400'}}>{localStorage.getItem("textLoanPurpose")||''}</span></div>
+              <div className="title mb-3 ml-3">
+                  Loan Purpose:
+                  <div className="mt-3">
+                      <InputCustom2
+                        onChange={() => {}}
+                        label="Loan Purpose"
+                        readOnly
+                        value={localStorage.getItem("textLoanPurpose")||''}
+                        id="email-input"
+                        customClassLabel={localStorage.getItem("textLoanPurpose") ? "active" : ""}
+                    />
+                    </div>
+                </div>
               <div className="title mb-3 ml-3">Time Frame: <span style={{fontWeight: '400'}}>{localStorage.getItem("loan2timeRefinancing")||''}</span></div>
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
@@ -391,6 +430,16 @@ const  isEmploymentStatus = temEmploymentStatus ==="PAYG" && temEmploymentStatus
                 Go Back
             </Button>
         </div>
+        <Modal
+            isShow={isShowModal}
+            handleClose={() => {
+            setIsShowMess(false);
+            setIsShowModal(false);
+            }}
+            isShowMess={isShowMess}
+            isNoteVale ={isNoteVale}
+            handleSubmit={() => handleSubmitData()}
+      />
     </div>
   );
 };

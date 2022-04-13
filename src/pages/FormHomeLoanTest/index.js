@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
 import imgMenu from "../../images/menu.png";
@@ -22,7 +22,6 @@ import ResidentialInformation from "./menu/ResidentialInformation";
 import MenuAssets from "./menu/Assets";
 import InvestmentProperties from './menu/InvestmentProperties'
 import Overviews from "./menu/Overview";
-import Modal from "../Modal/ModalSubmit";
 
 export const types = {
   1: "Sole Applicant",
@@ -52,7 +51,6 @@ const HomeLoan = ({
   if (document.body) {
     root.setAttribute("class", "fonts90");
   }
-  const history = useHistory();
 
   let dataListMenuStep1 = localStorage.getItem("listMenuStep1")
     ? JSON.parse(localStorage.getItem("listMenuStep1"))
@@ -87,9 +85,7 @@ const HomeLoan = ({
   let dataListMenuStep11 = localStorage.getItem("listMenuStep11")
   ? JSON.parse(localStorage.getItem("listMenuStep11"))
   : [];
-  const [isNoteVale, setIsNoteVale] = useState(false);
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [isShowMess, setIsShowMess] = useState(false);
+
   const [contentNoteVale, setContentNoteVale] = useState(
     localStorage.getItem("contentNoteVale") || ""
   );
@@ -124,14 +120,6 @@ const HomeLoan = ({
     // eslint-disable-next-line
   }, []);
 
-  const handleSubmit = () => {
-    if (contentNoteVale?.length >= 500) {
-      setIsNoteVale(true);
-      return;
-    }
-    setIsShowModal(true);
-  };
-
   const handleTogglesAddNote = () => {
     setIsShowNoteVale(!isShowNoteVale);
   };
@@ -141,19 +129,6 @@ const HomeLoan = ({
       setIsShowMessSole(false);
     } else {
       setIsShowMessSole(true);
-    }
-  };
-
-  const handleSubmitData = () => {
-    if (
-      !localStorage.getItem("loan2lastName") ||
-      !localStorage.getItem("loan2lastName") ||
-      !localStorage.getItem("loan2email")
-    ) {
-      setIsShowMess(true);
-      return;
-    } else {
-      history.push("/refinance-home-loan-consultant-test/step-success");
     }
   };
 
@@ -178,13 +153,7 @@ const HomeLoan = ({
     if (contentNoteVale?.length >= 500) {
       html = (
         <p className="content-limited mt-2 col-red">
-          Maximum characters exceeded. Remaining 0
-        </p>
-      );
-    }
-    if (isNoteVale && contentNoteVale?.length >= 500) {
-      html = (
-        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded. Remaining 0<br/>
           Maximum characters exceeded in Additional notes
         </p>
       );
@@ -197,8 +166,8 @@ const HomeLoan = ({
       <Helmet>
         <title>Refinance Home Loan Consultant Test</title>
       </Helmet>
-      <div className="wrapper life-insurance fromHomeLoan fromHomeLoan2">
-        <Header handleSubmit={handleSubmit} />
+      <div className="wrapper life-insurance fromHomeLoan fromHomeLoan2 loan-consultant-test">
+        <Header />
         <div className="iconMenu">
           <div
             className="sub-iconMenu"
@@ -425,7 +394,6 @@ const HomeLoan = ({
             value={contentNoteVale}
             onChange={(e) => {
               setContentNoteVale(e.target.value);
-              setIsNoteVale(false);
             }}
             maxLength="500"
             placeholder="Please enter your additional notes here..."
@@ -433,15 +401,6 @@ const HomeLoan = ({
           {renderMess()}
         </div>
       </div>
-      <Modal
-        isShow={isShowModal}
-        handleClose={() => {
-          setIsShowMess(false);
-          setIsShowModal(false);
-        }}
-        isShowMess={isShowMess}
-        handleSubmit={() => handleSubmitData()}
-      />
     </React.Fragment>
   );
 };

@@ -12,7 +12,11 @@ const ModalTerms = ({ handleClose, isShow }: Props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton />
+      <Modal.Header>
+        <button onClick={handleClose} type="button" class="close">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+      </Modal.Header>
       <Modal.Body>
         <h4>Privacy Policy</h4>
         <div className="content-policy">

@@ -7,6 +7,7 @@ const ModalReset = ({
   handleSubmit,
   isShow,
   isShowMess,
+  isNoteVale
 }: Props) => {
   return (
     <Modal
@@ -17,12 +18,23 @@ const ModalReset = ({
       centered
       className="modal-submit"
     >
-      <Modal.Header closeButton />
+      <Modal.Header>
+        <button onClick={handleClose} type="button" class="close">
+          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        </button>
+      </Modal.Header>
       <Modal.Body>
         <h4>Would you like to review the form?</h4>
         {isShowMess ? (
           <p style={{ color: "red" }}>
             You missing the User name & Email. Please check again.
+          </p>
+        ) : (
+          ""
+        )}
+        {isNoteVale && !isShowMess ? (
+          <p style={{ color: "red" }}>
+            Maximum characters exceeded in Additional notes
           </p>
         ) : (
           ""
