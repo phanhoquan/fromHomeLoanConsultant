@@ -79,54 +79,58 @@ const Dashboard = () => {
                 </div>
               </div>
             ) : (
-              <>
-              <div className="content-box">
-                <div
-                  className="item "
-                  role="button"
-                  onClick={() => history.push("./refinance-fact-find-v3")}
-                >
-                  <div className="item-content text-center">
-                    <div className="info">
-                      <p>Refinance Home Loan Consultant 3</p>
+              <div className="mt-5">
+                <p className="text-left mb-0">Live Forms</p>
+                <div className="content-box mt-0">
+                  <div
+                    className="item "
+                    role="button"
+                    onClick={() => history.push("./refinance-fact-find-v3")}
+                  >
+                    <div className="item-content text-center">
+                      <div className="info">
+                        <p>Refinance Home Loan Consultant 3</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div
+                    className="item "
+                    role="button"
+                    onClick={() => history.push("./refinance-fact-find-3")}
+                  >
+                    <div className="item-content text-center ">
+                      <div className="info">
+                        <p>Zabee Refinance HLC</p>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div
+                    className="item "
+                    role="button"
+                    onClick={() => history.push("./updated-hlc-consultant-4")}
+                  >
+                    <div className="item-content text-center">
+                      <div className="info">
+                        <p>Updated HLC Consultant 4</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                {/* <div
-                  className="item "
-                  role="button"
-                  onClick={() => history.push("./refinance-fact-find-3")}
-                >
-                  <div className="item-content text-center ">
-                    <div className="info">
-                      <p>Zabee Refinance HLC</p>
-                    </div>
-                  </div>
-                </div> */}
-                <div
-                  className="item "
-                  role="button"
-                  onClick={() => history.push("./updated-hlc-consultant-4")}
-                >
+                <p className="text-left mb-0 mt-3">Previous Forms</p>
+                <div className="content-boxs mt-0">
+                  <div
+                    className="item pr-3"
+                    role="button"
+                    onClick={() => history.push("./refinance-home-loan-consultant-test")}
+                  >
                   <div className="item-content text-center">
                     <div className="info">
-                      <p>Updated HLC Consultant 4</p>
+                      <p>Refinance Test</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div
-              className="item pr-3"
-              role="button"
-              onClick={() => history.push("./refinance-home-loan-consultant-test")}
-            >
-              <div className="item-content text-center">
-                <div className="info">
-                  <p>Refinance Test</p>
-                </div>
               </div>
-            </div>
-              </>
             )}
           </div>
         </main>
