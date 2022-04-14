@@ -27,11 +27,11 @@ const SelfEmployment = ({temEmploymentStatus, temEmploymentStatus2}:Props) => {
                     content: ''
                 },
                 {
-                    title: 'Company/Trust \n Profit FY 2019',
+                    title: 'Company/Trust \n Profit FY 2020',
                     content: ''
                 },
                 {
-                    title: 'Company/Trust \n Profit FY 2020',
+                    title: 'Company/Trust \n Profit FY 2021',
                     content: ''
                 },
                 {
@@ -65,11 +65,11 @@ const SelfEmployment = ({temEmploymentStatus, temEmploymentStatus2}:Props) => {
                     content: ''
                 },
                 {
-                    title: 'Company/Trust \n Profit FY 2019',
+                    title: 'Company/Trust \n Profit FY 2020',
                     content: ''
                 },
                 {
-                    title: 'Company/Trust \n Profit FY 2020',
+                    title: 'Company/Trust \n Profit FY 2021',
                     content: ''
                 },
                 {

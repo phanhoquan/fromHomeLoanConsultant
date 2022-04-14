@@ -20,7 +20,7 @@ import "./_styles.scss"
 
 const Overviews = () => {
   const history = useHistory();
-  const currentDate = moment(new Date()).format("DD/MM/YYYY");
+  const currentDate = moment(new Date()).format("DD/MM/YYYY HH:mm");
   const chillApplicantAge = localStorage.getItem("loan2chillApplicantAge")
 ? JSON.parse(localStorage.getItem("loan2chillApplicantAge"))
 : {};

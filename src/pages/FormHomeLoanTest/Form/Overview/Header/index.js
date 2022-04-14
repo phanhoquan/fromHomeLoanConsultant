@@ -16,6 +16,9 @@ import Modal from "../../../../Modal/Modal";
 
 const Header = ({handleSubmit}) => {
   const history = useHistory();
+  const loan2firstName = localStorage.getItem("loan2firstName") || ""
+  const loan2lastName = localStorage.getItem("loan2lastName") || ""
+
   const [isShowModal, setIsShowModal] = useState(false);
   const outputPdf = () => {
     exportPDF();
@@ -23,23 +26,23 @@ const Header = ({handleSubmit}) => {
  const exportPDF = () => {
 
    const inputPDF = document.getElementById('content-overview');
-   const nameFile  = moment(new Date()).format('DD_MM_YYYY');
+   const nameFile  = moment(new Date()).format('YYYYMMDD');
     html2canvas(inputPDF)
       .then((canvas) => {
           const imgData = canvas.toDataURL('img/png');
           const pdf = new jsPDF('p', 'pt', [inputPDF?.offsetHeight, 858]);
           pdf.addImage(imgData, 'PNG', 1, 1);
-          pdf.save(`applicant_1_${nameFile}.pdf`);
+          pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
       });
  }
 const exportPDFMobile = () => {
   const inputPDF = document.getElementById('content-overview');
-  const nameFile  = moment(new Date()).format('DD_MM_YYYY');
+  const nameFile  = moment(new Date()).format('YYYYMMDD');
   domtoimage.toPng(inputPDF)
     .then(function (dataUrl) {
       const pdf = new jsPDF('p', 'pt', [inputPDF?.offsetHeight, inputPDF?.offsetWidth - 90]);
         pdf.addImage(dataUrl, 'PNG', 1, 1);
-        pdf.save(`applicant_1_${nameFile}.pdf`);
+        pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
     });
   }
 
