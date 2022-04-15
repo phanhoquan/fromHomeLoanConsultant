@@ -15,7 +15,7 @@ const Step16B = ({ handleGetLoan2value }) => {
   const checkYourSalaryStatus = (value) => {
     let test =
       parseInt(value.replace(/,/gi, ""), 10) >= 0 &&
-      parseInt(value.replace(/,/gi, ""), 10) <= 1000000;
+      parseInt(value.replace(/,/gi, ""), 10) <= 10000000;
     setYourSalaryValid(Number(test));
     return test;
   };
@@ -37,7 +37,7 @@ const Step16B = ({ handleGetLoan2value }) => {
         <div className="wForm wow fadeInUp">
           <Row>
             <Col xs={12} className="text-center">
-              <h2 className="mb-3">18. What is your salary?</h2>
+              <h2 className="mb-3">18. What is your salary for your current role?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-3">
@@ -69,7 +69,7 @@ const Step16B = ({ handleGetLoan2value }) => {
               </Row>
               {yourSalaryValid === valid.INVALID && (
                 <div className="text-error">
-                  <p>Value should be in between $0 - $1,000,000</p>
+                  <p>Value should be in between $0 - $10,000,000</p>
                 </div>
               )}
             </Col>

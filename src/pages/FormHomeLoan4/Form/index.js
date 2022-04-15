@@ -14,8 +14,11 @@ import EmploymentStatus from "./5-EmploymentStatus(Sole)";
 import Liabilities from "./6-Liabilities";
 import CreditCards from "./7-CreditCards";
 import ResidentialInformation from "./8-ResidentialInformation";
+import Assets from "./9-Assets";
 import Success from "./Success";
 import StepReset from "./PageReset";
+import InvestmentProperties from './10-InvestmentProperties'
+import Overviews from "./Overview";
 
 const Form = () => {
   const history = useHistory();
@@ -99,9 +102,21 @@ const Form = () => {
           path="/updated-hlc-consultant-4/CreditCards"
           component={CreditCards}
         />
+         <Route
+          path="/updated-hlc-consultant-4/Assets"
+          component={Assets}
+        />
         <Route
           path="/updated-hlc-consultant-4/ResidentialInformation"
           component={ResidentialInformation}
+        />
+         <Route
+          path="/updated-hlc-consultant-4/InvestmentProperties"
+          component={InvestmentProperties}
+        />
+        <Route
+          path="/updated-hlc-consultant-4/overview"
+          component={Overviews}
         />
         <Route path="/updated-hlc-consultant-4/step-success" component={Success} />
         <Route path="/updated-hlc-consultant-4/step-reset" component={StepReset} />

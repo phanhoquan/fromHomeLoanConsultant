@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import { Helmet } from "react-helmet";
 import imgMenu from "../../images/menu.png";
@@ -19,8 +19,9 @@ import EmploymentStatusSole from "./menu/EmploymentStatusSole";
 import Liabilities from "./menu/Liabilities";
 import CreditCards from "./menu/CreditCards";
 import ResidentialInformation from "./menu/ResidentialInformation";
-
-import Modal from "../Modal/ModalSubmit";
+import MenuAssets from "./menu/Assets";
+import InvestmentProperties from './menu/InvestmentProperties'
+import Overviews from "./menu/Overview";
 
 export const types = {
   1: "Sole Applicant",
@@ -40,6 +41,8 @@ const HomeLoan = ({
   listMenuStep7 = [],
   listMenuStep8 = [],
   listMenuStep9 = [],
+  listMenuStep10 = [],
+  listMenuStep11 = [],
   jointApplicationStatus = "",
 }) => {
   var root = document.getElementsByTagName("html")[0];
@@ -48,7 +51,6 @@ const HomeLoan = ({
   if (document.body) {
     root.setAttribute("class", "fonts90");
   }
-  const history = useHistory();
 
   let dataListMenuStep1 = localStorage.getItem("listMenuStep1")
     ? JSON.parse(localStorage.getItem("listMenuStep1"))
@@ -76,9 +78,14 @@ const HomeLoan = ({
   let dataListMenuStep9 = localStorage.getItem("listMenuStep9")
     ? JSON.parse(localStorage.getItem("listMenuStep9"))
     : [];
-  const [isNoteVale, setIsNoteVale] = useState(false);
-  const [isShowModal, setIsShowModal] = useState(false);
-  const [isShowMess, setIsShowMess] = useState(false);
+
+  let dataListMenuStep10 = localStorage.getItem("listMenuStep10")
+  ? JSON.parse(localStorage.getItem("listMenuStep10"))
+  : [];
+  let dataListMenuStep11 = localStorage.getItem("listMenuStep11")
+  ? JSON.parse(localStorage.getItem("listMenuStep11"))
+  : [];
+
   const [contentNoteVale, setContentNoteVale] = useState(
     localStorage.getItem("contentNoteVale") || ""
   );
@@ -113,14 +120,6 @@ const HomeLoan = ({
     // eslint-disable-next-line
   }, []);
 
-  const handleSubmit = () => {
-    if (contentNoteVale?.length >= 500) {
-      setIsNoteVale(true);
-      return;
-    }
-    setIsShowModal(true);
-  };
-
   const handleTogglesAddNote = () => {
     setIsShowNoteVale(!isShowNoteVale);
   };
@@ -130,19 +129,6 @@ const HomeLoan = ({
       setIsShowMessSole(false);
     } else {
       setIsShowMessSole(true);
-    }
-  };
-
-  const handleSubmitData = () => {
-    if (
-      !localStorage.getItem("loan2lastName") ||
-      !localStorage.getItem("loan2lastName") ||
-      !localStorage.getItem("loan2email")
-    ) {
-      setIsShowMess(true);
-      return;
-    } else {
-      history.push("/updated-hlc-consultant-4/step-success");
     }
   };
 
@@ -167,26 +153,21 @@ const HomeLoan = ({
     if (contentNoteVale?.length >= 500) {
       html = (
         <p className="content-limited mt-2 col-red">
-          Maximum characters exceeded. Remaining 0
-        </p>
-      );
-    }
-    if (isNoteVale && contentNoteVale?.length >= 500) {
-      html = (
-        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded. Remaining 0<br/>
           Maximum characters exceeded in Additional notes
         </p>
       );
     }
     return html;
   };
+
   return (
     <React.Fragment>
       <Helmet>
-        <title>Home Loan Consultant 2</title>
+        <title>Refinance Home Loan Consultant Test</title>
       </Helmet>
-      <div className="wrapper life-insurance fromHomeLoan fromHomeLoan2">
-        <Header handleSubmit={handleSubmit} />
+      <div className="wrapper life-insurance fromHomeLoan fromHomeLoan2 loan-consultant-test">
+        <Header />
         <div className="iconMenu">
           <div
             className="sub-iconMenu"
@@ -334,6 +315,22 @@ const HomeLoan = ({
                   )}
                 </ul>
               </CreditCards>
+              <MenuAssets
+                stepActive={activeStep}
+                answerActive={
+                  listMenuStep10?.length > 0
+                    ? listMenuStep10[0]
+                    : dataListMenuStep10[0]
+                }
+              >
+                <ul className="sub-question">
+                  {renderMenu(
+                    listMenuStep10?.length > 0
+                      ? listMenuStep10
+                      : dataListMenuStep10
+                  )}
+                </ul>
+              </MenuAssets>
               <ResidentialInformation
                 stepActive={activeStep}
                 answerActive={
@@ -350,6 +347,23 @@ const HomeLoan = ({
                   )}
                 </ul>
               </ResidentialInformation>
+              <InvestmentProperties
+              stepActive={activeStep}
+              answerActive={
+                listMenuStep11?.length > 0
+                  ? listMenuStep11[0]
+                  : dataListMenuStep11[0]
+              }
+            >
+              <ul className="sub-question">
+                {renderMenu(
+                  listMenuStep11?.length > 0
+                    ? listMenuStep11
+                    : dataListMenuStep11
+                )}
+              </ul>
+              </InvestmentProperties>
+              <Overviews/>
             </ul>
           </div>
           <div className="nav-right">{children}</div>
@@ -380,23 +394,13 @@ const HomeLoan = ({
             value={contentNoteVale}
             onChange={(e) => {
               setContentNoteVale(e.target.value);
-              setIsNoteVale(false);
             }}
-            placeholder="Please enter your additional notes here..."
             maxLength="500"
+            placeholder="Please enter your additional notes here..."
           />
           {renderMess()}
         </div>
       </div>
-      <Modal
-        isShow={isShowModal}
-        handleClose={() => {
-          setIsShowMess(false);
-          setIsShowModal(false);
-        }}
-        isShowMess={isShowMess}
-        handleSubmit={() => handleSubmitData()}
-      />
     </React.Fragment>
   );
 };

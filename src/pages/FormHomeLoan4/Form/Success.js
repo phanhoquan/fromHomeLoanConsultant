@@ -71,25 +71,33 @@ export default function Success() {
     ? localStorage.getItem("loan2personalLoansStatus").split(",")
     : [];
 
+  const dataStep35 = localStorage.getItem("listCreditCard")
+    ? JSON.parse(localStorage.getItem("listCreditCard"))
+    : {};
+  
+  const dataStep36 = localStorage.getItem("listAnyCard")
+    ? JSON.parse(localStorage.getItem("listAnyCard"))
+    : {};
+
+  const dataStep37 = localStorage.getItem("listVehiclesBoats")
+    ? JSON.parse(localStorage.getItem("listVehiclesBoats"))
+    : {};
+  const dataStep44 = localStorage.getItem("listItemProperty")
+    ? JSON.parse(localStorage.getItem("listItemProperty"))
+    : {};
   const setDataStateWithIpClient = (ipClient) => {
     setDataState({
       ...getDataMore(),
-      f_1_email: localStorage.getItem("loan2email") || "",
-      f_3_firstname: localStorage.getItem("loan2firstName") || "",
-      f_4_lastname: localStorage.getItem("loan2lastName") || "",
+      f_1_email: localStorage.getItem("loan2email") || "",//1
+      f_3_firstname: localStorage.getItem("loan2firstName") || "",//1
+      f_4_lastname: localStorage.getItem("loan2lastName") || "",//1
       f_88_employment_status:
         localStorage.getItem("loan2employmentStatus") || "", //1
-
-      f_40_city: localStorage.getItem("loan2city") || "",
-      f_41_state: localStorage.getItem("loan2state") || "",
-      f_11_postcode: localStorage.getItem("loan2postcode") || "",
-      f_6_address1: localStorage.getItem("loan2fullAddress") || "", //30
-
       f_17_ipaddress: ipClient,
       f_58_submissiondate: getTimeNow(),
       f_76_user_agent: navigator.userAgent,
       f_85_type_of_loan: localStorage.getItem("loan2currentLoanStatus") || "", //2
-
+      f_1018_loan_purpose:localStorage.getItem("textLoanPurpose") || '',
       f_1579_current_interest_rate_fixed:
         localStorage.getItem("loan2valueInterestRate") ||
         localStorage.getItem("loan2valueInterestRateSplit") ||
@@ -154,7 +162,8 @@ export default function Success() {
         localStorage.getItem("loan2yourSalary") || "", //16B
       f_1609_job_duration_sole_applicant:
         localStorage.getItem("loan2numberYearWorking") || "", //17
-
+      f_1744_sole_occupation_previous_role: localStorage.getItem("loan2occupation17B1") || "", // 17b
+      f_1745_sole_occupation_previous_role_duration: localStorage.getItem("loan2numberYearWorking17b") || "", // 17c
       f_1610_self_employed_business_type:
         localStorage.getItem("loan2typeOfBusinessOther") || "", //19
       f_1612_self_employed_abn_years:
@@ -169,6 +178,11 @@ export default function Success() {
         localStorage.getItem("loan2partnersOccupation") || "", //23
       f_1617_joint_applicant_employment_status:
         localStorage.getItem("loan2employmentPartnersWorkingStatus") || "", //24
+      f_1746_joint_applicant_occupation_previous_role:
+        localStorage.getItem("loan2occupation24C") || "", //24c
+      f_1747_joint_applicant_occupation_previous_role_duration:
+        localStorage.getItem("numberYearWorking24D") || "", //24d
+
       f_1618_joint_applicant_maternity:
         localStorage.getItem("loan2numberPartnerReturn") || "", //25
 
@@ -179,56 +193,110 @@ export default function Success() {
       f_1629_car_loan_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[2])
           ? types[2]
-          : "") || "",
+          : "") || "",//26
       f_1631_hecs_debt_confirm:
         (personalLoansStatus && !!personalLoansStatus?.includes(types[3])
           ? types[3]
-          : "") || "",
+          : "") || "",//26
 
       f_1620_car_loan_institution:
-        localStorage.getItem("loan2personalLoan") || "", //27a,
-      f_1621_car_loan_amount:
-        localStorage.getItem("loan2personalLoanAmount") || "", // 27a,
-
+        localStorage.getItem("loan2carLoan") || "", //31,
+      f_1621_car_loan_amount:localStorage.getItem("loan2carLoanAmount") || "", // 32
+      f_1619_joint_applicant_salary:
+        localStorage.getItem("loan2partnersSalary") || "",
       f_1624_personal_loan_institution:
-        localStorage.getItem("loan2carLoan") || "", //27b
+        localStorage.getItem("loan2personalLoan") || "", //29
       f_1625_personal_loan_amount:
-        localStorage.getItem("loan2carLoanAmount") || "", //27b
+        localStorage.getItem("loan2personalLoanAmount") || "", //30
 
       f_1622_hecs_institution: localStorage.getItem("loan2HECSDebt") || "", //27c
       f_1623_hecs_amount: localStorage.getItem("loan2HECSDebtAmount") || "", // 27c
-
-      f_1628_credit_card_confirm: localStorage.getItem("loan2creditCard") || "", //29
-
-      f_1626_credit_card_institution:
-        localStorage.getItem("loan2valueCreditCard") || "", // 30
-
-      f_1627_credit_card_amount:
-        localStorage.getItem("loan2valueCreditCardAmount") || "", // 30
-
+      f_1810_personal_loan_monthly_repayment: localStorage.getItem("loan2personalLoanMonthly")||'', // 30a
       f_1632_loan_type:
         localStorage.getItem("loan2currentlyRenting") === types2[1]
           ? "Investment"
           : "Owner Occupied" || "", //32,
+      f_1811_car_loan_monthly_repayment: localStorage.getItem("loan2carLoanMonthly") || '', // 32a
       f_1633_additional_notes: localStorage.getItem("contentNoteVale") || "", //33
-      f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //34
+      f_1628_credit_card_confirm: localStorage.getItem("loan2creditCard") || "", //35
+      f_1626_credit_card_institution:
+        dataStep35?.valueCreditCard351 || "", // 35#1
+      f_1627_credit_card_amount:
+        dataStep35?.valueCreditCard35Amount1 ? parseInt(dataStep35?.valueCreditCard35Amount1.replace(/,/gi, ""), 10) : "", // 35#1
+      f_1748_credit_card_institution_2:
+        dataStep35?.valueCreditCard352 || "", // 35#2
+      f_1749_credit_card_amount_2:
+        dataStep35?.valueCreditCard35Amount2 ? parseInt(dataStep35?.valueCreditCard35Amount2.replace(/,/gi, ""), 10) : "", // 35#2
+      f_1751_credit_card_institution_3:
+        dataStep35?.valueCreditCard353 || "", // 35#3
+      f_1750_credit_card_amount_3:
+        dataStep35?.valueCreditCard35Amount3 ? parseInt(dataStep35?.valueCreditCard35Amount3.replace(/,/gi, ""), 10) : "", // 35#3
+
+      f_1752_car_make_1: dataStep36?.makeCard1 || "", // 36#1
+      f_1753_car_model_1: dataStep36?.modelCard1 || "", // 36#1
+      f_1754_car_value_1: dataStep36?.valueCard1 || "", // 36#1
+      f_1755_car_make_2: dataStep36?.makeCard2 || "", // 36#1
+      f_1756_car_model_2: dataStep36?.modelCard2 || "", // 36#1
+      f_1757_car_value_2: dataStep36?.valueCard2 || "", // 36#1
+
+      f_1758_other_vehicles_type_1: dataStep37?.typeBoats1?.value || "", // 37#1
+      f_1764_other_vehicles_make_1: dataStep37?.makeBoats1 || "", // 37#1
+      f_1761_other_vehicles_model_1: dataStep37?.modelBoats1 || "", // 37#1
+      f_1767_other_vehicles_value_1: dataStep37?.valueBoats1 || "", // 37#1
+      f_1759_other_vehicles_type_2: dataStep37?.typeBoats2?.value || "", // 37#2
+      f_1765_other_vehicles_make_2: dataStep37?.makeBoats2 || "", // 37#2
+      f_1762_other_vehicles_model_2: dataStep37?.modelBoats2 || "", // 37#2
+      f_1768_other_vehicles_value_2: dataStep37?.valueBoats2 || "", // 37#2
+      f_1760_other_vehicles_type_3: dataStep37?.typeBoats3?.value || "", // 37#1
+      f_1766_other_vehicles_make_3: dataStep37?.makeBoats3 || "", // 37#2
+      f_1763_other_vehicles_model_3: dataStep37?.modelBoats3 || "", // 37#3
+      f_1769_other_vehicles_value_3: dataStep37?.valueBoats3 || "", // 37#4
+
+      f_1770_sole_applicant_superannuation_amount: localStorage.getItem("amountHome38A") || "", // 38#A
+      f_1771_joint_applicant_superannuation_amount: localStorage.getItem("amountHome38B") || "", // 38#B
+      f_1772_home_contents_value: localStorage.getItem("amountHome39") || "", // 39
+      f_1777_refinance_address: localStorage.getItem("loan2fullAddress") || "", // 40a
+      f_40_city: localStorage.getItem("loan2city") || "", // 40a
+      f_41_state: localStorage.getItem("loan2state") || "", // 40a
+      f_11_postcode: localStorage.getItem("loan2postcode") || "", // 40a
+      f_6_address1: localStorage.getItem("loan2fullAddress") || "", //40a
+      f_1778_current_living_address: localStorage.getItem("loan2fullAddress39A") || "", // 41a
+      f_1779_current_living_address_duration: localStorage.getItem("timeLiving39B") || "", // 41b
+      f_1780_previous_living_address: localStorage.getItem("loan2fullAddress39C") || "", // 41c
+      f_1781_previous_living_address_duration: localStorage.getItem("timeLiving39D") || "", //41d
       f_1712_rental_property_income:
-        localStorage.getItem("rentalPropertyIncome") || "",
+        localStorage.getItem("rentalPropertyIncome") || "", // 42
+      f_1678_timeframe: localStorage.getItem("loan2timeRefinancing") || "", //43
 
-      f_92_property_type: localStorage.getItem("loan2loanOptionType") || "",
-      f_391_borrow_amount:
-        localStorage.getItem("priceBorrow") ||
-        localStorage.getItem("priceOwing") ||
-        "",
+      // Property investment 1 // 44
+      f_1843_invest_property_1_address: dataStep44?.addressProperty1||'',
+      f_1844_invest_property_1_loan_amount: dataStep44?.loanAmountProperty1 ? parseInt(dataStep44?.loanAmountProperty1.replace(/,/gi, ""), 10):'',
+      f_1845_invest_property_1_interest_rate: dataStep44?.interestRateProperty1||'',
+      f_1846_invest_property_1_lender_name: dataStep44?.lenderProperty1||'',
+      f_1847_invest_property_1_loan_type: dataStep44?.fixedOrVariableProperty1?.value||'',
+      f_1848_invest_property_1_rental_income: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.rentalIncomeProperty1.replace(/,/gi, ""), 10):'',
+      f_1878_invest_property_1_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty1.replace(/,/gi, ""), 10):'',
+      
+      // Property investment 2 // 44
+      f_1849_invest_property_2_address: dataStep44?.addressProperty2||'',
+      f_1850_invest_property_2_loan_amount: dataStep44?.loanAmountProperty2 ? parseInt(dataStep44?.loanAmountProperty2.replace(/,/gi, ""), 10):'',
+      f_1851_invest_property_2_interest_rate: dataStep44?.interestRateProperty2||'',
+      f_1852_invest_property_2_lender_name: dataStep44?.lenderProperty2||'',
+      f_1853_invest_property_2_loan_type: dataStep44?.fixedOrVariableProperty2?.value||'',
+      f_1854_invest_property_2_rental_income: dataStep44?.rentalIncomeProperty2 ? parseInt(dataStep44?.rentalIncomeProperty2.replace(/,/gi, ""), 10):'',
+      f_1877_invest_property_2_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty2.replace(/,/gi, ""), 10):'',
+      // Property investment 3 // 44
+      f_1855_invest_property_3_address: dataStep44?.addressProperty3||'',
+      f_1856_invest_property_3_loan_amount: dataStep44?.loanAmountProperty3 ? parseInt(dataStep44?.loanAmountProperty3.replace(/,/gi, ""), 10):'',
+      f_1857_invest_property_3_interest_rate: dataStep44?.interestRateProperty3||'',
+      f_1858_invest_property_3_lender_name: dataStep44?.lenderProperty3||'',
+      f_1859_invest_property_3_loan_type: dataStep44?.fixedOrVariableProperty3?.value||'',
+      f_1860_invest_property_3_rental_income: dataStep44?.rentalIncomeProperty3 ? parseInt(dataStep44?.rentalIncomeProperty3.replace(/,/gi, ""), 10):'',
 
-      f_87_value_of_property:
-        localStorage.getItem("propertyValue") ||
-        localStorage.getItem("priceBuy") ||
-        "",
-      f_721_mortgage_lender: localStorage.getItem("priceBuy") || "",
-      f_78_income: localStorage.getItem("pricePreTax"),
+      f_1876_invest_property_3_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty3.replace(/,/gi, ""), 10):'',
 
-      cid: 10679,
+
+      cid: 10382,
       f_83_offer_url: "https://enquiry.makescents.com.au/updated-hlc-consultant-4",
     });
   };

@@ -34,6 +34,7 @@ const Step16 = ({
   handleGetLoan2value,
   employmentWorkingStatus,
   workingStatus,
+  jointApplicationStatus
 }) => {
   const numberYearWorkingRef = useRef(null);
   const wrapperInfoRef = useRef();
@@ -63,7 +64,6 @@ const Step16 = ({
     }
     // eslint-disable-next-line
   }, [employmentWorkingStatus]);
-
   useMemo(() => {
     if (workingStatus) {
       setNumberYearWorking(localStorage.getItem("loan2numberYearWorking"));
@@ -77,7 +77,7 @@ const Step16 = ({
       className={`formContent-step-second formContent-life-insurance ${
         isShowModal ? "mb-10" : "mb-3"
       } ${
-        isShowStep === types[4] || isShowStep === types[5] ? "opacity-03" : ""
+        isShowStep === types[4] || isShowStep === types[5] || (jointApplicationStatus ==='Sole Applicant' && employmentWorkingStatus === types[3]) ? "opacity-03" : ""
       }`}
     >
       <Container>

@@ -49,6 +49,10 @@ const Step38 = ({ handleGetLoan2value }) => {
     }
     if (zipCode.street && zipCode.city && zipCode.state && zipCode.postcode) {
       setFullAddressValid(valid.VALID);
+      localStorage.setItem("loan2street", zipCode?.street);
+      localStorage.setItem("loan2city", zipCode?.city);
+      localStorage.setItem("loan2state", zipCode?.state);
+      localStorage.setItem("loan2postcode", zipCode?.postcode);
       return valid.VALID;
     }
     setFullAddressValid(valid.INVALID);
@@ -112,8 +116,7 @@ const Step38 = ({ handleGetLoan2value }) => {
           <Row>
             <Col xs={12} className="text-center">
               <h2 className="mb-3">
-                38. What is the full residential address <br />
-                of your current property?
+                40a. What is the address of the property <br/> you are wanting to refinance?
               </h2>
             </Col>
             <Col xs={12}>

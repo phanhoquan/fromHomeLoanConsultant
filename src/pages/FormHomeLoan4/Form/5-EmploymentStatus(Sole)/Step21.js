@@ -33,7 +33,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
   const checkPartnersOccupationStatus = (value) => {
     setIsShowModal(false);
     let test = originArray.includes(value);
-    let testValid = /^([a-zA-Z\s]{2,})$/.test(value);
+    let testValid = value && value.length >= 2;
     if (!test) {
       setPartnersOccupationValid(Number(testValid));
       return testValid;
@@ -61,15 +61,18 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
       setPartnersOccupation(value.replace(/[0-9]/g, ""));
       if (value?.length >= 2) {
         setIsShowModal(true);
+        window.localStorage.setItem("loan2partnersOccupation", value||'');
       } else {
         setIsShowModal(false);
       }
     }
   };
 
-  const handelOnFocus = (name) => {
+  const handelOnFocus = (name, value) => {
     if (name?.length >= 2) {
       setIsShowModal(true);
+      window.localStorage.setItem("loan2partnersOccupation", value);
+      handleGetLoan2value("partnersOccupation", value);
     } else {
       setIsShowModal(false);
     }
@@ -80,7 +83,6 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
     setPartnersOccupation(name);
     checkPartnersOccupationStatus(name);
     setIsShowModal(false);
-    checkPartnersOccupationStatus(partnersOccupation);
     window.localStorage.setItem("loan2partnersOccupation", name);
     handleGetLoan2value("partnersOccupation", name);
   };
@@ -112,7 +114,7 @@ const Step21 = ({ handleGetLoan2value, jointApplicationStatus }) => {
         <div>
           <Row>
             <Col xs={12} className="text-center">
-              <h2>24. What is your partners occupation?</h2>
+              <h2>25. What is your partners occupation?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

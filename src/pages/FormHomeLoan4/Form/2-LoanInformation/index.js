@@ -5,10 +5,11 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import LifeInsurance from "../../index";
 
+import Step01 from "./Step01";
 import Step02 from "./Step02";
 import Step03A from "./Step03-1";
 import Step03B from "./Step03-2";
-import Step03C from "./Step03-3";
+// import Step03C from "./Step03-3";
 
 export const types = {
   1: "Fixed",
@@ -36,6 +37,7 @@ const LoanInformation = () => {
       localStorage.getItem("loan2valueInterestRateSplit") || "",
     interestRate2Split:
       localStorage.getItem("loan2valueInterestRate2Split") || "",
+    textLoanPurpose: localStorage.getItem("textLoanPurpose")
   });
 
   const handelGetLoan2currentLoanStatus = (option) => {
@@ -66,18 +68,27 @@ const LoanInformation = () => {
     interestRate2Variable,
     interestRateSplit,
     interestRate2Split,
+    textLoanPurpose
   } = loan2value;
   const step2 = [
     {
       id: 1,
       question: `${
-        loan2currentLoanStatus
-          ? "2. Is the loan you currently have Fixed, Variable or Split?"
+        textLoanPurpose
+          ? "1. Loan Purpose"
           : ""
       }`,
     },
     {
       id: 2,
+      question: `${
+        loan2currentLoanStatus
+          ? "2. Is the loan you currently have Fixed or Variable?"
+          : ""
+      }`,
+    },
+    {
+      id: 3,
       question: `${
         interestRate ||
         interestRate2Variable ||
@@ -95,7 +106,8 @@ const LoanInformation = () => {
       interestRate ||
       interestRate2Variable ||
       interestRateSplit ||
-      interestRate2Split
+      interestRate2Split || 
+      textLoanPurpose
     ) {
       setDataListMenuStep2(step2);
     }
@@ -107,6 +119,7 @@ const LoanInformation = () => {
     interestRate2Variable,
     interestRateSplit,
     interestRate2Split,
+    textLoanPurpose
   ]);
 
   const onClickNext = () => {
@@ -115,6 +128,7 @@ const LoanInformation = () => {
 
   return (
     <LifeInsurance activeStep={2} listMenuStep2={dataListMenuStep2}>
+      <Step01  handleGetLoan2value={handleGetLoan2value}/>
       <Step02
         handelGetLoan2currentLoanStatus={handelGetLoan2currentLoanStatus}
       />
@@ -125,11 +139,6 @@ const LoanInformation = () => {
       )}
       {loan2currentLoanStatus === types[2] ? (
         <Step03B handleGetLoan2value={handleGetLoan2value} />
-      ) : (
-        ""
-      )}
-      {loan2currentLoanStatus === types[3] ? (
-        <Step03C handleGetLoan2value={handleGetLoan2value} />
       ) : (
         ""
       )}

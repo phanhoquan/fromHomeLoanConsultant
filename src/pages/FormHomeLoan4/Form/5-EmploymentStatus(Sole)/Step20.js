@@ -71,7 +71,7 @@ const Step20 = ({ handleGetLoan2value }) => {
         <div className="wForm wow fadeInUp">
           <Row>
             <Col xs={12} className="text-center">
-              <h2 className="mb-3">22. What was your 2019 taxable income?</h2>
+              <h2 className="mb-3">22. What was your 2020 taxable income?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-4 pt-2">
@@ -109,7 +109,7 @@ const Step20 = ({ handleGetLoan2value }) => {
             </Col>
 
             <Col xs={12} className="text-center mt-4">
-              <h2 className="mb-3">23. What was your 2020 taxable income?</h2>
+              <h2 className="mb-3">23. What was your 2021 taxable income?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-2">

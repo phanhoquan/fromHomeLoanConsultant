@@ -25,7 +25,7 @@ const Step29 = ({ handleGetLoan2value }) => {
         <div>
           <Row>
             <Col xs={12} className="text-center mt-3">
-              <h2 className="mb-4">35. Do you have a credit card?</h2>
+              <h2 className="mb-4">35. Do you own any credit cards?</h2>
             </Col>
             <Col xs={12}>
               <Row className="info-customer mt-3">
