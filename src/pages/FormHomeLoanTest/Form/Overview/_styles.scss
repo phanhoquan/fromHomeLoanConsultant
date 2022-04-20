@@ -531,7 +531,6 @@ div.form-control.noteVale {
         border-radius: pxToRem(7);
         font-size: pxToRem(18);
         padding: pxToRem(15);
-        padding-bottom: pxToRem(8);
         color: $black-active;
         width: 100%;
         white-space: nowrap;
@@ -550,9 +549,6 @@ div.form-control.noteVale {
         &:-webkit-autofill:focus,
         &:-webkit-autofill:active {
           transition: background-color 5000s ease-in-out 0s;
-        }
-        &.value {
-          padding-top: pxToRem(20);
         }
         &:focus {
           border: pxToRem(2) solid $blue;

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, {useState} from "react";
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf'
 import domtoimage from 'dom-to-image';
 import moment from "moment";
@@ -24,17 +24,15 @@ const Header = ({handleSubmit}) => {
     exportPDF();
  }
  const exportPDF = () => {
-
-   const inputPDF = document.getElementById('content-overview');
-   const nameFile  = moment(new Date()).format('YYYYMMDD');
-    html2canvas(inputPDF)
-      .then((canvas) => {
-          const imgData = canvas.toDataURL('img/png');
-          const pdf = new jsPDF('p', 'px', [inputPDF?.offsetHeight, 810]);
-          pdf.addImage(imgData, 'PNG', 1, 1);
-          pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
-      });
- }
+  const inputPDF = document.getElementById('content-body');
+  const nameFile  = moment(new Date()).format('YYYYMMDD');
+  domtoimage.toPng(inputPDF)
+  .then(function (dataUrl) {
+         const pdf = new jsPDF('portrait', 'px', [inputPDF?.offsetHeight, 810]);
+         pdf.addImage(dataUrl, 'PNG', 95, 1);
+         pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
+     });
+}
 const exportPDFMobile = () => {
   const inputPDF = document.getElementById('content-overview');
   const nameFile  = moment(new Date()).format('YYYYMMDD');

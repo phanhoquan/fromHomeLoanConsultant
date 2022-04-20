@@ -322,7 +322,7 @@ const handleSubmitData = () => {
     <div className="page-overview fromHomeLoan2">
         <Header handleSubmit={handleSubmit}/>
         <div id="content-overview" className="container">
-           <div className="content-body">
+           <div id="content-body" className="content-body">
               <div className="refinance-date">
                 Refinance - {currentDate}
               </div>
@@ -333,7 +333,7 @@ const handleSubmitData = () => {
                     <div className="mt-3">
                         <InputCustom2
                             onChange={() => {}}
-                            label="Loan Purpose"
+                            label=""
                             readOnly
                             value={localStorage.getItem("textLoanPurpose")||''}
                             id="email-input"
