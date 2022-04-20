@@ -412,14 +412,12 @@ const handleSubmitData = () => {
               <div className="title my-3 ml-3">Additional notes</div>
               {localStorage.getItem("contentNoteVale") ?(
                 <div className="liabilities-top">
-                    <textarea
+                    <div
                         className="form-control noteVale"
-                        value={localStorage.getItem("contentNoteVale")}
-                        onChange={() => {}}
-                        maxLength="500"
                         disabled
-                        placeholder="Additional notes"
-                    />
+                    >
+                        {localStorage.getItem("contentNoteVale")}
+                    </div>
                 </div>
               ):''}
             </div>

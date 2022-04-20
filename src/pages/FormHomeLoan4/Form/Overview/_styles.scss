@@ -457,6 +457,11 @@ $label-font-size-redo: $default-size * 4;
         color: #212121 !important;
     }
 }
+div.form-control.noteVale {
+    height: auto;
+    min-height: 150px;
+    white-space: pre-line;
+}
 .residentialInformation {
     .table-cell {
        .table-header {

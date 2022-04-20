@@ -294,9 +294,7 @@ export default function Success() {
       f_1860_invest_property_3_rental_income: dataStep44?.rentalIncomeProperty3 ? parseInt(dataStep44?.rentalIncomeProperty3.replace(/,/gi, ""), 10):'',
 
       f_1876_invest_property_3_value_of_property: dataStep44?.rentalIncomeProperty1 ? parseInt(dataStep44?.valueOfPropertyProperty3.replace(/,/gi, ""), 10):'',
-
-
-      cid: 10382,
+      cid: 10679,
       f_83_offer_url: "https://enquiry.makescents.com.au/updated-hlc-consultant-4",
     });
   };

@@ -13,8 +13,8 @@ const ModalTerms = ({ handleClose, isShow }: Props) => {
       centered
     >
       <Modal.Header>
-        <button onClick={handleClose} type="button" class="close">
-          <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+        <button onClick={handleClose} type="button" className="close">
+          <span aria-hidden="true">×</span><span className="sr-only">Close</span>
         </button>
       </Modal.Header>
       <Modal.Body>
