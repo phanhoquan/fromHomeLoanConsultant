@@ -30,7 +30,7 @@ const Header = ({handleSubmit}) => {
     html2canvas(inputPDF)
       .then((canvas) => {
           const imgData = canvas.toDataURL('img/png');
-          const pdf = new jsPDF('p', 'pt', [inputPDF?.offsetHeight, 858]);
+          const pdf = new jsPDF('p', 'px', [inputPDF?.offsetHeight, 810]);
           pdf.addImage(imgData, 'PNG', 1, 1);
           pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
       });
@@ -40,7 +40,7 @@ const exportPDFMobile = () => {
   const nameFile  = moment(new Date()).format('YYYYMMDD');
   domtoimage.toPng(inputPDF)
     .then(function (dataUrl) {
-      const pdf = new jsPDF('p', 'pt', [inputPDF?.offsetHeight, inputPDF?.offsetWidth - 90]);
+      const pdf = new jsPDF('p', 'px', [inputPDF?.offsetHeight, inputPDF?.offsetWidth - 163]);
         pdf.addImage(dataUrl, 'PNG', 1, 1);
         pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
     });

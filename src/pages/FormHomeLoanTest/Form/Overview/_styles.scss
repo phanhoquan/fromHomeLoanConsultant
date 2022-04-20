@@ -514,7 +514,11 @@ $label-font-size-redo: $default-size * 4;
        }
     } 
 }
-
+div.form-control.noteVale {
+    height: auto;
+    min-height: 150px;
+    white-space: pre-line;
+}
   // InputCustom2 
   .input {
     &__box {
