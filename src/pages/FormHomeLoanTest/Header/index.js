@@ -53,7 +53,7 @@ const Header = ({ hiddenAction = false }) => {
         {!hiddenAction ? (
           <div className="btn-reset d-flex " style={{ opacity: "1" }}>
             <Button
-              className="btnPrimary life d-none d-md-block min-150 mt-0 w-auto min-h-50"
+              className="btnPrimary life d-none d-md-flex min-150 mt-0 w-auto min-h-50"
               onClick={handleGoToOverview}
             >
               Go to Overview
