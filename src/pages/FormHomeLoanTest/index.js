@@ -89,7 +89,12 @@ const HomeLoan = ({
   const [contentNoteVale, setContentNoteVale] = useState(
     localStorage.getItem("contentNoteVale") || ""
   );
+  const [textLoanPurpose, setTextLoanPurpose] = useState(
+    localStorage.getItem("textLoanPurpose") ||''
+  );
+
   const [isShowNoteVale, setIsShowNoteVale] = useState(false);
+  const [isShowLoanPurpose, setIsShowLoanPurpose] = useState(false);
   const [isShowMessSole, setIsShowMessSole] = useState(false);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
@@ -120,8 +125,12 @@ const HomeLoan = ({
     // eslint-disable-next-line
   }, []);
 
-  const handleTogglesAddNote = () => {
-    setIsShowNoteVale(!isShowNoteVale);
+  const handleTogglesAddNote = (name = "") => {
+    if(name==='loan'){
+      setIsShowLoanPurpose(!isShowLoanPurpose)
+    }else{
+      setIsShowNoteVale(!isShowNoteVale);
+    }
   };
 
   const handleShowMessSole = () => {
@@ -135,6 +144,10 @@ const HomeLoan = ({
   useMemo(() => {
     window.localStorage.setItem("contentNoteVale", contentNoteVale);
   }, [contentNoteVale]);
+
+  useMemo(() => {
+    window.localStorage.setItem("textLoanPurpose", textLoanPurpose);
+  }, [textLoanPurpose]);
 
   const renderMenu = (listMenu) => {
     return listMenu.map((item) => {
@@ -151,6 +164,24 @@ const HomeLoan = ({
       </p>
     );
     if (contentNoteVale?.length >= 500) {
+      html = (
+        <p className="content-limited mt-2 col-red">
+          Maximum characters exceeded. Remaining 0<br/>
+          Maximum characters exceeded in Additional notes
+        </p>
+      );
+    }
+    return html;
+  };
+
+  const renderMessLoan = () => {
+    let html = (
+      <p className="content-limited mt-2">
+        Content limited to 500 characters. Remaining{" "}
+        <span className="blue">{500 - textLoanPurpose?.length || ""}</span>
+      </p>
+    );
+    if (textLoanPurpose?.length >= 500) {
       html = (
         <p className="content-limited mt-2 col-red">
           Maximum characters exceeded. Remaining 0<br/>
@@ -377,9 +408,32 @@ const HomeLoan = ({
       ) : (
         ""
       )}
-
+      <div className={`addNote loan-purpose ${isShowLoanPurpose ? "show" : ""}`}>
+        <div className="addHeader" onClick={() =>handleTogglesAddNote('loan')}>
+          <img src={imgNote} alt="" className="icon-note" />
+          Loan Purpose
+          <img src={imgArrowNote} alt="" className="arrow-note" />
+        </div>
+        <div
+          className={`content-note ${
+            textLoanPurpose?.length >= 500 ? "box-red" : ""
+          }`}
+        >
+          <textarea
+            className="form-control noteVale"
+            value={textLoanPurpose}
+            onChange={(e) => {
+              setTextLoanPurpose(e.target.value);
+            }}
+            maxLength="500"
+            placeholder="Please enter your loan purpose here..."
+          />
+          {renderMessLoan()}
+        </div>
+      </div>
+      
       <div className={`addNote ${isShowNoteVale ? "show" : ""}`}>
-        <div className="addHeader" onClick={handleTogglesAddNote}>
+        <div className="addHeader" onClick={()=>handleTogglesAddNote('')}>
           <img src={imgNote} alt="" className="icon-note" />
           Additional notes
           <img src={imgArrowNote} alt="" className="arrow-note" />
