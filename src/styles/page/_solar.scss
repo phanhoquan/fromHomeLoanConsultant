@@ -374,7 +374,12 @@ textarea {
   @media screen and(max-width: 1700px) {
     width: pxToRem(330);
   }
-
+  @media screen and(max-width: 600px) {
+    &.loan-purpose {
+      right: 15px;
+      bottom: 35px;
+    }
+  }
   .addHeader {
     background-color: #599bff;
     border-top-right-radius: 6px;
