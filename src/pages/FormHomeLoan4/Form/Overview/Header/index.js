@@ -28,7 +28,7 @@ const Header = ({handleSubmit}) => {
    domtoimage.toPng(inputPDF)
    .then(function (dataUrl) {
           const pdf = new jsPDF('portrait', 'px', [inputPDF?.offsetHeight, 810]);
-          pdf.addImage(dataUrl, 'PNG', 95, 1);
+          pdf.addImage(dataUrl, 'PNG', 95, 0, 0, 0, undefined,'FAST');
           pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
       });
  }
@@ -38,7 +38,7 @@ const exportPDFMobile = () => {
   domtoimage.toPng(inputPDF)
     .then(function (dataUrl) {
       const pdf = new jsPDF('p', 'px', [inputPDF?.offsetHeight, inputPDF?.offsetWidth - 163]);
-        pdf.addImage(dataUrl, 'PNG', 1, 1);
+      pdf.addImage(dataUrl, 'PNG', 0, 0, 0, 0, undefined,'FAST');
         pdf.save(`${nameFile}_${loan2firstName}_${loan2lastName}_FactFind.pdf`);
     });
   }
