@@ -92,7 +92,7 @@ const First = () => {
   const step1 = [
     {
       id: 1,
-      question: `${email && lastName && firstName ? "Enter email address" : ""}`,
+      question: `${email && lastName && firstName ? "1. Enter email address" : ""}`,
     }
   ];
 
@@ -176,7 +176,7 @@ const First = () => {
           <div>
             <Row>
               <Col xs={12} className="text-center">
-                <h2 className="mb-4">Enter email address</h2>
+                <h2 className="mb-4">1. Enter email address</h2>
               </Col>
               <Col xs={12} className="mb-3">
                 <Row className="info-customer">
