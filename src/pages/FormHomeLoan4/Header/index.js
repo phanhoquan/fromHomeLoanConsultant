@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import imgLogo from "../../../images/life/logo.svg";
 import { redirectTo } from "../../../utils/beginPage";
@@ -13,6 +14,7 @@ import Modal from "../../Modal/Modal";
 
 const Header = ({ hiddenAction = false }) => {
   // custom header sticky
+  const history = useHistory();
   const [isShowModal, setIsShowModal] = useState(false);
   useEffect(() => {
     const elementHeader = document.getElementById("header");
@@ -32,6 +34,9 @@ const Header = ({ hiddenAction = false }) => {
     redirectTo("/updated-hlc-consultant-4");
     setIsShowModal(false);
   };
+  const handleGoToOverview = () => {
+    history.push("/updated-hlc-consultant-4/overview")
+  }
 
   return (
     <>
@@ -48,20 +53,36 @@ const Header = ({ hiddenAction = false }) => {
         {!hiddenAction ? (
           <div className="btn-reset d-flex " style={{ opacity: "1" }}>
             <Button
+              className="btnPrimary life d-none d-md-flex min-150 mt-0 w-auto min-h-50"
+              onClick={handleGoToOverview}
+            >
+              Go to Overview
+            </Button>
+            <Button
               className="btnPrimary life min-300 mt-0 w-auto min-h-50 btn-white btnResetWhite color-black"
               onClick={() => {}}
             >
               <img src={imgAuthor} alt="" className="imgResetBlue mr-3" />
               <img src={imgAuthorWhite} alt="" className="imgResetWhite mr-3" />
               BOOK MEETING
-              <a
-                className="authorName"
-                target="_blank"
-                rel="noreferrer"
-                href="https://meetings.hubspot.com/robert-scozzafava/rob-scozzafava-30mins-consulatation"
-              >
-                <p>Rob Scozzafava</p>
-              </a>
+              <div className="listAuthorName">
+                <a
+                  className="authorName"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://meetings.hubspot.com/bobby-horianto/bobby-horinato-30mins-consultation"
+                >
+                  <p>Bobby Horianto</p>
+                </a>
+                <a
+                  className="authorName"
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://meetings.hubspot.com/robert-scozzafava/rob-scozzafava-30mins-consulatation"
+                >
+                  <p>Rob Scozzafava</p>
+                </a>
+              </div>
             </Button>
             <Button
               className="btnPrimary life width-50 mt-0 w-auto min-h-50 btn-white btnResetWhite"

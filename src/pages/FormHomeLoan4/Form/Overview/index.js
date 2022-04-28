@@ -343,6 +343,17 @@ const handleSubmitData = () => {
                   ):''}
                 </div>
               <div className="title mb-3 ml-3">Time Frame: <span style={{fontWeight: '400'}}>{localStorage.getItem("loan2timeRefinancing")||''}</span></div>
+              <div className="title my-3 ml-3">Additional notes:</div>
+              {localStorage.getItem("contentNoteVale") ?(
+                <div className="liabilities-top">
+                    <div
+                        className="form-control noteVale"
+                        disabled
+                    >
+                        {localStorage.getItem("contentNoteVale")}
+                    </div>
+                </div>
+              ):''}
               <div className="title mb-3 ml-3">Applicants</div>
               <div className="applicants mb-4">
                   <div className="d-block d-md-flex">
@@ -409,17 +420,6 @@ const handleSubmitData = () => {
                     />
                 </div>
               </div>
-              <div className="title my-3 ml-3">Additional notes</div>
-              {localStorage.getItem("contentNoteVale") ?(
-                <div className="liabilities-top">
-                    <div
-                        className="form-control noteVale"
-                        disabled
-                    >
-                        {localStorage.getItem("contentNoteVale")}
-                    </div>
-                </div>
-              ):''}
             </div>
         </div>
         <div className="pb-5">
