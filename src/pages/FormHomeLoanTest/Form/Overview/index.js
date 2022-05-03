@@ -15,7 +15,6 @@ import InvestmentProperties from "./ResidentialInformation/index2"
 import OwnerOccupiedPropertyInformation from "./ResidentialInformation/index3"
 import SelfEmployment from "./SelfEmployment"
 import Modal from "../../../Modal/ModalSubmit";
-import InputCustom2 from "../../../../Components/InputCustom2";
 import "./_styles.scss"
 
 const Overviews = () => {
@@ -327,24 +326,23 @@ const handleSubmitData = () => {
                 Refinance - {currentDate}
               </div>
               <ApplicationSummary/>
-              <div className="title mb-3 ml-3">
-                  Loan Purpose:
+              <div className="mb-3">
+                  <div className="ml-3 title mb-3">Loan Purpose:</div>
                   {localStorage.getItem("textLoanPurpose")? (
-                    <div className="mt-3">
-                        <InputCustom2
-                            onChange={() => {}}
-                            readOnly
-                            value={localStorage.getItem("textLoanPurpose")||''}
-                            id="email-input"
-                            customClassLabel={localStorage.getItem("textLoanPurpose") ? "active" : ""}
-                        />
+                    <div className="liabilities-top">
+                        <div
+                            className="form-control noteVale"
+                            disabled
+                        >
+                            {localStorage.getItem("textLoanPurpose")}
+                        </div>
                     </div>
                   ):''}
                 </div>
               <div className="title mb-3 ml-3">Time Frame: <span style={{fontWeight: '400'}}>{localStorage.getItem("loan2timeRefinancing")||''}</span></div>
               <div className="title my-3 ml-3">Additional notes:</div>
               {localStorage.getItem("contentNoteVale") ?(
-                <div className="liabilities-top">
+                <div className="liabilities-top mb-3">
                     <div
                         className="form-control noteVale"
                         disabled
